@@ -3,6 +3,9 @@ import BoxShadowControlHelper from "../../../utils/components/box-shadow-helper"
 import TypographyHelperControl from "../../../settings-components/TypographySettings";
 import ResponsiveNewMarginControl from "../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewMarginControl/index";
 import ResponsiveNewPaddingControl from "../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewPaddingControl/index";
+import RbeaRangeControl from "../../../utils/components/rbea-range-control";
+import RbeaColorControl from "../../../utils/components/rbea-color-control";
+import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
 
 const {Component, Fragment} = wp.element;
 const {
@@ -250,28 +253,17 @@ export default class Inspector extends Component {
     var HoverBoxShadowControls;
     HoverBoxShadowControls = (
       <Fragment>
-        <p className="responsive-block-editor-addons-setting-label">
-          {__("Color", "responsive-block-editor-addons")}
-          <span className="components-base-control__label">
-            <span
-              className="component-color-indicator"
-              style={{backgroundColor: imageboxShadowHoverColor}}
-            ></span>
-          </span>
-        </p>
-        <ColorPalette
-          value={imageboxShadowHoverColor}
-          onChange={(colorValue) =>
-            setAttributes({
-              imageboxShadowHoverColor:
-                colorValue !== undefined ? colorValue : "",
-            })
-          }
-          allowReset
-        />
+        <RbeaColorControl
+					label = {__("Color", "responsive-block-editor-addons")}
+					colorValue={imageboxShadowHoverColor}
+					onChange={(colorValue) =>
+						setAttributes({ imageboxShadowHoverColor: colorValue })
+					}
+					resetColor={() => setAttributes({ imageboxShadowHoverColor: "" })}
+				/>
 
         <h2>{__("Horizontal", "responsive-block-editor-addons")}</h2>
-        <RangeControl
+        <RbeaRangeControl
           value={imageboxShadowHoverHOffset}
           onChange={(value) =>
             setAttributes({
@@ -283,7 +275,7 @@ export default class Inspector extends Component {
           allowReset
         />
         <h2>{__("Vertical", "responsive-block-editor-addons")}</h2>
-        <RangeControl
+        <RbeaRangeControl
           value={imageboxShadowHoverVOffset}
           onChange={(value) =>
             setAttributes({
@@ -295,7 +287,7 @@ export default class Inspector extends Component {
           allowReset
         />
         <h2>{__("Blur", "responsive-block-editor-addons")}</h2>
-        <RangeControl
+        <RbeaRangeControl
           value={imageboxShadowHoverBlur}
           onChange={(value) =>
             setAttributes({
@@ -307,7 +299,7 @@ export default class Inspector extends Component {
           allowReset
         />
         <h2>{__("Spread", "responsive-block-editor-addons")}</h2>
-        <RangeControl
+        <RbeaRangeControl
           value={imageboxShadowHoverSpread}
           onChange={(value) =>
             setAttributes({
@@ -318,7 +310,7 @@ export default class Inspector extends Component {
           max={100}
           allowReset
         />
-        <SelectControl
+        <RbeaTabRadioControl
           label={__("Position", "responsive-block-editor-addons")}
           value={imageboxShadowHoverPosition}
           onChange={(value) =>
@@ -495,7 +487,7 @@ export default class Inspector extends Component {
                                 "responsive-block-editor-addons"
                               )}
                             </p>
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Width",
                                 "responsive-block-editor-addons"
@@ -510,7 +502,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Height",
                                 "responsive-block-editor-addons"
@@ -538,7 +530,7 @@ export default class Inspector extends Component {
                                 "responsive-block-editor-addons"
                               )}
                             </p>
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Width",
                                 "responsive-block-editor-addons"
@@ -553,7 +545,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Height",
                                 "responsive-block-editor-addons"
@@ -581,7 +573,7 @@ export default class Inspector extends Component {
                                 "responsive-block-editor-addons"
                               )}
                             </p>
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Width",
                                 "responsive-block-editor-addons"
@@ -596,7 +588,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Height",
                                 "responsive-block-editor-addons"
@@ -629,7 +621,7 @@ export default class Inspector extends Component {
                   }
                 />
               </PanelRow>
-              <SelectControl
+              <RbeaTabRadioControl
                 label={__("Object Fit", "responsive-block-editor-addons")}
                 value={imageObjectFit}
                 onChange={(value) => setAttributes({imageObjectFit: value})}
@@ -889,7 +881,7 @@ export default class Inspector extends Component {
                   setAttributes={setAttributes}
                   {...this.props}
                 />
-                <RangeControl
+                <RbeaRangeControl
                   label={__(
                     "Border Distance From EDGE",
                     "responsive-block-editor-addons"
@@ -960,7 +952,7 @@ export default class Inspector extends Component {
               />
               {MaskShape !== "none" && (
                 <>
-                  <SelectControl
+                  <RbeaTabRadioControl
                     label={__("Mask Size", "responsive-block-editor-addons")}
                     value={MaskSize}
                     onChange={(value) => setAttributes({MaskSize: value})}
@@ -1135,26 +1127,18 @@ export default class Inspector extends Component {
               <>
                 <PanelBody title="Overlay" initialOpen={false}>
                   <Fragment>
-                    <p className="responsive-block-editor-addons-setting-label">
-                      {__("Background", "responsive-block-editor-addons")}
-                      <span className="components-base-control__label">
-                        <span
-                          className="component-color-indicator"
-                          style={{backgroundColor: layoverBackgroundcolor}}
-                        ></span>
-                      </span>
-                    </p>
-                    <ColorPalette
-                      value={layoverBackgroundcolor}
+                    <RbeaColorControl
+                      label = {__("Background", "responsive-block-editor-addons")}
+                      colorValue={layoverBackgroundcolor}
                       onChange={(colorValue) =>
                         setAttributes({
                           layoverBackgroundcolor:
                             colorValue !== undefined ? colorValue : "",
                         })
                       }
-                      allowReset
+                      resetColor={() => setAttributes({ layoverBackgroundcolor: "" })}
                     />
-                    <RangeControl
+                    <RbeaRangeControl
                       label={__(
                         "Overlay Opacity",
                         "responsive-block-editor-addons"
@@ -1169,7 +1153,7 @@ export default class Inspector extends Component {
                       max={100}
                       allowReset
                     />
-                    <RangeControl
+                    <RbeaRangeControl
                       label={__(
                         "Overlay Hover Opacity",
                         "responsive-block-editor-addons"
@@ -1188,7 +1172,7 @@ export default class Inspector extends Component {
                   </Fragment>
                 </PanelBody>
                 <PanelBody title="Heading" initialOpen={false}>
-                  <SelectControl
+                  <RbeaTabRadioControl
                     label={__("Heading Tag", "responsive-block-editor-addons")}
                     value={layoverHeadingTag}
                     onChange={(value) =>
@@ -1239,15 +1223,17 @@ export default class Inspector extends Component {
                     setAttributes={setAttributes}
                     {...this.props}
                   />
-                  <ColorPalette
-                    value={layoverHeadingColor}
+
+                  <RbeaColorControl
+                    label = {__("Color", "responsive-block-editor-addons")}
+                    colorValue={layoverHeadingColor}
                     onChange={(colorValue) =>
                       setAttributes({
                         layoverHeadingColor:
                           colorValue !== undefined ? colorValue : "",
                       })
                     }
-                    allowReset
+                    resetColor={() => setAttributes({ layoverHeadingColor: "" })}
                   />
 
                   <TabPanel
@@ -1286,7 +1272,7 @@ export default class Inspector extends Component {
                                 "responsive-block-editor-addons"
                               )}
                             </p>
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Top",
                                 "responsive-block-editor-addons"
@@ -1301,7 +1287,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Bottom",
                                 "responsive-block-editor-addons"
@@ -1316,7 +1302,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Left",
                                 "responsive-block-editor-addons"
@@ -1331,7 +1317,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Right",
                                 "responsive-block-editor-addons"
@@ -1357,7 +1343,7 @@ export default class Inspector extends Component {
                                 "responsive-block-editor-addons"
                               )}
                             </p>
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Top",
                                 "responsive-block-editor-addons"
@@ -1372,7 +1358,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Bottom",
                                 "responsive-block-editor-addons"
@@ -1387,7 +1373,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Left",
                                 "responsive-block-editor-addons"
@@ -1402,7 +1388,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Right",
                                 "responsive-block-editor-addons"
@@ -1425,7 +1411,7 @@ export default class Inspector extends Component {
                             <p>
                               {__("Margin", "responsive-block-editor-addons")}
                             </p>
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Top",
                                 "responsive-block-editor-addons"
@@ -1440,7 +1426,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Bottom",
                                 "responsive-block-editor-addons"
@@ -1455,7 +1441,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Left",
                                 "responsive-block-editor-addons"
@@ -1470,7 +1456,7 @@ export default class Inspector extends Component {
                                 })
                               }
                             />
-                            <RangeControl
+                            <RbeaRangeControl
                               label={__(
                                 "Right",
                                 "responsive-block-editor-addons"
@@ -1515,15 +1501,14 @@ export default class Inspector extends Component {
                   setAttributes={setAttributes}
                   {...this.props}
                 />
-                <ColorPalette
-                  value={captionColor}
-                  onChange={(colorValue) =>
-                    setAttributes({
-                      captionColor: colorValue !== undefined ? colorValue : "",
-                    })
-                  }
-                  allowReset
-                />
+                	<RbeaColorControl
+                    label = {__("Color", "responsive-block-editor-addons")}
+                    colorValue={captionColor}
+                    onChange={(colorValue) =>
+                      setAttributes({ captionColor: colorValue })
+                    }
+                    resetColor={() => setAttributes({ captionColor: "" })}
+                  />
                 <TabPanel
                   className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
                   activeClass="active-tab"
@@ -1560,7 +1545,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__("Top", "responsive-block-editor-addons")}
                             min={0}
                             max={2000}
@@ -1572,7 +1557,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__(
                               "Bottom",
                               "responsive-block-editor-addons"
@@ -1587,7 +1572,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__("Left", "responsive-block-editor-addons")}
                             min={0}
                             max={2000}
@@ -1599,7 +1584,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__(
                               "Right",
                               "responsive-block-editor-addons"
@@ -1625,7 +1610,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__("Top", "responsive-block-editor-addons")}
                             min={0}
                             max={2000}
@@ -1637,7 +1622,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__(
                               "Bottom",
                               "responsive-block-editor-addons"
@@ -1652,7 +1637,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__("Left", "responsive-block-editor-addons")}
                             min={0}
                             max={2000}
@@ -1664,7 +1649,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__(
                               "Right",
                               "responsive-block-editor-addons"
@@ -1687,7 +1672,7 @@ export default class Inspector extends Component {
                           <p>
                             {__("Margin", "responsive-block-editor-addons")}
                           </p>
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__("Top", "responsive-block-editor-addons")}
                             min={0}
                             max={2000}
@@ -1699,7 +1684,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__(
                               "Bottom",
                               "responsive-block-editor-addons"
@@ -1714,7 +1699,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__("Left", "responsive-block-editor-addons")}
                             min={0}
                             max={2000}
@@ -1726,7 +1711,7 @@ export default class Inspector extends Component {
                               })
                             }
                           />
-                          <RangeControl
+                          <RbeaRangeControl
                             label={__(
                               "Right",
                               "responsive-block-editor-addons"
@@ -1820,7 +1805,7 @@ export default class Inspector extends Component {
 
                     if ("mobile" === tab.name) {
                       tabout = (
-                        <RangeControl
+                        <RbeaRangeControl
                         label={__("z-index (Mobile)", "responsive-block-editor-addons")}
                         min={-1}
                         max={99999}
@@ -1834,7 +1819,7 @@ export default class Inspector extends Component {
                       );
                     } else if ("tablet" === tab.name) {
                       tabout = (
-                        <RangeControl
+                        <RbeaRangeControl
                         label={__("z-index (Tablet)", "responsive-block-editor-addons")}
                         min={-1}
                         max={99999}
@@ -1848,7 +1833,7 @@ export default class Inspector extends Component {
                       );
                     } else {
                       tabout = (
-                        <RangeControl
+                        <RbeaRangeControl
                         label={__("z-index ", "responsive-block-editor-addons")}
                         min={-1}
                         max={99999}
