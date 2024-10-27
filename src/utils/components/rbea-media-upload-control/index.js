@@ -11,7 +11,7 @@ const RbeaMediaUploadControl = ({ label, description, value, onChange , mediaTyp
     const mediaTypeCapitalCase = mediaType.charAt(0).toUpperCase() + mediaType.slice(1).toLowerCase();
     // Function to handle media selection from media library
     const handleMediaSelect = (media) => {
-        const updatedValue = { ...mediaData, url: media.url };
+        const updatedValue = { ...mediaData, url: media.url ,sizes: media.sizes};
         setMediaData(updatedValue);
         onChange(updatedValue);
     };

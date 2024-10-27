@@ -16,6 +16,7 @@ import ResponsiveNewPaddingControl from "../../../settings-components/Responsive
 import RbeaRangeControl from "../../../utils/components/rbea-range-control";
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
+import RbeaMediaUploadControl from "../../../utils/components/rbea-media-upload-control";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -58,10 +59,6 @@ export default class Inspector extends Component {
       imag_url = null;
     } else {
       imag_url = media;
-    }
-
-    if (!media.type || "image" !== media.type) {
-      imag_url = null;
     }
 
     const newItems = pricingList.map((item, thisIndex) => {
@@ -245,36 +242,16 @@ export default class Inspector extends Component {
           initialOpen={true}
           className={"responsive-repeater-panel"}
         >
-          <BaseControl className="editor-bg-image-control" label={__("", "responsive-block-editor-addons")}>
-            <MediaUpload
-              title={__("Select Image" + (index + 1), "responsive-block-editor-addons")}
-              onSelect={(media) => {
-                this.onSelectTestImage(media, index);
-              }}
-              allowedTypes={["image"]}
-              value={image_val}
-              render={({ open }) => (
-                <Button isDefault onClick={open}>
-                  {this.getImageName(pricingList[index]["image"])}
-                </Button>
-              )}
-            />
-            {image_val &&
-              pricingList[index]["image"].url !== null &&
-              pricingList[index]["image"].url !== "" && (
-                <Button
-                  className="responsive-rm-btn"
-                  key={index}
-                  onClick={(value) => {
-                    this.onRemoveTestImage(index);
-                  }}
-                  isLink
-                  isDestructive
-                >
-                  {__("Remove Image", "responsive-block-editor-addons")}
-                </Button>
-              )}
-          </BaseControl>
+          <RbeaMediaUploadControl
+            label={__("Select Image" + (index + 1), "responsive-block-editor-addons")}
+            value={{
+                url: pricingList[index]["image"].url,
+            }}
+            onChange={(media) => {
+              this.onSelectTestImage(media, index);
+            }}
+            mediaType={'image'}
+          />
         </PanelBody>
       );
     };
