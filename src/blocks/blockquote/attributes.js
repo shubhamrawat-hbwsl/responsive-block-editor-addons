@@ -185,7 +185,7 @@ const attributes = {
     type: "string",
   },
   backgroundVideo: {
-    type: "string",
+    type: "object",
   },
   backgroundColor: {
     type: "string",

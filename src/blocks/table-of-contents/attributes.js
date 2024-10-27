@@ -628,7 +628,7 @@ bodyBorderBottomRightRadius: {
     type: "string",
   },
   backgroundVideo: {
-    type: "string",
+    type: "object",
   },
   backgroundType: {
     type: "string",

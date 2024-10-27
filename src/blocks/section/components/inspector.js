@@ -869,11 +869,11 @@ export default class Inspector extends Component {
                     <RbeaMediaUploadControl
                       label={__('Video', 'responsive-block-editor-addons')}
                       value={{
-                          url: backgroundVideo || '',
+                          url: backgroundVideo.url || '',
                       }}
                       onChange={(newValue) => { 
                           setAttributes({
-                              backgroundVideo: newValue.url,
+                              backgroundVideo: newValue,
                           });
                       }}
                       mediaType={'video'}
