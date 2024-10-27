@@ -6,6 +6,7 @@ import ResponsiveNewPaddingControl from "../../../settings-components/Responsive
 import RbeaRangeControl from "../../../utils/components/rbea-range-control";
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
+import RbeaMediaUploadControl from "../../../utils/components/rbea-media-upload-control";
 
 const {Component, Fragment} = wp.element;
 const {
@@ -334,23 +335,18 @@ export default class Inspector extends Component {
         <InspectorTabs>
           <InspectorTab key={"content"}>
             <PanelBody title="Image" initialOpen={true}>
-              <div>
-                {attributes.imageUrl && (
-                  <div style={{textAlign: "center"}}>
-                    <img src={attributes.imageUrl} alt="Image" />
-                    {/* Adjust the styles as needed */}
-                  </div>
-                )}
-                <PanelRow>
-                  <Button isPrimary onClick={handleChangeImage}>
-                    {" "}
-                    {attributes.imageUrl !== ""
-                      ? "Change Image"
-                      : "Add Image"}{" "}
-                  </Button>
-                </PanelRow>
-              </div>
-
+              <RbeaMediaUploadControl
+                label={__("Image", "responsive-block-editor-addons")}
+                value={{
+                    url: imageUrl,
+                }}
+                onChange={(newValue) => { 
+                    setAttributes({
+                      imageUrl: newValue.url,
+                    });
+                }}
+                mediaType={'image'}
+              />
               <TabPanel
                 className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
                 activeClass="active-tab"

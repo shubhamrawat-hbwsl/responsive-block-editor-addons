@@ -942,7 +942,7 @@ export default class Inspector extends Component {
                   <RbeaMediaUploadControl
                     label={__("Front Background Image", "responsive-block-editor-addons")}
                     value={{
-                        image_val: backgroundImage,
+                        url: backgroundImage,
                     }}
                     onChange={(newValue) => { 
                         setAttributes({
@@ -1034,7 +1034,7 @@ export default class Inspector extends Component {
                   <RbeaMediaUploadControl
                     label={__("Back Background Image", "responsive-block-editor-addons")}
                     value={{
-                        image_val: backBackgroundImage,
+                        url: backBackgroundImage,
                     }}
                     onChange={(newValue) => { 
                         setAttributes({

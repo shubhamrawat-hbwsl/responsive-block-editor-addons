@@ -249,8 +249,8 @@ export default class Inspector extends Component {
                       value={{
                           url: image.url,
                       }}
-                      onChange={(url) => {
-                        this.props.setAttributes({ image: url });
+                      onChange={(media) => {
+                        this.props.setAttributes({ image: media });
                       }}
                       mediaType={'image'}
                     />

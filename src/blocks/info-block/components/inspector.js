@@ -693,7 +693,7 @@ export default class Inspector extends Component {
           <RbeaMediaUploadControl
             label={__("Image", "responsive-block-editor-addons")}
             value={{
-                image_val: iconImage,
+                url: iconImage.url,
             }}
             onChange={this.onSelectImage}
             mediaType={'image'}

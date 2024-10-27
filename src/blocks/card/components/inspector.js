@@ -712,7 +712,7 @@ export default class Inspector extends Component {
                     <RbeaMediaUploadControl
                       label={__("Image 1 Settings", "responsive-block-editor-addons")}
                       value={{
-                          image_val: backgroundImageOne,
+                          url: backgroundImageOne,
                       }}
                       onChange={(newValue) => { 
                           setAttributes({
@@ -725,7 +725,7 @@ export default class Inspector extends Component {
                     <RbeaMediaUploadControl
                       label={__("Image 2 Settings", "responsive-block-editor-addons")}
                       value={{
-                          image_val: backgroundImageTwo,
+                          url: backgroundImageTwo,
                       }}
                       onChange={(newValue) => { 
                           setAttributes({
@@ -739,7 +739,7 @@ export default class Inspector extends Component {
                     <RbeaMediaUploadControl
                       label={__("Image 3 Settings", "responsive-block-editor-addons")}
                       value={{
-                          image_val: backgroundImageThree,
+                          url: backgroundImageThree,
                       }}
                       onChange={(newValue) => { 
                           setAttributes({
@@ -753,8 +753,7 @@ export default class Inspector extends Component {
                     <RbeaMediaUploadControl
                       label={__("Image 4 Settings", "responsive-block-editor-addons")}
                       value={{
-                          enable: true,
-                          image_val: backgroundImageFour,
+                          url: backgroundImageFour,
                       }}
                       onChange={(newValue) => { 
                           setAttributes({
