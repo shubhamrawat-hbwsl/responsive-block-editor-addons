@@ -14,6 +14,7 @@ import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
 import RbeaMediaUploadControl from "../../../utils/components/rbea-media-upload-control";
 import RbeaBackgroundTypeControl from "../../../utils/components/rbea-background-type-control";
+import RbeaBorderStyleTabControl from "../../../utils/components/rbea-border-style-tab-control";
 
 /**
  * Inspector Controls
@@ -1230,23 +1231,11 @@ export default class Inspector extends Component {
                 title={__("Border", "responsive-block-editor-addons")}
                 initialOpen={false}
               >
-                <SelectControl
-                  label={__("Border Style")}
-                  value={headingBorderStyle}
+                <RbeaBorderStyleTabControl
+                  selected={headingBorderStyle}
                   onChange={(value) =>
                     setAttributes({ headingBorderStyle: value })
                   }
-                  options={[
-                    { value: "none", label: __("None") },
-                    { value: "solid", label: __("Solid") },
-                    { value: "dotted", label: __("Dotted") },
-                    { value: "dashed", label: __("Dashed") },
-                    { value: "double", label: __("Double") },
-                    { value: "groove", label: __("Groove") },
-                    { value: "inset", label: __("Inset") },
-                    { value: "outset", label: __("Outset") },
-                    { value: "ridge", label: __("Ridge") },
-                  ]}
                 />
                 {"none" != headingBorderStyle && (
                   <Fragment>
@@ -2376,23 +2365,11 @@ export default class Inspector extends Component {
                 title={__("Border", "responsive-block-editor-addons")}
                 initialOpen={false}
               >
-                <SelectControl
-                  label={__("Border Style")}
-                  value={bodyBorderStyle}
+                <RbeaBorderStyleTabControl
+                  selected={bodyBorderStyle}
                   onChange={(value) =>
                     setAttributes({ bodyBorderStyle: value })
                   }
-                  options={[
-                    { value: "none", label: __("None") },
-                    { value: "solid", label: __("Solid") },
-                    { value: "dotted", label: __("Dotted") },
-                    { value: "dashed", label: __("Dashed") },
-                    { value: "double", label: __("Double") },
-                    { value: "groove", label: __("Groove") },
-                    { value: "inset", label: __("Inset") },
-                    { value: "outset", label: __("Outset") },
-                    { value: "ridge", label: __("Ridge") },
-                  ]}
                 />
                 {"none" != bodyBorderStyle && (
                   <Fragment>

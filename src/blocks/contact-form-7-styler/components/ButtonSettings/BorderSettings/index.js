@@ -7,6 +7,7 @@ import BoxShadowControlHelper from "../../../../../utils/components/box-shadow-h
 import RbeaRangeControl from "../../../../../utils/components/rbea-range-control";
 import RbeaColorControl from "../../../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../../../utils/components/rbea-tab-radio-control";
+import RbeaBorderStyleTabControl from "../../../../../utils/components/rbea-border-style-tab-control";
 
 const { __ } = wp.i18n;
 
@@ -129,48 +130,9 @@ class ButtonBorderControl extends Component {
                 title={__("Border Settings", "responsive-block-editor-addons")}
                 initialOpen={false}
             >
-                <SelectControl
-                    label={__("Border Style", "responsive-block-editor-addons")}
-                    value={ctaBorderStyle}
+                <RbeaBorderStyleTabControl
+                    selected={ctaBorderStyle}
                     onChange={(value) => setAttributes({ ctaBorderStyle: value })}
-                    options={[
-                        {
-                            value: "none",
-                            label: __("None", "responsive-block-editor-addons"),
-                        },
-                        {
-                            value: "solid",
-                            label: __("Solid", "responsive-block-editor-addons"),
-                        },
-                        {
-                            value: "dotted",
-                            label: __("Dotted", "responsive-block-editor-addons"),
-                        },
-                        {
-                            value: "dashed",
-                            label: __("Dashed", "responsive-block-editor-addons"),
-                        },
-                        {
-                            value: "double",
-                            label: __("Double", "responsive-block-editor-addons"),
-                        },
-                        {
-                            value: "groove",
-                            label: __("Groove", "responsive-block-editor-addons"),
-                        },
-                        {
-                            value: "inset",
-                            label: __("Inset", "responsive-block-editor-addons"),
-                        },
-                        {
-                            value: "outset",
-                            label: __("Outset", "responsive-block-editor-addons"),
-                        },
-                        {
-                            value: "ridge",
-                            label: __("Ridge", "responsive-block-editor-addons"),
-                        },
-                    ]}
                 />
                 {"none" != ctaBorderStyle && (
                     <Fragment>

@@ -24,6 +24,7 @@ import RbeaRangeControl from "../../../utils/components/rbea-range-control";
 import RbeaAngleRangeControl from "../../../utils/components/rbea-angle-range-control";
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
+import RbeaBorderStyleTabControl from "../../../utils/components/rbea-border-style-tab-control";
 
 
 const { __ } = wp.i18n;
@@ -710,23 +711,11 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
         title={__("Border", "responsive-block-editor-addons")}
         initialOpen={false}
       >
-        <SelectControl
-          label={__("Border Style")}
-          value={parentBlockBorderStyle}
+        <RbeaBorderStyleTabControl
+          selected={parentBlockBorderStyle}
           onChange={(value) =>
             setAttributes({ parentBlockBorderStyle: value })
           }
-          options={[
-            { value: "none", label: __("None") },
-            { value: "solid", label: __("Solid") },
-            { value: "dotted", label: __("Dotted") },
-            { value: "dashed", label: __("Dashed") },
-            { value: "double", label: __("Double") },
-            { value: "groove", label: __("Groove") },
-            { value: "inset", label: __("Inset") },
-            { value: "outset", label: __("Outset") },
-            { value: "ridge", label: __("Ridge") },
-          ]}
         />
         {"none" != parentBlockBorderStyle && (
           <Fragment>
