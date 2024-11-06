@@ -10,6 +10,7 @@ const { SelectControl, RangeControl, PanelBody } = wp.components;
 
 import RbeaRangeControl from "../../../utils/components/rbea-range-control";
 import RbeaBorderStyleTabControl from "../../../utils/components/rbea-border-style-tab-control";
+import RbeaBorderRadiusControl from "../../RbeaBorderRadiusControl";
 
 // Extend component
 const { Component, Fragment } = wp.element;
@@ -25,6 +26,19 @@ class ButtonBorderControl extends Component {
               ctaBorderStyle,
               ctaBorderWidth,
               ctaBorderRadius,
+              ctaBlockTopRadius,
+              ctaBlockRightRadius,
+              ctaBlockBottomRadius,
+              ctaBlockLeftRadius,
+              ctaBlockTopRadiusTablet,
+              ctaBlockRightRadiusTablet,
+              ctaBlockBottomRadiusTablet,
+              ctaBlockLeftRadiusTablet,
+              ctaBlockTopRadiusMobile,
+              ctaBlockRightRadiusMobile,
+              ctaBlockBottomRadiusMobile,
+              ctaBlockLeftRadiusMobile,
+              ctaBlockIsRadiusControlConnected,
           },
           setAttributes,
       } = this.props;
@@ -53,19 +67,10 @@ class ButtonBorderControl extends Component {
                           max={50}
                           allowReset
                       />
-
-                      <RbeaRangeControl
-                          label={__("Border Radius", "responsive-block-editor-addons")}
-                          value={ctaBorderRadius}
-                          onChange={(value) =>
-                              setAttributes({
-                                  ctaBorderRadius: value !== undefined ? value : 0,
-                              })
-                          }
-                          min={0}
-                          max={100}
-                          allowReset
-                      />
+                        <RbeaBorderRadiusControl
+                            attrNameTemplate="ctaBlock%s"
+                            {...this.props}
+                        />
                   </Fragment>
               )}
           </PanelBody>

@@ -8,6 +8,7 @@ import RbeaRangeControl from "../../../../../utils/components/rbea-range-control
 import RbeaColorControl from "../../../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../../../utils/components/rbea-tab-radio-control";
 import RbeaBorderStyleTabControl from "../../../../../utils/components/rbea-border-style-tab-control";
+import RbeaBorderRadiusControl from "../../../../../settings-components/RbeaBorderRadiusControl";
 
 const { __ } = wp.i18n;
 
@@ -29,6 +30,20 @@ class ButtonBorderControl extends Component {
                 ctaBorderStyle,
                 ctaBorderWidth,
                 ctaBorderRadius,
+                ctaTopRadius,
+                ctaRightRadius,
+                ctaBottomRadius,
+                ctaLeftRadius,
+                ctaTopRadiusTablet,
+                ctaRightRadiusTablet,
+                ctaBottomRadiusTablet,
+                ctaLeftRadiusTablet,
+                ctaTopRadiusMobile,
+                ctaRightRadiusMobile,
+                ctaBottomRadiusMobile,
+                ctaLeftRadiusMobile,
+                ctaIsRadiusControlConnected,
+                ctaIsRadiusValueUpdated,
                 submitButtonHoverBoxShadowColor,
                 submitButtonHoverBoxShadowHOffset,
                 submitButtonHoverBoxShadowVOffset,
@@ -44,6 +59,28 @@ class ButtonBorderControl extends Component {
             },
             setAttributes,
         } = this.props;
+
+        // backward compatibility for border radius control
+
+        if (!ctaIsRadiusValueUpdated) {
+            this.props.setAttributes(
+            {
+                ctaTopRadius:          ctaBorderRadius !== undefined ? ctaBorderRadius : ctaTopRadius,
+                ctaBottomRadius:       ctaBorderRadius !== undefined ? ctaBorderRadius : ctaBottomRadius,
+                ctaLeftRadius:         ctaBorderRadius !== undefined ? ctaBorderRadius : ctaLeftRadius,
+                ctaRightRadius:        ctaBorderRadius !== undefined ? ctaBorderRadius : ctaRightRadius,
+                ctaTopRadiusTablet:    ctaBorderRadius !== undefined ? ctaBorderRadius : ctaTopRadiusTablet,
+                ctaBottomRadiusTablet: ctaBorderRadius !== undefined ? ctaBorderRadius : ctaBottomRadiusTablet,
+                ctaRightRadiusTablet:  ctaBorderRadius !== undefined ? ctaBorderRadius : ctaRightRadiusTablet,
+                ctaLeftRadiusTablet:   ctaBorderRadius !== undefined ? ctaBorderRadius : ctaLeftRadiusTablet,
+                ctaTopRadiusMobile:    ctaBorderRadius !== undefined ? ctaBorderRadius : ctaTopRadiusMobile,
+                ctaBottomRadiusMobile: ctaBorderRadius !== undefined ? ctaBorderRadius : ctaBottomRadiusMobile,
+                ctaLeftRadiusMobile:   ctaBorderRadius !== undefined ? ctaBorderRadius : ctaLeftRadiusMobile,
+                ctaRightRadiusMobile:  ctaBorderRadius !== undefined ? ctaBorderRadius : ctaRightRadiusMobile,
+            }
+            )
+            this.props.setAttributes({ctaIsRadiusValueUpdated: true});
+        }
 
 
         // Update color values
@@ -148,18 +185,9 @@ class ButtonBorderControl extends Component {
                             max={50}
                             allowReset
                         />
-
-                        <RbeaRangeControl
-                            label={__("Border Radius", "responsive-block-editor-addons")}
-                            value={ctaBorderRadius}
-                            onChange={(value) =>
-                                setAttributes({
-                                    ctaBorderRadius: value !== undefined ? value : 0,
-                                })
-                            }
-                            min={0}
-                            max={100}
-                            allowReset
+                        <RbeaBorderRadiusControl
+                            attrNameTemplate="cta%s"
+                            {...this.props}
                         />
                         <PanelBody
                             title={__("Box Shadow", "responsive-block-editor-addons")}

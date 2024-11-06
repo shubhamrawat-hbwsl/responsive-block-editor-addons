@@ -19,7 +19,7 @@ const { SelectControl, RangeControl , RadioControl} = wp.components;
 const { Component, Fragment } = wp.element;
 
 
-const SectionBlockBorderHelperControl = props => {
+const RbeaBlockBorderHelperControl = props => {
     const getAttrName = attrName => camelCase(sprintf(props.attrNameTemplate, attrName))
 
     var advancedControls;
@@ -49,20 +49,6 @@ class BlockBorderControl extends Component {
     }
 
     render() {
-        const blockRadiusResetValues = {
-            radiusTop : 0,
-            radiusRight : 0,
-            radiusBottom : 0,
-            radiusLeft : 0,
-            radiusTabletTop : 0,
-            radiusTabletRight : 0,
-            radiusTabletBottom : 0,
-            radiusTabletLeft : 0,
-            radiusMobileTop : 0,
-            radiusMobileRight : 0,
-            radiusMobileBottom : 0,
-            radiusMobileLeft : 0,
-          }
         var advancedControls;
  
         advancedControls = (
@@ -95,8 +81,7 @@ class BlockBorderControl extends Component {
                 {(
                     <>
                         <RbeaBorderRadiusControl
-                        attrNameTemplate="block%s"
-                        resetValues={blockRadiusResetValues}
+                        attrNameTemplate={this.props.attrNameTemplate}
                         {...this.props}
                         />
                     </>
@@ -114,4 +99,4 @@ class BlockBorderControl extends Component {
     }
 }
 
-export default SectionBlockBorderHelperControl;
+export default RbeaBlockBorderHelperControl;

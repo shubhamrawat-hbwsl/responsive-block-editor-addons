@@ -16,6 +16,7 @@ import ResponsiveNewMarginControl from "../../../settings-components/ResponsiveN
 import RbeaRangeControl from "../../../utils/components/rbea-range-control";
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaBorderStyleTabControl from "../../../utils/components/rbea-border-style-tab-control";
+import RbeaBorderRadiusControl from "../../../settings-components/RbeaBorderRadiusControl";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -112,6 +113,21 @@ export default class Inspector extends Component {
         boxBorderSize,
         boxBorderStyle,
         boxBorderColor,
+        blockBorderRadius, 
+        blockTopRadius,
+        blockRightRadius,
+        blockBottomRadius,
+        blockLeftRadius,
+        blockTopRadiusTablet,
+        blockRightRadiusTablet,
+        blockBottomRadiusTablet,
+        blockLeftRadiusTablet,
+        blockTopRadiusMobile,
+        blockRightRadiusMobile,
+        blockBottomRadiusMobile,
+        blockLeftRadiusMobile,
+        blockIsRadiusControlConnected,
+        blockIsRadiusValueUpdated,
         borderRadiusTopLeft,
         borderRadiusTopRight,
         borderRadiusBottomLeft,
@@ -327,6 +343,28 @@ export default class Inspector extends Component {
 
     const valid = (current) => current.isAfter(yesterday);
 
+    // backward compatibility for border radius control
+
+    if (!blockIsRadiusValueUpdated) {
+      this.props.setAttributes(
+        {
+          blockTopRadius:          borderRadiusTopLeft !== undefined ? borderRadiusTopLeft : blockTopRadius,
+          blockBottomRadius:       borderRadiusBottomRight !== undefined ? borderRadiusBottomRight : blockBottomRadius,
+          blockLeftRadius:         borderRadiusBottomLeft !== undefined ? borderRadiusBottomLeft : blockLeftRadius,
+          blockRightRadius:        borderRadiusTopRight !== undefined ? borderRadiusTopRight : blockRightRadius,
+          blockTopRadiusTablet:    borderRadiusTopLeft !== undefined ? borderRadiusTopLeft : blockTopRadiusTablet,
+          blockBottomRadiusTablet: borderRadiusBottomRight !== undefined ? borderRadiusBottomRight : blockBottomRadiusTablet,
+          blockRightRadiusTablet:  borderRadiusTopRight !== undefined ? borderRadiusTopRight : blockRightRadiusTablet,
+          blockLeftRadiusTablet:   borderRadiusBottomLeft !== undefined ? borderRadiusBottomLeft : blockLeftRadiusTablet,
+          blockTopRadiusMobile:    borderRadiusTopLeft !== undefined ? borderRadiusTopLeft : blockTopRadiusMobile,
+          blockBottomRadiusMobile: borderRadiusBottomRight !== undefined ? borderRadiusBottomRight : blockBottomRadiusMobile,
+          blockLeftRadiusMobile:   borderRadiusBottomLeft !== undefined ? borderRadiusBottomLeft : blockLeftRadiusMobile,
+          blockRightRadiusMobile:  borderRadiusTopRight !== undefined ? borderRadiusTopRight : blockRightRadiusMobile,
+        }
+      )
+      this.props.setAttributes({blockIsRadiusValueUpdated: true});
+    }
+
     return (
       <InspectorControls key="controls">
         <InspectorTabs>
@@ -512,53 +550,9 @@ export default class Inspector extends Component {
                       max={150}
                       allowReset
                     />
-                    <RbeaRangeControl
-                      label={__(
-                        "Border Radius Top Left",
-                        "responsive-block-editor-addons"
-                      )}
-                      value={borderRadiusTopLeft}
-                      onChange={(value) => {
-                        setAttributes({ borderRadiusTopLeft: value });
-                      }}
-                      min={0}
-                      max={100}
-                    />
-                    <RbeaRangeControl
-                      label={__(
-                        "Border Radius Top Right",
-                        "responsive-block-editor-addons"
-                      )}
-                      value={borderRadiusTopRight}
-                      onChange={(value) => {
-                        setAttributes({ borderRadiusTopRight: value });
-                      }}
-                      min={0}
-                      max={100}
-                    />
-                    <RbeaRangeControl
-                      label={__(
-                        "Border Radius Bottom Right",
-                        "responsive-block-editor-addons"
-                      )}
-                      value={borderRadiusBottomRight}
-                      onChange={(value) => {
-                        setAttributes({ borderRadiusBottomRight: value });
-                      }}
-                      min={0}
-                      max={100}
-                    />
-                    <RbeaRangeControl
-                      label={__(
-                        "Border Radius Bottom Left",
-                        "responsive-block-editor-addons"
-                      )}
-                      value={borderRadiusBottomLeft}
-                      onChange={(value) => {
-                        setAttributes({ borderRadiusBottomLeft: value });
-                      }}
-                      min={0}
-                      max={100}
+                    <RbeaBorderRadiusControl
+                      attrNameTemplate="block%s"
+                      {...this.props}
                     />
                   </Fragment>
                 )}
