@@ -40,6 +40,62 @@ const attributes = {
     type: "number",
     default: 0,
   },
+  bubbleTopRadius: {
+    type: "number",
+    default: 0,
+  },
+  bubbleRightRadius: {
+    type: "number",
+    default: 0,
+  },
+  bubbleBottomRadius: {
+    type: "number",
+    default: 0,
+  },
+  bubbleLeftRadius: {
+    type: "number",
+    default: 0,
+  },
+  bubbleTopRadiusTablet: {
+    type: "number",
+    default: 0,
+  },
+  bubbleRightRadiusTablet: {
+    type: "number",
+    default: 0,
+  },
+  bubbleBottomRadiusTablet: {
+    type: "number",
+    default: 0,
+  },
+  bubbleLeftRadiusTablet: {
+    type: "number",
+    default: 0,
+  },
+  bubbleTopRadiusMobile: {
+    type: "number",
+    default: 0,
+  },
+  bubbleRightRadiusMobile: {
+    type: "number",
+    default: 0,
+  },
+  bubbleBottomRadiusMobile: {
+    type: "number",
+    default: 0,
+  },
+  bubbleLeftRadiusMobile: {
+    type: "number",
+    default: 0,
+  },
+  bubbleIsRadiusControlConnected: {
+		type: "boolean",
+		default: false,
+	},
+  bubbleIsRadiusValueUpdated: {
+    type: "boolean",
+    default: false,
+  },
   bubbleColor: {
     type: "string",
     default: "center",
