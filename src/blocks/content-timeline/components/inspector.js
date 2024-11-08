@@ -337,8 +337,6 @@ export default class Inspector extends Component {
     this.props.setAttributes({itemIsRadiusValueUpdated: true});
   }
 
-  console.log("Item top radius tablet");
-  console.log(itemTopRadiusTablet);
 
     return (
       <InspectorControls key="inspector">
