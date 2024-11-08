@@ -339,14 +339,52 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$defaults = self::get_responsive_block_post_carousel_default_attributes();
 			$attr     = array_merge( $defaults, (array) $attr );
 
+			// Frontend Backward Compatibility For Border Radius
+			$newBorderRadiusKeys = [
+				'arrowTopRadius'          => 'arrowBorderRadius',
+				'arrowRightRadius'        => 'arrowBorderRadius',
+				'arrowBottomRadius'       => 'arrowBorderRadius',
+				'arrowLeftRadius'         => 'arrowBorderRadius',
+				'arrowTopRadiusTablet'    => 'arrowBorderRadius',
+				'arrowRightRadiusTablet'  => 'arrowBorderRadius',
+				'arrowBottomRadiusTablet' => 'arrowBorderRadius',
+				'arrowLeftRadiusTablet'   => 'arrowBorderRadius',
+				'arrowTopRadiusMobile'    => 'arrowBorderRadius',
+				'arrowRightRadiusMobile'  => 'arrowBorderRadius',
+				'arrowBottomRadiusMobile' => 'arrowBorderRadius',
+				'arrowLeftRadiusMobile'   => 'arrowBorderRadius',
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBorderRadiusKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
 			$inner_height        = $attr['displayPostImage'] ? '' : '100% !important';
 			$slick_button_styles = array(
 				'border-color'  => $attr['arrowDotsColor'],
-				'border-radius' => self::get_css_value( $attr['arrowBorderRadius'], 'px' ),
+				'border-top-left-radius'       => self::get_css_value( $attr['arrowTopRadius'], 'px' ),
+				'border-top-right-radius'      => self::get_css_value( $attr['arrowRightRadius'], 'px' ),
+				'border-bottom-right-radius'   => self::get_css_value( $attr['arrowBottomRadius'], 'px' ),
+				'border-bottom-left-radius'    => self::get_css_value( $attr['arrowLeftRadius'], 'px' ),
 				'border-width'  => self::get_css_value( $attr['arrowBorderSize'], 'px' ),
+			);
+			$slick_button_stylesMobile = array(
+				'border-top-left-radius'       => self::get_css_value( $attr['arrowTopRadiusMobile'], 'px' ),
+				'border-top-right-radius'      => self::get_css_value( $attr['arrowRightRadiusMobile'], 'px' ),
+				'border-bottom-right-radius'   => self::get_css_value( $attr['arrowBottomRadiusMobile'], 'px' ),
+				'border-bottom-left-radius'    => self::get_css_value( $attr['arrowLeftRadiusMobile'], 'px' ),
+			);
+			$slick_button_stylesTablet = array(
+				'border-top-left-radius'       => self::get_css_value( $attr['arrowTopRadiusTablet'], 'px' ),
+				'border-top-right-radius'      => self::get_css_value( $attr['arrowRightRadiusTablet'], 'px' ),
+				'border-bottom-right-radius'   => self::get_css_value( $attr['arrowBottomRadiusTablet'], 'px' ),
+				'border-bottom-left-radius'    => self::get_css_value( $attr['arrowLeftRadiusTablet'], 'px' ),
 			);
 			$imgopacity          = $attr['opacity'] / 100;
 
@@ -490,6 +528,8 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-left'    => self::get_css_value( $attr['blockLeftMarginMobile'], 'px' ),
 					'margin-right'   => self::get_css_value( $attr['blockRightMarginMobile'], 'px' ),
 				),
+				' .responsive-post-slick-carousel-' . $id . ' .slick-prev.slick-arrow' => $slick_button_stylesMobile,
+				' .responsive-post-slick-carousel-' . $id . ' .slick-next.slick-arrow' => $slick_button_stylesMobile,
 				' .responsive-block-editor-addons-block-post-carousel-text-wrap' => array(
 					'padding' => self::get_css_value( $attr['contentPaddingMobile'], 'px' ),
 				),
@@ -530,6 +570,8 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-left'    => self::get_css_value( $attr['blockLeftMarginTablet'], 'px' ),
 					'margin-right'   => self::get_css_value( $attr['blockRightMarginTablet'], 'px' ),
 				),
+				' .responsive-post-slick-carousel-' . $id . ' .slick-prev.slick-arrow' => $slick_button_stylesTablet,
+				' .responsive-post-slick-carousel-' . $id . ' .slick-next.slick-arrow' => $slick_button_stylesTablet,
 				' .responsive-block-editor-addons-block-post-carousel-text-wrap' => array(
 					'padding' => self::get_css_value( $attr['contentPaddingTablet'], 'px' ),
 				),
@@ -1639,6 +1681,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'arrowDots'               => 'arrows_dots',
 				'arrowBorderSize'         => 1,
 				'arrowBorderRadius'       => 0,
+				'arrowTopRadiusMobile'     => '',
+				'arrowRightRadiusMobile'   => '',
+				'arrowBottomRadiusMobile'  => '',
+				'arrowLeftRadiusMobile'    => '',
+				'arrowTopRadiusTablet'     => '',
+				'arrowRightRadiusTablet'   => '',
+				'arrowBottomRadiusTablet'  => '',
+				'arrowLeftRadiusTablet'    => '',
+				'arrowTopRadius'           => '',
+				'arrowRightRadius'         => '',
+				'arrowBottomRadius'        => '',
+				'arrowLeftRadius'          => '',
 				'postsToShow'             => 6,
 				'displayPostDate'         => true,
 				'displayPostExcerpt'      => true,
