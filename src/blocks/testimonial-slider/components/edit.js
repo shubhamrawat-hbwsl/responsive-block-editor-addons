@@ -29,6 +29,7 @@ import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
 import RbeaBackgroundTypeControl from "../../../utils/components/rbea-background-type-control";
 import RbeaBorderRadiusControl from "../../../settings-components/RbeaBorderRadiusControl";
+import RbeaBlockBorderHelperControl from "../../../settings-components/RbeaBlockBorderSettings";
 
 const { __ } = wp.i18n;
 
@@ -270,7 +271,21 @@ class edit extends Component {
       arrowDots,
       arrowSize,
       arrowBorderWidth,
-      arrowBorderRadius,
+      arrowBorderRadius, 
+      arrowTopRadius,
+      arrowRightRadius,
+      arrowBottomRadius,
+      arrowLeftRadius,
+      arrowTopRadiusTablet,
+      arrowRightRadiusTablet,
+      arrowBottomRadiusTablet,
+      arrowLeftRadiusTablet,
+      arrowTopRadiusMobile,
+      arrowRightRadiusMobile,
+      arrowBottomRadiusMobile,
+      arrowLeftRadiusMobile,
+      arrowIsRadiusControlConnected,
+      arrowIsRadiusValueUpdated,
       arrowBorderColor,
       arrowBorderStyle,
       autoplay,
@@ -306,6 +321,20 @@ class edit extends Component {
         blockBorderStyle,
         blockBorderWidth,
         blockBorderRadius,
+        blockTopRadius,
+        blockRightRadius,
+        blockBottomRadius,
+        blockLeftRadius,
+        blockTopRadiusTablet,
+        blockRightRadiusTablet,
+        blockBottomRadiusTablet,
+        blockLeftRadiusTablet,
+        blockTopRadiusMobile,
+        blockRightRadiusMobile,
+        blockBottomRadiusMobile,
+        blockLeftRadiusMobile,
+        blockIsRadiusControlConnected,
+        blockIsRadiusValueUpdated,
         blockBorderColor,
       stack,
       skin,
@@ -706,7 +735,7 @@ class edit extends Component {
           )}
         </PanelBody>
         <PanelBody title={__("Border", "responsive-block-editor-addons")} initialOpen={false}>
-            <BlockBorderHelperControl
+            <RbeaBlockBorderHelperControl
                 attrNameTemplate="block%s"
                 values={{ radius: blockBorderRadius, style: blockBorderStyle, width: blockBorderWidth, color: blockBorderColor }}
                 setAttributes={setAttributes}
@@ -734,7 +763,10 @@ class edit extends Component {
           role="button"
           style={{
               borderColor: arrowBorderColor,
-              borderRadius: arrowBorderRadius,
+              borderTopLeftRadius: arrowTopRadius,
+              borderTopRightRadius: arrowRightRadius,
+              borderBottomRightRadius: arrowBottomRadius,
+              borderBottomLeftRadius: arrowLeftRadius,
               borderWidth: arrowBorderWidth,
               borderStyle: arrowBorderStyle,
           }}
@@ -755,7 +787,10 @@ class edit extends Component {
           role="button"
           style={{
               borderColor: arrowBorderColor,
-              borderRadius: arrowBorderRadius,
+              borderTopLeftRadius: arrowTopRadius,
+              borderTopRightRadius: arrowRightRadius,
+              borderBottomRightRadius: arrowBottomRadius,
+              borderBottomLeftRadius: arrowLeftRadius,
               borderWidth: arrowBorderWidth,
               borderStyle: arrowBorderStyle,
           }}
@@ -904,7 +939,7 @@ class edit extends Component {
               max={50}
             />
               <PanelBody title={__("Arrow Border", "responsive-block-editor-addons")} initialOpen={false}>
-              <BlockBorderHelperControl
+              <RbeaBlockBorderHelperControl
                   attrNameTemplate="arrow%s"
                   values={{ radius: arrowBorderRadius, style: arrowBorderStyle, width: arrowBorderWidth, color: arrowBorderColor }}
                   setAttributes={setAttributes}
@@ -1372,6 +1407,50 @@ class edit extends Component {
         </InspectorTabs>
       </InspectorControls>
     );
+
+     // backward compatibility for border radius control
+
+     if (!blockIsRadiusValueUpdated) {
+      this.props.setAttributes(
+        {
+          blockTopRadius:          blockBorderRadius !== undefined ? blockBorderRadius : blockTopRadius,
+          blockBottomRadius:       blockBorderRadius !== undefined ? blockBorderRadius : blockBottomRadius,
+          blockLeftRadius:         blockBorderRadius !== undefined ? blockBorderRadius : blockLeftRadius,
+          blockRightRadius:        blockBorderRadius !== undefined ? blockBorderRadius : blockRightRadius,
+          blockTopRadiusTablet:    blockBorderRadius !== undefined ? blockBorderRadius : blockTopRadiusTablet,
+          blockBottomRadiusTablet: blockBorderRadius !== undefined ? blockBorderRadius : blockBottomRadiusTablet,
+          blockRightRadiusTablet:  blockBorderRadius !== undefined ? blockBorderRadius : blockRightRadiusTablet,
+          blockLeftRadiusTablet:   blockBorderRadius !== undefined ? blockBorderRadius : blockLeftRadiusTablet,
+          blockTopRadiusMobile:    blockBorderRadius !== undefined ? blockBorderRadius : blockTopRadiusMobile,
+          blockBottomRadiusMobile: blockBorderRadius !== undefined ? blockBorderRadius : blockBottomRadiusMobile,
+          blockLeftRadiusMobile:   blockBorderRadius !== undefined ? blockBorderRadius : blockLeftRadiusMobile,
+          blockRightRadiusMobile:  blockBorderRadius !== undefined ? blockBorderRadius : blockRightRadiusMobile,
+        }
+      )
+      this.props.setAttributes({blockIsRadiusValueUpdated: true});
+    }
+
+    // backward compatibility for border radius control
+
+    if (!arrowIsRadiusValueUpdated) {
+      this.props.setAttributes(
+        {
+        arrowTopRadius:          arrowBorderRadius !== undefined ? arrowBorderRadius : arrowTopRadius,
+        arrowBottomRadius:       arrowBorderRadius !== undefined ? arrowBorderRadius : arrowBottomRadius,
+        arrowLeftRadius:         arrowBorderRadius !== undefined ? arrowBorderRadius : arrowLeftRadius,
+        arrowRightRadius:        arrowBorderRadius !== undefined ? arrowBorderRadius : arrowRightRadius,
+        arrowTopRadiusTablet:    arrowBorderRadius !== undefined ? arrowBorderRadius : arrowTopRadiusTablet,
+        arrowBottomRadiusTablet: arrowBorderRadius !== undefined ? arrowBorderRadius : arrowBottomRadiusTablet,
+        arrowRightRadiusTablet:  arrowBorderRadius !== undefined ? arrowBorderRadius : arrowRightRadiusTablet,
+        arrowLeftRadiusTablet:   arrowBorderRadius !== undefined ? arrowBorderRadius : arrowLeftRadiusTablet,
+        arrowTopRadiusMobile:    arrowBorderRadius !== undefined ? arrowBorderRadius : arrowTopRadiusMobile,
+        arrowBottomRadiusMobile: arrowBorderRadius !== undefined ? arrowBorderRadius : arrowBottomRadiusMobile,
+        arrowLeftRadiusMobile:   arrowBorderRadius !== undefined ? arrowBorderRadius : arrowLeftRadiusMobile,
+        arrowRightRadiusMobile:  arrowBorderRadius !== undefined ? arrowBorderRadius : arrowRightRadiusMobile,
+        }
+      )
+      this.props.setAttributes({arrowIsRadiusValueUpdated: true});
+      }
 
     return (
       <Fragment>
