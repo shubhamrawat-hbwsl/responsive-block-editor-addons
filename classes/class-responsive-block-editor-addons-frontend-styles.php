@@ -9335,6 +9335,41 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$defaults = self::get_responsive_block_team_default_attributes();
 			$attr     = array_merge( $defaults, (array) $attr );
 
+			// Frontend Backward Compatibility For Border Radius
+			$newBorderRadiusKeys = [
+				'blockTopRadius'          => 'borderRadius',
+				'blockRightRadius'        => 'borderRadius',
+				'blockBottomRadius'       => 'borderRadius',
+				'blockLeftRadius'         => 'borderRadius',
+				'blockTopRadiusTablet'    => 'borderRadius',
+				'blockRightRadiusTablet'  => 'borderRadius',
+				'blockBottomRadiusTablet' => 'borderRadius',
+				'blockLeftRadiusTablet'   => 'borderRadius',
+				'blockTopRadiusMobile'    => 'borderRadius',
+				'blockRightRadiusMobile'  => 'borderRadius',
+				'blockBottomRadiusMobile' => 'borderRadius',
+				'blockLeftRadiusMobile'   => 'borderRadius',
+				'iconTopRadius'          => 'iconBorderRadius',
+				'iconRightRadius'        => 'iconBorderRadius',
+				'iconBottomRadius'       => 'iconBorderRadius',
+				'iconLeftRadius'         => 'iconBorderRadius',
+				'iconTopRadiusTablet'    => 'iconBorderRadius',
+				'iconRightRadiusTablet'  => 'iconBorderRadius',
+				'iconBottomRadiusTablet' => 'iconBorderRadius',
+				'iconLeftRadiusTablet'   => 'iconBorderRadius',
+				'iconTopRadiusMobile'    => 'iconBorderRadius',
+				'iconRightRadiusMobile'  => 'iconBorderRadius',
+				'iconBottomRadiusMobile' => 'iconBorderRadius',
+				'iconLeftRadiusMobile'   => 'iconBorderRadius',
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBorderRadiusKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
@@ -9509,7 +9544,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-width'     => self::get_css_value( $attr['iconBorderSize'], 'px' ),
 					'border-style'     => 'solid',
 					'border-color'     => $attr['socialIconBorderColor'],
-					'border-radius'    => self::get_css_value( $attr['iconBorderRadius'], '%' ),
+					'border-top-left-radius'       => self::get_css_value( $attr['iconTopRadius'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['iconRightRadius'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['iconBottomRadius'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['iconLeftRadius'], 'px' ),
 				),
 
 				' .responsive-block-editor-addons-team-social-icons li:hover a' => array(
@@ -9531,7 +9569,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'background-attachment' => $attr['backgroundAttachment'],
 					'border-width'          => self::get_css_value( $attr['borderWidth'], 'px' ),
 					'border-color'          => $attr['borderColor'],
-					'border-radius'         => self::get_css_value( $attr['borderRadius'], 'px' ),
+					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadius'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['blockRightRadius'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadius'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadius'], 'px' ),
 					'padding'               => self::get_css_value( $attr['padding'], 'px' ),
 					'text-align'            => $attr['alignment'],
 					'box-shadow'            =>
@@ -9564,6 +9605,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .wp-block-responsive-block-editor-addons-team'    => array(
 					'margin-bottom' => $gutter_margin,
+					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadiusMobile'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['blockRightRadiusMobile'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadiusMobile'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadiusMobile'], 'px' ),
 				),
 				' .responsive-block-editor-addons-team-avatar' => array(
 					'width'         => self::get_css_value( $attr['imageWidthMobile'], 'px' ),
@@ -9593,6 +9638,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .responsive-block-editor-addons-team-social-icons a' => array(
 					'margin-left'  => self::get_css_value( $attr['socialIconSpacingMobile'], 'px' ),
 					'margin-right' => self::get_css_value( $attr['socialIconSpacingMobile'], 'px' ),
+					'border-top-left-radius'       => self::get_css_value( $attr['iconTopRadiusMobile'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['iconRightRadiusMobile'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['iconBottomRadiusMobile'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['iconLeftRadiusMobile'], 'px' ),
 				),
 			);
 
@@ -9611,6 +9660,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .wp-block-responsive-block-editor-addons-team'    => array(
 					'margin-bottom' => $gutter_margin,
+					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadiusTablet'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['blockRightRadiusTablet'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadiusTablet'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadiusTablet'], 'px' ),
 				),
 				' .responsive-block-editor-addons-team-avatar' => array(
 					'width'         => self::get_css_value( $attr['imageWidthTablet'], 'px' ),
@@ -9640,6 +9693,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 
 				' .responsive-block-editor-addons-team-social-icons a' => array(
 					'margin-left' => self::get_css_value( $attr['socialIconSpacingTablet'], 'px' ),
+					'border-top-left-radius'       => self::get_css_value( $attr['iconTopRadiusTablet'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['iconRightRadiusTablet'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['iconBottomRadiusTablet'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['iconLeftRadiusTablet'], 'px' ),
 				),
 			);
 
@@ -9713,6 +9770,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'borderColor'                    => '',
 				'borderWidth'                    => 2,
 				'borderRadius'                   => 2,
+				'blockTopRadiusMobile'     => '',
+				'blockRightRadiusMobile'   => '',
+				'blockBottomRadiusMobile'  => '',
+				'blockLeftRadiusMobile'    => '',
+				'blockTopRadiusTablet'     => '',
+				'blockRightRadiusTablet'   => '',
+				'blockBottomRadiusTablet'  => '',
+				'blockLeftRadiusTablet'    => '',
+				'blockTopRadius'           => '',
+				'blockRightRadius'         => '',
+				'blockBottomRadius'        => '',
+				'blockLeftRadius'          => '',
 				'padding'                        => 2,
 				'alignment'                      => 'center',
 				'imageShape'                     => '',
@@ -9760,6 +9829,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'iconBackgroundSize'             => '',
 				'iconBorderSize'                 => '',
 				'iconBorderRadius'               => 0,
+				'iconTopRadiusMobile'     => '',
+				'iconRightRadiusMobile'   => '',
+				'iconBottomRadiusMobile'  => '',
+				'iconLeftRadiusMobile'    => '',
+				'iconTopRadiusTablet'     => '',
+				'iconRightRadiusTablet'   => '',
+				'iconBottomRadiusTablet'  => '',
+				'iconLeftRadiusTablet'    => '',
+				'iconTopRadius'           => '',
+				'iconRightRadius'         => '',
+				'iconBottomRadius'        => '',
+				'iconLeftRadius'          => '',
 				'hideWidget' 					 => false,
 				'hideWidgetMobile'      		 => false,
 				'hideWidgetTablet'    			 => false,
