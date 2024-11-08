@@ -255,7 +255,10 @@ function EditorStyles(props) {
 
     ":hover .responsive-block-editor-addons-add-image": {
       "background-image": hoverGradient,
-      "border-radius": boxRadius !== 999 && blockBorderRadius === '' ? generateCSSUnit(boxRadius, "px") : generateCSSUnit(blockBorderRadius, "px"), //For compatibility with v1.3.2.
+      "border-top-left-radius": generateCSSUnit(blockTopRadius, "px"),
+      "border-top-right-radius": generateCSSUnit(blockRightRadius, "px"),
+      "border-bottom-right-radius": generateCSSUnit(blockBottomRadius, "px"),
+      "border-bottom-left-radius": generateCSSUnit(blockLeftRadius, "px"),
     },
 
     ":hover": {
@@ -296,6 +299,12 @@ function EditorStyles(props) {
         "border-bottom-right-radius": generateCSSUnit(blockBottomRadiusMobile, "px"),
         "border-bottom-left-radius": generateCSSUnit(blockLeftRadiusMobile, "px"),
     },
+    ":hover .responsive-block-editor-addons-add-image": {
+      "border-top-left-radius": generateCSSUnit(blockTopRadiusMobile, "px"),
+      "border-top-right-radius": generateCSSUnit(blockRightRadiusMobile, "px"),
+      "border-bottom-right-radius": generateCSSUnit(blockBottomRadiusMobile, "px"),
+      "border-bottom-left-radius": generateCSSUnit(blockLeftRadiusMobile, "px"),
+    },
     " .wp-block-responsive-block-editor-addons-image-boxes-block-item__title": {
       "font-size": generateCSSUnit(titleFontSizeMobile, "px"),
       "margin-bottom": generateCSSUnit(titleSpacingMobile, "px"),
@@ -313,6 +322,12 @@ function EditorStyles(props) {
         "border-top-right-radius": generateCSSUnit(blockRightRadiusTablet, "px"),
         "border-bottom-right-radius": generateCSSUnit(blockBottomRadiusTablet, "px"),
         "border-bottom-left-radius": generateCSSUnit(blockLeftRadiusTablet, "px"),
+    },
+    ":hover .responsive-block-editor-addons-add-image": {
+      "border-top-left-radius": generateCSSUnit(blockTopRadiusTablet, "px"),
+      "border-top-right-radius": generateCSSUnit(blockRightRadiusTablet, "px"),
+      "border-bottom-right-radius": generateCSSUnit(blockBottomRadiusTablet, "px"),
+      "border-bottom-left-radius": generateCSSUnit(blockLeftRadiusTablet, "px"),
     },
     " .wp-block-responsive-block-editor-addons-image-boxes-block-item__title": {
       "font-size": generateCSSUnit(titleFontSizeTablet, "px"),

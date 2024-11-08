@@ -315,6 +315,62 @@ const attributes = {
         type: "number",
         default: 0,
     },
+    popupImageTriggerTopRadius: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerRightRadius: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerBottomRadius: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerLeftRadius: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerTopRadiusTablet: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerRightRadiusTablet: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerBottomRadiusTablet: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerLeftRadiusTablet: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerTopRadiusMobile: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerRightRadiusMobile: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerBottomRadiusMobile: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerLeftRadiusMobile: {
+      type: "number",
+      default: 0,
+    },
+    popupImageTriggerIsRadiusControlConnected: {
+      type: "boolean",
+      default: false,
+    },
+    popupImageTriggerIsRadiusValueUpdated: {
+      type: "boolean",
+      default: false,
+    },
     popupButtonText: {
         type: "string",
         default: "Click Here",

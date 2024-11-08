@@ -18058,6 +18058,28 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$defaults = self::get_responsive_block_popup_block_default_attributes();
 			$attr     = array_merge( $defaults, (array) $attr );
 
+			$newBorderRadiusKeys = [
+				'popupImageTriggerTopRadius'          => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerRightRadius'        => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerBottomRadius'       => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerLeftRadius'         => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerTopRadiusTablet'    => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerRightRadiusTablet'  => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerBottomRadiusTablet' => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerLeftRadiusTablet'   => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerTopRadiusMobile'    => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerRightRadiusMobile'  => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerBottomRadiusMobile' => 'popupImageTriggerBorderRadius',
+				'popupImageTriggerLeftRadiusMobile'   => 'popupImageTriggerBorderRadius',
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBorderRadiusKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
@@ -18218,7 +18240,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .responsive-block-editor-addons-popup-image-trigger'                        => array(
 				    'width'         => self::get_css_value( $attr['popupImageTriggerWidth'], 'px'),
-      				'border-radius' => self::get_css_value( $attr['popupImageTriggerBorderRadius'], 'px'),
+					'border-top-left-radius'       => self::get_css_value( $attr['popupImageTriggerTopRadius'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['popupImageTriggerRightRadius'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['popupImageTriggerBottomRadius'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['popupImageTriggerLeftRadius'], 'px' ),
 				),
 				' .responsive-block-editor-addons-popup-modal-content'                        => array(
 					'width'            => self::get_css_value( $attr['popupContainerWidth'], 'px' ),
@@ -18268,6 +18293,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .responsive-block-editor-addons-popup-image-trigger'  => array(
 					'width' => self::get_css_value( $attr['popupImageTriggerWidthMobile'], 'px'),
+					'border-top-left-radius'       => self::get_css_value( $attr['popupImageTriggerTopRadiusMobile'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['popupImageTriggerRightRadiusMobile'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['popupImageTriggerBottomRadiusMobile'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['popupImageTriggerLeftRadiusMobile'], 'px' ),
 				),
 				' .responsive-block-editor-addons-popup-modal-content'  => array(
 					'width'          => self::get_css_value( $attr['popupContainerWidthMobile'], 'px' ),
@@ -18302,6 +18331,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .responsive-block-editor-addons-popup-image-trigger'  => array(
 					'width' => self::get_css_value( $attr['popupImageTriggerWidthTablet'], 'px'),
+					'border-top-left-radius'       => self::get_css_value( $attr['popupImageTriggerTopRadiusTablet'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['popupImageTriggerRightRadiusTablet'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['popupImageTriggerBottomRadiusTablet'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['popupImageTriggerLeftRadiusTablet'], 'px' ),
 				),
 				' .responsive-block-editor-addons-popup-modal-content'  => array(
 					'width'          => self::get_css_value( $attr['popupContainerWidthTablet'], 'px' ),
@@ -18461,6 +18494,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'popupImageTriggerWidthTablet'        => 350,
 				'popupImageTriggerWidthMobile'        => 350,
 				'popupImageTriggerBorderRadius'       => 0,
+				'popupImageTriggerTopRadiusMobile'     => '',
+				'popupImageTriggerRightRadiusMobile'   => '',
+				'popupImageTriggerBottomRadiusMobile'  => '',
+				'popupImageTriggerLeftRadiusMobile'    => '',
+				'popupImageTriggerTopRadiusTablet'     => '',
+				'popupImageTriggerRightRadiusTablet'   => '',
+				'popupImageTriggerBottomRadiusTablet'  => '',
+				'popupImageTriggerLeftRadiusTablet'    => '',
+				'popupImageTriggerTopRadius'           => '',
+				'popupImageTriggerRightRadius'         => '',
+				'popupImageTriggerBottomRadius'        => '',
+				'popupImageTriggerLeftRadius'          => '',
 				'popupButtonText'                     => "Click Here",
 				'popupButtonPaddingTop'               => 14,
 				'popupButtonPaddingTopTablet'         => 14,

@@ -15,6 +15,7 @@ import ResponsiveNewMarginControl from "../../../settings-components/ResponsiveN
 import RbeaRangeControl from "../../../utils/components/rbea-range-control";
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
+import RbeaBorderRadiusControl from "../../../settings-components/RbeaBorderRadiusControl";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -160,6 +161,20 @@ export default class Inspector extends Component {
         popupImageTriggerWidthTablet,
         popupImageTriggerWidthMobile,
         popupImageTriggerBorderRadius,
+        popupImageTriggerTopRadius,
+        popupImageTriggerRightRadius,
+        popupImageTriggerBottomRadius,
+        popupImageTriggerLeftRadius,
+        popupImageTriggerTopRadiusTablet,
+        popupImageTriggerRightRadiusTablet,
+        popupImageTriggerBottomRadiusTablet,
+        popupImageTriggerLeftRadiusTablet,
+        popupImageTriggerTopRadiusMobile,
+        popupImageTriggerRightRadiusMobile,
+        popupImageTriggerBottomRadiusMobile,
+        popupImageTriggerLeftRadiusMobile,
+        popupImageTriggerIsRadiusControlConnected,
+        popupImageTriggerIsRadiusValueUpdated,
         popupButtonText,
         popupButtonPaddingTop,
         popupButtonPaddingTopTablet,
@@ -234,6 +249,28 @@ export default class Inspector extends Component {
 			paddingMobileBottom: 0,
 			paddingMobileLeft: 0,
 		}
+
+    // backward compatibility for ImageTrigger border radius control
+    if (!popupImageTriggerIsRadiusValueUpdated) {
+      this.props.setAttributes(
+        {
+          popupImageTriggerTopRadius:          popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerTopRadius,
+          popupImageTriggerBottomRadius:       popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerBottomRadius,
+          popupImageTriggerLeftRadius:         popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerLeftRadius,
+          popupImageTriggerRightRadius:        popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerRightRadius,
+          popupImageTriggerTopRadiusTablet:    popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerTopRadiusTablet,
+          popupImageTriggerBottomRadiusTablet: popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerBottomRadiusTablet,
+          popupImageTriggerRightRadiusTablet:  popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerRightRadiusTablet,
+          popupImageTriggerLeftRadiusTablet:   popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerLeftRadiusTablet,
+          popupImageTriggerTopRadiusMobile:    popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerTopRadiusMobile,
+          popupImageTriggerBottomRadiusMobile: popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerBottomRadiusMobile,
+          popupImageTriggerLeftRadiusMobile:   popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerLeftRadiusMobile,
+          popupImageTriggerRightRadiusMobile:  popupImageTriggerBorderRadius !== undefined ? popupImageTriggerBorderRadius : popupImageTriggerRightRadiusMobile,
+        }
+      )
+      this.props.setAttributes({popupImageTriggerIsRadiusValueUpdated: true});
+    }
+    
     return (
       <InspectorControls key="inspector">
         {isPopupVariantSelected &&
@@ -1141,18 +1178,9 @@ export default class Inspector extends Component {
                       }}
                     </TabPanel>
 
-                    <RbeaRangeControl
-                      label={__("Image Border Radius", "responsive-block-editor-addons")}
-                      value={popupImageTriggerBorderRadius}
-                      onChange={(value) =>
-                        setAttributes({
-                          popupImageTriggerBorderRadius: value !== undefined ? value : 0,
-                        })
-                      }
-                      min={0}
-                      max={100}
-                      allowReset
-                      initialPosition={0}
+                    <RbeaBorderRadiusControl
+                      attrNameTemplate="popupImageTrigger%s"
+                      {...this.props}
                     />
                   </>}
 
