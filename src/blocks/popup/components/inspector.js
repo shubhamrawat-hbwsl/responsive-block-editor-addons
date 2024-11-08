@@ -15,6 +15,7 @@ import ResponsiveNewMarginControl from "../../../settings-components/ResponsiveN
 import RbeaRangeControl from "../../../utils/components/rbea-range-control";
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
+import RbeaBlockBorderHelperControl from "../../../settings-components/RbeaBlockBorderSettings";
 import RbeaBorderRadiusControl from "../../../settings-components/RbeaBorderRadiusControl";
 
 // Setup the block
@@ -114,7 +115,21 @@ export default class Inspector extends Component {
         popupCloseBtnColor,
         popupOverlayColor,
         popupOverlayOpacity,
-        popupBlockBorderRadius,
+        popupBlockBorderRadius, 
+        popupBlockTopRadius,
+        popupBlockRightRadius,
+        popupBlockBottomRadius,
+        popupBlockLeftRadius,
+        popupBlockTopRadiusTablet,
+        popupBlockRightRadiusTablet,
+        popupBlockBottomRadiusTablet,
+        popupBlockLeftRadiusTablet,
+        popupBlockTopRadiusMobile,
+        popupBlockRightRadiusMobile,
+        popupBlockBottomRadiusMobile,
+        popupBlockLeftRadiusMobile,
+        popupBlockIsRadiusControlConnected,
+        popupBlockIsRadiusValueUpdated,
         popupBlockBorderStyle,
         popupBlockBorderWidth,
         popupBlockBorderColor,
@@ -145,6 +160,20 @@ export default class Inspector extends Component {
         popupButtonBorderStyle,
         popupButtonBorderWidth,
         popupButtonBorderRadius,
+        popupButtonTopRadius,
+        popupButtonRightRadius,
+        popupButtonBottomRadius,
+        popupButtonLeftRadius,
+        popupButtonTopRadiusTablet,
+        popupButtonRightRadiusTablet,
+        popupButtonBottomRadiusTablet,
+        popupButtonLeftRadiusTablet,
+        popupButtonTopRadiusMobile,
+        popupButtonRightRadiusMobile,
+        popupButtonBottomRadiusMobile,
+        popupButtonLeftRadiusMobile,
+        popupButtonIsRadiusControlConnected,
+        popupButtonIsRadiusValueUpdated,
         popupButtonBorderColor,
         popupButtonBorderHoverColor,
         popupTextColor,
@@ -249,6 +278,50 @@ export default class Inspector extends Component {
 			paddingMobileBottom: 0,
 			paddingMobileLeft: 0,
 		}
+
+    // backward compatibility for border radius control
+
+  if (!popupButtonIsRadiusValueUpdated) {
+    this.props.setAttributes(
+      {
+      popupButtonTopRadius:          popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonTopRadius,
+      popupButtonBottomRadius:       popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonBottomRadius,
+      popupButtonLeftRadius:         popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonLeftRadius,
+      popupButtonRightRadius:        popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonRightRadius,
+      popupButtonTopRadiusTablet:    popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonTopRadiusTablet,
+      popupButtonBottomRadiusTablet: popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonBottomRadiusTablet,
+      popupButtonRightRadiusTablet:  popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonRightRadiusTablet,
+      popupButtonLeftRadiusTablet:   popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonLeftRadiusTablet,
+      popupButtonTopRadiusMobile:    popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonTopRadiusMobile,
+      popupButtonBottomRadiusMobile: popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonBottomRadiusMobile,
+      popupButtonLeftRadiusMobile:   popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonLeftRadiusMobile,
+      popupButtonRightRadiusMobile:  popupButtonBorderRadius !== undefined ? popupButtonBorderRadius : popupButtonRightRadiusMobile,
+      }
+    )
+    this.props.setAttributes({popupButtonIsRadiusValueUpdated: true});
+  }
+
+  // backward compatibility for border radius control
+
+  if (!popupBlockIsRadiusValueUpdated) {
+    this.props.setAttributes(
+      {
+      popupBlockTopRadius:          popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockTopRadius,
+      popupBlockBottomRadius:       popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockBottomRadius,
+      popupBlockLeftRadius:         popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockLeftRadius,
+      popupBlockRightRadius:        popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockRightRadius,
+      popupBlockTopRadiusTablet:    popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockTopRadiusTablet,
+      popupBlockBottomRadiusTablet: popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockBottomRadiusTablet,
+      popupBlockRightRadiusTablet:  popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockRightRadiusTablet,
+      popupBlockLeftRadiusTablet:   popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockLeftRadiusTablet,
+      popupBlockTopRadiusMobile:    popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockTopRadiusMobile,
+      popupBlockBottomRadiusMobile: popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockBottomRadiusMobile,
+      popupBlockLeftRadiusMobile:   popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockLeftRadiusMobile,
+      popupBlockRightRadiusMobile:  popupBlockBorderRadius !== undefined ? popupBlockBorderRadius : popupBlockRightRadiusMobile,
+      }
+    )
+    this.props.setAttributes({popupBlockIsRadiusValueUpdated: true});
+    }
 
     // backward compatibility for ImageTrigger border radius control
     if (!popupImageTriggerIsRadiusValueUpdated) {
@@ -1024,8 +1097,7 @@ export default class Inspector extends Component {
                     />
 
                     <hr className="responsive-block-editor-addons-editor__separator" />
-
-                    <BlockBorderHelperControl
+                    <RbeaBlockBorderHelperControl
                       attrNameTemplate="popupButton%s"
                       values={{
                         radius: popupButtonBorderRadius,
@@ -1271,7 +1343,7 @@ export default class Inspector extends Component {
                 initialOpen={false}
               >
                 <div className="responsive-block-editor-addons-popup-border-helper">
-                  <BlockBorderHelperControl
+                  <RbeaBlockBorderHelperControl
                     attrNameTemplate="popupBlock%s"
                     values={{
                       radius: popupBlockBorderRadius,
