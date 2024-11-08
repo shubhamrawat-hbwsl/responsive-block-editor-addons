@@ -18476,6 +18476,52 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$defaults = self::get_responsive_block_form_block_default_attributes();
 			$attr     = array_merge( $defaults, (array) $attr );
 
+			// Frontend Backward Compatibility Form Border Radius
+			$newBorderRadiusKeys = [
+				'formTopRadius'          => 'formBorderRadius',
+				'formRightRadius'        => 'formBorderRadius',
+				'formBottomRadius'       => 'formBorderRadius',
+				'formLeftRadius'         => 'formBorderRadius',
+				'formTopRadiusTablet'    => 'formBorderRadius',
+				'formRightRadiusTablet'  => 'formBorderRadius',
+				'formBottomRadiusTablet' => 'formBorderRadius',
+				'formLeftRadiusTablet'   => 'formBorderRadius',
+				'formTopRadiusMobile'    => 'formBorderRadius',
+				'formRightRadiusMobile'  => 'formBorderRadius',
+				'formBottomRadiusMobile' => 'formBorderRadius',
+				'formLeftRadiusMobile'   => 'formBorderRadius',
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBorderRadiusKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
+			// Frontend Backward Compatibility Form Button Border Radius
+			$newBorderRadiusKeys = [
+				'formButtonTopRadius'          => 'formButtonBorderRadius',
+				'formButtonRightRadius'        => 'formButtonBorderRadius',
+				'formButtonBottomRadius'       => 'formButtonBorderRadius',
+				'formButtonLeftRadius'         => 'formButtonBorderRadius',
+				'formButtonTopRadiusTablet'    => 'formButtonBorderRadius',
+				'formButtonRightRadiusTablet'  => 'formButtonBorderRadius',
+				'formButtonBottomRadiusTablet' => 'formButtonBorderRadius',
+				'formButtonLeftRadiusTablet'   => 'formButtonBorderRadius',
+				'formButtonTopRadiusMobile'    => 'formButtonBorderRadius',
+				'formButtonRightRadiusMobile'  => 'formButtonBorderRadius',
+				'formButtonBottomRadiusMobile' => 'formButtonBorderRadius',
+				'formButtonLeftRadiusMobile'   => 'formButtonBorderRadius',
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBorderRadiusKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
@@ -18513,10 +18559,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					"color"                      => $attr['formInputTextColor'],
 					"background-color"           => $attr['formInputBGColor'],
 					"border-color"               => $attr['formBorderColor'] === null || $attr['formBorderColor'] === '' ? '#111111': $attr['formBorderColor'],
-					"border-top-left-radius"     => $attr['formBorderRadius']['top'],
-					"border-top-right-radius"    => $attr['formBorderRadius']['right'],
-					"border-bottom-left-radius"  => $attr['formBorderRadius']['left'],
-					"border-bottom-right-radius" => $attr['formBorderRadius']['right'],
+					'border-top-left-radius'       => self::get_css_value( $attr['formTopRadius'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['formRightRadius'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['formBottomRadius'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['formLeftRadius'], 'px' ),
 					"border-top-width"           => $attr['formBorderWidth']['top'],
 					"border-bottom-width"        => $attr['formBorderWidth']['bottom'],
 					"border-left-width"          => $attr['formBorderWidth']['left'],
@@ -18543,10 +18589,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					"padding-bottom"             => $attr['formButtonPadding']['bottom'],
 					"padding-left"               => $attr['formButtonPadding']['left'],
 					"padding-right"              => $attr['formButtonPadding']['right'],
-					"border-top-left-radius"     => $attr['formButtonBorderRadius']['top'],
-					"border-top-right-radius"    => $attr['formButtonBorderRadius']['right'],
-					"border-bottom-left-radius"  => $attr['formButtonBorderRadius']['left'],
-					"border-bottom-right-radius" => $attr['formButtonBorderRadius']['right'],
+					'border-top-left-radius'       => self::get_css_value( $attr['formButtonTopRadius'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['formButtonRightRadius'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['formButtonBottomRadius'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['formButtonLeftRadius'], 'px' ),
 				),
 				' .responsive-block-editor-addons-form-submit-button-spinner::before'                             => array(
 					"border-color" => $attr['formButtonLabelColor'] . '!important',
@@ -18577,6 +18623,12 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-bottom'  => self::get_css_value( $attr['formBottomMarginMobile'], 'px' ),
 					'margin-left'    => self::get_css_value( $attr['formLeftMarginMobile'], 'px' ),
 				),
+				' .responsive-block-editor-addons-form-input__input'            => array(
+					'border-top-left-radius'       => self::get_css_value( $attr['formTopRadiusMobile'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['formRightRadiusMobile'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['formBottomRadiusMobile'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['formLeftRadiusMobile'], 'px' ),
+				),
 				' .responsive-block-editor-addons-form-input__text'            => array(
 					"padding-top"    => $attr['inputFieldPaddingMobile']['top'],
 					"padding-bottom" => $attr['inputFieldPaddingMobile']['bottom'],
@@ -18591,6 +18643,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					"padding-bottom" => $attr['formButtonPaddingMobile']['bottom'],
 					"padding-left"   => $attr['formButtonPaddingMobile']['left'],
 					"padding-right"  => $attr['formButtonPaddingMobile']['right'],
+					'border-top-left-radius'       => self::get_css_value( $attr['formButtonTopRadiusMobile'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['formButtonRightRadiusMobile'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['formButtonBottomRadiusMobile'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['formButtonLeftRadiusMobile'], 'px' ),
 				),
 			);
 
@@ -18607,6 +18663,12 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-bottom'  => self::get_css_value( $attr['formBottomMarginTablet'], 'px' ),
 					'margin-left'    => self::get_css_value( $attr['formLeftMarginTablet'], 'px' ),
 				),
+				' .responsive-block-editor-addons-form-input__input'            => array(
+					'border-top-left-radius'       => self::get_css_value( $attr['formTopRadiusTablet'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['formRightRadiusTablet'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['formBottomRadiusTablet'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['formLeftRadiusTablet'], 'px' ),
+				),
 				' .responsive-block-editor-addons-form-input__text'             => array(
 					"padding-top"    => $attr['inputFieldPaddingTablet']['top'],
 					"padding-bottom" => $attr['inputFieldPaddingTablet']['bottom'],
@@ -18621,6 +18683,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					"padding-bottom" => $attr['formButtonPaddingTablet']['bottom'],
 					"padding-left"   => $attr['formButtonPaddingTablet']['left'],
 					"padding-right"  => $attr['formButtonPaddingTablet']['right'],
+					'border-top-left-radius'       => self::get_css_value( $attr['formButtonTopRadiusTablet'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['formButtonRightRadiusTablet'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['formButtonBottomRadiusTablet'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['formButtonLeftRadiusTablet'], 'px' ),
 				),
 			);
 
@@ -18665,6 +18731,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'formButtonPaddingTablet'     => array( 'top' => '8px', 'bottom' => '8px', 'left' => '16px', 'right' => '16px' ),
 				'formButtonPaddingMobile'     => array( 'top' => '6px', 'bottom' => '6px', 'left' => '12px', 'right' => '12px' ),
 				'formButtonBorderRadius'      => array( 'top' => '4px', 'bottom' => '4px', 'left' => '4px', 'right' => '4px' ),
+				'formButtonTopRadiusMobile'     => '',
+				'formButtonRightRadiusMobile'   => '',
+				'formButtonBottomRadiusMobile'  => '',
+				'formButtonLeftRadiusMobile'    => '',
+				'formButtonTopRadiusTablet'     => '',
+				'formButtonRightRadiusTablet'   => '',
+				'formButtonBottomRadiusTablet'  => '',
+				'formButtonLeftRadiusTablet'    => '',
+				'formButtonTopRadius'           => '',
+				'formButtonRightRadius'         => '',
+				'formButtonBottomRadius'        => '',
+				'formButtonLeftRadius'          => '',
 				'formButtonAlign'             => 'left',
 				'formButtonAlignTablet'       => 'left',
 				'formButtonAlignMobile'       => 'left',
@@ -18677,6 +18755,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'formSuccessMessageColor'     => '',
 				'formErrorMessageColor'       => '',
 				'formBorderRadius'            => array( 'top' => '4px', 'bottom' => '4px', 'left' => '4px', 'right' => '4px' ),
+				'formTopRadiusMobile'     => '',
+				'formRightRadiusMobile'   => '',
+				'formBottomRadiusMobile'  => '',
+				'formLeftRadiusMobile'    => '',
+				'formTopRadiusTablet'     => '',
+				'formRightRadiusTablet'   => '',
+				'formBottomRadiusTablet'  => '',
+				'formLeftRadiusTablet'    => '',
+				'formTopRadius'           => '',
+				'formRightRadius'         => '',
+				'formBottomRadius'        => '',
+				'formLeftRadius'          => '',
 				'formBorderWidth'             => array( 'top' => '1px', 'bottom' => '1px', 'left' => '1px', 'right' => '1px' ),
 				'formHelperTextSize'          => '14px',
 				'formSuccessErrorMessageSize' => '16px',
