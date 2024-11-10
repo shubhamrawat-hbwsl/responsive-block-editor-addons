@@ -12732,6 +12732,41 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			</script>
 			<?php
 
+			// Frontend Backward Compatibility For Border Radius
+			$newBorderRadiusKeys = [
+				'headingBorderTopRadius' =>          'headingBorderTopLeftRadius',
+				'headingBorderRightRadius' =>       'headingBorderTopRightRadius',
+				'headingBorderLeftRadius' =>        'headingBorderBottomLeftRadius',
+				'headingBorderBottomRadius' =>         'headingBorderBottomRightRadius',
+				'headingBorderTopRadiusTablet' =>    'headingBorderTopLeftRadiusTablet',
+				'headingBorderRightRadiusTablet' =>  'headingBorderTopRightRadiusTablet',
+				'headingBorderLeftRadiusTablet' =>   'headingBorderBottomLeftRadiusTablet',
+				'headingBorderBottomRadiusTablet' => 'headingBorderBottomRightRadiusTablet',
+				'headingBorderTopRadiusMobile' =>    'headingBorderTopLeftRadiusMobile',
+				'headingBorderRightRadiusMobile' =>  'headingBorderTopRightRadiusMobile',
+				'headingBorderLeftRadiusMobile' =>   'headingBorderBottomLeftRadiusMobile',
+				'headingBorderBottomRadiusMobile' => 'headingBorderBottomRightRadiusMobile',
+				'bodyBorderTopRadius' =>          'bodyBorderTopLeftRadius',
+				'bodyBorderRightRadius' =>       'bodyBorderTopRightRadius',
+				'bodyBorderLeftRadius' =>        'bodyBorderBottomLeftRadius',
+				'bodyBorderBottomRadius' =>         'bodyBorderBottomRightRadius',
+				'bodyBorderTopRadiusTablet' =>    'bodyBorderTopLeftRadiusTablet',
+				'bodyBorderRightRadiusTablet' =>  'bodyBorderTopRightRadiusTablet',
+				'bodyBorderLeftRadiusTablet' =>   'bodyBorderBottomLeftRadiusTablet',
+				'bodyBorderBottomRadiusTablet' => 'bodyBorderBottomRightRadiusTablet',
+				'bodyBorderTopRadiusMobile' =>    'bodyBorderTopLeftRadiusMobile',
+				'bodyBorderRightRadiusMobile' =>  'bodyBorderTopRightRadiusMobile',
+				'bodyBorderLeftRadiusMobile' =>   'bodyBorderBottomLeftRadiusMobile',
+				'bodyBorderBottomRadiusMobile' => 'bodyBorderBottomRightRadiusMobile',
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBorderRadiusKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
@@ -12789,10 +12824,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-color'     => $attr['headingBorderColor'],
 					'border-radius'    => self::get_css_value( $attr['headingBorderRadius'], 'px' ),
 					//Border Radius
-					'border-top-left-radius' => self::get_css_value( $attr['headingBorderTopLeftRadius'], 'px' ) . ' !important',
-					'border-top-right-radius' => self::get_css_value( $attr['headingBorderTopRightRadius'], 'px' ) . ' !important',
-					'border-bottom-left-radius' => self::get_css_value( $attr['headingBorderBottomLeftRadius'], 'px' ) . ' !important',
-					'border-bottom-right-radius' => self::get_css_value( $attr['headingBorderBottomRightRadius'], 'px' ) . ' !important',
+					'border-top-left-radius'       => self::get_css_value( $attr['headingBorderTopRadius'], 'px' )  . '!important',
+					'border-top-right-radius'      => self::get_css_value( $attr['headingBorderRightRadius'], 'px' ) . '!important',
+					'border-bottom-right-radius'   => self::get_css_value( $attr['headingBorderBottomRadius'], 'px' ) . '!important',
+					'border-bottom-left-radius'    => self::get_css_value( $attr['headingBorderLeftRadius'], 'px' ) . '!important',
 					// Border Width
 					'border-top-width'    => self::get_css_value( $attr['headingBorderTopWidth'], 'px' ),
 					'border-left-width'   => self::get_css_value( $attr['headingBorderLeftWidth'], 'px' ),
@@ -12825,10 +12860,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-right-width'  => self::get_css_value( $attr['bodyBorderWidth'], 'px' ),
 					'border-bottom-width' => self::get_css_value( $attr['bodyBorderWidth'], 'px' ),
 					//Border Radius
-					'border-top-left-radius' => self::get_css_value( $attr['bodyBorderTopLeftRadius'], 'px' ) . ' !important',
-					'border-top-right-radius' => self::get_css_value( $attr['bodyBorderTopRightRadius'], 'px' ) . ' !important',
-					'border-bottom-left-radius' => self::get_css_value( $attr['bodyBorderBottomLeftRadius'], 'px' ) . ' !important',
-					'border-bottom-right-radius' => self::get_css_value( $attr['bodyBorderBottomRightRadius'], 'px' ) . ' !important',
+					'border-top-left-radius'       => self::get_css_value( $attr['bodyBorderTopRadius'], 'px' ) . '!important',
+					'border-top-right-radius'      => self::get_css_value( $attr['bodyBorderRightRadius'], 'px' ) . '!important',
+					'border-bottom-right-radius'   => self::get_css_value( $attr['bodyBorderBottomRadius'], 'px' ) . '!important',
+					'border-bottom-left-radius'    => self::get_css_value( $attr['bodyBorderLeftRadius'], 'px' ) . '!important',
 					// Border Width
 					'border-top-width'    => self::get_css_value( $attr['bodyBorderTopWidth'], 'px' ),
 					'border-left-width'   => self::get_css_value( $attr['bodyBorderLeftWidth'], 'px' ),
@@ -12921,10 +12956,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-left'    => self::get_css_value( $attr['headingLeftMarginMobile'], 'px' ) . '!important',
 					'margin-right'   => self::get_css_value( $attr['headingRightMarginMobile'], 'px' ) . '!important',
 					//Border Radius
-					'border-top-left-radius' => self::get_css_value( $attr['headingBorderTopLeftRadiusMobile'], 'px' ) . ' !important',
-					'border-top-right-radius' => self::get_css_value( $attr['headingBorderTopRightRadiusMobile'], 'px' ) . ' !important',
-					'border-bottom-left-radius' => self::get_css_value( $attr['headingBorderBottomLeftRadiusMobile'], 'px' ) . ' !important',
-					'border-bottom-right-radius' => self::get_css_value( $attr['headingBorderBottomRightRadiusMobile'], 'px' ) . ' !important',
+					'border-top-left-radius'       => self::get_css_value( $attr['headingBorderTopRadiusMobile'], 'px' ) . '!important',
+					'border-top-right-radius'      => self::get_css_value( $attr['headingBorderRightRadiusMobile'], 'px' ) . '!important',
+					'border-bottom-right-radius'   => self::get_css_value( $attr['headingBorderBottomRadiusMobile'], 'px' ) . '!important',
+					'border-bottom-left-radius'    => self::get_css_value( $attr['headingBorderLeftRadiusMobile'], 'px' ) . '!important',
 					// Border Width
 					'border-top-width'    => self::get_css_value( $attr['headingBorderTopWidthMobile'], 'px' ),
 					'border-left-width'   => self::get_css_value( $attr['headingBorderLeftWidthMobile'], 'px' ),
@@ -12942,10 +12977,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-left'    => self::get_css_value( $attr['contentLeftMarginMobile'], 'px' ) . '!important',
 					'margin-right'   => self::get_css_value( $attr['contentRightMarginMobile'], 'px' ) . '!important',
 					//Border Radius
-					'border-top-left-radius' => self::get_css_value( $attr['bodyBorderTopLeftRadiusMobile'], 'px' ) . ' !important',
-					'border-top-right-radius' => self::get_css_value( $attr['bodyBorderTopRightRadiusMobile'], 'px' ) . ' !important',
-					'border-bottom-left-radius' => self::get_css_value( $attr['bodyBorderBottomLeftRadiusMobile'], 'px' ) . ' !important',
-					'border-bottom-right-radius' => self::get_css_value( $attr['bodyBorderBottomRightRadiusMobile'], 'px' ) . ' !important',
+					'border-top-left-radius'       => self::get_css_value( $attr['bodyBorderTopRadiusMobile'], 'px' ) . '!important',
+					'border-top-right-radius'      => self::get_css_value( $attr['bodyBorderRightRadiusMobile'], 'px' ) . '!important',
+					'border-bottom-right-radius'   => self::get_css_value( $attr['bodyBorderBottomRadiusMobile'], 'px' ) . '!important',
+					'border-bottom-left-radius'    => self::get_css_value( $attr['bodyBorderLeftRadiusMobile'], 'px' ) . '!important',
 					// Border Width
 					'border-top-width'    => self::get_css_value( $attr['bodyBorderTopWidthMobile'], 'px' ),
 					'border-left-width'   => self::get_css_value( $attr['bodyBorderLeftWidthMobile'], 'px' ),
@@ -12988,10 +13023,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-left'    => self::get_css_value( $attr['headingLeftMarginTablet'], 'px' ) . '!important',
 					'margin-right'   => self::get_css_value( $attr['headingRightMarginTablet'], 'px' ) . '!important',
 					//Border Radius
-					'border-top-left-radius' => self::get_css_value( $attr['headingBorderTopLeftRadiusTablet'], 'px' ) . ' !important',
-					'border-top-right-radius' => self::get_css_value( $attr['headingBorderTopRightRadiusTablet'], 'px' ) . ' !important',
-					'border-bottom-left-radius' => self::get_css_value( $attr['headingBorderBottomLeftRadiusTablet'], 'px' ) . ' !important',
-					'border-bottom-right-radius' => self::get_css_value( $attr['headingBorderBottomRightRadiusTablet'], 'px' ) . ' !important',
+					'border-top-left-radius'       => self::get_css_value( $attr['headingBorderTopRadiusTablet'], 'px' ) . '!important',
+					'border-top-right-radius'      => self::get_css_value( $attr['headingBorderRightRadiusTablet'], 'px' ) . '!important',
+					'border-bottom-right-radius'   => self::get_css_value( $attr['headingBorderBottomRadiusTablet'], 'px' ) . '!important',
+					'border-bottom-left-radius'    => self::get_css_value( $attr['headingBorderLeftRadiusTablet'], 'px' ) . '!important',
 					// Border Width
 					'border-top-width'    => self::get_css_value( $attr['headingBorderTopWidthTablet'], 'px' ),
 					'border-left-width'   => self::get_css_value( $attr['headingBorderLeftWidthTablet'], 'px' ),
@@ -13010,11 +13045,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-right'   => self::get_css_value( $attr['contentRightMarginTablet'], 'px' ) . '!important',
 
 					//Border Radius
-
-					'border-top-left-radius' => self::get_css_value( $attr['bodyBorderTopLeftRadiusTablet'], 'px' ) . ' !important',
-					'border-top-right-radius' => self::get_css_value( $attr['bodyBorderTopRightRadiusTablet'], 'px' ) . ' !important',
-					'border-bottom-left-radius' => self::get_css_value( $attr['bodyBorderBottomLeftRadiusTablet'], 'px' ) . ' !important',
-					'border-bottom-right-radius' => self::get_css_value( $attr['bodyBorderBottomRightRadiusTablet'], 'px' ) . ' !important',
+					'border-top-left-radius'       => self::get_css_value( $attr['bodyBorderTopRadiusTablet'], 'px' ) . '!important',
+					'border-top-right-radius'      => self::get_css_value( $attr['bodyBorderRightRadiusTablet'], 'px' ) . '!important',
+					'border-bottom-right-radius'   => self::get_css_value( $attr['bodyBorderBottomRadiusTablet'], 'px' ) . '!important',
+					'border-bottom-left-radius'    => self::get_css_value( $attr['bodyBorderLeftRadiusTablet'], 'px' ) . '!important',
 					// Border Width
 					'border-top-width'    => self::get_css_value( $attr['bodyBorderTopWidthTablet'], 'px' ),
 					'border-left-width'   => self::get_css_value( $attr['bodyBorderLeftWidthTablet'], 'px' ),
@@ -13228,6 +13262,30 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'bodyBorderTopRightRadius'				=> '',
 				'bodyBorderBottomLeftRadius'			=> '',
 				'bodyBorderBottomRightRadius'			 => '',
+				'headingBorderTopRadiusMobile'     => '',
+				'headingBorderRightRadiusMobile'   => '',
+				'headingBorderBottomRadiusMobile'  => '',
+				'headingBorderLeftRadiusMobile'    => '',
+				'headingBorderTopRadiusTablet'     => '',
+				'headingBorderRightRadiusTablet'   => '',
+				'headingBorderBottomRadiusTablet'  => '',
+				'headingBorderLeftRadiusTablet'    => '',
+				'headingBorderTopRadius'           => '',
+				'headingBorderRightRadius'         => '',
+				'headingBorderBottomRadius'        => '',
+				'headingBorderLeftRadius'          => '',
+				'bodyBorderTopRadiusMobile'     => '',
+				'bodyBorderRightRadiusMobile'   => '',
+				'bodyBorderBottomRadiusMobile'  => '',
+				'bodyBorderLeftRadiusMobile'    => '',
+				'bodyBorderTopRadiusTablet'     => '',
+				'bodyBorderRightRadiusTablet'   => '',
+				'bodyBorderBottomRadiusTablet'  => '',
+				'bodyBorderLeftRadiusTablet'    => '',
+				'bodyBorderTopRadius'           => '',
+				'bodyBorderRightRadius'         => '',
+				'bodyBorderBottomRadius'        => '',
+				'bodyBorderLeftRadius'          => '',
 				'blockBorderWidth'           => 1,
 				'blockBorderRadius'          => '',
 				'blockBorderColor'           => '#0984ff',
