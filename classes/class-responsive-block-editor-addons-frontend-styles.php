@@ -16152,6 +16152,28 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$defaults = self::get_responsive_block_instagram_default_attributes();
 			$attr     = array_merge( $defaults, (array) $attr );
 
+			// Frontend Backward Compatibility For Border Radius
+			$newBorderRadiusKeys = [
+				'blockTopRadius'          => 'borderRadius',
+				'blockRightRadius'        => 'borderRadius',
+				'blockBottomRadius'       => 'borderRadius',
+				'blockLeftRadius'         => 'borderRadius',
+				'blockTopRadiusTablet'    => 'borderRadius',
+				'blockRightRadiusTablet'  => 'borderRadius',
+				'blockBottomRadiusTablet' => 'borderRadius',
+				'blockLeftRadiusTablet'   => 'borderRadius',
+				'blockTopRadiusMobile'    => 'borderRadius',
+				'blockRightRadiusMobile'  => 'borderRadius',
+				'blockBottomRadiusMobile' => 'borderRadius',
+				'blockLeftRadiusMobile'   => 'borderRadius',
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBorderRadiusKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
@@ -16179,7 +16201,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'grid-gap'              => self::get_css_value( $attr['imagesGap'], 'px' ),
 				),
 				' .responsive-block-editor-addons-instagram-image' => array(
-					'border-radius' => self::get_css_value( $attr['borderRadius'], '%' ),
+					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadius'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['blockRightRadius'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadius'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadius'], 'px' ),
 				),
 				' .responsive-block-editor-addons-instagram-wrapper' => array(
 					'width' => self::get_css_value( 100, '%' ),
@@ -16201,6 +16226,12 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .responsive-block-editor-addons-instagram-posts-container' => array(
 					'grid-template-columns' => 'repeat(' . $attr['columnsMobile'] . ', 1fr)',
 				),
+				' .responsive-block-editor-addons-instagram-image' => array(
+					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadiusMobile'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['blockRightRadiusMobile'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadiusMobile'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadiusMobile'], 'px' ),
+				),
 			);
 
 			$tablet_selectors = array(
@@ -16217,6 +16248,12 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .responsive-block-editor-addons-instagram-posts-container' => array(
 					'grid-template-columns' => 'repeat(' . $attr['columnsTablet'] . ', 1fr)',
+				),
+				' .responsive-block-editor-addons-instagram-image' => array(
+					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadiusTablet'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['blockRightRadiusTablet'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadiusTablet'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadiusTablet'], 'px' ),
 				),
 			);
 
@@ -16249,6 +16286,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'thumbs'                   => '',
 				'backgroundColor'          => 'transparent',
 				'borderRadius'             => 0,
+				'blockTopRadiusMobile'     => '',
+				'blockRightRadiusMobile'   => '',
+				'blockBottomRadiusMobile'  => '',
+				'blockLeftRadiusMobile'    => '',
+				'blockTopRadiusTablet'     => '',
+				'blockRightRadiusTablet'   => '',
+				'blockBottomRadiusTablet'  => '',
+				'blockLeftRadiusTablet'    => '',
+				'blockTopRadius'           => '',
+				'blockRightRadius'         => '',
+				'blockBottomRadius'        => '',
+				'blockLeftRadius'          => '',
 				'hasEqualImages'           => false,
 				'showCaptions'             => false,
 				'instaTopPadding'          => 0,
