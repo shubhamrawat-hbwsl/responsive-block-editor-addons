@@ -533,6 +533,118 @@ function responsive_block_editor_addons_register_block_core_latest_posts() {
 					'type'    => 'number',
 					'default' => '',
 				),
+				'imageTopRadius' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageRightRadius' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageBottomRadius' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageLeftRadius' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageTopRadiusTablet' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageRightRadiusTablet' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageBottomRadiusTablet' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageLeftRadiusTablet' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageTopRadiusMobile' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageRightRadiusMobile' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageBottomRadiusMobile' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageLeftRadiusMobile' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'imageIsRadiusControlConnected' => array(
+					'type' => "boolean",
+					'default' => false,
+				),
+				'imageIsRadiusValueUpdated' => array(
+					'type' => "boolean",
+					'default' => false,
+				),
+				'paginationTopRadius' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationRightRadius' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationBottomRadius' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationLeftRadius' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationTopRadiusTablet' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationRightRadiusTablet' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationBottomRadiusTablet' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationLeftRadiusTablet' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationTopRadiusMobile' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationRightRadiusMobile' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationBottomRadiusMobile' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationLeftRadiusMobile' => array(
+					'type' => "number",
+					'default' => 0,
+				),
+				'paginationIsRadiusControlConnected' => array(
+					'type' => "boolean",
+					'default' => false,
+				),
+				'paginationIsRadiusValueUpdated' => array(
+					'type' => "boolean",
+					'default' => false,
+				),
 				'textColor'                   => array(
 					'type'    => 'string',
 					'default' => '#444444',
