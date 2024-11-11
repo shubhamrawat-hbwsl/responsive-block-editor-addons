@@ -237,10 +237,17 @@ This is how you can easily install the Responsive Gutenberg Blocks plugin on you
 == Changelog ==
 
 = 1.9.3 - 28th October 2024 =
-* Improvement - UI changes in Block's Inspector.
+* Improvement - Improved UI for Color Picker controls across all Blocks.
+* Improvement - Improved UI for Slider controls across all Blocks.
+* Improvement - Improved UI for Dropdown controls across all Blocks.
+* Improvement - Improved UI for Video and Image input controls across all Blocks.
 
 = 1.9.2 - 18th October 2024 =
-* Improvement - UI changes in Block's Inspector.
+* Improvement - Improved UI for Color Picker controls in Section Block.
+* Improvement - Improved UI for Slider controls in Section Block.
+* Improvement - Improved UI for Dropdown controls in Section Block.
+* Improvement - Improved UI for Image and Video input controls in Section Block.
+* Improvement - Improved UI for Image Position control in Section Block.
 * Improvement - Improved Border radius control in Section Block.
 * Improvement - Ranamed Masonary Block to Image Gallery.
 * Fix - Minor bug fixes.
