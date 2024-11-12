@@ -148,7 +148,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles_Helper' ) )
 
 						}
 					} else {
-						// error_log( print_r( $block, true ) );
 						$css = $this->get_block_css( $block );
 
 						// Get CSS for the Block.
