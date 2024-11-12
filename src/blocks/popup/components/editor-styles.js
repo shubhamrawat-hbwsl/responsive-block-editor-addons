@@ -113,6 +113,18 @@ function EditorStyles(props) {
     popupImageTriggerWidthTablet,
     popupImageTriggerWidthMobile,
     popupImageTriggerBorderRadius,
+    popupImageTriggerTopRadius,
+    popupImageTriggerRightRadius,
+    popupImageTriggerBottomRadius,
+    popupImageTriggerLeftRadius,
+    popupImageTriggerTopRadiusTablet,
+    popupImageTriggerRightRadiusTablet,
+    popupImageTriggerBottomRadiusTablet,
+    popupImageTriggerLeftRadiusTablet,
+    popupImageTriggerTopRadiusMobile,
+    popupImageTriggerRightRadiusMobile,
+    popupImageTriggerBottomRadiusMobile,
+    popupImageTriggerLeftRadiusMobile,
     block_id,
     hideWidget,
     hideWidgetTablet,
@@ -331,7 +343,10 @@ function EditorStyles(props) {
     },
     " .responsive-block-editor-addons-popup-image-trigger": {
       "width": generateCSSUnit(popupImageTriggerWidth, "px"),
-      "border-radius": generateCSSUnit(popupImageTriggerBorderRadius, "px"),
+      "border-top-left-radius": generateCSSUnit(popupImageTriggerTopRadius, "px"),
+      "border-top-right-radius": generateCSSUnit(popupImageTriggerRightRadius, "px"),
+      "border-bottom-right-radius": generateCSSUnit(popupImageTriggerBottomRadius, "px"),
+      "border-bottom-left-radius": generateCSSUnit(popupImageTriggerLeftRadius, "px"),
     },
     " .responsive-block-editor-addons-popup-modal-content": {
       "width": generateCSSUnit(popupContainerWidth, "px"),
@@ -385,6 +400,10 @@ function EditorStyles(props) {
     },
     " .responsive-block-editor-addons-popup-image-trigger": {
       "width": generateCSSUnit(popupImageTriggerWidthMobile, "px"),
+      "border-top-left-radius": generateCSSUnit(popupImageTriggerTopRadiusMobile, "px"),
+      "border-top-right-radius": generateCSSUnit(popupImageTriggerRightRadiusMobile, "px"),
+      "border-bottom-right-radius": generateCSSUnit(popupImageTriggerBottomRadiusMobile, "px"),
+      "border-bottom-left-radius": generateCSSUnit(popupImageTriggerLeftRadiusMobile, "px"),
     },
     " .responsive-block-editor-addons-popup-modal-content": {
       "width": generateCSSUnit(popupContainerWidthMobile, "px"),
@@ -424,6 +443,10 @@ function EditorStyles(props) {
     },
     " .responsive-block-editor-addons-popup-image-trigger": {
       "width": generateCSSUnit(popupImageTriggerWidthTablet, "px"),
+      "border-top-left-radius": generateCSSUnit(popupImageTriggerTopRadiusTablet, "px"),
+      "border-top-right-radius": generateCSSUnit(popupImageTriggerRightRadiusTablet, "px"),
+      "border-bottom-right-radius": generateCSSUnit(popupImageTriggerBottomRadiusTablet, "px"),
+      "border-bottom-left-radius": generateCSSUnit(popupImageTriggerLeftRadiusTablet, "px"),
     },
     " .responsive-block-editor-addons-popup-modal-content": {
       "width": generateCSSUnit(popupContainerWidthTablet, "px"),
