@@ -236,6 +236,10 @@ This is how you can easily install the Responsive Gutenberg Blocks plugin on you
 
 == Changelog ==
 
+= 1.9.6 - 15th November 2024 =
+* Fix - Minor Bugs fixed related to Border Radius
+* Fix - Fixed Demo URLs
+
 = 1.9.5 - 14th November 2024 =
 * Improvement - Improved UI for Border Style controls across all Blocks.
 * Improvement - Improved UI for Border Radius controls across all Blocks.
