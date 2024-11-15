@@ -5,7 +5,7 @@ Tags: block, blocks, block editor, page builder, gutenberg templates
 Requires at least: 5.0
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 1.9.3
+Stable tag: 1.9.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -236,6 +236,14 @@ This is how you can easily install the Responsive Gutenberg Blocks plugin on you
 
 == Changelog ==
 
+= 1.9.5 - 14th November 2024 =
+* Improvement - Improved UI for Border Style controls across all Blocks.
+* Improvement - Improved UI for Border Radius controls across all Blocks.
+* Fix - Fixed 404 Demo and Docs URLs
+
+= 1.9.4 - 12th November 2024 =
+* Fix - Fix assets loading issue for FSE theme.
+
 = 1.9.3 - 28th October 2024 =
 * Improvement - Improved UI for Color Picker controls across all Blocks.
 * Improvement - Improved UI for Slider controls across all Blocks.
@@ -249,7 +257,7 @@ This is how you can easily install the Responsive Gutenberg Blocks plugin on you
 * Improvement - Improved UI for Image and Video input controls in Section Block.
 * Improvement - Improved UI for Image Position control in Section Block.
 * Improvement - Improved Border radius control in Section Block.
-* Improvement - Ranamed Masonary Block to Image Gallery.
+* Improvement - Renamed Masonary Block to Image Gallery.
 * Fix - Minor bug fixes.
 
 = 1.9.1 - 25th September 2024 =
