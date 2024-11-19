@@ -4203,9 +4203,9 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .responsive-block-editor-addons-card-background-image' => array(
 					'background-image'    => 'url(' . $background_image_url_check . ')',
 					'height'              => 100 . '%',
-					'background-position' => 'empty' !== $attr['bgimagePosition'] && 'center center' === $attr['backgroundImagePosition'] ? $attr['bgimagePosition'] : $attr['backgroundImagePosition'], // For compatibility with v1.3.2.
-					'background-repeat'   => 'empty' !== $attr['bgimageRepeat'] && 'no-repeat' === $attr['backgroundImageRepeat'] ? $attr['bgimageRepeat'] : $attr['backgroundImageRepeat'], // For compatibility with v1.3.2.
-					'background-size'     => 'empty' !== $attr['bgthumbsize'] && 'cover' === $attr['backgroundImageSize'] ? $attr['bgthumbsize'] : $attr['backgroundImageSize'], // For compatibility with v1.3.2.
+					'background-position' => null !== $attr['backgroundPosition'] ? $attr['backgroundPosition'] : $attr['bgimagePosition'], // For compatibility with v1.3.2.
+					'background-repeat'   => null !== $attr['backgroundRepeat'] ? $attr['backgroundRepeat']: $attr['bgimageRepeat'], // For compatibility with v1.3.2.
+					'background-size'     => null !== $attr['backgroundSize'] ? $attr['backgroundSize'] : $attr['bgthumbsize'], // For compatibility with v1.3.2.
 				),
 
 				' .responsive-block-editor-addons-card-avatar' => array(
@@ -4333,6 +4333,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadiusMobile'], 'px' ),
 					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadiusMobile'], 'px' ),		
 				),
+				' .responsive-block-editor-addons-card-background-image' => array(
+					'background-position' => null !== $attr['backgroundPositionMobile'] ? $attr['backgroundPositionMobile'] : $attr['bgimagePosition'], // For compatibility with v1.3.2.
+					'background-size'     => null !== $attr['backgroundSizeMobile'] ? $attr['backgroundSizeMobile'] : $attr['bgthumbsize'] , // For compatibility with v1.3.2.
+				),
 			);
 
 			$tablet_selectors = array(
@@ -4377,6 +4381,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-top-right-radius'      => self::get_css_value( $attr['blockRightRadiusTablet'], 'px' ),
 					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadiusTablet'], 'px' ),
 					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadiusTablet'], 'px' ),		
+				),
+				' .responsive-block-editor-addons-card-background-image' => array(
+					'background-position' => null !== $attr['backgroundPositionTablet'] ? $attr['backgroundPositionTablet'] : $attr['bgimagePosition'], // For compatibility with v1.3.2.
+					'background-size'     => null !== $attr['backgroundSizeTablet'] ? $attr['backgroundSizeTablet'] : $attr['bgthumbsize'], // For compatibility with v1.3.2.
 				),
 			);
 
@@ -4581,6 +4589,16 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'blockRightMargin'        => 0,
 				'blockRightMarginMobile'  => '',
 				'blockRightMarginTablet'  => '',
+				'imagePositionTab' 		  => 'desktop',
+				'backgroundSize'		  => 'cover',
+				'backgroundSizeTablet' 	  => 'cover',
+				'backgroundSizeMobile' 	  => 'cover',
+				'backgroundPosition'  	  => 'center center',
+				'backgroundPositionMobile' => 'center center',
+				'backgroundPositionTablet' => 'center center',
+				'backgroundAttachment' 	  => 'scroll',
+				'imageSizeTab' 			 => 'desktop',
+				'backgroundRepeat' 		 => 'no-repeat',
 			);
 		}
 
