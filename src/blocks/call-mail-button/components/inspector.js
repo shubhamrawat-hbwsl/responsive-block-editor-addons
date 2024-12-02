@@ -135,21 +135,21 @@ export default class Inspector extends Component {
     // Button size values
     const buttonSizeOptions = [
       {
-        value: "responsive-block-editor-addons-call-mail-button-size-medium",
-        label: __("Medium", "responsive-block-editor-addons"),
+        value: "responsive-block-editor-addons-call-mail-button-size-small",
+        label: __("S", "responsive-block-editor-addons"),
       },
       {
-        value: "responsive-block-editor-addons-call-mail-button-size-small",
-        label: __("Small", "responsive-block-editor-addons"),
+        value: "responsive-block-editor-addons-call-mail-button-size-medium",
+        label: __("M", "responsive-block-editor-addons"),
       },
       {
         value: "responsive-block-editor-addons-call-mail-button-size-large",
-        label: __("Large", "responsive-block-editor-addons"),
+        label: __("L", "responsive-block-editor-addons"),
       },
       {
         value:
           "responsive-block-editor-addons-call-mail-button-size-extralarge",
-        label: __("Extra Large", "responsive-block-editor-addons"),
+        label: __("XL", "responsive-block-editor-addons"),
       },
     ];
 
@@ -333,7 +333,11 @@ export default class Inspector extends Component {
               title={__("Button Size", "responsive-block-editor-addons")}
               initialOpen={true}
             >
-              <SelectControl
+              <RbeaTabRadioControl
+                label={__(
+                  "Button Size Type",
+                  "responsive-block-editor-addons"
+                )}
                 value={buttonSize}
                 options={buttonSizeOptions.map(({ value, label }) => ({
                   value,
