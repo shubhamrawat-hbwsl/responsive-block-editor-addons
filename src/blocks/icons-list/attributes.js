@@ -1,3 +1,5 @@
+import { type } from "jquery";
+
 const ITEM_COUNT = 1;
 
 const icons = [];
@@ -144,6 +146,12 @@ const attributes = {
     default: false,
   },
   labelFontFamily: {
+    type: "string",
+  },
+  labelFontColor: {
+    type: "string",
+  },
+  labelFontColorHover: {
     type: "string",
   },
   labelFontWeight: {
@@ -302,6 +310,30 @@ const attributes = {
   blockRightPaddingTablet: {
     type: "number",
     default: '',
+  },
+  iconColor: {
+    type: "string",
+    default: "#3a3a3a",
+  },
+  iconColorHover: {
+    type: "string",
+    default: "",
+  },
+  iconBackgroundColor: {
+    type: "string",
+    default: "",
+  },
+  iconBackgroundColorHover: {
+    type: "string",
+    default: "",
+  },
+  iconBorderColor: {
+    type: "string",
+    default: "",
+  },
+  iconBorderColorHover: {
+    type: "string",
+    default: "",
   },
 };
 

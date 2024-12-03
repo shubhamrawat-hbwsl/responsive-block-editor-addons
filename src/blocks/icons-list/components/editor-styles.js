@@ -40,6 +40,14 @@ function EditorStyles(props) {
     labelLineHeight,
     labelFontSizeTablet,
     labelFontSizeMobile,
+    labelFontColor,
+    labelFontColorHover,
+    iconColor,
+    iconBorderColor,
+    iconBackgroundColor,
+    iconColorHover,
+    iconBorderColorHover,
+    iconBackgroundColorHover,
     hideLabel,
 	labelFontLineHeight, // For compatibility with v1.3.2.
   hideWidget,
@@ -98,6 +106,32 @@ function EditorStyles(props) {
     },
     ".responsive-block-editor-addons-icon-list__layout-vertical .responsive-block-editor-addons-icon-list__content-wrap": {
       "margin-bottom": generateCSSUnit(editor_gap, fontSizeType),
+    },
+    " .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon": {
+      "color": iconColor,
+    },
+    ":hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon": {
+      color: iconColorHover,
+    },
+    " .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap": {
+      "background-color": iconBackgroundColor,
+      "border-color": iconBorderColor,
+    },
+    ":hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap": {
+      "background-color": iconBackgroundColorHover,
+      "border-color": iconBorderColorHover,
+    },
+    " .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg": {
+      fill: iconColor,
+    },
+    ":hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg": {
+      fill: iconColorHover,
+    },
+    " .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label": {
+      color: labelFontColor,
+    },
+    ":hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label": {
+      color: labelFontColorHover,
     },
     " .responsive-block-editor-addons-icon-list__source-wrap": {
       padding: generateCSSUnit(bgSize, "px"),

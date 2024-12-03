@@ -36,7 +36,7 @@ const RbeaColorControl = ({ colorValue, onChange, label, resetColor }) => {
           className="rbea-color-control__indicator"
           onClick={() => setIsOpen(true)}
           style={{
-            backgroundColor: colorValue || "transparent",
+            backgroundColor: colorValue ? colorValue : "transparent",
             backgroundImage: colorValue ? 'none' : 'linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc)',
           }}
         ></span>

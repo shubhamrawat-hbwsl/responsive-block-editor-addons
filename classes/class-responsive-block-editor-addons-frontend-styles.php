@@ -6289,6 +6289,32 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'line-height' => 999 !== $attr['labelFontLineHeight'] && 1 === $attr['labelLineHeight'] ? $attr['labelFontLineHeight'] : $attr['labelLineHeight'], // For compatibility with v1.3.2.
 					'font-size'   => self::get_css_value( $attr['labelFontSize'], 'px' ),
 				),
+				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon' => array(
+					'color' => $attr['iconColor'],
+				),
+				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon:hover' => array(
+					'color' => $attr['iconColorHover'],
+				),
+				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap' => array(
+					'background-color' => $attr['iconBackgroundColor'],
+					'border-color'     => $attr['iconBorderColor'],
+				),
+				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap' => array(
+					'background-color' => $attr['iconBackgroundColorHover'],
+					'border-color'     => $attr['iconBorderColorHover'],
+				),
+				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg' => array(
+					'fill' => $attr['iconColor'],
+				),
+				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg' => array(
+					'fill' => $attr['iconColorHover'],
+				),
+				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label' => array(
+					'color' => $attr['labelFontColor'],
+				),
+				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label' => array(
+					'color' => $attr['labelFontColorHover'],
+				),
 			);
 			$alignment = 'center';
 			if ( 'left' === $attr['alignMobile'] ) {
@@ -6432,6 +6458,14 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'labelFontSizeTablet' => '',
 				'labelFontSizeMobile' => '',
 				'labelLineHeight'     => 1,
+				'labelFontColor'	  => '', 
+        		'labelFontColorHover' => '', 
+        		'iconColor'			  => '#3a3a3a', 
+        		'iconBorderColor'	  => '', 
+        		'iconBackgroundColor' => '', 
+        		'iconColorHover'	  => '', 
+        		'iconBorderColorHover'=> '', 
+        		'iconBackgroundColorHover'	=> '', 
 				'icon_layout'         => 'vertical',
 				'fontSizeType'        => 'px',
 				'block_id'            => 1,
@@ -6484,35 +6518,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
-			$selectors = array(
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon' => array(
-					'color' => $attr['icon_color'],
-				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon:hover' => array(
-					'color' => $attr['icon_hover_color'],
-				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap' => array(
-					'background-color' => $attr['icon_bg_color'],
-					'border-color'     => $attr['icon_border_color'],
-				),
-				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap' => array(
-					'background-color' => $attr['icon_bg_hover_color'],
-					'border-color'     => $attr['icon_border_hover_color'],
-				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg' => array(
-					'fill' => $attr['icon_color'],
-				),
-				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg' => array(
-					'fill' => $attr['icon_hover_color'],
-				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label' => array(
-					'color' => $attr['label_color'],
-				),
-				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label' => array(
-					'color' => $attr['label_hover_color'],
-				),
-
-			);
+			$selectors = array();
 			$mobile_selectors = array();
 
 			$tablet_selectors = array();

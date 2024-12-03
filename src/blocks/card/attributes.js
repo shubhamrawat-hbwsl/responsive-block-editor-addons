@@ -764,5 +764,49 @@ const attributes = {
     type: "string",
     default: "desktop",
   },
+  cardImagePositionTab: {
+    type: "string",
+    default: "desktop",
+  },
+  cardImagePosition: {
+    type: "string",
+    default: "center center",
+  },
+  cardImagePositionMobile: {
+    type: "string",
+    default: "center center",
+  },
+  cardImagePositionTablet: {
+    type: "string",
+    default: "center center",
+  },
+  cardImageAttachment: {
+    type: "string",
+    default: "scroll",
+  },
+  cardImageRepeat: {
+    type: "string",
+    default: "no-repeat",
+  },
+  cardImageAttachment: {
+    type: "string",
+    default: "scroll",
+  },
+  cardImageSize: {
+    type: "string",
+    default: "cover",
+  },
+  cardImageSizeTablet: {
+    type: "string",
+    default: 'cover',
+  },
+  cardImageSizeMobile: {
+    type: "string",
+    default: 'cover'
+  },
+  cardImageSizeTab: {
+    type: "string",
+    default: "desktop",
+  },
 };
 export default attributes;

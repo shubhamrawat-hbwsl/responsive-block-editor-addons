@@ -306,7 +306,7 @@ function EditorStyles(props) {
       "background-image": backgroundImage
         ? `url(${backgroundImage})`
         : null,
-        "background-attachment": backgroundAttachment,
+      "background-attachment": backgroundAttachment,
       "opacity": imgopacity,
       height: 100 + "%",
       "background-position": backgroundPosition ? backgroundPosition : "center center",

@@ -16,6 +16,9 @@ import InspectorTabs from "../../../components/InspectorTabs";
 import RbeaRangeControl from "../../../utils/components/rbea-range-control";
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
+import RbeaSeparatorStyleTabControl from "../../../utils/components/rbea-separator-style-tab-control";
+import separatorPositionIcons from "../../../utils/components/rbea-separator-style-tab-control/separator-position-icons";
+import RbeaWidthRangeControl from "../../../utils/components/rbea-width-range-control";
 
 // Import block components
 const { InspectorControls, AlignmentToolbar, ColorPalette, PanelColorSettings } = wp.blockEditor
@@ -241,6 +244,7 @@ export default class Inspector extends Component {
           rightMarginMobile,
           blockIsPaddingControlConnected,
           blockIsMarginControlConnected,
+          separatorStyle,
       },
       setAttributes,
     } = this.props;
@@ -502,27 +506,29 @@ export default class Inspector extends Component {
                   setAttributes({ seperatorPosition: value })
                 }
                 options={[
-                  { value: "belowTitle", label: __("Below Heading", "responsive-block-editor-addons") },
-                  { value: "belowDesc", label: __("Below Description", "responsive-block-editor-addons") },
+                  { value: "belowTitle", label: __("Below Heading", "responsive-block-editor-addons"), icon: separatorPositionIcons.below_heading },
+                  { value: "belowDesc", label: __("Below Description", "responsive-block-editor-addons"), icon: separatorPositionIcons.below_description },
                 ]}
                 defaultValue={"belowTitle"}
+                hasIcon={true}
+                optionHasBorder={true}
               />
-              <SelectControl
-                label={__("Style", "responsive-block-editor-addons")}
-                value={seperatorStyle}
+              <RbeaSeparatorStyleTabControl
+                selected={seperatorStyle}
                 onChange={(value) => setAttributes({ seperatorStyle: value })}
-                options={[
-                  { value: "none", label: __("None", "responsive-block-editor-addons") },
-                  { value: "solid", label: __("Solid", "responsive-block-editor-addons") },
-                  { value: "dashed", label: __("Dashed", "responsive-block-editor-addons") },
-                  { value: "dotted", label: __("Dotted", "responsive-block-editor-addons") },
-                  { value: "double", label: __("Double", "responsive-block-editor-addons") },
-                  { value: "groove", label: __("Groove", "responsive-block-editor-addons") },
-                  { value: "inset", label: __("Inset", "responsive-block-editor-addons") },
-                  { value: "outset", label: __("Outset", "responsive-block-editor-addons") },
-                  { value: "ridge", label: __("Ridge", "responsive-block-editor-addons") },
-                ]}
               />
+              {seperatorStyle !== "none" && (
+                <Fragment>
+                  <RbeaColorControl
+                    label = {__("Separator Color", "responsive-block-editor-addons")}
+                    colorValue={separatorColor}
+                    onChange={(colorValue) =>
+                      setAttributes({ separatorColor: colorValue })
+                    }
+                    resetColor={() => setAttributes({ separatorColor: "" })}
+                  />
+                </Fragment>
+              )}
               {seperatorStyle !== "none" && (
                 <Fragment>
                   <RbeaRangeControl
@@ -539,37 +545,7 @@ export default class Inspector extends Component {
                     allowReset
                     initialPosition={3}
                   />
-                  <ButtonGroup
-                    className="responsive-block-editor-addons-size-type-field"
-                    aria-label={__(
-                      "Size Type",
-                      "responsive-block-editor-addons"
-                    )}
-                  >
-                    <Button
-                      key={"px"}
-                      className="responsive-block-editor-addons-size-btn"
-                      isSmall
-                      isPrimary={separatorWidthType === "px"}
-                      aria-pressed={separatorWidthType === "px"}
-                      onClick={() =>
-                        setAttributes({ separatorWidthType: "px" })
-                      }
-                    >
-                      {"px"}
-                    </Button>
-                    <Button
-                      key={"%"}
-                      className="responsive-block-editor-addons-size-btn"
-                      isSmall
-                      isPrimary={separatorWidthType === "%"}
-                      aria-pressed={separatorWidthType === "%"}
-                      onClick={() => setAttributes({ separatorWidthType: "%" })}
-                    >
-                      {"%"}
-                    </Button>
-                  </ButtonGroup>
-                  <RbeaRangeControl
+                  <RbeaWidthRangeControl
                     label={__("Width", "responsive-block-editor-addons")}
                     value={separatorWidth}
                     onChange={(value) =>
@@ -580,20 +556,24 @@ export default class Inspector extends Component {
                     beforeIcon=""
                     allowReset
                     initialPosition={20}
+                    separatorWidthType={separatorWidthType}
+                    extraControls={true}
+                    setAttributes={setAttributes}
                   />
-                  {seperatorStyle !== "none" && (
-                    <Fragment>
-                      <RbeaColorControl
-                        label = {__("Separator Color", "responsive-block-editor-addons")}
-                        colorValue={separatorColor}
-                        onChange={(colorValue) =>
-                          setAttributes({ separatorColor: colorValue })
-                        }
-                        resetColor={() => setAttributes({ separatorColor: "" })}
-                      />
-                    </Fragment>
-                  )}
                 </Fragment>
+              )}
+              {seperatorStyle !== "none" && (
+                <ResponsiveSpacingControl
+                  title={"Bottom Spacing"}
+                  attrNameTemplate="separatorSpacing%s"
+                  values={{
+                    desktop: separatorSpacing,
+                    tablet: separatorSpacingTablet,
+                    mobile: separatorSpacingMobile,
+                  }}
+                  setAttributes={setAttributes}
+                  {...this.props}
+                />
               )}
             </PanelBody>
             <PanelBody
@@ -611,19 +591,6 @@ export default class Inspector extends Component {
                 setAttributes={setAttributes}
                 {...this.props}
               />
-              {seperatorStyle !== "none" && (
-                <ResponsiveSpacingControl
-                  title={"Separator Bottom"}
-                  attrNameTemplate="separatorSpacing%s"
-                  values={{
-                    desktop: separatorSpacing,
-                    tablet: separatorSpacingTablet,
-                    mobile: separatorSpacingMobile,
-                  }}
-                  setAttributes={setAttributes}
-                  {...this.props}
-                />
-              )}
               {showSubHeading && (
                 <ResponsiveSpacingControl
                   title={"Text Bottom"}
