@@ -732,14 +732,22 @@ class Responsive_Block_Editor_Addons {
 	 */
 	public function responsive_block_editor_addons_block_assets() {
 
-		if ( ! is_admin() ) {
+		if ( ! is_admin() || !empty($widget_blocks) ) {
 
 			$post = get_post();
+			$widget_blocks = get_option('widget_block');
 
 			$flag = false;
 
 			if ( $post ) {
 				$blocks = parse_blocks( $post->post_content );
+
+				foreach ($widget_blocks as $widget) {
+					if (!empty($widget['content'])) {
+						$flag = true;
+						break;
+					}
+				}
 
 				foreach ( $blocks as $block ) {
 					// Retrieve all block names for the current block and its inner blocks.

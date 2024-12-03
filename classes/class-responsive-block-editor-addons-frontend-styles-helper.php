@@ -77,11 +77,17 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles_Helper' ) )
 		 */
 		public function responsive_block_editor_addons_frontend_styles() {
 			global $post;
-			$blocks = array();
-			if ( is_object( $post ) ) {
-				$blocks = parse_blocks( $post->post_content );
-			}
+
 			$css = null;
+			$post_css = null;
+		    $widget_css = null;
+
+
+			$blocks = array();
+			if (is_object($post)) {
+				$post_blocks = parse_blocks($post->post_content);
+			}
+			
 
 			if ( is_archive() || is_home() || is_search() || is_404() || is_singular() ) {
 				if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
@@ -95,14 +101,39 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles_Helper' ) )
 						foreach ( $template_query_posts as $post ) {
 							if ( is_object( $post ) ) {
 								$post_blocks = parse_blocks( $post->post_content );
-								$css .= $this->get_styles( $post_blocks );
+								$css .= $this->get_styles($post_blocks);
 							}
 						}
 					}
+					else {
+						error_log("No template posts found");
+					}
+				} else {
+					// Process widget blocks
+					$widget_blocks = get_option('widget_block');
+					if (!empty($widget_blocks)) {
+						foreach ($widget_blocks as $widget) {
+							if (!empty($widget['content'])) {
+								$parsed_blocks = parse_blocks($widget['content']);
+								$widget_css .= $this->get_styles($parsed_blocks);
+							}
+						}
+					}
+					if ( is_object( $post ) ) {
+						$post_blocks = parse_blocks( $post->post_content );
+						$post_css .= $this->get_styles($post_blocks);
+					}
 				}
 			}
-			if( ! isset( $css ) ) {
-				$css = $this->get_styles( $blocks );
+
+			// Combine post CSS and widget CSS
+			$css = $post_css . $widget_css;
+
+			// Output the combined CSS
+			if (!empty($css)) {
+				echo "<style id='rbea-frontend-styles'>$css</style>"; // phpcs:ignore
+			} else {
+				error_log("No CSS generated");
 			}
 			echo "<style id='rbea-frontend-styles'>$css</style>"; //phpcs:ignore
 		}
