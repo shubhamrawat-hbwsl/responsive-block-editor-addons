@@ -6,6 +6,7 @@ import InspectorTabs from "../../../components/InspectorTabs";
 import ResponsiveNewPaddingControl from "../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewPaddingControl/index";
 import ResponsiveNewMarginControl from "../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewMarginControl/index";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
+import buttonStackOnIcons from "./button-stack-on-icons";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -110,6 +111,28 @@ export default class Inspector extends Component {
 			paddingMobileBottom: 0,
 			paddingMobileLeft: 0,
 		}
+
+		const buttonStackOnOptions = [
+			{
+				value: "desktop", 
+				label: __("Desktop", "responsive-block-editor-addons"),
+				shortName: __("Circle", "responsive-block-editor-addons"),
+				icon: buttonStackOnIcons.desktop,
+			},
+			{
+				value: "tablet", 
+				label: __("Tablet", "responsive-block-editor-addons"),
+				shortName: __("Square", "responsive-block-editor-addons"),
+				icon: buttonStackOnIcons.tablet,
+			},
+			{
+				value: "mobile", 
+				label: __("Mobile", "responsive-block-editor-addons"),
+				shortName: __("Blob", "responsive-block-editor-addons"),
+				icon: buttonStackOnIcons.mobile,
+			},
+		];
+
 		return (
 			<InspectorControls key="inspector">
 				<InspectorTabs>
@@ -119,114 +142,122 @@ export default class Inspector extends Component {
 							initialOpen={true}
 						>
 							<TabPanel
-								className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
-								activeClass="active-tab"
-								tabs={[
-									{
-										name: "desktop",
-										title: <Dashicon icon="desktop" />,
-										className:
-											" responsive-desktop-tab  responsive-responsive-tabs",
-									},
-									{
-										name: "tablet",
-										title: <Dashicon icon="tablet" />,
-										className: " responsive-tablet-tab  responsive-responsive-tabs",
-									},
-									{
-										name: "mobile",
-										title: <Dashicon icon="smartphone" />,
-										className: " responsive-mobile-tab  responsive-responsive-tabs",
-									},
-								]}
-							>
-								{(tab) => {
-									let tabout;
-
-									if ("mobile" === tab.name) {
-										tabout = (
-											<Fragment>
-												<BaseControl>
-													<p>
-														{__(
-															"Alignment Mobile",
-															"responsive-block-editor-addons"
-														)}
-													</p>
-													<AlignmentToolbar
-														value={buttonAlignmentMobile}
-														onChange={(value) =>
-															setAttributes({
-																buttonAlignmentMobile: value,
-															})
-														}
-														controls={["left", "center", "right", "full"]}
-														isCollapsed={false}
-													/>
-												</BaseControl>
-											</Fragment>
-										);
-									} else if ("tablet" === tab.name) {
-										tabout = (
-											<Fragment>
-												<BaseControl>
-													<p>
-														{__(
-															"Alignment Tablet",
-															"responsive-block-editor-addons"
-														)}
-													</p>
-													<AlignmentToolbar
-														value={buttonAlignmentTablet}
-														onChange={(value) =>
-															setAttributes({
-																buttonAlignmentTablet: value,
-															})
-														}
-														controls={["left", "center", "right", "full"]}
-														isCollapsed={false}
-													/>
-												</BaseControl>
-											</Fragment>
-										);
-									} else {
-										tabout = (
-											<Fragment>
-												<BaseControl>
-													<p>{__("Alignment", "responsive-block-editor-addons")}</p>
-													<AlignmentToolbar
-														value={buttonAlignment}
-														onChange={(value) =>
-															setAttributes({
-																buttonAlignment: value,
-															})
-														}
-														controls={["left", "center", "right", "full"]}
-														isCollapsed={false}
-													/>
-												</BaseControl>
-											</Fragment>
-										);
-									}
-
-									return <div>{tabout}</div>;
-								}}
-							</TabPanel>
+                				className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
+                				activeClass="active-tab"
+                				tabs={[
+                				  {
+                				    name: "desktop",
+                				    title: <Dashicon icon="desktop" />,
+                				    className:
+                				      " responsive-desktop-tab  responsive-responsive-tabs",
+                				  },
+                				  {
+                				    name: "tablet",
+                				    title: <Dashicon icon="tablet" />,
+                				    className:
+                				      " responsive-tablet-tab  responsive-responsive-tabs",
+                				  },
+                				  {
+                				    name: "mobile",
+                				    title: <Dashicon icon="smartphone" />,
+                				    className:
+                				      " responsive-mobile-tab  responsive-responsive-tabs",
+                				  },
+                				]}
+              				>	
+               				 	{(tab) => {
+               				 	  let tabout;
+							
+				               	 	if ("mobile" === tab.name) {
+				               	 	  tabout = (
+				               	 	    <Fragment>
+				               	 	      <BaseControl>
+				               	 	        <p>
+				               	 	          {__(
+				               	 	            "Alignment Mobile",
+				               	 	            "responsive-block-editor-addons"
+				               	 	          )}
+				               	 	        </p>
+				               	 	        <div className="responsive-block-editor-addons-alignment-mobile">
+				               	 	          <AlignmentToolbar
+				               	 	            value={buttonAlignmentMobile}
+				               	 	            onChange={(value) =>
+				               	 	              setAttributes({
+				               	 	                buttonAlignmentMobile: value,
+				               	 	              })
+				               	 	            }
+				               	 	            controls={["left", "center", "right"]}
+				               	 	            isCollapsed={false}
+				               	 	          />
+				               	 	        </div>
+				               	 	      </BaseControl>
+				               	 	    </Fragment>
+				               	 	  );
+				               	 	} else if ("tablet" === tab.name) {
+				               	 	  tabout = (
+				               	 	    <Fragment>
+				               	 	      <BaseControl>
+				               	 	        <p>
+				               	 	          {__(
+				               	 	            "Alignment Tablet",
+				               	 	            "responsive-block-editor-addons"
+				               	 	          )}
+				               	 	        </p>
+				               	 	        <div className="responsive-block-editor-addons-alignment-tablet">
+				               	 	          <AlignmentToolbar
+				               	 	            value={buttonAlignmentTablet}
+				               	 	            onChange={(value) =>
+				               	 	              setAttributes({
+				               	 	                buttonAlignmentTablet: value,
+				               	 	              })
+				               	 	            }
+				               	 	            controls={["left", "center", "right"]}
+				               	 	            isCollapsed={false}
+				               	 	          />
+				               	 	        </div>
+				               	 	      </BaseControl>
+				               	 	    </Fragment>
+				               	 	  );
+				               	 	} else {
+				               	 	  tabout = (
+				               	 	    <Fragment>
+				               	 	      <BaseControl>
+				               	 	        <p>
+				               	 	          {__("Alignment", "responsive-block-editor-addons")}
+				               	 	        </p>
+				               	 	        <div className="responsive-block-editor-addons-alignment">
+				               	 	          <AlignmentToolbar
+				               	 	            value={buttonAlignment}
+				               	 	            onChange={(value) =>
+				               	 	              setAttributes({
+				               	 	                buttonAlignment: value,
+				               	 	              })
+				               	 	            }
+				               	 	            controls={["left", "center", "right"]}
+				                	isCollapsed={false}
+				                />
+				                </div>
+                				        </BaseControl>
+                				      </Fragment>
+                				    );
+                				  }
+							  
+                				  return <div>{tabout}</div>;
+                				}}
+              				</TabPanel>
 							<hr className="responsive-block-editor-addons-editor__separator" />
 							<RbeaTabRadioControl
-								label={__("Stack on", "responsive-block-editor-addons")}
-								value={stack}
-								options={[
-									{ value: "none", label: __("None", "responsive-block-editor-addons") },
-									{ value: "desktop", label: __("Desktop", "responsive-block-editor-addons") },
-									{ value: "tablet", label: __("Tablet", "responsive-block-editor-addons") },
-									{ value: "mobile", label: __("Mobile", "responsive-block-editor-addons") },
-								]}
+              				    label={__("Stack on", "responsive-block-editor-addons")}
+              				    value={stack}
+								options={buttonStackOnOptions}
 								onChange={(value) => setAttributes({ stack: value })}
 								help={__(
 									"Note: Choose breakpoint on which the buttons will stack.", "responsive-block-editor-addons"
 								)}
-							/>
+								className={"responsive-block-editor-addons-multiple-addons-stack-on-control"}
+								hasIcon={true}
+								optionHasBorder={true}
+              				/>
 						</PanelBody>
 					</InspectorTab>
 					<InspectorTab key={"style"}>
