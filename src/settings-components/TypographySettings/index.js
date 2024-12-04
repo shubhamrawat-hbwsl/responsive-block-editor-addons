@@ -112,14 +112,12 @@ class TypographyControl extends Component {
         ];
 
         var advancedControls;
-        advancedControls = (            
+        advancedControls = (    
+            <PanelBody
+                title={this.props.title}
+                initialOpen={false}
+            >
                 <Fragment>
-                    <RbeaColorControl
-						label = {this.props.values.label}
-						colorValue={this.props.values.colorValue}
-                        onChange={this.props.values.onChange}
-                        resetColor={this.props.values.resetColor}
-					/>
                     <SelectControl
                         label={__("Font Family", "responsive-block-editor-addons")}
                         options={fontOptions}
@@ -318,6 +316,7 @@ class TypographyControl extends Component {
                     )
                     }
                 </Fragment>
+                </PanelBody>
         );
 
 

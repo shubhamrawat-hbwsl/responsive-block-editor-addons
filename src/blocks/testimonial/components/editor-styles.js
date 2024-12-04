@@ -449,7 +449,7 @@ function EditorStyles(props) {
         width: generateCSSUnit(imageWidthTablet, "px"),
     },
     " .responsive-block-editor-addons-block-testimonial": {
-      "background-position": backgroundPositionMobile,
+      "background-position": backgroundPositionTablet,
       "background-size": backgroundSizeTablet === '' ? backgroundSize : backgroundSizeTablet,
       "background-repeat": backgroundRepeat,
       "background-position": backgroundPositionTablet,
