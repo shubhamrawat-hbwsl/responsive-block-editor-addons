@@ -77,11 +77,17 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles_Helper' ) )
 		 */
 		public function responsive_block_editor_addons_frontend_styles() {
 			global $post;
+
+			// $css = null;
+			$post_css = null;
+		    $widget_css = null;
+			$is_block_from_widget = false;
+
+
 			$blocks = array();
-			if ( is_object( $post ) ) {
-				$blocks = parse_blocks( $post->post_content );
+			if (is_object($post)) {
+				$blocks = parse_blocks($post->post_content);
 			}
-			$css = null;
 
 			if ( is_archive() || is_home() || is_search() || is_404() || is_singular() ) {
 				if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
@@ -94,17 +100,46 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles_Helper' ) )
 					if ( ! empty( $template_query_posts ) && is_array( $template_query_posts ) ) {
 						foreach ( $template_query_posts as $post ) {
 							if ( is_object( $post ) ) {
-								$post_blocks = parse_blocks( $post->post_content );
-								$css .= $this->get_styles( $post_blocks );
+								$blocks = parse_blocks( $post->post_content );
 							}
 						}
 					}
+				} else {
+					// Process widget blocks
+					$is_block_from_widget = true;
+					$widget_blocks = get_option('widget_block');
+					if (!empty($widget_blocks)) {
+						foreach ($widget_blocks as $widget) {
+							if (!empty($widget['content'])) {
+								$parsed_blocks = parse_blocks($widget['content']);
+								$widget_css .= $this->get_styles($parsed_blocks);
+							}
+						}
+					}
+					if ( is_object( $post ) ) {
+						$post_blocks = parse_blocks( $post->post_content );
+						$post_css .= $this->get_styles($post_blocks);
+					}
 				}
 			}
-			if( ! isset( $css ) ) {
-				$css = $this->get_styles( $blocks );
+
+			// Combine post CSS and widget CSS
+			if($is_block_from_widget) {
+				$css = $post_css . $widget_css;
+				$is_block_from_widget = false;
+				echo "<style id='rbea-frontend-styles'>$css</style>"; //phpcs:ignore
 			}
-			echo "<style id='rbea-frontend-styles'>$css</style>"; //phpcs:ignore
+			else {
+				$css = $this->get_styles( $blocks );
+				echo "<style id='rbea-frontend-styles'>$css</style>"; //phpcs:ignore
+			}
+
+			// Output the combined CSS
+			// if (!empty($css)) {
+			// 	echo "<style id='rbea-frontend-styles'>$css</style>"; // phpcs:ignore
+			// } else {
+			// 	error_log("No CSS generated");
+			// }
 		}
 
 		/**
