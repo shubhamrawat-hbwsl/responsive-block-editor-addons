@@ -35,16 +35,16 @@ export default function ResponsiveContentPaddingControl (props) {
             if ("mobile" === tab.name) {
                 tabout = (
                     <RbeaDimensionControl
-                     {...{...props, tabName: 'Mobile', controlName: 'content padding'}}
+                     {...{...props, tabName: 'Mobile', controlName: 'padding'}}
                     />
             );
             } else if ("tablet" === tab.name) {
                 tabout = (
-                    <RbeaDimensionControl {...{...props, tabName: 'Tablet', controlName: 'content padding' }}/>
+                    <RbeaDimensionControl {...{...props, tabName: 'Tablet', controlName: 'padding' }}/>
             );
             } else {
                 tabout = (
-                    <RbeaDimensionControl {...{...props, tabName: '', controlName: 'content padding'}}/>
+                    <RbeaDimensionControl {...{...props, tabName: '', controlName: 'padding'}}/>
             );
             }
   
