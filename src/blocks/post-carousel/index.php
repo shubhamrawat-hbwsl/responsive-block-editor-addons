@@ -14,7 +14,6 @@
 function responsive_block_editor_addons_post_carousel_add_frontend_assets( $attributes ) {
 	$widget_blocks = get_option('widget_block');
 	if ( has_block( 'responsive-block-editor-addons/post-carousel' ) ) {
-		error_log("From IF -> Block From Post");
 		wp_enqueue_script(
 			'responsive_block_editor_addons-slick-js',
 			RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/js/vendors/slick.min.js',
@@ -27,23 +26,9 @@ function responsive_block_editor_addons_post_carousel_add_frontend_assets( $attr
 		$js       = 'jQuery( document ).ready( function( $ ) { if( $( "' . $selector . '" ).length > 0 ){ $( "' . $selector . '" ).slick( ); } } );';
 		wp_add_inline_script( 'responsive_block_editor_addons-slick-js-post-carousel', $js );
 	}
-	else if (!empty($widget_blocks)) {
-		error_log("From Else -> Block From Widget");
-		wp_enqueue_script(
-			'responsive_block_editor_addons-slick-js',
-			RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/js/vendors/slick.min.js',
-			array( 'jquery' ),
-			RESPONSIVE_BLOCK_EDITOR_ADDONS_VER,
-			true
-		);
-
-		$selector = '.responsive-post-slick-carousel';
-		$js       = 'jQuery( document ).ready( function( $ ) { if( $( "' . $selector . '" ).length > 0 ){ $( "' . $selector . '" ).slick( ); } } );';
-		wp_add_inline_script( 'responsive_block_editor_addons-slick-js-post-carousel', $js );
-	}
-	else if (!empty($widget_blocks)) {
-		foreach ($widget_blocks as $widget) {
-			if (!empty($widget['content'])) {
+	else if ( ! empty( $widget_blocks ) ) {
+		foreach ( $widget_blocks as $widget ) {
+			if ( ! empty( $widget['content'] ) ) {
 				wp_enqueue_script(
 					'responsive_block_editor_addons-slick-js',
 					RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/js/vendors/slick.min.js',
@@ -59,6 +44,7 @@ function responsive_block_editor_addons_post_carousel_add_frontend_assets( $attr
 		}
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'responsive_block_editor_addons_post_carousel_add_frontend_assets' );
 add_action( 'the_post', 'responsive_block_editor_addons_post_carousel_add_frontend_assets' );
 
