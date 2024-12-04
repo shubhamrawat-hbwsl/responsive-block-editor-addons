@@ -12,12 +12,13 @@
  * @param Array $attributes Attributes.
  */
 function responsive_block_editor_addons_testimonial_carousel_add_frontend_assets( $attributes ) {
-	if ( has_block( 'responsive-block-editor-addons/testimonial-slider' ) ) {
+	if ( has_block( 'responsive-block-editor-addons/testimonial-slider') ) {
 		include_slick_lib();
 	}
 
 	if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
-		if ( is_archive() || is_home() || is_search() || is_404() ) {
+		error_log("From IF -> Block From Post");
+		if ( is_archive() || is_home() || is_search() || is_404()|| is_singular() ) {
 			wp_enqueue_script(
 				'responsive_blocks-frontend-js',
 				RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/frontend_blocks.js',
@@ -36,6 +37,30 @@ function responsive_block_editor_addons_testimonial_carousel_add_frontend_assets
 			include_slick_lib();
 		}
 	}
+	else {
+		error_log("From Else -> Block From Widget");
+		// Process widget blocks
+		$widget_blocks = get_option('widget_block');
+		if (!empty($widget_blocks)) {
+			error_log("Testimonial Widget Inside");
+			wp_enqueue_script(
+				'responsive_blocks-frontend-js',
+				RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/frontend_blocks.js',
+				array( 'jquery' ),
+				filemtime( RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'dist/frontend_blocks.js' ),
+				true
+			);
+		
+			// Load the compiled styles.
+			wp_enqueue_style(
+				'responsive_block_editor_addons-style-css',
+				RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/responsive-block-editor-addons-style.css',
+				array(),
+				filemtime( RESPONSIVE_BLOCK_EDITOR_ADDONS_DIR . 'dist/responsive-block-editor-addons-style.css' )
+			);
+			include_slick_lib();
+		}
+	}
 }
 add_action( 'wp_enqueue_scripts', 'responsive_block_editor_addons_testimonial_carousel_add_frontend_assets' );
 add_action( 'the_post', 'responsive_block_editor_addons_testimonial_carousel_add_frontend_assets' );
@@ -44,6 +69,7 @@ add_action( 'the_post', 'responsive_block_editor_addons_testimonial_carousel_add
  * Include slick library.
  */
 function include_slick_lib() {
+	error_log("Includedd Sclick Lib");
 	wp_enqueue_script(
 		'test-slick-js',
 		RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/js/vendors/slick.min.js',
@@ -135,6 +161,7 @@ function responsive_parse_gutenberg_blocks_testimonial_carousel( $content ) {
  */
 function get_responsive_testimonial_carousel_scripts( $blocks ) {
 	global $responsive_post_carousel_js;
+	$widget_blocks = get_option('widget_block');
 	foreach ( $blocks as $i => $block ) {
 		if ( is_array( $block ) ) {
 			if ( 'core/block' === $block['blockName'] ) {
