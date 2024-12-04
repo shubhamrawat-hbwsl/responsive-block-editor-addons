@@ -78,13 +78,13 @@ function post_carousel_generate_script() {
 	if(!empty($widget_blocks)) {
 		foreach ( $widget_blocks as $widget ) {
 			if ( ! empty( $widget['content'] ) ) {
-				$parsed_blocks = responsive_parse_gutenberg_blocks_post_carousel( $widget['content'] );
+				$blocks_from_widgets = responsive_parse_gutenberg_blocks_post_carousel( $widget['content'] );
 
-				if ( ! is_array( $parsed_blocks ) || empty( $parsed_blocks ) ) {
+				if ( ! is_array( $blocks_from_widgets ) || empty( $blocks_from_widgets ) ) {
 					return;
 				}
 			
-				get_responsive_post_carousel_scripts( $parsed_blocks );
+				get_responsive_post_carousel_scripts( $blocks_from_widgets );
 			}
 		}
 	}
