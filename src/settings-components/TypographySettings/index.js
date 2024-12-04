@@ -32,6 +32,7 @@ const TypographyHelperControl = (props) => {
             onChangeFontSize={value => props.setAttributes({ [getAttrName('FontSize')]: value })}
             onChangeBottomSpacingMobile={value => props.setAttributes({ [getAttrName('BottomSpacingMobile')]: value })}
             onChangeBottomSpacingTablet={value => props.setAttributes({ [getAttrName('BottomSpacingTablet')]: value })}
+            onChangeTypographyColor={value => props.setAttributes({ [getAttrName('TypographyColor')]: value })}
             onChangeBottomSpacing={value => props.setAttributes({ [getAttrName('BottomSpacing')]: value })}
             onChangeFontFamily={value => props.setAttributes({ [getAttrName('FontFamily')]: value })}
             onChangeFontWeight={value => props.setAttributes({ [getAttrName('FontWeight')]: value })}
@@ -118,6 +119,12 @@ class TypographyControl extends Component {
                 initialOpen={false}
             >
                 <Fragment>
+                    <RbeaColorControl
+                        label = {__("Content Color", "responsive-block-editor-addons")}
+                        colorValue={this.props.values.color}
+                        onChange={this.props.onChangeTypographyColor}
+                        resetColor={() => setAttributes({ [this.props.values.color]: "" })}
+                    />
                     <SelectControl
                         label={__("Font Family", "responsive-block-editor-addons")}
                         options={fontOptions}

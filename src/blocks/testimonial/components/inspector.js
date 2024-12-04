@@ -382,6 +382,19 @@ export default class Inspector extends Component {
         blockRightPaddingTablet,
         blockIsMarginControlConnected,
         blockIsPaddingControlConnected,
+        contentTopPadding,
+        contentTopPaddingMobile,
+        contentTopPaddingTablet,
+        contentBottomPadding,
+        contentBottomPaddingMobile,
+        contentBottomPaddingTablet,
+        contentLeftPadding,
+        contentLeftPaddingMobile,
+        contentLeftPaddingTablet,
+        contentRightPadding,
+        contentRightPaddingMobile,
+        contentRightPaddingTablet,
+        blockIsContentPaddingControlConnected,
         backgroundType,
         backgroundPositionMobile,
         backgroundPositionTablet,
@@ -411,6 +424,10 @@ export default class Inspector extends Component {
         titleBottomSpacing,
         titleBottomSpacingMobile,
         titleBottomSpacingTablet,
+        blockIsTypographyColorValueUpdated,
+        contentTypographyColor,
+        titleTypographyColor,
+        nameTypographyColor,
     },
       setAttributes,
     } = this.props;
@@ -445,18 +462,18 @@ export default class Inspector extends Component {
 		}
 
     const blockContentPaddingResetValues = {
-			contentPaddingTop: 0,
-			contentPaddingRight: 0,
-			contentPaddingBottom: 0,
-			contentPaddingLeft: 0,
-			contentPaddingTabletTop: 0,
-			contentPaddingTabletRight: 0,
-			contentPaddingTabletBottom: 0,
-			contentPaddingTabletLeft: 0,
-			contentPaddingMobileTop: 0,
-			contentPaddingMobileRight: 0,
-			contentPaddingMobileBottom: 0,
-			contentPaddingMobileLeft: 0,
+			PaddingTop: 0,
+			PaddingRight: 0,
+			PaddingBottom: 0,
+			PaddingLeft: 0,
+			PaddingTabletTop: 0,
+			PaddingTabletRight: 0,
+			PaddingTabletBottom: 0,
+			PaddingTabletLeft: 0,
+			PaddingMobileTop: 0,
+			PaddingMobileRight: 0,
+			PaddingMobileBottom: 0,
+			PaddingMobileLeft: 0,
 		}
 
     // backward compatibility for border radius control
@@ -480,6 +497,22 @@ export default class Inspector extends Component {
       )
       this.props.setAttributes({blockIsRadiusValueUpdated: true});
     }
+
+
+    // backward compatibility for typography color control
+
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          contentTypographyColor:          testimonialTextColor !== undefined ? testimonialTextColor : contentTypographyColor,
+          nameTypographyColor:       testimonialNameColor !== undefined ? testimonialNameColor : nameTypographyColor,
+          titleTypographyColor:         testimonialTitleColor !== undefined ? testimonialTitleColor : titleTypographyColor,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
+    }
+
+
 
     // Background image URL
     let background_image_url = backgroundImage || '';
@@ -964,10 +997,6 @@ export default class Inspector extends Component {
                 />
               }
             </PanelBody>
-            <PanelBody
-              title={__("Content Typography", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
 				      <TypographyHelperControl
 				      	title={__("Content Typography", "responsive-block-editor-addons")}
 				      	attrNameTemplate="content%s"
@@ -982,24 +1011,16 @@ export default class Inspector extends Component {
 				      	  weight: contentFontWeight,
 				      	  height: contentLineHeight,
 				      	  transform: contentTextTransform,
+                  color: contentTypographyColor,
                   label: __("Text Color", "responsive-block-editor-addons"),
-                  colorValue:{testimonialTextColor},
-                  onChange: (colorValue) =>
-                    setAttributes({ testimonialTextColor: colorValue }),
-                  resetColor: () => setAttributes({ testimonialTextColor: "" }),
 				      	}}
-                resetColor={() => setAttributes({ testimonialTextColor: "" })}
+                resetColor={() => setAttributes({ contentTypographyColor: "" })}
 				      	showLetterSpacing={false}
 				      	showTextTransform={true}
                 showTextBottomSpacing={true}
 				      	setAttributes={setAttributes}
 				      	{...this.props}
 				      />
-            </PanelBody>
-            <PanelBody
-              title={__("Name Typography", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
 				      <TypographyHelperControl
 				      	title={__("Name Typography", "responsive-block-editor-addons")}
 				      	attrNameTemplate="name%s"
@@ -1015,10 +1036,7 @@ export default class Inspector extends Component {
 				      	  height: nameLineHeight,
 				      	  transform: nameTextTransform,
                   label: __("Name Color", "responsive-block-editor-addons"),
-                  colorValue:{testimonialNameColor},
-                  onChange: (colorValue) =>
-                    setAttributes({ testimonialNameColor: colorValue }),
-                  resetColor: () => setAttributes({ testimonialNameColor: "" }),
+                  color: nameTypographyColor,
 				      	}}
 				      	  showLetterSpacing={false}
 				      	  showTextTransform={true}
@@ -1026,11 +1044,6 @@ export default class Inspector extends Component {
 				      	  setAttributes={setAttributes}
 				      	{...this.props}
 				      />
-            </PanelBody>
-            <PanelBody
-              title={__("Title Typography", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
 				      <TypographyHelperControl
 				      	title={__("Title Typography", "responsive-block-editor-addons")}
 				      	attrNameTemplate="title%s"
@@ -1046,10 +1059,7 @@ export default class Inspector extends Component {
 				      	  height: titleLineHeight,
 				      	  transform: titleTextTransform,
                   label: __("Title/Designation Color", "responsive-block-editor-addons"),
-                  colorValue:{testimonialTitleColor},
-                  onChange: (colorValue) =>
-                    setAttributes({ testimonialTitleColor: colorValue }),
-                  resetColor: () => setAttributes({ testimonialTitleColor: "" }),
+                  color: titleTypographyColor,
 				      	}}
 				      	  showLetterSpacing={false}
 				      	  showTextTransform={true}
@@ -1057,7 +1067,6 @@ export default class Inspector extends Component {
 				      	  setAttributes={setAttributes}
 				      	{...this.props}
 				      />
-            </PanelBody>
             <PanelBody
               title={__("Border", "responsive-block-editor-addons")}
               initialOpen={false}
@@ -1107,7 +1116,7 @@ export default class Inspector extends Component {
               initialOpen={false}
             >
               <ResponsiveContentPaddingControl
-                attrNameTemplate="block%s"
+                attrNameTemplate="content%s"
                 resetValues={blockContentPaddingResetValues}
                 {...this.props}
               />
