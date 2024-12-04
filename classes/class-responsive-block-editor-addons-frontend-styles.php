@@ -10432,33 +10432,68 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
-			$box_shadow_position_css      = $attr['boxShadowPosition'];
+			$box_shadow_position_css = $attr['boxShadowPosition'];
 			$hoverbox_shadow_position_css = $attr['hoverboxShadowPosition'];
-
-			$bgimage                        = $attr['backgroundImage'] ? $attr['backgroundImage'] : '';
-			$tempsecondary_background_color = $attr['bgGradient']
-			? ( 'empty' !== $attr['secondaryBackgroundColor'] && '' === $attr['backgroundColor2'] ? $attr['secondaryBackgroundColor'] : $attr['backgroundColor2'] ) // For compatibility with v1.3.2.
-			: $attr['testimonialBackgroundColor'];
-			$bggradient                     =
-			'linear-gradient(' .
-			$attr['gradientDirection'] .
-			'deg,' .
-			self::hex_to_rgb( $attr['testimonialBackgroundColor'], $attr['opacity'] ) .
-			$attr['colorLocation1'] .
-			'% ,' .
-			self::hex_to_rgb( $tempsecondary_background_color, $attr['opacity'] ) .
-			$attr['colorLocation2'] .
-			'% ),url(' .
-			$bgimage .
-			')';
-
+					
 			if ( 'outset' === $attr['boxShadowPosition'] ) {
-				$box_shadow_position_css = '';
+			    $box_shadow_position_css = '';
 			}
-
 			if ( 'outset' === $attr['hoverboxShadowPosition'] ) {
-				$hoverbox_shadow_position_css = '';
+			    $hoverbox_shadow_position_css = '';
 			}
+			
+			$imgopacity = $attr['opacity'] / 100;
+			
+			$background_image_effect = '';
+			$updated_background_image = '';
+			
+			$color_type = '';
+			if ( 'color' === $attr['overlayType'] ) {
+			    $color_type = self::hex_to_rgba(
+			        $attr['backgroundImageColor'],
+			        $imgopacity
+			    );
+			
+			    if ( $attr['backgroundImage'] ) {
+			        $updated_background_image = 'linear-gradient(' .
+			        self::hex_to_rgba( $attr['backgroundImageColor'], $imgopacity ) .
+			        ',' .
+			        self::hex_to_rgba( $attr['backgroundImageColor'], $imgopacity ) .
+			        '),url(' .
+			        $attr['backgroundImage'] .
+			        ')';
+			    }
+			    $background_image_effect = '';
+			} else {
+			    if ( 'linear' === $attr['gradientOverlayType'] ) {
+			        $background_image_effect = 'linear-gradient(' .
+			        $attr['gradientOverlayAngle'] .
+			        'deg,' .
+			        self::hex_to_rgba( $attr['gradientOverlayColor1'] ?? '#fff', $imgopacity  ) .
+			        $attr['gradientOverlayLocation1'] .
+			        '% ,' .
+			        self::hex_to_rgba( $attr['gradientOverlayColor2'] ?? '#fff', $imgopacity ) .
+			        $attr['gradientOverlayLocation2'] .
+			        '% ),url(' .
+			        $attr['backgroundImage'] .
+			        ')';
+			    }
+			    if ( 'radial' === $attr['gradientOverlayType'] ) {
+			        $background_image_effect = 'radial-gradient(' .
+			        'at ' . $attr['gradientOverlayPosition'] . ', ' .
+			        self::hex_to_rgba( $attr['gradientOverlayColor1'], $imgopacity ) .
+			        $attr['gradientOverlayLocation1'] .
+			        '% ,' .
+			        self::hex_to_rgba( $attr['gradientOverlayColor2'], $imgopacity ) .
+			        $attr['gradientOverlayLocation2'] .
+			        '% ),url(' .
+			        $attr['backgroundImage'] .
+			        ')';
+			    }
+			}
+			
+			// Ensure the background image logic is correctly applied
+			$bgimage = !empty($updated_background_image) ? $updated_background_image : $background_image_effect;
 
 			$selectors = array(
 				' '      => array(
@@ -10476,16 +10511,16 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .wp-block-responsive-block-editor-addons-testimonial:last-child' => array(
 					'margin-bottom' => '0 !important',
-				),
+					),
 				' .responsive-block-editor-addons-testimonial-text' => array(
-					'text-align'     => $attr['testimonialAlignment'],
-					'font-family'    => $attr['contentFontFamily'],
-					'font-size'      => self::get_css_value( $attr['contentFontSize'], 'px' ),
-					'line-height'    => $attr['contentLineHeight'],
-					'font-weight'    => $attr['contentFontWeight'],
+					'text-align' => $attr['testimonialAlignment'],
+					'font-family' => $attr['contentFontFamily'],
+					'font-size' => self::get_css_value( $attr['contentFontSize'], 'px' ),
+					'line-height' => $attr['contentLineHeight'],
+					'font-weight' => $attr['contentFontWeight'],
 					'text-transform' => $attr['contentTextTransform'],
-					'margin-bottom'  => self::get_css_value( $attr['contentSpacing'], 'px' ),
-					'color'          => $attr['testimonialTextColor'],
+					'margin-bottom' => self::get_css_value( $attr['contentSpacing'], 'px' ),
+					'color' => $attr['testimonialTextColor'],
 				),
 				' .responsive-block-editor-addons-testimonial-info' => array(
 					'margin-bottom' => self::get_css_value( $attr['titleSpacing'], 'px' ),
@@ -10495,27 +10530,27 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .responsive-block-editor-addons-testimonial-info .responsive-block-editor-addons-testimonial-inner-block .responsive-block-editor-addons-testimonial-avatar-wrap .responsive-block-editor-addons-testimonial-image-wrap' => array(
 					'height' => self::get_css_value( $attr['imageWidth'], 'px' ),
-					'width'  => self::get_css_value( $attr['imageWidth'], 'px' ),
+					'width' => self::get_css_value( $attr['imageWidth'], 'px' ),
 				),
 				' .responsive-block-editor-addons-testimonial-avatar' => array(
 					'height' => self::get_css_value( $attr['imageWidth'], 'px' ),
-					'width'  => self::get_css_value( $attr['imageWidth'], 'px' ),
+					'width' => self::get_css_value( $attr['imageWidth'], 'px' ),
 				),
 				' .responsive-block-editor-addons-testimonial-details .responsive-block-editor-addons-testimonial-name' => array(
-					'color'          => $attr['testimonialNameColor'],
-					'font-family'    => $attr['nameFontFamily'],
-					'font-size'      => self::get_css_value( $attr['nameFontSize'], 'px' ),
-					'line-height'    => $attr['nameLineHeight'],
-					'font-weight'    => $attr['nameFontWeight'],
+					'color' => $attr['testimonialNameColor'],
+					'font-family' => $attr['nameFontFamily'],
+					'font-size' => self::get_css_value( $attr['nameFontSize'], 'px' ),
+					'line-height' => $attr['nameLineHeight'],
+					'font-weight' => $attr['nameFontWeight'],
 					'text-transform' => $attr['nameTextTransform'],
-					'margin-bottom'  => self::get_css_value( $attr['nameSpacing'], 'px' ),
+					'margin-bottom' => self::get_css_value( $attr['nameSpacing'], 'px' ),
 				),
 				' .responsive-block-editor-addons-testimonial-details .responsive-block-editor-addons-testimonial-title' => array(
-					'color'          => $attr['testimonialTitleColor'],
-					'font-family'    => $attr['titleFontFamily'],
-					'font-size'      => self::get_css_value( $attr['titleFontSize'], 'px' ),
-					'line-height'    => $attr['titleLineHeight'],
-					'font-weight'    => $attr['titleFontWeight'],
+					'color' => $attr['testimonialTitleColor'],
+					'font-family' => $attr['titleFontFamily'],
+					'font-size' => self::get_css_value( $attr['titleFontSize'], 'px' ),
+					'line-height' => $attr['titleLineHeight'],
+					'font-weight' => $attr['titleFontWeight'],
 					'text-transform' => $attr['titleTextTransform'],
 				),
 				' .testimonial-box.responsive-block-editor-addons-block-testimonial' => array(
@@ -10548,20 +10583,34 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 						$hoverbox_shadow_position_css,
 				),
 				' .responsive-block-editor-addons-block-testimonial' => array(
-					'background-image'    => $bggradient,
-					'background-size'     => $attr['backgroundSize'],
-					'background-repeat'   => $attr['backgroundRepeat'],
-					'background-position' => $attr['backgroundPosition'],
-					'color'               => $attr['testimonialTextColor'],
-					'border-style'        => 'empty' !== $attr['borderStyle'] && 'none' === $attr['blockBorderStyle'] ? $attr['borderStyle'] : $attr['blockBorderStyle'], // For compatibility with v1.3.2.
-					'border-width'        => 999 !== $attr['borderWidth'] && 1 === $attr['blockBorderWidth'] ? self::get_css_value( $attr['borderWidth'], 'px' ) : self::get_css_value( $attr['blockBorderWidth'], 'px' ), // For compatibility with v1.3.2.
-					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadius'], 'px' ),
-					'border-top-right-radius'      => self::get_css_value( $attr['blockRightRadius'], 'px' ),
-					'border-bottom-right-radius'   => self::get_css_value( $attr['blockBottomRadius'], 'px' ),
-					'border-bottom-left-radius'    => self::get_css_value( $attr['blockLeftRadius'], 'px' ),
-					'border-color'        => 'empty' !== $attr['borderColor'] && '' === $attr['blockBorderColor'] ? $attr['borderColor'] : $attr['blockBorderColor'], // For compatibility with v1.3.2.
+					'background-color' =>
+						'color' === $attr['backgroundType']
+						? self::hex_to_rgb( $attr['backgroundColor'], $imgopacity )
+						: '',
+					'background-image' =>
+    					'gradient' === $attr['overlayType'] && 'image' === $attr['backgroundType']
+    					? $background_image_effect
+    					: (
+    					    'gradient' === $attr['backgroundType']
+    					    ? self::generateBackgroundImageEffect(
+    					        self::hex_to_rgb($attr['backgroundColor1'] ?? '#fff', $imgopacity ?? 0),
+    					        self::hex_to_rgb($attr['backgroundColor2'] ?? '#fff', $imgopacity ?? 0),
+    					        $attr['gradientDirection'],
+    					        $attr['colorLocation1'],
+    					        $attr['colorLocation2']
+    					    )
+    					    : ('image' === $attr['backgroundType'] ? $updated_background_image : '')
+						),
+    				'background-size' => $attr['backgroundSize'],
+					"background-attachment" => $attr['backgroundAttachment'],
+    				'background-repeat' => $attr['backgroundRepeat'],
+    				'background-position' => $attr['backgroundPosition'],
+    				'color' => $attr['testimonialTextColor'],
+    				'border-style' => 'empty' !== $attr['borderStyle'] && 'none' === $attr['blockBorderStyle'] ? $attr['borderStyle'] : $attr['blockBorderStyle'], 
+    				'border-width' => 999 !== $attr['borderWidth'] && 1 === $attr['blockBorderWidth'] ? self::get_css_value( $attr['borderWidth'], 'px' ) : self::get_css_value( $attr['blockBorderWidth'], 'px' ), 
+    				'border-radius' => 999 !== $attr['borderRadius'] && 2 === $attr['blockBorderRadius'] ? self::get_css_value( $attr['borderRadius'], 'px' ) : self::get_css_value( $attr['blockBorderRadius'], 'px' ), 
+    				'bordxer-color' => 'empty' !== $attr['borderColor'] && '' === $attr['blockBorderColor'] ? $attr['borderColor'] : $attr['blockBorderColor'], 
 				),
-
 			);
 			$mobile_selectors = array(
 				' '      => array(
@@ -10753,14 +10802,14 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'gradientDirection'          => 180,
 				'bgGradient'                 => false,
 				'backgroundImage'            => '',
-				'backgroundPosition'         => '',
-				'backgroundSize'             => '',
-				'backgroundRepeat'           => '',
+				'colorLocation1'           => 0,
+				'colorLocation2'           => 100,
+				'backgroundPosition'       => 'center center',
+				'backgroundSize'           => 'cover',
+				'backgroundRepeat'         => 'no-repeat',
 				'imageHoverEffect'           => '',
 				'bggradient'                 => '',
 				'backgroundColor2'           => '',
-				'colorLocation1'             => 0,
-				'colorLocation2'             => 100,
 				'contentFontSizeMobile'      => '',
 				'contentFontSizeTablet'      => '',
 				'nameFontSizeMobile'         => '',
@@ -10814,6 +10863,22 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'blockRightRadius'         => 0,
 				'blockBottomRadius'        => 0,
 				'blockLeftRadius'          => 0,
+				'backgroundPositionTablet' => 'center center',
+				'backgroundPositionMobile' => 'center center',
+				'backgroundSizeTablet'     => 'cover',
+				'backgroundSizeMobile'     => 'cover',
+				'backgroundAttachment'     => 'scroll',
+				'backgroundImageColor'     => '#ffffff',
+				'overlayType'              => 'color',
+				'gradientOverlayColor1'    => '#ffffff',
+				'gradientOverlayColor2'    => '#ffffff',
+				'gradientOverlayType'      => 'linear',
+				'gradientOverlayLocation1' => 0,
+				'gradientOverlayLocation2' => 100,
+				'gradientOverlayAngle'     => 0,
+				'gradientOverlayPosition'  => 'center center',
+				'backgroundVideo'          => '',
+				'backgroundType'           => 'none',
 			);
 		}
 
@@ -11286,7 +11351,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 						? self::hex_to_rgb( $attr['backgroundColor'], $imgopacity )
 						: '',
 					'background-image' =>
-						'gradient' === $attr['backgroundType']
+						'gradient' === $attr['overlayType'] && "image" === $attr['backgroundType']
 						? self::generate_background_image_effect(
 							self::hex_to_rgb( $attr['backgroundColor1'], $imgopacity ),
 							self::hex_to_rgb( $attr['backgroundColor2'], $imgopacity ),
@@ -20515,6 +20580,40 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			}
 
 			return $css_val;
+		}
+
+		/**
+    	* Converts a hex color to an RGBA string.
+    	*
+    	* @param string $hexColor The hex color code (e.g., "#ffffff" or "#fff").
+    	* @param float|null $opacity Optional opacity value (0 to 1). Defaults to 1 if not provided.
+    	* @return string The resulting RGBA string (e.g., "rgba(255, 255, 255, 1)").
+    	*/
+    	// Helper function to convert hex to rgba
+    	public static function hex_to_rgba($hex, $opacity = 1) {
+    	    $hex = str_replace("#", "", $hex);
+    	    if (strlen($hex) == 3) {
+    	        $r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
+    	        $g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
+    	        $b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+    	    } else {
+    	        $r = hexdec(substr($hex, 0, 2));
+    	        $g = hexdec(substr($hex, 2, 2));
+    	        $b = hexdec(substr($hex, 4, 2));
+    	    }
+    	    return "rgba($r, $g, $b, $opacity)";
+    	}
+
+		public static function generateBackgroundImageEffect(
+			$spacerColor,
+			$spacerSecondaryColor,
+			$spacerGradientDirection,
+			$spacerColorLocation,
+			$spacerSecondaryColorLocation
+		) {
+			$css = "linear-gradient(" . $spacerGradientDirection . "deg, " . $spacerColor . " " . $spacerColorLocation . "%," . $spacerSecondaryColor . " " . $spacerSecondaryColorLocation . "%)";
+		
+			return $css;
 		}
 	}
 }
