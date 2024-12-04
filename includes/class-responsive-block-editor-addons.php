@@ -732,7 +732,7 @@ class Responsive_Block_Editor_Addons {
 	 */
 	public function responsive_block_editor_addons_block_assets() {
 
-		if ( ! is_admin() ) {
+		if ( ! is_admin() || !empty($widget_blocks) ) {
 
 			$post = get_post();
 			$widget_blocks = get_option('widget_block');

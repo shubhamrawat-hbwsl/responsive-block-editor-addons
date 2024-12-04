@@ -40,7 +40,7 @@ function responsive_block_editor_addons_image_slider_add_frontend_assets() {
 					RESPONSIVE_BLOCK_EDITOR_ADDONS_VER,
 					true
 				);
-
+		
 				wp_enqueue_script(
 					'responsive_block_editor_addons-image-slider-lightbox',
 					RESPONSIVE_BLOCK_EDITOR_ADDONS_URL . 'dist/responsive-block-editor-addons-lightbox.js',
