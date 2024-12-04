@@ -12,6 +12,7 @@
  * @return void
  */
 function responsive_block_editor_addons_accordion_add_frontend_assets() {
+	$widget_blocks = get_option('widget_block');
 	if ( has_block( 'responsive-block-editor-addons/accordion' ) ) {
 		wp_enqueue_script(
 			'responsive_block_editor_addons-accordion-front-script',

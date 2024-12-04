@@ -53,6 +53,7 @@ add_action( 'the_post', 'responsive_block_editor_addons_post_carousel_add_fronte
 function post_carousel_generate_script() {
 	global $post;
 	$this_post = $post;
+	$widget_blocks = get_option('widget_block');
 
 	if ( ! is_object( $this_post ) ) {
 		return;
@@ -71,6 +72,20 @@ function post_carousel_generate_script() {
 		}
 
 		get_responsive_post_carousel_scripts( $blocks );
+	}
+
+	if(!empty($widget_blocks)) {
+		foreach ( $widget_blocks as $widget ) {
+			if ( ! empty( $widget['content'] ) ) {
+				$parsed_blocks = responsive_parse_gutenberg_blocks_post_carousel( $widget['content'] );
+
+				if ( ! is_array( $parsed_blocks ) || empty( $parsed_blocks ) ) {
+					return;
+				}
+			
+				get_responsive_post_carousel_scripts( $parsed_blocks );
+			}
+		}
 	}
 }
 
