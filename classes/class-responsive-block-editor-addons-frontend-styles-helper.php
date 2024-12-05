@@ -119,10 +119,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles_Helper' ) )
     			                $parsed_blocks = parse_blocks( $widget['content'] );
     			                $widget_css .= $this->get_styles( $parsed_blocks );
     			            }
-					}
-    		        }
-    		    }
-    		}
+    			        }
+    			    }
+    			}
+			}
 
     		// Combine post CSS and widget CSS and output it.
     		$combined_css = $post_css . $widget_css;
