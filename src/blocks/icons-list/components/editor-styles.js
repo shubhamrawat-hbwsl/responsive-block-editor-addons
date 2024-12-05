@@ -77,12 +77,17 @@ function EditorStyles(props) {
   blockRightMargin,
   blockRightMarginMobile,
   blockRightMarginTablet,
+  iconListUpdateColorFromParent,
   } = props.attributes;
 
   var editor_gap = undefined !== typeof gap && "" !== gap ? gap + 0 : 0;
 
   var alignment =
     align == "left" ? "flex-start" : align == "right" ? "flex-end" : "center";
+
+  iconListUpdateColorFromParent === '' ? false : true;
+
+  console.log("iconListUpdateColorFromParent : ",iconListUpdateColorFromParent);
 
   var selectors = {
     "": {
@@ -108,30 +113,30 @@ function EditorStyles(props) {
       "margin-bottom": generateCSSUnit(editor_gap, fontSizeType),
     },
     " .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon": {
-      "color": iconColor,
+      "color": iconColor !== '' ? iconColor : '',
     },
     ":hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon": {
-      color: iconColorHover,
+      color: iconColorHover !== '' ? iconColorHover : '',
     },
     " .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap": {
-      "background-color": iconBackgroundColor,
-      "border-color": iconBorderColor,
+      "background-color": iconBackgroundColor !== '' ? iconBackgroundColor:'',
+      "border-color": iconBorderColor !== '' ? iconBorderColor: '',
     },
     ":hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap": {
-      "background-color": iconBackgroundColorHover,
-      "border-color": iconBorderColorHover,
+      "background-color": iconBackgroundColorHover !== '' ? iconBackgroundColorHover:'',
+      "border-color": iconBorderColorHover !== '' ? iconBorderColorHover:'',
     },
     " .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg": {
-      fill: iconColor,
+      fill: iconColor !== '' ? iconColor:'',
     },
     ":hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg": {
-      fill: iconColorHover,
+      fill: iconColorHover !== '' ? iconColorHover:'',
     },
     " .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label": {
-      color: labelFontColor,
+      color: labelFontColor !== '' ? labelFontColor:'',
     },
     ":hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label": {
-      color: labelFontColorHover,
+      color: labelFontColorHover !== '' ? labelFontColorHover:'',
     },
     " .responsive-block-editor-addons-icon-list__source-wrap": {
       padding: generateCSSUnit(bgSize, "px"),

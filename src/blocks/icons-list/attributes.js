@@ -313,7 +313,7 @@ const attributes = {
   },
   iconColor: {
     type: "string",
-    default: "#3a3a3a",
+    default: "",
   },
   iconColorHover: {
     type: "string",
@@ -335,6 +335,10 @@ const attributes = {
     type: "string",
     default: "",
   },
+  iconListUpdateColorFromParent: {
+    type: "boolean",
+    default: false,
+  }
 };
 
 export default attributes;
