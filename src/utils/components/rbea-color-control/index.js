@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from '@wordpress/element';
 const RbeaColorControl = ({ colorValue, onChange, label, resetColor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef(null);
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {

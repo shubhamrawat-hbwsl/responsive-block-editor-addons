@@ -156,6 +156,7 @@ export default class Inspector extends Component {
         blockRightMarginTablet,
         blockIsPaddingControlConnected,
         blockIsMarginControlConnected,
+        iconListUpdateColorFromParent,
       },
       setAttributes,
     } = this.props;
@@ -350,27 +351,6 @@ if (!blockIsRadiusValueUpdated) {
 	)
 	this.props.setAttributes({blockIsRadiusValueUpdated: true});
   }
-
-  // backward compatibility for Color Control
-  // if (!isColorValueUpdated) {
-	// this.props.setAttributes(
-	//   {
-	// 	blockTopRadius:          borderRadius !== undefined ? borderRadius : blockTopRadius,
-	// 	blockBottomRadius:       borderRadius !== undefined ? borderRadius : blockBottomRadius,
-	// 	blockLeftRadius:         borderRadius !== undefined ? borderRadius : blockLeftRadius,
-	// 	blockRightRadius:        borderRadius !== undefined ? borderRadius : blockRightRadius,
-	// 	blockTopRadiusTablet:    borderRadius !== undefined ? borderRadius : blockTopRadiusTablet,
-	// 	blockBottomRadiusTablet: borderRadius !== undefined ? borderRadius : blockBottomRadiusTablet,
-	// 	blockRightRadiusTablet:  borderRadius !== undefined ? borderRadius : blockRightRadiusTablet,
-	// 	blockLeftRadiusTablet:   borderRadius !== undefined ? borderRadius : blockLeftRadiusTablet,
-	// 	blockTopRadiusMobile:    borderRadius !== undefined ? borderRadius : blockTopRadiusMobile,
-	// 	blockBottomRadiusMobile: borderRadius !== undefined ? borderRadius : blockBottomRadiusMobile,
-	// 	blockLeftRadiusMobile:   borderRadius !== undefined ? borderRadius : blockLeftRadiusMobile,
-	// 	blockRightRadiusMobile:  borderRadius !== undefined ? borderRadius : blockRightRadiusMobile,
-	//   }
-	// )
-	// this.props.setAttributes({isColorValueUpdated: true});
-  // }
 
         // backward compatibility for border radius control
 

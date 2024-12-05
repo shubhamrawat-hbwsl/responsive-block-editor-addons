@@ -217,37 +217,75 @@ export default class Inspector extends Component {
         blockTopMarginTablet,
         blockBottomMarginTablet,
         blockLeftMarginTablet,
-        blockRightMarginTablet, 
-          topPadding,
-          bottomPadding,
-          leftPadding,
-          rightPadding,
-          topPaddingTablet,
-          bottomPaddingTablet,
-          leftPaddingTablet,
-          rightPaddingTablet,
-          topPaddingMobile,
-          bottomPaddingMobile,
-          leftPaddingMobile,
-          rightPaddingMobile,
-          topMargin,
-          bottomMargin,
-          leftMargin,
-          rightMargin,
-          topMarginTablet,
-          bottomMarginTablet,
-          leftMarginTablet,
-          rightMarginTablet,
-          topMarginMobile,
-          bottomMarginMobile,
-          leftMarginMobile,
-          rightMarginMobile,
-          blockIsPaddingControlConnected,
-          blockIsMarginControlConnected,
-          separatorStyle,
+        blockRightMarginTablet,
+        topPadding,
+        bottomPadding,
+        leftPadding,
+        rightPadding,
+        topPaddingTablet,
+        bottomPaddingTablet,
+        leftPaddingTablet,
+        rightPaddingTablet,
+        topPaddingMobile,
+        bottomPaddingMobile,
+        leftPaddingMobile,
+        rightPaddingMobile,
+        topMargin,
+        bottomMargin,
+        leftMargin,
+        rightMargin,
+        topMarginTablet,
+        bottomMarginTablet,
+        leftMarginTablet,
+        rightMarginTablet,
+        topMarginMobile,
+        bottomMarginMobile,
+        leftMarginMobile,
+        rightMarginMobile,
+        blockIsPaddingControlConnected,
+        blockIsMarginControlConnected,
+        separatorStyle,
+        blockIsTypographyColorValueUpdated,
+        blockIsBottomSpacingValueUpdated,
+        subHeadingTitleTypographyColor,
+        headingTitleTypographyColor,
+        headingTitleBottomSpacing,
+        headingTitleBottomSpacingMobile,
+        headingTitleBottomSpacingTablet,
+        subHeadingTitleBottomSpacing,
+        subHeadingTitleBottomSpacingMobile,
+        subHeadingTitleBottomSpacingTablet,
+        headingTitleTextDecoration,
+        subHeadingTitleTextDecoration,
       },
       setAttributes,
     } = this.props;
+
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          subHeadingTitleTypographyColor: subHeadingTitleColor !== undefined ? subHeadingTitleColor : subHeadingTitleTypographyColor,
+          headingTitleTypographyColor: headingTitleColor !== undefined ? headingTitleColor : headingTitleTypographyColor,
+        }
+      )
+      this.props.setAttributes({ blockIsTypographyColorValueUpdated: true });
+    }
+
+    if (!blockIsBottomSpacingValueUpdated) {
+      this.props.setAttributes(
+        {
+          headingTitleBottomSpacing: headSpacing !== undefined ? headSpacing : headingTitleBottomSpacing,
+          headingTitleBottomSpacingTablet: headSpacingTablet !== undefined ? headSpacingTablet : headingTitleBottomSpacingTablet,
+          headingTitleBottomSpacingMobile: headSpacingMobile !== undefined ? headSpacingMobile : headingTitleBottomSpacingMobile,
+          subHeadingTitleBottomSpacing: subheadSpacing !== undefined ? subheadSpacing : subHeadingTitleBottomSpacing,
+          subHeadingTitleBottomSpacingTablet: subheadSpacingTablet !== undefined ? subheadSpacingTablet : subHeadingTitleBottomSpacingTablet,
+          subHeadingTitleBottomSpacingMobile: subheadSpacingMobile !== undefined ? subheadSpacingMobile : subHeadingTitleBottomSpacingMobile,
+          headingTitleTextDecoration: textDecoration !== undefined ? textDecoration : headingTitleTextDecoration,
+          subHeadingTitleTextDecoration: textDecorationSubHeading !== undefined ? textDecorationSubHeading : subHeadingTitleTextDecoration,
+        }
+      )
+      this.props.setAttributes({ blockIsBottomSpacingValueUpdated: true });
+    }
 
     return (
       <InspectorControls key="inspector">
@@ -257,6 +295,22 @@ export default class Inspector extends Component {
               title={__("General", "responsive-block-editor-addons")}
               initialOpen={false}
             >
+              <RbeaTabRadioControl
+                label={__("Heading Tag", "responsive-block-editor-addons")}
+                value={headingTag}
+                onChange={(value) => {
+                  this.onTagChange(value);
+                }}
+                options={[
+                  { value: "h1", label: __("H1", "responsive-block-editor-addons") },
+                  { value: "h2", label: __("H2", "responsive-block-editor-addons") },
+                  { value: "h3", label: __("H3", "responsive-block-editor-addons") },
+                  { value: "h4", label: __("H4", "responsive-block-editor-addons") },
+                  { value: "h5", label: __("H5", "responsive-block-editor-addons") },
+                  { value: "h6", label: __("H6", "responsive-block-editor-addons") },
+                ]}
+                defaultValue={"h1"}
+              />
               <TabPanel
                 className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
                 activeClass="active-tab"
@@ -294,16 +348,18 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <AlignmentToolbar
-                            value={headingAlignmentMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                headingAlignmentMobile: value,
-                              })
-                            }
-                            controls={["left", "center", "right"]}
-                            isCollapsed={false}
-                          />
+                          <div className="responsive-block-editor-addons-alignment-mobile">
+                            <AlignmentToolbar
+                              value={headingAlignmentMobile}
+                              onChange={(value) =>
+                                setAttributes({
+                                  headingAlignmentMobile: value,
+                                })
+                              }
+                              controls={["left", "center", "right"]}
+                              isCollapsed={false}
+                            />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -317,16 +373,18 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <AlignmentToolbar
-                            value={headingAlignmentTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                headingAlignmentTablet: value,
-                              })
-                            }
-                            controls={["left", "center", "right"]}
-                            isCollapsed={false}
-                          />
+                          <div className="responsive-block-editor-addons-alignment-tablet">
+                            <AlignmentToolbar
+                              value={headingAlignmentTablet}
+                              onChange={(value) =>
+                                setAttributes({
+                                  headingAlignmentTablet: value,
+                                })
+                              }
+                              controls={["left", "center", "right"]}
+                              isCollapsed={false}
+                            />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -337,16 +395,18 @@ export default class Inspector extends Component {
                           <p>
                             {__("Alignment", "responsive-block-editor-addons")}
                           </p>
-                          <AlignmentToolbar
-                            value={headingAlignment}
-                            onChange={(value) =>
-                              setAttributes({
-                                headingAlignment: value,
-                              })
-                            }
-                            controls={["left", "center", "right"]}
-                            isCollapsed={false}
-                          />
+                          <div className="responsive-block-editor-addons-alignment">
+                            <AlignmentToolbar
+                              value={headingAlignment}
+                              onChange={(value) =>
+                                setAttributes({
+                                  headingAlignment: value,
+                                })
+                              }
+                              controls={["left", "center", "right"]}
+                              isCollapsed={false}
+                            />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -366,15 +426,6 @@ export default class Inspector extends Component {
                 }
               />
               <ToggleControl
-                label={__("Sub Heading", "responsive-block-editor-addons")}
-                checked={showSubHeading}
-                onChange={() =>
-                  this.props.setAttributes({
-                    showSubHeading: !showSubHeading,
-                  })
-                }
-              />
-              <ToggleControl
                 label={__("Separator", "responsive-block-editor-addons")}
                 checked={showSeparator}
                 onChange={() =>
@@ -383,50 +434,46 @@ export default class Inspector extends Component {
                   })
                 }
               />
-
-              <RbeaTabRadioControl
-                label={__("Heading Tag", "responsive-block-editor-addons")}
-                value={headingTag}
-                onChange={(value) => {
-                  this.onTagChange(value);
-                }}
-                options={[
-                  { value: "h1", label: __("H1", "responsive-block-editor-addons") },
-                  { value: "h2", label: __("H2", "responsive-block-editor-addons") },
-                  { value: "h3", label: __("H3", "responsive-block-editor-addons") },
-                  { value: "h4", label: __("H4", "responsive-block-editor-addons") },
-                  { value: "h5", label: __("H5", "responsive-block-editor-addons") },
-                  { value: "h6", label: __("H6", "responsive-block-editor-addons") },
-                ]}
-                defaultValue={"h1"}
+              <ToggleControl
+                label={__("Sub Heading", "responsive-block-editor-addons")}
+                checked={showSubHeading}
+                onChange={() =>
+                  this.props.setAttributes({
+                    showSubHeading: !showSubHeading,
+                  })
+                }
               />
             </PanelBody>
           </InspectorTab>
           <InspectorTab key={"style"}>
-            <PanelBody
-              title={__("Typography", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
-              <TypographyHelperControl
-                title={__(
-                  "Heading Typography",
-                  "responsive-block-editor-addons"
-                )}
-                attrNameTemplate="headingTitle%s"
-                values={{
-                  family: headingTitleFontFamily,
-                  size: headingTitleFontSize,
-                  sizeMobile: headingTitleFontSizeMobile,
-                  sizeTablet: headingTitleFontSizeTablet,
-                  weight: headingTitleFontWeight,
-                  height: headingTitleLineHeight,
-                  spacing: headingTitleLetterSpacing,
-                }}
-                showLetterSpacing={true}
-                showTextTransform={false}
-                setAttributes={setAttributes}
-                {...this.props}
-              />
+            <TypographyHelperControl
+              title={__(
+                "Heading Typography",
+                "responsive-block-editor-addons"
+              )}
+              attrNameTemplate="headingTitle%s"
+              values={{
+                family: headingTitleFontFamily,
+                size: headingTitleFontSize,
+                sizeMobile: headingTitleFontSizeMobile,
+                sizeTablet: headingTitleFontSizeTablet,
+                weight: headingTitleFontWeight,
+                height: headingTitleLineHeight,
+                spacing: headingTitleLetterSpacing,
+                color: headingTitleTypographyColor,
+                bottomSpacing: headingTitleBottomSpacing,
+                bottomSpacingMobile: headingTitleBottomSpacingMobile,
+                bottomSpacingTablet: headingTitleBottomSpacingTablet,
+                textDecoration: headingTitleTextDecoration,
+              }}
+              showLetterSpacing={true}
+              showTextDecoration={true}
+              showTextBottomSpacing={true}
+              showTextTransform={false}
+              setAttributes={setAttributes}
+              {...this.props}
+            />
+            {showSubHeading && (
               <TypographyHelperControl
                 title={"Sub Heading Typography"}
                 attrNameTemplate="subHeadingTitle%s"
@@ -438,63 +485,20 @@ export default class Inspector extends Component {
                   weight: subHeadingTitleFontWeight,
                   height: subHeadingTitleLineHeight,
                   spacing: subHeadingTitleLetterSpacing,
+                  color: subHeadingTitleTypographyColor,
+                  bottomSpacing: subHeadingTitleBottomSpacing,
+                  bottomSpacingMobile: subHeadingTitleBottomSpacingMobile,
+                  bottomSpacingTablet: subHeadingTitleBottomSpacingTablet,
+                  textDecoration: subHeadingTitleTextDecoration,
                 }}
                 showLetterSpacing={true}
+                showTextBottomSpacing={true}
+                showTextDecoration={true}
                 showTextTransform={false}
                 setAttributes={setAttributes}
                 {...this.props}
               />
-            </PanelBody>
-            <PanelBody
-              title={__(
-                "Colors and Decorations",
-                "responsive-block-editor-addons"
-              )}
-              initialOpen={false}
-            >
-              <RbeaColorControl
-                label = {__("Heading Color", "responsive-block-editor-addons")}
-                colorValue={headingTitleColor}
-                onChange={(colorValue) =>
-                  setAttributes({ headingTitleColor: colorValue })
-                }
-                resetColor={() => setAttributes({ headingTitleColor: "" })}
-              />
-              <RbeaColorControl
-              label = {__("Sub Heading Color", "responsive-block-editor-addons")}
-              colorValue={subHeadingTitleColor}
-              onChange={(colorValue) =>
-                setAttributes({ subHeadingTitleColor: colorValue })
-              }
-              resetColor={() => setAttributes({ subHeadingTitleColor: "" })}
-            />
-              <SelectControl
-                label={__(
-                  "Heading Text Decoration",
-                  "responsive-block-editor-addons"
-                )}
-                options={textDecorationOptions}
-                value={textDecoration}
-                onChange={(value) =>
-                  this.props.setAttributes({
-                    textDecoration: value,
-                  })
-                }
-              />
-              <SelectControl
-                label={__(
-                  "Sub Heading Text Decoration",
-                  "responsive-block-editor-addons"
-                )}
-                options={textDecorationOptions}
-                value={textDecorationSubHeading}
-                onChange={(value) =>
-                  this.props.setAttributes({
-                    textDecorationSubHeading: value,
-                  })
-                }
-              />
-            </PanelBody>
+            )}
             <PanelBody
               title={__("Separator", "responsive-block-editor-addons")}
               initialOpen={false}
@@ -520,7 +524,7 @@ export default class Inspector extends Component {
               {seperatorStyle !== "none" && (
                 <Fragment>
                   <RbeaColorControl
-                    label = {__("Separator Color", "responsive-block-editor-addons")}
+                    label={__("Separator Color", "responsive-block-editor-addons")}
                     colorValue={separatorColor}
                     onChange={(colorValue) =>
                       setAttributes({ separatorColor: colorValue })
@@ -580,39 +584,14 @@ export default class Inspector extends Component {
               title={__("Spacing", "responsive-block-editor-addons")}
               initialOpen={false}
             >
-              <ResponsiveSpacingControl
-                title={"Heading Bottom"}
-                attrNameTemplate="headSpacing%s"
-                values={{
-                  desktop: headSpacing,
-                  tablet: headSpacingTablet,
-                  mobile: headSpacingMobile,
-                }}
-                setAttributes={setAttributes}
-                {...this.props}
-              />
-              {showSubHeading && (
-                <ResponsiveSpacingControl
-                  title={"Text Bottom"}
-                  attrNameTemplate="subheadSpacing%s"
-                  values={{
-                    desktop: subheadSpacing,
-                    tablet: subheadSpacingTablet,
-                    mobile: subheadSpacingMobile,
-                  }}
-                  setAttributes={setAttributes}
-                  {...this.props}
-                />
-              )}
-              <hr />
-              <ResponsiveNewPaddingControl
-                attrNameTemplate="block%s"
-                resetValues={blockPaddingResetValues}
-                {...this.props}
-              />
               <ResponsiveNewMarginControl
                 attrNameTemplate="block%s"
                 resetValues={blockMarginResetValues}
+                {...this.props}
+              />
+              <ResponsiveNewPaddingControl
+                attrNameTemplate="block%s"
+                resetValues={blockPaddingResetValues}
                 {...this.props}
               />
             </PanelBody>
@@ -653,41 +632,41 @@ export default class Inspector extends Component {
                 }
               />
             </PanelBody>
-          
-          <PanelBody
+
+            <PanelBody
               title={__("Z Index", "responsive-block-editor-addons")}
               initialOpen={false}
             >
               <TabPanel
-                  className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
-                  activeClass="active-tab"
-                  tabs={[
-                    {
-                      name: "desktop",
-                      title: <Dashicon icon="desktop" />,
-                      className:
-                        " responsive-desktop-tab  responsive-responsive-tabs",
-                    },
-                    {
-                      name: "tablet",
-                      title: <Dashicon icon="tablet" />,
-                      className:
-                        " responsive-tablet-tab  responsive-responsive-tabs",
-                    },
-                    {
-                      name: "mobile",
-                      title: <Dashicon icon="smartphone" />,
-                      className:
-                        " responsive-mobile-tab  responsive-responsive-tabs",
-                    },
-                  ]}
-                >
-                  {(tab) => {
-                    let tabout;
+                className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
+                activeClass="active-tab"
+                tabs={[
+                  {
+                    name: "desktop",
+                    title: <Dashicon icon="desktop" />,
+                    className:
+                      " responsive-desktop-tab  responsive-responsive-tabs",
+                  },
+                  {
+                    name: "tablet",
+                    title: <Dashicon icon="tablet" />,
+                    className:
+                      " responsive-tablet-tab  responsive-responsive-tabs",
+                  },
+                  {
+                    name: "mobile",
+                    title: <Dashicon icon="smartphone" />,
+                    className:
+                      " responsive-mobile-tab  responsive-responsive-tabs",
+                  },
+                ]}
+              >
+                {(tab) => {
+                  let tabout;
 
-                    if ("mobile" === tab.name) {
-                      tabout = (
-                        <RbeaRangeControl
+                  if ("mobile" === tab.name) {
+                    tabout = (
+                      <RbeaRangeControl
                         label={__("z-index (Mobile)", "responsive-block-editor-addons")}
                         min={-1}
                         max={99999}
@@ -698,10 +677,10 @@ export default class Inspector extends Component {
                           setAttributes({ z_indexMobile: value !== undefined ? value : 1 })
                         }
                       />
-                      );
-                    } else if ("tablet" === tab.name) {
-                      tabout = (
-                        <RbeaRangeControl
+                    );
+                  } else if ("tablet" === tab.name) {
+                    tabout = (
+                      <RbeaRangeControl
                         label={__("z-index (Tablet)", "responsive-block-editor-addons")}
                         min={-1}
                         max={99999}
@@ -712,10 +691,10 @@ export default class Inspector extends Component {
                           setAttributes({ z_indexTablet: value !== undefined ? value : 1 })
                         }
                       />
-                      );
-                    } else {
-                      tabout = (
-                        <RbeaRangeControl
+                    );
+                  } else {
+                    tabout = (
+                      <RbeaRangeControl
                         label={__("z-index ", "responsive-block-editor-addons")}
                         min={-1}
                         max={99999}
@@ -726,13 +705,13 @@ export default class Inspector extends Component {
                           setAttributes({ z_index: value !== undefined ? value : 1 })
                         }
                       />
-                      );
-                    }
+                    );
+                  }
 
-                    return <div>{tabout}</div>;
-                  }}
+                  return <div>{tabout}</div>;
+                }}
               </TabPanel>
-          </PanelBody>
+            </PanelBody>
           </InspectorTab>
         </InspectorTabs>
       </InspectorControls>
