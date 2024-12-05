@@ -169,6 +169,7 @@ function responsive_parse_gutenberg_blocks_testimonial_carousel( $content ) {
  */
 function get_responsive_testimonial_carousel_scripts( $blocks ) {
 	global $responsive_post_carousel_js;
+	$widget_blocks = get_option('widget_block');
 	foreach ( $blocks as $i => $block ) {
 		if ( is_array( $block ) ) {
 			if ( 'core/block' === $block['blockName'] ) {
