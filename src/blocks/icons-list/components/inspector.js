@@ -234,101 +234,6 @@ export default class Inspector extends Component {
       ? "responsive-block-editor-addons-icon-list__no-label"
       : "";
 
-      let labelColorControl = "";
-      let labelColorControlHover = "";
-      let emptyColorControl = "";
-      let iconColorControl = "";
-      let iconColorControlHover = "";
-
-      labelColorControl = (
-        <Fragment>
-          <RbeaColorControl
-            label = {__("Text Color", "responsive-block-editor-addons")}
-            colorValue={labelFontColor}
-            onChange={(colorValue) =>
-              setAttributes({ labelFontColor: colorValue })
-            }
-            resetColor={() => setAttributes({ labelFontColor: "" })}
-          />
-        </Fragment>
-      );
-
-      labelColorControlHover = (
-        <Fragment>
-          <RbeaColorControl
-            label = {__("Text Hover Color", "responsive-block-editor-addons")}
-            colorValue={labelFontColorHover}
-            onChange={(colorValue) =>
-              setAttributes({ labelFontColorHover: colorValue })
-            }
-            resetColor={() => setAttributes({ labelFontColorHover: "" })}
-          />
-        </Fragment>
-      );
-
-      iconColorControl = (
-        <Fragment>
-          <RbeaColorControl
-            label = {__("Icon Color", "responsive-block-editor-addons")}
-            colorValue={iconColor}
-            onChange={(colorValue) =>
-              setAttributes({ iconColor: colorValue })
-            }
-            resetColor={() => setAttributes({ iconColor: "" })}
-          />
-          <RbeaColorControl
-            label = {__("Icon Background Color", "responsive-block-editor-addons")}
-            colorValue={iconBackgroundColor}
-            onChange={(colorValue) =>
-              setAttributes({ iconBackgroundColor: colorValue })
-            }
-            resetColor={() => setAttributes({ iconBackgroundColor: "" })}
-          />
-          <RbeaColorControl
-            label = {__("Icon Border Color", "responsive-block-editor-addons")}
-            colorValue={iconBorderColor}
-            onChange={(colorValue) =>
-              setAttributes({ iconBorderColor: colorValue })
-            }
-            resetColor={() => setAttributes({ iconBorderColor: "" })}
-          />
-        </Fragment>
-      );
-
-      iconColorControlHover = (
-        <Fragment>
-          <RbeaColorControl
-            label = {__("Icon Hover Color", "responsive-block-editor-addons")}
-            colorValue={iconColorHover}
-            onChange={(colorValue) =>
-              setAttributes({ iconColorHover: colorValue })
-            }
-            resetColor={() => setAttributes({ iconColorHover: "" })}
-          />
-          <RbeaColorControl
-            label = {__("Icon Background Hover Color", "responsive-block-editor-addons")}
-            colorValue={iconBackgroundColorHover}
-            onChange={(colorValue) =>
-              setAttributes({ iconBackgroundColorHover: colorValue })
-            }
-            resetColor={() => setAttributes({ iconBackgroundColorHover: "" })}
-          />
-          <RbeaColorControl
-            label = {__("Icon Border Hover Color", "responsive-block-editor-addons")}
-            colorValue={iconBorderColorHover}
-            onChange={(colorValue) =>
-              setAttributes({ iconBorderColorHover: colorValue })
-            }
-            resetColor={() => setAttributes({ iconBorderColorHover: "" })}
-          />
-        </Fragment>
-      );
-
-      emptyColorControl = (
-        <div className="responsive-block-editor-addons-empty-color-control"></div>
-      );
-
-
 
     // backward compatibility for border radius control
 
@@ -522,18 +427,12 @@ if (!blockIsRadiusValueUpdated) {
               </PanelBody>
             </InspectorTab>
             <InspectorTab key={"style"}>
-				{!hideLabel && (
+				{/* {!hideLabel && (
           <PanelBody
             title={__("Label", "responsive-block-editor-addons")}
             initialOpen={false}
           >
             <Fragment>
-                    {/* <RbeaColorControl
-						            label = {this.props.values.label}
-						            colorValue={this.props.values.colorValue}
-                        onChange={this.props.values.onChange}
-                        resetColor={this.props.values.resetColor}
-					          /> */}
                     <SelectControl
                         label={__("Font Family", "responsive-block-editor-addons")}
                         options={fontOptions}
@@ -631,55 +530,33 @@ if (!blockIsRadiusValueUpdated) {
                         step={0.0001}
                         allowReset
                     />
-                    <TabPanel
-                      className="responsive-block-editor-addons-inspect-tabs 
-                      responsive-block-editor-addons-inspect-tabs-col-2  
-                      responsive-block-editor-addons-color-inspect-tabs"
-                      activeClass="active-tab"
-                      initialTabName="normal" // Set the default active tab here
-                      tabs={[
-                        {
-                          name: "empty",
-                          title: __("", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-empty-tab",
-                        },
-                        {
-                          name: "normal",
-                          title: __("Normal", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-normal-tab",
-                        },
-                        {
-                          name: "empty",
-                          title: __("", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-empty-tab",
-                        },
-                        {
-                          name: "hover",
-                          title: __("Hover", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-hover-tab",
-                        },
-                        {
-                          name: "empty",
-                          title: __("", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-empty-tab",
-                        },
-                      ]}
-                    >
-                      {(tabName) => {
-                        let color_tab;
-                        if ("normal" === tabName.name) {
-                          color_tab = labelColorControl;
-                        } else if("hover" === tabName.name) {
-                          color_tab = labelColorControlHover;
-                        } else {
-                          color_tab = emptyColorControl;
-                        }
-                        return <div>{color_tab}</div>;
-                      }}
-                    </TabPanel>
                 </Fragment>
+
+              
           </PanelBody>
-				)}
+				)} */}
+        {!hideLabel && (
+          <TypographyHelperControl
+            title={"Label"}
+            attrNameTemplate="label%s"
+            values={{
+              family: labelFontFamily,
+              size: labelFontSize,
+              sizeMobile: labelFontSizeMobile,
+              sizeTablet: labelFontSizeTablet,
+              weight: labelFontWeight,
+              height: labelLineHeight,
+            }}
+            showLetterSpacing={false}
+            showTextBottomSpacing={false}
+            showTextDecoration={false}
+            showTextTransform={false}
+            showColorControl={false}
+            setAttributes={setAttributes}
+            {...this.props}
+          />
+        )}
+
         {!hideLabel && (
           <PanelBody
             title={__("Icon", "responsive-block-editor-addons")}
@@ -883,52 +760,6 @@ if (!blockIsRadiusValueUpdated) {
                   attrNameTemplate="block%s"
                   {...this.props}
                 />
-                <TabPanel
-                      className="responsive-block-editor-addons-inspect-tabs 
-                      responsive-block-editor-addons-inspect-tabs-col-2  
-                      responsive-block-editor-addons-color-inspect-tabs"
-                      activeClass="active-tab"
-                      initialTabName="normal" // Set the default active tab here
-                      tabs={[
-                        {
-                          name: "empty",
-                          title: __("", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-empty-tab",
-                        },
-                        {
-                          name: "normal",
-                          title: __("Normal", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-normal-tab",
-                        },
-                        {
-                          name: "empty",
-                          title: __("", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-empty-tab",
-                        },
-                        {
-                          name: "hover",
-                          title: __("Hover", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-hover-tab",
-                        },
-                        {
-                          name: "empty",
-                          title: __("", "responsive-block-editor-addons"),
-                          className: "responsive-block-editor-addons-empty-tab",
-                        },
-                      ]}
-                    >
-                      {(tabName) => {
-                        let color_tab;
-                        if ("normal" === tabName.name) {
-                          color_tab = iconColorControl;
-                        } else if("hover" === tabName.name) {
-                          color_tab = iconColorControlHover;
-                        } else {
-                          color_tab = emptyColorControl;
-                        }
-                        return <div>{color_tab}</div>;
-                      }}
-                    </TabPanel>
           </PanelBody>
         )}
         

@@ -79,6 +79,18 @@ function EditorStyles(props) {
     blockBottomPadding,
     blockBottomPaddingTablet,
     blockBottomPaddingMobile,
+    blockTopRadius,
+		blockRightRadius,
+		blockBottomRadius,
+		blockLeftRadius,
+    blockTopRadiusMobile,
+		blockRightRadiusMobile,
+		blockBottomRadiusMobile,
+		blockLeftRadiusMobile,
+		blockTopRadiusTablet,
+		blockRightRadiusTablet,
+		blockBottomRadiusTablet,
+		blockLeftRadiusTablet,
   } = props.attributes;
 
   let imgopacity = opacity / 100;
@@ -181,7 +193,10 @@ function EditorStyles(props) {
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
       "border-color": borderColor ? borderColor: "#000",
-      "border-radius": generateCSSUnit(borderRadius, "px"),
+      "border-top-left-radius": generateCSSUnit(blockTopRadius, "px"),
+      "border-top-right-radius": generateCSSUnit(blockRightRadius, "px"),
+      "border-bottom-right-radius": generateCSSUnit(blockBottomRadius, "px"),
+      "border-bottom-left-radius": generateCSSUnit(blockLeftRadius, "px"),
       "border-style": borderStyle,
       "border-width": generateCSSUnit(borderWidth, "px"),
       "box-shadow":
@@ -240,6 +255,10 @@ function EditorStyles(props) {
       "padding-bottom": generateCSSUnit(blockBottomPaddingMobile, "px"),
       "padding-left": generateCSSUnit(blockLeftPaddingMobile, "px"),
       "padding-right": generateCSSUnit(blockRightPaddingMobile, "px"),
+      "border-top-left-radius": generateCSSUnit(blockTopRadiusMobile, "px"),
+      "border-top-right-radius": generateCSSUnit(blockRightRadiusMobile, "px"),
+      "border-bottom-right-radius": generateCSSUnit(blockBottomRadiusMobile, "px"),
+      "border-bottom-left-radius": generateCSSUnit(blockLeftRadiusMobile, "px"),
     },
   };
 
@@ -261,6 +280,10 @@ function EditorStyles(props) {
       "padding-bottom": generateCSSUnit(blockBottomPaddingTablet, "px"),
       "padding-left": generateCSSUnit(blockLeftPaddingTablet, "px"),
       "padding-right": generateCSSUnit(blockRightPaddingTablet, "px"),
+      "border-top-left-radius": generateCSSUnit(blockTopRadiusTablet, "px"),
+      "border-top-right-radius": generateCSSUnit(blockRightRadiusTablet, "px"),
+      "border-bottom-right-radius": generateCSSUnit(blockBottomRadiusTablet, "px"),
+      "border-bottom-left-radius": generateCSSUnit(blockLeftRadiusTablet, "px"),
     },
   };
 

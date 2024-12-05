@@ -418,22 +418,28 @@ const attributes = {
     default: false,
   },
   headingTitleBottomSpacing: {
-    type: "string",
+    type: "number",
+    default:'',
   },
   headingTitleBottomSpacingMobile: {
-    type: "string",
+    type: "number",
+    default: '',
   },
   headingTitleBottomSpacingTablet: {
-    type: "string",
+    type: "number",
+    default: '',
   },
   subHeadingTitleBottomSpacing: {
-    type: "string",
+    type: "number",
+    default: '',
   },
   subHeadingTitleBottomSpacingMobile: {
-    type: "string",
+    type: "number",
+    default: '',
   },
   subHeadingTitleBottomSpacingTablet: {
-    type: "string",
+    type: "number",
+    default: '',
   },
   headingTitleTextDecoration: {
     type: "string",

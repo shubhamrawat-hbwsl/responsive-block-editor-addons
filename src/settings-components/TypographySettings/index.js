@@ -28,13 +28,15 @@ const TypographyHelperControl = (props) => {
     advancedControls = (
         <TypographyControl
             title={props.attrNameTemplate}
+            showColorControlTab={false}
+            showColorWithHoverControlTab={false}
             onChangeFontSizeMobile={value => props.setAttributes({ [getAttrName('FontSizeMobile')]: value })}
             onChangeFontSizeTablet={value => props.setAttributes({ [getAttrName('FontSizeTablet')]: value })}
             onChangeFontSize={value => props.setAttributes({ [getAttrName('FontSize')]: value })}
+            onChangeBottomSpacing={value => props.setAttributes({ [getAttrName('BottomSpacing')]: value })}
             onChangeBottomSpacingMobile={value => props.setAttributes({ [getAttrName('BottomSpacingMobile')]: value })}
             onChangeBottomSpacingTablet={value => props.setAttributes({ [getAttrName('BottomSpacingTablet')]: value })}
             onChangeTypographyColor={value => props.setAttributes({ [getAttrName('TypographyColor')]: value })}
-            onChangeBottomSpacing={value => props.setAttributes({ [getAttrName('BottomSpacing')]: value })}
             onChangeFontFamily={value => props.setAttributes({ [getAttrName('FontFamily')]: value })}
             onChangeFontWeight={value => props.setAttributes({ [getAttrName('FontWeight')]: value })}
             onChangeLineHeight={value => props.setAttributes({ [getAttrName('LineHeight')]: value })}
@@ -59,7 +61,6 @@ class TypographyControl extends Component {
     }
 
     render() {
-
         // Font Weight Options
         const fontWeightOptions = [
             {
@@ -140,12 +141,14 @@ class TypographyControl extends Component {
                 initialOpen={false}
             >
                 <Fragment>
-                    <RbeaColorControl
-                        label={__("Content Color", "responsive-block-editor-addons")}
-                        colorValue={this.props.values.color}
-                        onChange={this.props.onChangeTypographyColor}
-                        resetColor={() => setAttributes({ [this.props.values.color]: "" })}
-                    />
+                    {(this.props.showColorControl == true || this.props.showColorControlTab == true ) && (
+                        <RbeaColorControl
+                            label={__("Content Color", "responsive-block-editor-addons")}
+                            colorValue={this.props.values.color}
+                            onChange={this.props.onChangeTypographyColor}
+                            resetColor={() => setAttributes({ [this.props.values.color]: "" })}
+                        />
+                    )}
                     <SelectControl
                         label={__("Font Family", "responsive-block-editor-addons")}
                         options={fontOptions}

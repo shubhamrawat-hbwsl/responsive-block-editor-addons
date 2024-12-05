@@ -87,8 +87,6 @@ function EditorStyles(props) {
 
   iconListUpdateColorFromParent === '' ? false : true;
 
-  console.log("iconListUpdateColorFromParent : ",iconListUpdateColorFromParent);
-
   var selectors = {
     "": {
         "opacity": hideWidget ? 0.2 : 1,

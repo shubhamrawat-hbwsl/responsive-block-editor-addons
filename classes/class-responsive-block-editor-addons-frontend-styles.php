@@ -3309,6 +3309,28 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				}
 			}
 
+			$newBlockRadiusKeys = [
+				'blockTopRadius'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockRightRadius'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockBottomRadius'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockLeftRadius'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockTopRadiusMobile'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockRightRadiusMobile'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockBottomRadiusMobile'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockLeftRadiusMobile'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockTopRadiusTablet'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockRightRadiusTablet'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockBottomRadiusTablet'	=> 'borderRadius' ? 'borderRadius' : 2,
+				'blockLeftRadiusTablet'	=> 'borderRadius' ? 'borderRadius' : 2,
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBlockRadiusKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
@@ -3429,7 +3451,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper' => array(
 					'border-color'     => $attr['borderColor'] ? $updated_border_color : '#000',
-					'border-radius'    => self::get_css_value( $attr['borderRadius'], 'px' ),
+					'border-top-left-radius' => self::get_css_value( $attr['blockTopRadius'], "px"),
+      				'border-top-right-radius' => self::get_css_value( $attr['blockRightRadius'], "px"),
+      				'border-bottom-right-radius' => self::get_css_value( $attr['blockBottomRadius'], "px"),
+      				'border-bottom-left-radius' => self::get_css_value( $attr['blockLeftRadius'], "px"),
 					'border-style'     => $attr['borderStyle'],
 					'border-width'     => self::get_css_value( $attr['borderWidth'], 'px' ),
 					'box-shadow'       =>
@@ -3489,6 +3514,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'padding-left'   => self::get_css_value( $attr['blockLeftPaddingMobile'], 'px' ),
 					'padding-right'  => self::get_css_value( $attr['blockLeftPaddingMobile'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['buttonFontSizeMobile'], 'px' ) . '',
+					'border-top-left-radius' => self::get_css_value( $attr['blockTopRadiusMobile'], "px"),
+      				'border-top-right-radius' => self::get_css_value( $attr['blockRightRadiusMobile'], "px"),
+      				'border-bottom-right-radius' => self::get_css_value( $attr['blockBottomRadiusMobile'], "px"),
+      				'border-bottom-left-radius' => self::get_css_value( $attr['blockLeftRadiusMobile'], "px"),
 				),
 			);
 
@@ -3508,6 +3537,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'padding-left'   => self::get_css_value( $attr['blockLeftPaddingTablet'], 'px' ),
 					'padding-right'  => self::get_css_value( $attr['blockLeftPaddingTablet'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['buttonFontSizeTablet'], 'px' ),
+					'border-top-left-radius' => self::get_css_value( $attr['blockTopRadiusTablet'], "px"),
+      				'border-top-right-radius' => self::get_css_value( $attr['blockRightRadiusTablet'], "px"),
+      				'border-bottom-right-radius' => self::get_css_value( $attr['blockBottomRadiusTablet'], "px"),
+      				'border-bottom-left-radius' => self::get_css_value( $attr['blockLeftRadiusTablet'], "px"),
 				),
 			);
 
@@ -3516,7 +3549,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'tablet'  => $tablet_selectors,
 				'mobile'  => $mobile_selectors,
 			);
-			error_log("ID For Buttons Child".$id);
 			$id  = '.responsive-block-editor-addons-buttons-child.block-' . $id;
 			$css = Responsive_Block_Editor_Addons_Frontend_Styles_Helper::responsive_block_editor_addons_generate_all_css( $combined_selectors, $id );
 			return $css;
@@ -3620,6 +3652,18 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'blockBottomMarginTablet' => 0,
 				'blockLeftMarginTablet'   => 0,
 				'blockRightMarginTablet'  => 0,
+				'blockTopRadius' => 2,
+				'blockRightRadius' => 2,
+				'blockBottomRadius' => 2,
+				'blockLeftRadius' => 2,
+				'blockTopRadiusMobile' => 2,
+				'blockRightRadiusMobile' => 2,
+				'blockBottomRadiusMobile' => 2,
+				'blockLeftRadiusMobile' => 2,
+				'blockTopRadiusTablet' => 2,
+				'blockRightRadiusTablet' => 2,
+				'blockBottomRadiusTablet' => 2,
+				'blockLeftRadiusTablet' => 2,
 			);
 		}
 

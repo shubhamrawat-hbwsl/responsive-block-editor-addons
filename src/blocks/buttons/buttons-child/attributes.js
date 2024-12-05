@@ -347,7 +347,55 @@ const attributes = {
   blockIsPaddingValueUpdated: {
     type: "boolean",
     default: false,
-  }
+  },
+  blockTopRadius : {
+    type: "number",
+    default: 2,
+  },
+	blockRightRadius : {
+    type: "number",
+    default: 2,
+  },
+	blockBottomRadius : {
+    type: "number",
+    default: 2,
+  },
+	blockLeftRadius : {
+    type: "number",
+    default: 2,
+  },
+  blockTopRadiusMobile: {
+    type: "number",
+    default: 2,
+  },
+	blockRightRadiusMobile: {
+    type: "number",
+    default: 2,
+  },
+	blockBottomRadiusMobile: {
+    type: "number",
+    default: 2,
+  },
+	blockLeftRadiusMobile: {
+    type: "number",
+    default: 2,
+  },
+  blockTopRadiusTablet: {
+    type: "number",
+    default: 2,
+  },
+	blockRightRadiusTablet: {
+    type: "number",
+    default: 2,
+  },
+	blockBottomRadiusTablet: {
+    type: "number",
+    default: 2,
+  },
+	blockLeftRadiusTablet: {
+    type: "number",
+    default: 2,
+  },
 };
 
 export default attributes;
