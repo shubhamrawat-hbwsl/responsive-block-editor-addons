@@ -6,7 +6,6 @@ import InspectorTabs from "../../../components/InspectorTabs";
 import ResponsiveNewPaddingControl from "../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewPaddingControl/index";
 import ResponsiveNewMarginControl from "../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewMarginControl/index";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
-import buttonStackOnIcons from "./button-stack-on-icons";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -111,8 +110,6 @@ export default class Inspector extends Component {
 			paddingMobileBottom: 0,
 			paddingMobileLeft: 0,
 		}
-
-
 		return (
 			<InspectorControls key="inspector">
 				<InspectorTabs>

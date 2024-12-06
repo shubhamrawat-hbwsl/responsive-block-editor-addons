@@ -14,8 +14,6 @@ import RbeaRangeControl from "../../../../utils/components/rbea-range-control";
 import RbeaColorControl from "../../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../../utils/components/rbea-tab-radio-control";
 import RbeaBackgroundTypeControl from "../../../../utils/components/rbea-background-type-control";
-import ResponsiveNewMarginControl from "../../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewMarginControl";
-import ResponsiveNewPaddingControl from "../../../../settings-components/ResponsiveNewSpacingSettings/ResponsiveNewPaddingControl";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -172,7 +170,6 @@ export default class Inspector extends Component {
 				label: __("900", "responsive-block-editor-addons"),
 			},
 		];
-
 
 		return (
 			<InspectorControls key="inspector">
