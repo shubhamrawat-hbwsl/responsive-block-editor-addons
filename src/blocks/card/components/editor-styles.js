@@ -181,6 +181,15 @@ function EditorStyles(props) {
 		blockLeftMarginMobile,
 		blockRightMarginMobile,
     backgroundImageColor,
+    cardImagePositionTab,
+    cardImageSize,
+    cardImageSizeTablet,
+    cardImageSizeMobile,
+    cardImagePosition,
+    cardImagePositionMobile,
+    cardImagePositionTablet,
+    cardImageSizeTab,
+    cardImageRepeat,
   } = props.attributes;
 
   var boxShadowPositionCSS = boxShadowPosition;
@@ -319,9 +328,9 @@ function EditorStyles(props) {
     },
 
     " .responsive-block-editor-addons-card-avatar-img": {
-      "background-position": imagePosition,
-      "background-repeat": imageRepeat,
-      "background-size": thumbsize,
+      "background-position": cardImagePosition,
+      "background-repeat": cardImageRepeat,
+      "background-size": cardImageSize,
     },
 
     " .responsive-block-editor-addons-card-avatar-img.responsive-block-editor-addons-card-avatar-img-0": {
@@ -461,6 +470,10 @@ function EditorStyles(props) {
     "background-position": backgroundPositionMobile,
     "background-size": backgroundSizeMobile === '' ? backgroundSize : backgroundSizeMobile,
   },
+  " .responsive-block-editor-addons-card-avatar-img": {
+    "background-position": cardImagePositionMobile,
+    "background-size": cardImageSizeMobile,
+  },
   };
 
   var tablet_selectors = {
@@ -508,6 +521,10 @@ function EditorStyles(props) {
   " .responsive-block-editor-addons-card-background-image": {
     "background-position": backgroundPositionTablet,
     "background-size": backgroundSizeTablet === '' ? backgroundSize : backgroundSizeTablet,
+  },
+  " .responsive-block-editor-addons-card-avatar-img": {
+    "background-position": cardImagePositionTablet,
+    "background-size": cardImageSizeTablet,
   },
   };
 

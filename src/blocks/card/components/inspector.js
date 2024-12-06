@@ -683,6 +683,7 @@ export default class Inspector extends Component {
 
     // Background image URL
     let background_image_url = backgroundImage || '';
+    let card_image_url = backgroundImageOne || '';
 
     return (
       <InspectorControls key="inspector">
@@ -878,11 +879,11 @@ export default class Inspector extends Component {
                       >
                         {(tab) => {
                           if ("mobile" === tab.name) {
-                            setAttributes({ imagePositionTab: "mobile" });
+                            setAttributes({ cardImagePositionTab: "mobile" });
                           } else if ("tablet" === tab.name) {
-                            setAttributes({ imagePositionTab: "tablet" });
+                            setAttributes({ cardImagePositionTab: "tablet" });
                           } else {
-                            setAttributes({ imagePositionTab: "desktop" });
+                            setAttributes({ cardImagePositionTab: "desktop" });
                           }
                         }}
                       </TabPanel>
@@ -890,37 +891,37 @@ export default class Inspector extends Component {
                         <Fragment>
                           <div className = "rbea-background-image-positon-control"
                           style={{
-                            backgroundImage: `url(${background_image_url})`,
+                            backgroundImage: `url(${card_image_url})`,
                             backgroundSize: 'cover',
                             backgroundPosition:  'center',
                           }}>
-                          { imagePositionTab === "desktop" && 
+                          { cardImagePositionTab === "desktop" && 
                               <RadioControl 
                                 className = "rbea-background-image-positon-control-options"
-                                selected={backgroundPosition}
+                                selected={cardImagePosition}
                                 options={imagePositionOptions}
                                 onChange={(value) =>
-                                  setAttributes({ backgroundPosition: value })
+                                  setAttributes({ cardImagePosition: value })
                                 }
                               />
                           }
-                          {imagePositionTab === "tablet" &&
+                          {cardImagePositionTab === "tablet" &&
                              <RadioControl 
                                 className = "rbea-background-image-positon-control-options"
-                                selected={backgroundPositionTablet}
+                                selected={cardImagePositionTablet}
                                 options={imagePositionOptions}
                                 onChange={(value) =>
-                                  setAttributes({ backgroundPositionTablet: value })
+                                  setAttributes({ cardImagePositionTablet: value })
                                 }
                             />
                           }
-                          {imagePositionTab === "mobile" && 
+                          {cardImagePositionTab === "mobile" && 
                             <RadioControl 
                                 className = "rbea-background-image-positon-control-options"
-                                selected={backgroundPositionMobile}
+                                selected={cardImagePositionMobile}
                                 options={imagePositionOptions}
                                 onChange={(value) =>
-                                  setAttributes({ backgroundPositionMobile: value })
+                                  setAttributes({ cardImagePositionMobile: value })
                                 }
                             />
                           }
@@ -970,22 +971,22 @@ export default class Inspector extends Component {
                       >
                         {(tab) => {
                           if ("mobile" === tab.name) {
-                            setAttributes({ imageSizeTab: "mobile" });
+                            setAttributes({ cardImageSizeTab: "mobile" });
                           } else if ("tablet" === tab.name) {
-                            setAttributes({ imageSizeTab: "tablet" });
+                            setAttributes({ cardImageSizeTab: "tablet" });
                           } else {
-                            setAttributes({ imageSizeTab: "desktop" });
+                            setAttributes({ cardImageSizeTab: "desktop" });
                           }
                         }}
                       </TabPanel>
                       </div>
-                      {imageSizeTab === "desktop" && (
+                      {cardImageSizeTab === "desktop" && (
                         <>
                         <RbeaTabRadioControl
                           label={__("", "responsive-block-editor-addons")}
-                          value={backgroundSize}
+                          value={cardImageSize}
                           onChange={(value) =>
-                            setAttributes({ backgroundSize: value })
+                            setAttributes({ cardImageSize: value })
                           }
                           options={[
                             { value: "auto", label: __("Auto", "responsive-block-editor-addons") },
@@ -996,12 +997,12 @@ export default class Inspector extends Component {
                         />
                       </>
                       )}
-                      {imageSizeTab === "tablet" && (
+                      {cardImageSizeTab === "tablet" && (
                         <RbeaTabRadioControl
                         label={__("", "responsive-block-editor-addons")}
-                        value={backgroundSizeTablet}
+                        value={cardImageSizeTablet}
                         onChange={(value) =>
-                          setAttributes({ backgroundSizeTablet: value })
+                          setAttributes({ cardImageSizeTablet: value })
                         }
                         options={[
                           { value: "auto", label: __("Auto", "responsive-block-editor-addons") },
@@ -1011,12 +1012,12 @@ export default class Inspector extends Component {
                         defaultValue={"cover"}
                         />
                       )}
-                      {imageSizeTab === "mobile" && (
+                      {cardImageSizeTab === "mobile" && (
                         <RbeaTabRadioControl
                           label={__("", "responsive-block-editor-addons")}
-                          value={backgroundSizeMobile}
+                          value={cardImageSizeMobile}
                           onChange={(value) =>
-                            setAttributes({ backgroundSizeMobile: value })
+                            setAttributes({ cardImageSizeMobile: value })
                           }
                           options={[
                             { value: "auto", label: __("Auto", "responsive-block-editor-addons") },

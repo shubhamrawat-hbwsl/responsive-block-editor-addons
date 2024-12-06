@@ -406,7 +406,7 @@ export default class Inspector extends Component {
                 )}
                 <hr className="responsive-block-editor-addons-editor__separator" />
                 <ToggleControl
-                  label={__("Link", "responsive-block-editor-addons")}
+                  label={__("Disable Link", "responsive-block-editor-addons")}
                   checked={disableLink}
                   onChange={(value) =>
                     setAttributes({ disableLink: !disableLink })
