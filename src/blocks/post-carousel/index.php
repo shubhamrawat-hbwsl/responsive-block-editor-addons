@@ -44,6 +44,7 @@ function responsive_block_editor_addons_post_carousel_add_frontend_assets( $attr
 		}
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'responsive_block_editor_addons_post_carousel_add_frontend_assets' );
 add_action( 'the_post', 'responsive_block_editor_addons_post_carousel_add_frontend_assets' );
 
