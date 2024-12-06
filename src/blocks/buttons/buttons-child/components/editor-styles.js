@@ -55,30 +55,6 @@ function EditorStyles(props) {
     hbackground,
     iconSpace,
     inheritFromTheme,
-    blockRightMargin,
-    blockRightMarginTablet,
-    blockRightMarginMobile,
-    blockTopMargin,
-    blockTopMarginTablet,
-    blockTopMarginMobile,
-    blockLeftMargin,
-    blockLeftMarginTablet,
-    blockLeftMarginMobile,
-    blockBottomMargin,
-    blockBottomMarginTablet,
-    blockBottomMarginMobile,
-    blockRightPadding,
-    blockRightPaddingTablet,
-    blockRightPaddingMobile,
-    blockTopPadding,
-    blockTopPaddingTablet,
-    blockTopPaddingMobile,
-    blockLeftPadding,
-    blockLeftPaddingTablet,
-    blockLeftPaddingMobile,
-    blockBottomPadding,
-    blockBottomPaddingTablet,
-    blockBottomPaddingMobile,
   } = props.attributes;
 
   let imgopacity = opacity / 100;
@@ -174,10 +150,10 @@ function EditorStyles(props) {
       color: hColor ? hColor : '#000',
     },
     " .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper": {
-        "margin-left": `${generateCSSUnit(blockLeftMargin, "px")} !important`,
-        "margin-right": `${generateCSSUnit(blockRightMargin, "px")} !important`,
-        "margin-top": `${generateCSSUnit(blockTopMargin, "px")} !important`,
-        "margin-bottom": `${generateCSSUnit(blockBottomMargin, "px")} !important`,
+        "margin-left": `${generateCSSUnit(hMargin, "px")} !important`,
+        "margin-right": `${generateCSSUnit(hMargin, "px")} !important`,
+        "margin-top": `${generateCSSUnit(vMargin, "px")} !important`,
+        "margin-bottom": `${generateCSSUnit(vMargin, "px")} !important`,
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
       "border-color": borderColor ? borderColor: "#000",
@@ -196,11 +172,11 @@ function EditorStyles(props) {
         boxShadowColor +
         " " +
         boxShadowPositionCSS,
-      "padding-left": generateCSSUnit(blockLeftPadding, "px"),
-      "padding-right": generateCSSUnit(blockRightPadding, "px"),
-      "padding-top": generateCSSUnit(blockTopPadding, "px"),
-      "padding-bottom": generateCSSUnit(blockBottomPadding, "px"),
+      "padding-left": generateCSSUnit(hPadding, "px"),
+      "padding-right": generateCSSUnit(hPadding, "px"),
       "background-image": updatedBackgroundImage,
+      "padding-top": generateCSSUnit(vPadding, "px"),
+      "padding-bottom": generateCSSUnit(vPadding, "px"),
       "background-color": updatedBackgroundColor,
       "font-size": generateCSSUnit(buttonFontSize, "px"),
       "font-family": buttonFontFamily,
@@ -228,18 +204,18 @@ function EditorStyles(props) {
       "font-size": generateCSSUnit(buttonFontSizeMobile, "px") + "!important",
     },
       " .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper": {
-          "margin-top": generateCSSUnit(blockTopMarginMobile, "px") + "!important",
+          "margin-top": generateCSSUnit(updatedvMarginMobile, "px") + "!important",
           "margin-bottom":
-              generateCSSUnit(blockBottomMarginMobile, "px") + "!important",
-          "margin-left": generateCSSUnit(blockLeftMarginMobile, "px") + "!important",
+              generateCSSUnit(updatedvMarginMobile, "px") + "!important",
+          "margin-left": generateCSSUnit(updatedhMarginMobile, "px") + "!important",
           "margin-right":
-              generateCSSUnit(blockRightMarginMobile, "px") + "!important",
+              generateCSSUnit(updatedhMarginMobile, "px") + "!important",
       },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
-      "padding-top": generateCSSUnit(blockTopPaddingMobile, "px"),
-      "padding-bottom": generateCSSUnit(blockBottomPaddingMobile, "px"),
-      "padding-left": generateCSSUnit(blockLeftPaddingMobile, "px"),
-      "padding-right": generateCSSUnit(blockRightPaddingMobile, "px"),
+      "padding-top": generateCSSUnit(updatedvPaddingMobile, "px"),
+      "padding-bottom": generateCSSUnit(updatedvPaddingMobile, "px"),
+      "padding-left": generateCSSUnit(updatedhPaddingMobile, "px"),
+      "padding-right": generateCSSUnit(updatedhPaddingMobile, "px"),
     },
   };
 
@@ -248,19 +224,19 @@ function EditorStyles(props) {
       "font-size": generateCSSUnit(buttonFontSizeTablet, "px") + "!important",
     },
       " .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper": {
-          "margin-top": generateCSSUnit(blockTopMarginMobile, "px") + "!important",
+          "margin-top": generateCSSUnit(updatedvMarginTablet, "px") + "!important",
           "margin-bottom":
-              generateCSSUnit(blockBottomMarginMobile, "px") + "!important",
-          "margin-left": generateCSSUnit(blockLeftMarginMobile, "px") + "!important",
+              generateCSSUnit(updatedvMarginTablet, "px") + "!important",
+          "margin-left": generateCSSUnit(updatedhMarginTablet, "px") + "!important",
           "margin-right":
-              generateCSSUnit(blockRightMarginMobile, "px") + "!important",
+              generateCSSUnit(updatedhMarginTablet, "px") + "!important",
 
       },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
-      "padding-top": generateCSSUnit(blockTopPaddingTablet, "px"),
-      "padding-bottom": generateCSSUnit(blockBottomPaddingTablet, "px"),
-      "padding-left": generateCSSUnit(blockLeftPaddingTablet, "px"),
-      "padding-right": generateCSSUnit(blockRightPaddingTablet, "px"),
+      "padding-top": generateCSSUnit(updatedvPaddingTablet, "px"),
+      "padding-bottom": generateCSSUnit(updatedvPaddingTablet, "px"),
+      "padding-left": generateCSSUnit(updatedhPaddingTablet, "px"),
+      "padding-right": generateCSSUnit(updatedhPaddingTablet, "px"),
     },
   };
 

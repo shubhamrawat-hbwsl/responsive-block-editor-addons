@@ -3275,39 +3275,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			$defaults = self::get_responsive_block_buttons_child_default_attributes();
 			$attr     = array_merge( $defaults, (array) $attr );
 
-			$newMarginPaddingKeys = [
-				'blockTopPadding'          => 'vPadding' ? 'vPadding' : 0,
-				'blockRightPadding'        => 'hPadding' ? 'hPadding' : 0,
-				'blockBottomPadding'       => 'vPadding' ? 'vPadding' : 0,
-				'blockLeftPadding'         => 'hPadding' ? 'hPadding' : 0,
-				'blockTopPaddingTablet'    => 'vPaddingTablet' ? 'vPaddingTablet' : 0,
-				'blockBottomPaddingTablet' => 'vPaddingTablet' ? 'vPaddingTablet' : 0,
-				'blockRightPaddingTablet'  => 'hPaddingTablet' ? 'hPaddingTablet' : 0,
-				'blockLeftPaddingTablet'   => 'hPaddingTablet' ? 'hPaddingTablet' : 0,
-				'blockTopPaddingMobile'    => 'vPaddingMobile' ? 'vPaddingMobile' : 0,
-				'blockBottomPaddingMobile' => 'vPaddingMobile' ? 'vPaddingMobile' : 0,
-				'blockRightPaddingMobile'  => 'hPaddingMobile' ? 'hPaddingMobile' : 0,
-				'blockLeftPaddingMobile'   => 'hPaddingMobile' ? 'hPaddingMobile' : 0,
-				'blockTopMargin'          => 'vMargin' ? 'vMargin' : 0,
-				'blockBottomMargin'       => 'vMargin' ? 'vMargin' : 0,
-				'blockRightMargin'        => 'hMargin' ? 'hMargin' : 0,
-				'blockLeftMargin'         => 'hMargin' ? 'hMargin' : 0,
-				'blockTopMarginTablet'    => 'vMarginTablet' ? 'vMarginTablet' : 0,
-				'blockBottomMarginTablet' => 'vMarginTablet' ? 'vMarginTablet' : 0,
-				'blockRightMarginTablet'  => 'hMarginTablet' ? 'hMarginTablet' : 0,
-				'blockLeftMarginTablet'   => 'hMarginTablet' ? 'hMarginTablet' : 0,
-				'blockTopMarginMobile'    => 'vMarginMobile' ? 'vMarginMobile' : 0,
-				'blockBottomMarginMobile' => 'vMarginMobile' ? 'vMarginMobile' : 0,
-				'blockRightMarginMobile'  => 'hMarginMobile' ? 'hMarginMobile' : 0,
-				'blockLeftMarginMobile'   => 'hMarginMobile' ? 'hMarginMobile' : 0,
-			];
-
-			// To populate new control values with existing control values for backward compatibility.
-			foreach ($newMarginPaddingKeys as $attrKey => $defaultKey) {
-				if (array_key_exists($attrKey, $defaults)) {
-					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
-				}
-			}
 
 			$mobile_selectors = array();
 			$tablet_selectors = array();
@@ -3422,10 +3389,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'color' => $updated_text_h_color,
 				),
 				' .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper' => array(
-					'margin-left'   => self::get_css_value( $attr['blockLeftMargin'], 'px' ),
-					'margin-right'  => self::get_css_value( $attr['blockRightMargin'], 'px' ),
-					'margin-top'    => self::get_css_value( $attr['blockTopMargin'], 'px' ),
-					'margin-bottom' => self::get_css_value( $attr['blockBottomMargin'], 'px' ),
+					'margin-left'   => self::get_css_value( $attr['hMargin'], 'px' ),
+					'margin-right'  => self::get_css_value( $attr['hMargin'], 'px' ),
+					'margin-top'    => self::get_css_value( $attr['vMargin'], 'px' ),
+					'margin-bottom' => self::get_css_value( $attr['vMargin'], 'px' ),
 				),
 				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper' => array(
 					'border-color'     => $attr['borderColor'] ? $updated_border_color : '#000',
@@ -3444,11 +3411,11 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					$attr['boxShadowColor'] .
 					' ' .
 					$box_shadow_position_css,
-					'padding-top'    => self::get_css_value( $attr['blockLeftPadding'], 'px' ),
-					'padding-bottom' => self::get_css_value( $attr['blockLeftPadding'], 'px' ),
-					'padding-left'   => self::get_css_value( $attr['blockLeftPadding'], 'px' ),
-					'padding-right'  => self::get_css_value( $attr['blockLeftPadding'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['hPadding'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['hPadding'], 'px' ),
 					'background-image' => $updated_background_image,
+					'padding-top'      => self::get_css_value( $attr['vPadding'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['vPadding'], 'px' ),
 					'background-color' => $attr['inheritFromTheme'] ? '' : $updated_background_color,
 					'font-size'        => self::get_css_value( $attr['buttonFontSize'], 'px' ),
 					'font-family'      => $attr['buttonFontFamily'],
@@ -3478,16 +3445,16 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'z-index'               => $attr['z_indexMobile'],
 				),
 				' .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper' => array(
-					'margin-top'    => self::get_css_value( $attr['blockLeftMarginMobile'], 'px' ),
-					'margin-bottom' => self::get_css_value( $attr['blockBottomMarginMobile'], 'px' ),
-					'margin-left'   => self::get_css_value( $attr['blockLeftMarginMobile'], 'px' ),
-					'margin-right'  => self::get_css_value( $attr['blockRightMarginMobile'], 'px' ),
+					'margin-top'    => self::get_css_value( $updated_v_margin_mobile, 'px' ),
+					'margin-bottom' => self::get_css_value( $updated_v_margin_mobile, 'px' ),
+					'margin-left'   => self::get_css_value( $updated_h_margin_mobile, 'px' ),
+					'margin-right'  => self::get_css_value( $updated_h_margin_mobile, 'px' ),
 				),
 				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper' => array(
-					'padding-top'    => self::get_css_value( $attr['blockLeftPaddingMobile'], 'px' ),
-					'padding-bottom' => self::get_css_value( $attr['blockLeftPaddingMobile'], 'px' ),
-					'padding-left'   => self::get_css_value( $attr['blockLeftPaddingMobile'], 'px' ),
-					'padding-right'  => self::get_css_value( $attr['blockLeftPaddingMobile'], 'px' ),
+					'padding-top'    => self::get_css_value( $updated_v_padding_mobile, 'px' ),
+					'padding-bottom' => self::get_css_value( $updated_v_padding_mobile, 'px' ),
+					'padding-left'   => self::get_css_value( $updated_h_padding_mobile, 'px' ),
+					'padding-right'  => self::get_css_value( $updated_h_padding_mobile, 'px' ),
 					'font-size'      => self::get_css_value( $attr['buttonFontSizeMobile'], 'px' ) . '',
 				),
 			);
@@ -3497,16 +3464,16 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'z-index'               => $attr['z_indexTablet'],
 				),
 				' .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper' => array(
-					'margin-top'    => self::get_css_value( $attr['blockLeftMarginTablet'], 'px' ),
-					'margin-bottom' => self::get_css_value( $attr['blockBottomMarginTablet'], 'px' ),
-					'margin-left'   => self::get_css_value( $attr['blockLeftMarginTablet'], 'px' ),
-					'margin-right'  => self::get_css_value( $attr['blockRightMarginTablet'], 'px' ),
+					'margin-top'    => self::get_css_value( $updated_v_margin_tablet, 'px' ),
+					'margin-bottom' => self::get_css_value( $updated_v_margin_tablet, 'px' ),
+					'margin-left'   => self::get_css_value( $updated_h__margin_tablet, 'px' ),
+					'margin-right'  => self::get_css_value( $updated_h__margin_tablet, 'px' ),
 				),
 				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper' => array(
-					'padding-top'    => self::get_css_value( $attr['blockLeftPaddingTablet'], 'px' ),
-					'padding-bottom' => self::get_css_value( $attr['blockLeftPaddingTablet'], 'px' ),
-					'padding-left'   => self::get_css_value( $attr['blockLeftPaddingTablet'], 'px' ),
-					'padding-right'  => self::get_css_value( $attr['blockLeftPaddingTablet'], 'px' ),
+					'padding-top'    => self::get_css_value( $updated_v__padding_tablet, 'px' ),
+					'padding-bottom' => self::get_css_value( $updated_v__padding_tablet, 'px' ),
+					'padding-left'   => self::get_css_value( $updated_h_padding_tablet, 'px' ),
+					'padding-right'  => self::get_css_value( $updated_h_padding_tablet, 'px' ),
 					'font-size'      => self::get_css_value( $attr['buttonFontSizeTablet'], 'px' ),
 				),
 			);
@@ -3516,7 +3483,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'tablet'  => $tablet_selectors,
 				'mobile'  => $mobile_selectors,
 			);
-			error_log("ID For Buttons Child".$id);
 			$id  = '.responsive-block-editor-addons-buttons-child.block-' . $id;
 			$css = Responsive_Block_Editor_Addons_Frontend_Styles_Helper::responsive_block_editor_addons_generate_all_css( $combined_selectors, $id );
 			return $css;
@@ -3596,30 +3562,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'z_index'              => 1,
 				'z_indexMobile'        => 1,
 				'z_indexTablet'        => 1,
-				'blockTopPadding'          => 0,
-				'blockBottomPadding'       => 0,
-				'blockLeftPadding'         => 0,
-				'blockRightPadding'        => 0,
-				'blockTopPaddingMobile'    => 0,
-				'blockBottomPaddingMobile' => 0,
-				'blockLeftPaddingMobile'   => 0,
-				'blockRightPaddingMobile'  => 0,
-				'blockTopPaddingTablet'    => 0,
-				'blockBottomPaddingTablet' => 0,
-				'blockLeftPaddingTablet'   => 0,
-				'blockRightPaddingTablet'  => 0,
-				'blockTopMargin'          => 0,
-				'blockBottomMargin'       => 0,
-				'blockLeftMargin'         => 0,
-				'blockRightMargin'        => 0,
-				'blockTopMarginMobile'    => 0,
-				'blockBottomMarginMobile' => 0,
-				'blockLeftMarginMobile'   => 0,
-				'blockRightMarginMobile'  => 0,
-				'blockTopMarginTablet'    => 0,
-				'blockBottomMarginTablet' => 0,
-				'blockLeftMarginTablet'   => 0,
-				'blockRightMarginTablet'  => 0,
 			);
 		}
 
