@@ -6335,32 +6335,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'line-height' => 999 !== $attr['labelFontLineHeight'] && 1 === $attr['labelLineHeight'] ? $attr['labelFontLineHeight'] : $attr['labelLineHeight'], // For compatibility with v1.3.2.
 					'font-size'   => self::get_css_value( $attr['labelFontSize'], 'px' ),
 				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon' => array(
-					'color' => $attr['iconColor'],
-				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon:hover' => array(
-					'color' => $attr['iconColorHover'],
-				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap' => array(
-					'background-color' => $attr['iconBackgroundColor'],
-					'border-color'     => $attr['iconBorderColor'],
-				),
-				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-wrap' => array(
-					'background-color' => $attr['iconBackgroundColorHover'],
-					'border-color'     => $attr['iconBorderColorHover'],
-				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg' => array(
-					'fill' => $attr['iconColor'],
-				),
-				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__source-icon svg' => array(
-					'fill' => $attr['iconColorHover'],
-				),
-				' .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label' => array(
-					'color' => $attr['labelFontColor'],
-				),
-				':hover .responsive-block-editor-addons-icon-list__content-wrap .responsive-block-editor-addons-icon-list__label' => array(
-					'color' => $attr['labelFontColorHover'],
-				),
 			);
 			$alignment = 'center';
 			if ( 'left' === $attr['alignMobile'] ) {
