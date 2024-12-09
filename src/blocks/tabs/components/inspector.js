@@ -25,7 +25,8 @@ const {
   InspectorControls,
   BlockAlignmentToolbar,
   InspectorAdvancedControls,
-  ColorPalette
+  ColorPalette,
+  AlignmentToolbar
 } = wp.blockEditor;
 
 // Import Inspector components
@@ -271,7 +272,7 @@ export default class Inspector extends Component {
                   ]}
                 />
               </Fragment>
-              <h2>{__("Alignment", "responsive-block-editor-addons")}</h2>
+              {/* <h2>{__("Alignment", "responsive-block-editor-addons")}</h2>
               {tabsStyleD === 'hstyle3' && <BlockAlignmentToolbar
                 value={alignTabs}
                 onChange={(value) =>
@@ -282,8 +283,27 @@ export default class Inspector extends Component {
                 controls={["left", "center", "right"]}
                 isCollapsed={false}
               />
-              }
-              {tabsStyleD === 'vstyle8' && <BlockAlignmentToolbar
+              } */}
+              {tabsStyleD === 'hstyle3' && (<Fragment>
+                <BaseControl>
+                  <p>
+                    {__("Alignment", "responsive-block-editor-addons")}
+                  </p>
+                  <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={alignTabs}
+                      onChange={(value) =>
+                        setAttributes({
+                          alignTabs: value,
+                        })
+                      }
+                      controls={["left", "center", "right"]}
+                      isCollapsed={false}
+                    />
+                  </div>
+                </BaseControl>
+              </Fragment>)}
+              {/* {tabsStyleD === 'vstyle8' && <BlockAlignmentToolbar
                 value={alignTabsVertical}
                 onChange={(value) =>
                   setAttributes({
@@ -293,7 +313,26 @@ export default class Inspector extends Component {
                 controls={["left", "right"]}
                 isCollapsed={false}
               />
-              }
+              } */}
+              {tabsStyleD === 'vstyle8' && (<Fragment>
+                <BaseControl>
+                  <p>
+                    {__("Alignment", "responsive-block-editor-addons")}
+                  </p>
+                  <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={alignTabsVertical}
+                      onChange={(value) =>
+                        setAttributes({
+                          alignTabsVertical: value,
+                        })
+                      }
+                      controls={["none", "left", "right"]}
+                      isCollapsed={false}
+                    />
+                  </div>
+                </BaseControl>
+              </Fragment>)}
             </PanelBody>
           </InspectorTab>
           <InspectorTab key={"style"}>

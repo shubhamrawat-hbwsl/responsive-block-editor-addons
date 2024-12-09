@@ -438,7 +438,7 @@ export default class Inspector extends Component {
                   options={viewOptions}
                 />
               )}
-              <h2>{__("Alignment", "responsive-block-editor-addons")}</h2>
+              {/* <h2>{__("Alignment", "responsive-block-editor-addons")}</h2>
               <BlockAlignmentToolbar
                 value={iconsAlign}
                 onChange={(value) =>
@@ -448,7 +448,26 @@ export default class Inspector extends Component {
                 }
                 controls={["left", "center", "right"]}
                 isCollapsed={false}
-              />
+              /> */}
+              <Fragment>
+                <BaseControl>
+                  <p>
+                    {__("Alignment", "responsive-block-editor-addons")}
+                  </p>
+                  <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={iconsAlign}
+                      onChange={(value) =>
+                        setAttributes({
+                          iconsAlign: value,
+                        })
+                      }
+                      controls={["left", "center", "right"]}
+                      isCollapsed={false}
+                    />
+                  </div>
+                </BaseControl>
+              </Fragment>
             </PanelBody>
           </InspectorTab>
           <InspectorTab key={"style"}>

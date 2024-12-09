@@ -669,6 +669,7 @@ export default class Inspector extends Component {
                     tabout = (
                       <>
                         <p>{__("Button Alignment (Mobile)", "responsive-block-editor-addons")}</p>
+                        <div className="responsive-block-editor-addons-alignment">
                         <AlignmentToolbar
                           value={formButtonAlignMobile}
                           onChange={(value) =>
@@ -679,12 +680,14 @@ export default class Inspector extends Component {
                           controls={["left", "center", "right"]}
                           isCollapsed={false}
                         />
+                        </div>
                       </>
                     );
                   } else if ("tablet" === tab.name) {
                     tabout = (
                       <>
                         <p>{__("Button Alignment (Tablet)", "responsive-block-editor-addons")}</p>
+                        <div className="responsive-block-editor-addons-alignment">
                         <AlignmentToolbar
                           value={formButtonAlignTablet}
                           onChange={(value) =>
@@ -695,6 +698,7 @@ export default class Inspector extends Component {
                           controls={["left", "center", "right"]}
                           isCollapsed={false}
                         />
+                        </div>
                       </>
                     );
                   } else {
@@ -703,6 +707,7 @@ export default class Inspector extends Component {
                         <p>
                           {__("Button Alignment", "responsive-block-editor-addons")}
                         </p>
+                        <div className="responsive-block-editor-addons-alignment">
                         <AlignmentToolbar
                           value={formButtonAlign}
                           onChange={(value) =>
@@ -713,6 +718,7 @@ export default class Inspector extends Component {
                           controls={["left", "center", "right"]}
                           isCollapsed={false}
                         />
+                        </div>
                       </>
                     );
                   }
