@@ -5,6 +5,7 @@
 import generateCSS from "../../../../generateCSS";
 import generateCSSUnit from "../../../../generateCSSUnit";
 import generateBackgroundImageEffect from "../../../../generateBackgroundImageEffect";
+import { hexToRgba } from "../../../../utils";
 
 function EditorStyles(props) {
   const {
@@ -91,9 +92,15 @@ function EditorStyles(props) {
 		blockRightRadiusTablet,
 		blockBottomRadiusTablet,
 		blockLeftRadiusTablet,
+    typographyOpacity,
+    borderOpacity,
   } = props.attributes;
 
   let imgopacity = opacity / 100;
+
+  let typographyOpacityControlValue = typographyOpacity / 100;
+
+  let borderOpacityControlValue = borderOpacity / 100;
 
   var boxShadowPositionCSS = boxShadowPosition;
 
@@ -184,6 +191,11 @@ function EditorStyles(props) {
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover .responsive-block-editor-addons-button__link, .edit-post-visual-editor.editor-styles-wrapper .wp-block-cover .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover .responsive-block-editor-addons-button__link": {
       color: hColor ? hColor : '#000',
+      "opacity": `${typographyOpacityControlValue}`,
+    },
+    " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper .responsive-block-editor-addons-button__link, .edit-post-visual-editor.editor-styles-wrapper .wp-block-cover .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper .responsive-block-editor-addons-button__link": {
+      color:  inheritFromTheme ? '' : color ? color : '#000',
+      "opacity": `${typographyOpacityControlValue}`,
     },
     " .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper": {
         "margin-left": `${generateCSSUnit(hMargin, "px")} !important`,
@@ -192,7 +204,7 @@ function EditorStyles(props) {
         "margin-bottom": `${generateCSSUnit(vMargin, "px")} !important`,
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
-      "border-color": borderColor ? borderColor: "#000",
+      "border-color": borderColor ? hexToRgba(borderColor, borderOpacityControlValue) : "#000",
       "border-top-left-radius": generateCSSUnit(blockTopRadius, "px"),
       "border-top-right-radius": generateCSSUnit(blockRightRadius, "px"),
       "border-bottom-right-radius": generateCSSUnit(blockBottomRadius, "px"),
@@ -229,7 +241,7 @@ function EditorStyles(props) {
       color:  inheritFromTheme ? '' : color ? color : '#000',
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover": {
-      "border-color": borderHColor,
+      "border-color": borderHColor ? hexToRgba(borderHColor, borderOpacityControlValue) : "#000",
       "background-color": updatedBackgroundHColor,
     },
     " .responsive-block-editor-addons-button__icon": {

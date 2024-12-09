@@ -396,6 +396,14 @@ const attributes = {
     type: "number",
     default: 2,
   },
+  typographyOpacity: {
+    type: "number",
+    default: 100,
+  },
+  borderOpacity: {
+    type: "number",
+    default: 100,
+  }
 };
 
 export default attributes;

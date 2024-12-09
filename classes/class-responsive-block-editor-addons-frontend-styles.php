@@ -3336,6 +3336,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 
 			$imgopacity = $attr['opacity'] / 100;
 
+			$typography_opacity_control_value = $attr['typographyOpacity'] / 100;
+
+			$border_opacity_control_value = $attr['borderOpacity'] / 100;
+
 			$box_shadow_position_css = $attr['boxShadowPosition'];
 
 			if ( 'outset' === $attr['boxShadowPosition'] ) {
@@ -3442,6 +3446,11 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover .responsive-block-editor-addons-button__link_child, .edit-post-visual-editor.editor-styles-wrapper .wp-block-cover .responsive-block-editor-addons-buttons-child .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover .responsive-block-editor-addons-button__link_child' => array(
 					'color' => $updated_text_h_color,
+					'opacity' => $typography_opacity_control_value,
+				),
+				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper .responsive-block-editor-addons-button__link_child, .edit-post-visual-editor.editor-styles-wrapper .wp-block-cover .responsive-block-editor-addons-buttons-child .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper .responsive-block-editor-addons-button__link_child' => array(
+					'color'            => $attr['inheritFromTheme'] ? '' : ( $attr['color'] ? $attr['color'] : '#000' ),
+					'opacity' => $typography_opacity_control_value,
 				),
 				' .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper' => array(
 					'margin-left'   => self::get_css_value( $attr['hMargin'], 'px' ),
@@ -3450,7 +3459,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-bottom' => self::get_css_value( $attr['vMargin'], 'px' ),
 				),
 				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper' => array(
-					'border-color'     => $attr['borderColor'] ? $updated_border_color : '#000',
+					'border-color'	   => $attr['borderColor'] ? self::hex_to_rgb($updated_border_color, $border_opacity_control_value) : '#000',
 					'border-top-left-radius' => self::get_css_value( $attr['blockTopRadius'], "px"),
       				'border-top-right-radius' => self::get_css_value( $attr['blockRightRadius'], "px"),
       				'border-bottom-right-radius' => self::get_css_value( $attr['blockBottomRadius'], "px"),
@@ -3487,7 +3496,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'color' => $attr['inheritFromTheme'] ? '' : ( $attr['color'] ? $attr['color'] : '#000' ),
 				),
 				' .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper:hover' => array(
-					'border-color'     => $updated_border_h_color,
+					'border-color'	   => $attr['borderHColor'] ? self::hex_to_rgb($updated_border_h_color, $border_opacity_control_value) : '#000',
 					'background-color' => $updated_background_h_color,
 				),
 				' .responsive-block-editor-addons-button__icon' => array(
@@ -3664,6 +3673,8 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'blockRightRadiusTablet' => 2,
 				'blockBottomRadiusTablet' => 2,
 				'blockLeftRadiusTablet' => 2,
+				'typographyOpacity'		=> 100,
+				'borderOpacity'		=> 100,
 			);
 		}
 
