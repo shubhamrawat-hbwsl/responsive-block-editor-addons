@@ -563,7 +563,7 @@ function responsive_block_editor_addons_render_taxonomy_list( $attributes ) {
 	} else {
 		?>
 			<div class="reponsive-block-editor-addons-taxonomy-list-no-taxonomy-available">
-				<?php echo esc_attr( $attributes['noTaxDisplaytext'] ); ?>
+				<?php echo esc_html( $attributes['noTaxDisplaytext'] ); ?>
 				</div>
 			<?php
 	}
@@ -627,7 +627,7 @@ function responsive_block_editor_addons_render_grid_layout( $attributes ) {
 	} else {
 		?>
 				<div class="reponsive-block-editor-addons-taxonomy-list-no-taxonomy-available">
-				<?php echo esc_attr( $attributes['noTaxDisplaytext'] ); ?>
+				<?php echo esc_html( $attributes['noTaxDisplaytext'] ); ?>
 				</div>
 			<?php
 	}
@@ -702,7 +702,7 @@ function responsive_block_editor_addons_render_list_layout( $attributes ) {
 	} else {
 		?>
 				<div class="reponsive-block-editor-addons-taxonomy-list-no-taxonomy-available">
-					<?php echo esc_attr( $attributes['noTaxDisplaytext'] ); ?>
+					<?php echo esc_html( $attributes['noTaxDisplaytext'] ); ?>
 				</div>
 			<?php
 	}
