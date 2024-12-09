@@ -1524,22 +1524,24 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
             noSelectedPlaceholder={__("Select Icon", "responsive-block-editor-addons")}
           />
           <h2> {__("Icon Alignment", "responsive-block-editor-addons")}</h2>
-          <Button
-            key={"row"}
-            icon="editor-alignleft"
-            label="Left"
-            onClick={() => setAttributes({ iconAlign: "row" })}
-            aria-pressed={"row" === iconAlign}
-            isPrimary={"row" === iconAlign}
-          />
-          <Button
-            key={"row-reverse"}
-            icon="editor-alignright"
-            label="Right"
-            onClick={() => setAttributes({ iconAlign: "row-reverse" })}
-            aria-pressed={"row-reverse" === iconAlign}
-            isPrimary={"row-reverse" === iconAlign}
-          />
+          <div className="responsive-block-editor-addons-accordion-alignment-container">
+            <Button
+              key={"row"}
+              icon="editor-alignleft"
+              label="Left"
+              onClick={() => setAttributes({ iconAlign: "row" })}
+              aria-pressed={"row" === iconAlign}
+              isPrimary={"row" === iconAlign}
+            />
+            <Button
+              key={"row-reverse"}
+              icon="editor-alignright"
+              label="Right"
+              onClick={() => setAttributes({ iconAlign: "row-reverse" })}
+              aria-pressed={"row-reverse" === iconAlign}
+              isPrimary={"row-reverse" === iconAlign}
+            />
+          </div>
           {"accordion" === layout && (
             <Fragment>
               <hr className="responsive-block-editor-addons-editor__separator" />
