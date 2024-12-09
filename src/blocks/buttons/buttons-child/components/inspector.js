@@ -358,9 +358,12 @@ export default class Inspector extends Component {
 			<InspectorControls key="inspector">
 				<InspectorTabs>
 					<InspectorTab key={"content"}>
-						<div className={"responsive-block-editor-addons-multi-buttons-child-container"}>
+						<PanelBody
+							title={__("Button Settings", "responsive-block-editor-addons")}
+							initialOpen={true}
+							className="responsive-block-editor-addons__url-panel-body"
+						>
 							<ToggleControl
-								className={"responsive-block-editor-addons-inherit-from-theme-toggle"}
 								label={__("Inherit from Theme", "responsive-block-editor-addons")}
 								checked={inheritFromTheme}
 								onChange={(value) =>
@@ -368,7 +371,6 @@ export default class Inspector extends Component {
 								}
 							/>
 							<ToggleControl
-								className={"responsive-block-editor-addons-link-in-new-tab-toggle"}
 								label={__("Open link in new tab", "responsive-block-editor-addons")}
 								checked={target}
 								onChange={() => {
@@ -376,7 +378,6 @@ export default class Inspector extends Component {
 								}}
 							/>
 							<SelectControl
-								className={"responsive-block-editor-addons-hover-effect-select"}
 								label={__("Hover Effect", "responsive-block-editor-addons")}
 								value={hoverEffect}
 								onChange={(value) => setAttributes({ hoverEffect: value })}
@@ -410,7 +411,7 @@ export default class Inspector extends Component {
 									},
 								]}
 							/>
-						</div>
+						</PanelBody>
 					</InspectorTab>
 					<InspectorTab key={"style"}>
 						{!inheritFromTheme && (

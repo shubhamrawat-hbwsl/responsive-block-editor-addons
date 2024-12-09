@@ -30,9 +30,12 @@ const TypographyHelperControl = (props) => {
             title={props.attrNameTemplate}
             showColorControlTab={false}
             showColorWithHoverControlTab={false}
+            showColorControlTab={false}
+            showColorWithHoverControlTab={false}
             onChangeFontSizeMobile={value => props.setAttributes({ [getAttrName('FontSizeMobile')]: value })}
             onChangeFontSizeTablet={value => props.setAttributes({ [getAttrName('FontSizeTablet')]: value })}
             onChangeFontSize={value => props.setAttributes({ [getAttrName('FontSize')]: value })}
+            onChangeBottomSpacing={value => props.setAttributes({ [getAttrName('BottomSpacing')]: value })}
             onChangeBottomSpacing={value => props.setAttributes({ [getAttrName('BottomSpacing')]: value })}
             onChangeBottomSpacingMobile={value => props.setAttributes({ [getAttrName('BottomSpacingMobile')]: value })}
             onChangeBottomSpacingTablet={value => props.setAttributes({ [getAttrName('BottomSpacingTablet')]: value })}

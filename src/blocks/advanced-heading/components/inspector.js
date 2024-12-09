@@ -470,6 +470,7 @@ export default class Inspector extends Component {
               showTextDecoration={true}
               showTextBottomSpacing={true}
               showTextTransform={false}
+              showColorControl={true}
               setAttributes={setAttributes}
               {...this.props}
             />
@@ -494,6 +495,7 @@ export default class Inspector extends Component {
                 showLetterSpacing={true}
                 showTextBottomSpacing={true}
                 showTextDecoration={true}
+                showColorControl={true}
                 showTextTransform={false}
                 setAttributes={setAttributes}
                 {...this.props}

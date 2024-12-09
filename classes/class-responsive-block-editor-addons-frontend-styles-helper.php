@@ -91,36 +91,38 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles_Helper' ) )
     		}
 		
     		// Handle different theme types.
-    		if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
-    		    // Block theme logic: Fetch templates and add styles for them.
-    		    $wp_query_args = array(
-    		        'post_status' => array( 'publish' ),
-    		        'post_type'   => array( 'wp_template', 'wp_template_part' ),
-    		    );
-    		    $template_query = new WP_Query( $wp_query_args );
-			
-    		    if ( ! empty( $template_query->posts ) ) {
-    		        foreach ( $template_query->posts as $template_post ) {
-    		            if ( is_object( $template_post ) ) {
-    		                $template_blocks = parse_blocks( $template_post->post_content );
-    		                $post_css .= $this->get_styles( $template_blocks );
-    		            }
-    		        }
-    		    }
-    		} else {
-    		    // Non-block theme logic: Process widget blocks.
-    		    $is_block_from_widget = true;
-    		    $widget_blocks = get_option( 'widget_block' );
-			
-    		    if ( ! empty( $widget_blocks ) ) {
-    		        foreach ( $widget_blocks as $widget ) {
-    		            if ( ! empty( $widget['content'] ) ) {
-    		                $parsed_blocks = parse_blocks( $widget['content'] );
-    		                $widget_css .= $this->get_styles( $parsed_blocks );
-    		            }
-    		        }
-    		    }
-    		}
+			if ( is_archive() || is_home() || is_search() || is_404() || is_singular() ) {
+    			if ( function_exists( 'wp_is_block_theme' ) && wp_is_block_theme() ) {
+    			    // Block theme logic: Fetch templates and add styles for them.
+    			    $wp_query_args = array(
+    			        'post_status' => array( 'publish' ),
+    			        'post_type'   => array( 'wp_template', 'wp_template_part' ),
+    			    );
+    			    $template_query = new WP_Query( $wp_query_args );
+				
+    			    if ( ! empty( $template_query->posts ) ) {
+    			        foreach ( $template_query->posts as $template_post ) {
+    			            if ( is_object( $template_post ) ) {
+    			                $template_blocks = parse_blocks( $template_post->post_content );
+    			                $post_css .= $this->get_styles( $template_blocks );
+    			            }
+    			        }
+    			    }
+    			} else {
+    			    // Non-block theme logic: Process widget blocks.
+    			    $is_block_from_widget = true;
+    			    $widget_blocks = get_option( 'widget_block' );
+				
+    			    if ( ! empty( $widget_blocks ) ) {
+    			        foreach ( $widget_blocks as $widget ) {
+    			            if ( ! empty( $widget['content'] ) ) {
+    			                $parsed_blocks = parse_blocks( $widget['content'] );
+    			                $widget_css .= $this->get_styles( $parsed_blocks );
+    			            }
+    			        }
+    			    }
+    			}
+			}
 
     		// Combine post CSS and widget CSS and output it.
     		$combined_css = $post_css . $widget_css;

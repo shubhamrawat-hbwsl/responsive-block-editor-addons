@@ -11,8 +11,8 @@ import RbeaBorderRadiusControl from "../../../settings-components/RbeaBorderRadi
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 
 /**
- * Inspector Controls
- */
+* Inspector Controls
+*/
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -41,8 +41,8 @@ const {
 } = wp.components;
 
 /**
- * Create an Inspector Controls wrapper Component
- */
+* Create an Inspector Controls wrapper Component
+*/
 export default class Inspector extends Component {
   constructor(props) {
     super(...arguments);
@@ -162,33 +162,33 @@ export default class Inspector extends Component {
     } = this.props;
 
     const blockPaddingResetValues = {
-			paddingTop: 0,
-			paddingRight: 0,
-			paddingBottom: 0,
-			paddingLeft: 0,
-			paddingTabletTop: 0,
-			paddingTabletRight: 0,
-			paddingTabletBottom: 0,
-			paddingTabletLeft: 0,
-			paddingMobileTop: 0,
-			paddingMobileRight: 0,
-			paddingMobileBottom: 0,
-			paddingMobileLeft: 0,
-		}
-		const blockMarginResetValues = {
-			marginTop: 0,
-			marginRight: 0,
-			marginBottom: 0,
-			marginLeft: 0,
-			marginTabletTop: 0,
-			marginTabletRight: 0,
-			marginTabletBottom: 0,
-			marginTabletLeft: 0,
-			marginMobileTop: 0,
-			marginMobileRight: 0,
-			marginMobileBottom: 0,
-			marginMobileLeft: 0,
-		}
+      paddingTop: 0,
+      paddingRight: 0,
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingTabletTop: 0,
+      paddingTabletRight: 0,
+      paddingTabletBottom: 0,
+      paddingTabletLeft: 0,
+      paddingMobileTop: 0,
+      paddingMobileRight: 0,
+      paddingMobileBottom: 0,
+      paddingMobileLeft: 0,
+    }
+    const blockMarginResetValues = {
+      marginTop: 0,
+      marginRight: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginTabletTop: 0,
+      marginTabletRight: 0,
+      marginTabletBottom: 0,
+      marginTabletLeft: 0,
+      marginMobileTop: 0,
+      marginMobileRight: 0,
+      marginMobileBottom: 0,
+      marginMobileLeft: 0,
+    }
 
     // Font Weight Options
     const fontWeightOptions = [
@@ -237,47 +237,47 @@ export default class Inspector extends Component {
 
     // backward compatibility for border radius control
 
-if (!blockIsRadiusValueUpdated) {
-	this.props.setAttributes(
-	  {
-		blockTopRadius:          borderRadius !== undefined ? borderRadius : blockTopRadius,
-		blockBottomRadius:       borderRadius !== undefined ? borderRadius : blockBottomRadius,
-		blockLeftRadius:         borderRadius !== undefined ? borderRadius : blockLeftRadius,
-		blockRightRadius:        borderRadius !== undefined ? borderRadius : blockRightRadius,
-		blockTopRadiusTablet:    borderRadius !== undefined ? borderRadius : blockTopRadiusTablet,
-		blockBottomRadiusTablet: borderRadius !== undefined ? borderRadius : blockBottomRadiusTablet,
-		blockRightRadiusTablet:  borderRadius !== undefined ? borderRadius : blockRightRadiusTablet,
-		blockLeftRadiusTablet:   borderRadius !== undefined ? borderRadius : blockLeftRadiusTablet,
-		blockTopRadiusMobile:    borderRadius !== undefined ? borderRadius : blockTopRadiusMobile,
-		blockBottomRadiusMobile: borderRadius !== undefined ? borderRadius : blockBottomRadiusMobile,
-		blockLeftRadiusMobile:   borderRadius !== undefined ? borderRadius : blockLeftRadiusMobile,
-		blockRightRadiusMobile:  borderRadius !== undefined ? borderRadius : blockRightRadiusMobile,
-	  }
-	)
-	this.props.setAttributes({blockIsRadiusValueUpdated: true});
-  }
+    if (!blockIsRadiusValueUpdated) {
+      this.props.setAttributes(
+        {
+          blockTopRadius: borderRadius !== undefined ? borderRadius : blockTopRadius,
+          blockBottomRadius: borderRadius !== undefined ? borderRadius : blockBottomRadius,
+          blockLeftRadius: borderRadius !== undefined ? borderRadius : blockLeftRadius,
+          blockRightRadius: borderRadius !== undefined ? borderRadius : blockRightRadius,
+          blockTopRadiusTablet: borderRadius !== undefined ? borderRadius : blockTopRadiusTablet,
+          blockBottomRadiusTablet: borderRadius !== undefined ? borderRadius : blockBottomRadiusTablet,
+          blockRightRadiusTablet: borderRadius !== undefined ? borderRadius : blockRightRadiusTablet,
+          blockLeftRadiusTablet: borderRadius !== undefined ? borderRadius : blockLeftRadiusTablet,
+          blockTopRadiusMobile: borderRadius !== undefined ? borderRadius : blockTopRadiusMobile,
+          blockBottomRadiusMobile: borderRadius !== undefined ? borderRadius : blockBottomRadiusMobile,
+          blockLeftRadiusMobile: borderRadius !== undefined ? borderRadius : blockLeftRadiusMobile,
+          blockRightRadiusMobile: borderRadius !== undefined ? borderRadius : blockRightRadiusMobile,
+        }
+      )
+      this.props.setAttributes({ blockIsRadiusValueUpdated: true });
+    }
 
-        // backward compatibility for border radius control
+    // backward compatibility for border radius control
 
-if (!blockIsRadiusValueUpdated) {
-	this.props.setAttributes(
-	  {
-		blockTopRadius:          borderRadius !== undefined ? borderRadius : blockTopRadius,
-		blockBottomRadius:       borderRadius !== undefined ? borderRadius : blockBottomRadius,
-		blockLeftRadius:         borderRadius !== undefined ? borderRadius : blockLeftRadius,
-		blockRightRadius:        borderRadius !== undefined ? borderRadius : blockRightRadius,
-		blockTopRadiusTablet:    borderRadius !== undefined ? borderRadius : blockTopRadiusTablet,
-		blockBottomRadiusTablet: borderRadius !== undefined ? borderRadius : blockBottomRadiusTablet,
-		blockRightRadiusTablet:  borderRadius !== undefined ? borderRadius : blockRightRadiusTablet,
-		blockLeftRadiusTablet:   borderRadius !== undefined ? borderRadius : blockLeftRadiusTablet,
-		blockTopRadiusMobile:    borderRadius !== undefined ? borderRadius : blockTopRadiusMobile,
-		blockBottomRadiusMobile: borderRadius !== undefined ? borderRadius : blockBottomRadiusMobile,
-		blockLeftRadiusMobile:   borderRadius !== undefined ? borderRadius : blockLeftRadiusMobile,
-		blockRightRadiusMobile:  borderRadius !== undefined ? borderRadius : blockRightRadiusMobile,
-	  }
-	)
-	this.props.setAttributes({blockIsRadiusValueUpdated: true});
-  }
+    if (!blockIsRadiusValueUpdated) {
+      this.props.setAttributes(
+        {
+          blockTopRadius: borderRadius !== undefined ? borderRadius : blockTopRadius,
+          blockBottomRadius: borderRadius !== undefined ? borderRadius : blockBottomRadius,
+          blockLeftRadius: borderRadius !== undefined ? borderRadius : blockLeftRadius,
+          blockRightRadius: borderRadius !== undefined ? borderRadius : blockRightRadius,
+          blockTopRadiusTablet: borderRadius !== undefined ? borderRadius : blockTopRadiusTablet,
+          blockBottomRadiusTablet: borderRadius !== undefined ? borderRadius : blockBottomRadiusTablet,
+          blockRightRadiusTablet: borderRadius !== undefined ? borderRadius : blockRightRadiusTablet,
+          blockLeftRadiusTablet: borderRadius !== undefined ? borderRadius : blockLeftRadiusTablet,
+          blockTopRadiusMobile: borderRadius !== undefined ? borderRadius : blockTopRadiusMobile,
+          blockBottomRadiusMobile: borderRadius !== undefined ? borderRadius : blockBottomRadiusMobile,
+          blockLeftRadiusMobile: borderRadius !== undefined ? borderRadius : blockLeftRadiusMobile,
+          blockRightRadiusMobile: borderRadius !== undefined ? borderRadius : blockRightRadiusMobile,
+        }
+      )
+      this.props.setAttributes({ blockIsRadiusValueUpdated: true });
+    }
 
     return (
       <Fragment>
@@ -305,32 +305,31 @@ if (!blockIsRadiusValueUpdated) {
                 />
 
               <TabPanel
-                className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
+                className=" responsive-size-type-field-tabs responsive-size-type-field__common-tabs responsive-inline-margin"
                 activeClass="active-tab"
                 tabs={[
                   {
                     name: "desktop",
                     title: <Dashicon icon="desktop" />,
                     className:
-                      " responsive-desktop-tab  responsive-responsive-tabs",
+                      " responsive-desktop-tab responsive-responsive-tabs",
                   },
                   {
                     name: "tablet",
                     title: <Dashicon icon="tablet" />,
                     className:
-                      " responsive-tablet-tab  responsive-responsive-tabs",
+                      " responsive-tablet-tab responsive-responsive-tabs",
                   },
                   {
                     name: "mobile",
                     title: <Dashicon icon="smartphone" />,
                     className:
-                      " responsive-mobile-tab  responsive-responsive-tabs",
+                      " responsive-mobile-tab responsive-responsive-tabs",
                   },
                 ]}
               >
                 {(tab) => {
                   let tabout;
-
                   if ("mobile" === tab.name) {
                     tabout = (
                       <Fragment>
@@ -404,7 +403,6 @@ if (!blockIsRadiusValueUpdated) {
                       </Fragment>
                     );
                   }
-
                   return <div>{tabout}</div>;
                 }}
               </TabPanel>
@@ -589,92 +587,92 @@ if (!blockIsRadiusValueUpdated) {
                   {(tab) => {
                     let tabout;
 
-                    if ("mobile" === tab.name) {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Icon Size Mobile",
-                              "responsive-block-editor-addons"
-                            )}
-                            value={sizeMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                sizeMobile: value !== undefined ? value : 16,
-                              })
-                            }
-                            min={0}
-                            max={500}
-                            allowReset
-                          />
-                        </Fragment>
-                      );
-                    } else if ("tablet" === tab.name) {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Icon Size Tablet",
-                              "responsive-block-editor-addons"
-                            )}
-                            value={sizeTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                sizeTablet: value !== undefined ? value : 16,
-                              })
-                            }
-                            min={0}
-                            max={500}
-                            allowReset
-                          />
-                        </Fragment>
-                      );
-                    } else {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Icon Size",
-                              "responsive-block-editor-addons"
-                            )}
-                            value={size}
-                            onChange={(value) =>
-                              setAttributes({
-                                size: value !== undefined ? value : 16,
-                              })
-                            }
-                            min={0}
-                            max={500}
-                            allowReset
-                          />
-                        </Fragment>
-                      );
-                    }
+                      if ("mobile" === tab.name) {
+                        tabout = (
+                          <Fragment>
+                            <RbeaRangeControl
+                              label={__(
+                                "Icon Size Mobile",
+                                "responsive-block-editor-addons"
+                              )}
+                              value={sizeMobile}
+                              onChange={(value) =>
+                                setAttributes({
+                                  sizeMobile: value !== undefined ? value : 16,
+                                })
+                              }
+                              min={0}
+                              max={500}
+                              allowReset
+                            />
+                          </Fragment>
+                        );
+                      } else if ("tablet" === tab.name) {
+                        tabout = (
+                          <Fragment>
+                            <RbeaRangeControl
+                              label={__(
+                                "Icon Size Tablet",
+                                "responsive-block-editor-addons"
+                              )}
+                              value={sizeTablet}
+                              onChange={(value) =>
+                                setAttributes({
+                                  sizeTablet: value !== undefined ? value : 16,
+                                })
+                              }
+                              min={0}
+                              max={500}
+                              allowReset
+                            />
+                          </Fragment>
+                        );
+                      } else {
+                        tabout = (
+                          <Fragment>
+                            <RbeaRangeControl
+                              label={__(
+                                "Icon Size",
+                                "responsive-block-editor-addons"
+                              )}
+                              value={size}
+                              onChange={(value) =>
+                                setAttributes({
+                                  size: value !== undefined ? value : 16,
+                                })
+                              }
+                              min={0}
+                              max={500}
+                              allowReset
+                            />
+                          </Fragment>
+                        );
+                      }
 
                     return <div>{tabout}</div>;
                   }}
                 </TabPanel>
                 <TabPanel
-                  className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
+                  className=" responsive-size-type-field-tabs responsive-size-type-field__common-tabs responsive-inline-margin"
                   activeClass="active-tab"
                   tabs={[
                     {
                       name: "desktop",
                       title: <Dashicon icon="desktop" />,
                       className:
-                        " responsive-desktop-tab  responsive-responsive-tabs",
+                        " responsive-desktop-tab responsive-responsive-tabs",
                     },
                     {
                       name: "tablet",
                       title: <Dashicon icon="tablet" />,
                       className:
-                        " responsive-tablet-tab  responsive-responsive-tabs",
+                        " responsive-tablet-tab responsive-responsive-tabs",
                     },
                     {
                       name: "mobile",
                       title: <Dashicon icon="smartphone" />,
                       className:
-                        " responsive-mobile-tab  responsive-responsive-tabs",
+                        " responsive-mobile-tab responsive-responsive-tabs",
                     },
                   ]}
                 >
@@ -763,11 +761,11 @@ if (!blockIsRadiusValueUpdated) {
           </PanelBody>
         )}
         
-            <PanelBody
-						 title={__("Spacing", "responsive-block-editor-addons")}
-						 initialOpen={false}
-						>
-              <RbeaRangeControl
+              <PanelBody
+                title={__("Spacing", "responsive-block-editor-addons")}
+                initialOpen={false}
+              >
+                <RbeaRangeControl
                   label={__(
                     "Gap between Items",
                     "responsive-block-editor-addons"
@@ -775,7 +773,7 @@ if (!blockIsRadiusValueUpdated) {
                   value={gap}
                   onChange={(value) => setAttributes({ gap: value })}
                   help={__(
-                    "Note: For better editing experience, the gap between items might look larger than applied.  Viewing in frontend will show the actual results.", "responsive-block-editor-addons"
+                    "Note: For better editing experience, the gap between items might look larger than applied. Viewing in frontend will show the actual results.", "responsive-block-editor-addons"
                   )}
                   min={0}
                   max={100}
@@ -796,12 +794,12 @@ if (!blockIsRadiusValueUpdated) {
                   resetValues={blockMarginResetValues}
                   {...this.props}
                 />
-						    <ResponsiveNewPaddingControl
-						    	attrNameTemplate="block%s"
-						    	resetValues={blockPaddingResetValues}
-						    	{...this.props}
-						    />
-						</PanelBody>
+                <ResponsiveNewPaddingControl
+                  attrNameTemplate="block%s"
+                  resetValues={blockPaddingResetValues}
+                  {...this.props}
+                />
+              </PanelBody>
             </InspectorTab>
             <InspectorTab key={"advance"}>
               <PanelBody
