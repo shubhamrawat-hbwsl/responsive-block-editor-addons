@@ -615,36 +615,6 @@ export default class Inspector extends Component {
                   />
                 </Fragment>
               )}
-              <Fragment>
-                <RbeaColorControl
-                  label = {__("Title Color", "responsive-block-editor-addons")}
-                  colorValue={titleColor}
-                  onChange={(colorValue) =>
-                    setAttributes({ titleColor: colorValue })
-                  }
-                  resetColor={() => setAttributes({ titleColor: "" })}
-                />
-              </Fragment>
-              <Fragment>
-                <RbeaColorControl
-                  label = {__("Subtitle Color", "responsive-block-editor-addons")}
-                  colorValue={subtitleColor}
-                  onChange={(colorValue) =>
-                    setAttributes({ subtitleColor: colorValue })
-                  }
-                  resetColor={() => setAttributes({ subtitleColor: "" })}
-                />
-              </Fragment>
-              <Fragment>
-                <RbeaColorControl
-                  label = {__("Text Color", "responsive-block-editor-addons")}
-                  colorValue={textColor}
-                  onChange={(colorValue) =>
-                    setAttributes({ textColor: colorValue })
-                  }
-                  resetColor={() => setAttributes({ textColor: "" })}
-                />
-              </Fragment>
             </PanelBody>
               <TypographyHelperControl
                 title={__("Title Typography", "responsive-block-editor-addons")}
