@@ -15,6 +15,7 @@ import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
 import RbeaBackgroundTypeControl from "../../../utils/components/rbea-background-type-control";
 import RbeaBlockBorderHelperControl from "../../../settings-components/RbeaBlockBorderSettings";
+import { alignLeft, alignRight} from '@wordpress/icons';
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -39,6 +40,7 @@ const {
   RangeControl,
   TabPanel,
   Dashicon,
+  Button
 } = wp.components;
 
 export default class Inspector extends Component {
@@ -296,19 +298,25 @@ export default class Inspector extends Component {
                   <p>
                     {__("Alignment", "responsive-block-editor-addons")}
                   </p>
-                  <div className="responsive-block-editor-addons-alignment">
-                    <BlockAlignmentToolbar
-                      value={alignTabsVertical}
-                      onChange={(value) =>
-                        setAttributes({
-                          alignTabsVertical: value,
-                        })
-                      }
-                      controls={["left", "right", "undefined"]}
-                      isCollapsed={false}
-                    />
-                  </div>
-                </BaseControl>
+                  <div className="responsive-block-editor-addons-tabs-alignment-container">
+                <Button
+                  key={"left"}
+                  icon={alignLeft}
+                  label="Left"
+                  onClick={() => setAttributes({ alignTabsVertical: "left" })}
+                  aria-pressed={"left" === alignTabsVertical}
+                  isPrimary={"left" === alignTabsVertical}
+                />
+                <Button
+                  key={"right"}
+                  icon={alignRight}
+                  label="Right"
+                  onClick={() => setAttributes({ alignTabsVertical: "right" })}
+                  aria-pressed={"right" === alignTabsVertical}
+                  isPrimary={"right" === alignTabsVertical}
+                />
+              </div>
+              </BaseControl>
               </Fragment>)}
             </PanelBody>
           </InspectorTab>
