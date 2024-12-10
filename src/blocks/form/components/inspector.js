@@ -763,14 +763,6 @@ export default class Inspector extends Component {
 									resetColor={() => setAttributes({ formInputBGColor: "" })}
 								/>
                  <RbeaColorControl
-									label = {__("Border", "responsive-block-editor-addons")}
-									colorValue={formBorderColor}
-									onChange={(colorValue) =>
-										setAttributes({ formBorderColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formBorderColor: "" })}
-								/>
-                 <RbeaColorControl
 									label = {__("Helper Label", "responsive-block-editor-addons")}
 									colorValue={formHelperLabelColor}
 									onChange={(colorValue) =>
@@ -810,6 +802,14 @@ export default class Inspector extends Component {
               title={__("Border", "responsive-block-editor-addons")}
               initialOpen={false}
             >
+              <RbeaColorControl
+								label = {__("Border", "responsive-block-editor-addons")}
+								colorValue={formBorderColor}
+								onChange={(colorValue) =>
+									setAttributes({ formBorderColor: colorValue })
+								}
+								resetColor={() => setAttributes({ formBorderColor: "" })}
+							/>
               <div className="responsive-block-editor-addons-form-border-radius-control">
                 <RbeaBorderRadiusControl
                   attrNameTemplate="form%s"

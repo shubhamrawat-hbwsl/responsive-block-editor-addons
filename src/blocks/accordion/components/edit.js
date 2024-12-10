@@ -693,18 +693,6 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
               min={0}
               max={100}
             />
-          {"none" != parentBlockBorderStyle && (
-          <Fragment>
-            <RbeaColorControl
-              label = {__("Border Color", "responsive-block-editor-addons")}
-              colorValue={parentBlockBorderColor}
-              onChange={(colorValue) =>
-                setAttributes({ parentBlockBorderColor: colorValue })
-              }
-              resetColor={() => setAttributes({ parentBlockBorderColor: "" })}
-            />
-          </Fragment>
-        )}
         </PanelBody>
       );
     };
@@ -959,6 +947,18 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
           attrNameTemplate="parentBlockBorder%s"
           {...this.props}
         />
+        {"none" != parentBlockBorderStyle && (
+          <Fragment>
+            <RbeaColorControl
+              label = {__("Border Color", "responsive-block-editor-addons")}
+              colorValue={parentBlockBorderColor}
+              onChange={(colorValue) =>
+                setAttributes({ parentBlockBorderColor: colorValue })
+              }
+              resetColor={() => setAttributes({ parentBlockBorderColor: "" })}
+            />
+          </Fragment>
+        )}
       </PanelBody>
       );
     };

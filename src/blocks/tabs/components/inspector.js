@@ -320,14 +320,14 @@ export default class Inspector extends Component {
                     {__("Alignment", "responsive-block-editor-addons")}
                   </p>
                   <div className="responsive-block-editor-addons-alignment">
-                    <AlignmentToolbar
+                    <BlockAlignmentToolbar
                       value={alignTabsVertical}
                       onChange={(value) =>
                         setAttributes({
                           alignTabsVertical: value,
                         })
                       }
-                      controls={["none", "left", "right"]}
+                      controls={["left", "right", "undefined"]}
                       isCollapsed={false}
                     />
                   </div>
