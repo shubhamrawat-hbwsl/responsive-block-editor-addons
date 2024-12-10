@@ -853,6 +853,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={formAlignmentMobile}
                             onChange={(value) =>
@@ -863,6 +864,7 @@ export default class Inspector extends Component {
                             controls={["start", "center", "end"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -876,6 +878,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={formAlignmentTablet}
                             onChange={(value) =>
@@ -886,6 +889,7 @@ export default class Inspector extends Component {
                             controls={["start", "center", "end"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -896,6 +900,7 @@ export default class Inspector extends Component {
                           <p>
                             {__("Alignment", "responsive-block-editor-addons")}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={formAlignment}
                             onChange={(value) =>
@@ -906,6 +911,7 @@ export default class Inspector extends Component {
                             controls={["start", "center", "end"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -1190,6 +1196,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">=
                           <AlignmentToolbar
                             value={formTitleAlignmentMobile}
                             onChange={(value) =>
@@ -1200,6 +1207,7 @@ export default class Inspector extends Component {
                             controls={["left", "center", "right"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -1213,6 +1221,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={formTitleAlignmentTablet}
                             onChange={(value) =>
@@ -1223,6 +1232,7 @@ export default class Inspector extends Component {
                             controls={["left", "center", "right"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -1233,6 +1243,7 @@ export default class Inspector extends Component {
                           <p>
                             {__("Alignment", "responsive-block-editor-addons")}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={formTitleAlignment}
                             onChange={(value) =>
@@ -1243,6 +1254,7 @@ export default class Inspector extends Component {
                             controls={["left", "center", "right"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -2039,6 +2051,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={ctaButtonAlignmentMobile}
                             onChange={(value) =>
@@ -2049,6 +2062,7 @@ export default class Inspector extends Component {
                             controls={["left", "center", "right"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -2062,6 +2076,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={ctaButtonAlignmentTablet}
                             onChange={(value) =>
@@ -2072,6 +2087,7 @@ export default class Inspector extends Component {
                             controls={["left", "center", "right"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -2082,6 +2098,7 @@ export default class Inspector extends Component {
                           <p>
                             {__("Alignment", "responsive-block-editor-addons")}
                           </p>
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={ctaButtonAlignment}
                             onChange={(value) =>
@@ -2092,6 +2109,7 @@ export default class Inspector extends Component {
                             controls={["left", "center", "right"]}
                             isCollapsed={false}
                           />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );

@@ -436,32 +436,31 @@ if (!imageIsRadiusValueUpdated) {
                 mediaType={'image'}
               />
               <TabPanel
-                className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
+                className=" responsive-size-type-field-tabs responsive-size-type-field__common-tabs responsive-inline-margin"
                 activeClass="active-tab"
                 tabs={[
                   {
                     name: "desktop",
                     title: <Dashicon icon="desktop" />,
                     className:
-                      " responsive-desktop-tab  responsive-responsive-tabs",
+                      " responsive-desktop-tab responsive-responsive-tabs",
                   },
                   {
                     name: "tablet",
                     title: <Dashicon icon="tablet" />,
                     className:
-                      " responsive-tablet-tab  responsive-responsive-tabs",
+                      " responsive-tablet-tab responsive-responsive-tabs",
                   },
                   {
                     name: "mobile",
                     title: <Dashicon icon="smartphone" />,
                     className:
-                      " responsive-mobile-tab  responsive-responsive-tabs",
+                      " responsive-mobile-tab responsive-responsive-tabs",
                   },
                 ]}
               >
                 {(tab) => {
                   let tabout;
-
                   if ("mobile" === tab.name) {
                     tabout = (
                       <Fragment>
@@ -472,16 +471,18 @@ if (!imageIsRadiusValueUpdated) {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <AlignmentToolbar
-                            value={imageAlignmentMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                imageAlignmentMobile: value,
-                              })
-                            }
-                            controls={["start", "center", "end"]}
-                            isCollapsed={false}
-                          />
+                          <div className="responsive-block-editor-addons-alignment-mobile">
+                            <AlignmentToolbar
+                              value={imageAlignmentMobile}
+                              onChange={(value) =>
+                                setAttributes({
+                                  imageAlignmentMobile: value,
+                                })
+                              }
+                              controls={["start", "center", "end"]}
+                              isCollapsed={false}
+                            />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -495,16 +496,18 @@ if (!imageIsRadiusValueUpdated) {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <AlignmentToolbar
-                            value={imageAlignmentTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                imageAlignmentTablet: value,
-                              })
-                            }
-                            controls={["start", "center", "end"]}
-                            isCollapsed={false}
-                          />
+                          <div className="responsive-block-editor-addons-alignment-tablet">
+                            <AlignmentToolbar
+                              value={imageAlignmentTablet}
+                              onChange={(value) =>
+                                setAttributes({
+                                  imageAlignmentTablet: value,
+                                })
+                              }
+                              controls={["start", "center", "end"]}
+                              isCollapsed={false}
+                            />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
@@ -515,21 +518,22 @@ if (!imageIsRadiusValueUpdated) {
                           <p>
                             {__("Alignment", "responsive-block-editor-addons")}
                           </p>
-                          <AlignmentToolbar
-                            value={imageAlignment}
-                            onChange={(value) =>
-                              setAttributes({
-                                imageAlignment: value,
-                              })
-                            }
-                            controls={["start", "center", "end"]}
-                            isCollapsed={false}
-                          />
+                          <div className="responsive-block-editor-addons-alignment">
+                            <AlignmentToolbar
+                              value={imageAlignment}
+                              onChange={(value) =>
+                                setAttributes({
+                                  imageAlignment: value,
+                                })
+                              }
+                              controls={["start", "center", "end"]}
+                              isCollapsed={false}
+                            />
+                          </div>
                         </BaseControl>
                       </Fragment>
                     );
                   }
-
                   return <div>{tabout}</div>;
                 }}
               </TabPanel>

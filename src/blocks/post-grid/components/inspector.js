@@ -39,6 +39,7 @@ const {
   ToggleControl,
   TabPanel,
   Dashicon,
+  BaseControl
 } = wp.components;
 
 const { addQueryArgs } = wp.url;
@@ -1165,31 +1166,28 @@ export default class Inspector extends Component {
                   this.props.setAttributes({ paginationLayout: value })
                 }
               />
-              <RbeaTabRadioControl
-                label={__(
-                  "Pagination Alignment",
-                  "responsive-block-editor-addons"
-                )}
-                options={[
-                  {
-                    value: "left",
-                    label: __("Left", "responsive-block-editor-addons"),
-                  },
-                  {
-                    value: "center",
-                    label: __("Center", "responsive-block-editor-addons"),
-                  },
-                  {
-                    value: "right",
-                    label: __("Right", "responsive-block-editor-addons"),
-                  },
-                ]}
-                value={attributes.paginationAlignment}
-                onChange={(value) =>
-                  this.props.setAttributes({ paginationAlignment: value })
-                }
-                defaultValue={"center"}
-              />
+              <Fragment>
+                <BaseControl>
+                  <p>
+                    {__(
+                      "Pagination Alignment",
+                      "responsive-block-editor-addons"
+                    )}
+                    </p>
+                    <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={attributes.paginationAlignment}
+                        onChange={(value) =>
+                          setAttributes({
+                            paginationAlignment: value,
+                          })
+                        }
+                        controls={["left", "center", "right"]}
+                        isCollapsed={false}
+                      />
+                    </div>
+                  </BaseControl>
+                </Fragment>
               <RbeaRangeControl
                 label={__("Border Size", "responsive-block-editor-addons")}
                 value={attributes.paginationBorderWidth}

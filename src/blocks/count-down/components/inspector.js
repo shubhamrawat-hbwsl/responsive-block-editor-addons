@@ -406,23 +406,25 @@ export default class Inspector extends Component {
               title={__("Display", "responsive-block-editor-addons")}
               initialOpen={false}
             >
-              <BaseControl>
-                <BaseControl.VisualLabel>
-                  {__("Text Alignment", "responsive-block-editor-addons")}
-                </BaseControl.VisualLabel>
-                <br></br>
-                <br></br>
-                <AlignmentToolbar
-                  value={boxItemTextAlign}
-                  onChange={(value) =>
-                    setAttributes({
-                      boxItemTextAlign: value,
-                    })
-                  }
-                  controls={["left", "center", "right"]}
-                  isCollapsed={false}
-                />
-              </BaseControl>
+              <Fragment>
+                <BaseControl>
+                  <p>
+                    {__("Text Alignment", "responsive-block-editor-addons")}
+                  </p>
+                  <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={boxItemTextAlign}
+                      onChange={(value) =>
+                        setAttributes({
+                          boxItemTextAlign: value,
+                        })
+                      }
+                      controls={["left", "center", "right"]}
+                      isCollapsed={false}
+                    />
+                  </div>
+                </BaseControl>
+              </Fragment>
               <ToggleControl
                 label={__("Inline", "responsive-block-editor-addons")}
                 checked={displayInline}

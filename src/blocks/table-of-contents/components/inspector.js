@@ -569,19 +569,23 @@ export default class Inspector extends Component {
                 ]}
               />
               <Fragment>
-                <h2>
-                  {__("Header Alignment", "responsive-block-editor-addons")}
-                </h2>
-                <BlockAlignmentToolbar
-                  value={align}
-                  onChange={(value) =>
-                    setAttributes({
-                      align: value,
-                    })
-                  }
-                  controls={["left", "center", "right"]}
-                  isCollapsed={false}
-                />
+                <BaseControl>
+                  <p>
+                    {__("Header Alignment", "responsive-block-editor-addons")}
+                  </p>
+                  <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={align}
+                      onChange={(value) =>
+                        setAttributes({
+                          align: value,
+                        })
+                      }
+                      controls={["left", "center", "right"]}
+                      isCollapsed={false}
+                    />
+                  </div>
+                </BaseControl>
               </Fragment>
               <RbeaTabRadioControl
                 label={__("Table Type", "responsive-block-editor-addons")}
