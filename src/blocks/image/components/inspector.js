@@ -197,7 +197,10 @@ export default class Inspector extends Component {
       imageRightPadding,
       imageRightPaddingMobile,
       imageRightPaddingTablet,
-      imageIsPaddingControlConnected
+      imageIsPaddingControlConnected,
+      blockIsTypographyColorValueUpdated,
+      layoverHeadingTypographyColor,
+      captionTypographyColor,
     } = attributes;
 
     // To populate new control values with existing padding margin control values for backward compatibility.
@@ -403,6 +406,17 @@ if (!imageIsRadiusValueUpdated) {
 	)
 	this.props.setAttributes({imageIsRadiusValueUpdated: true});
   }
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          layoverHeadingTypographyColor :layoverHeadingColor !== undefined ? layoverHeadingColor : layoverHeadingTypographyColor,
+          captionTypographyColor :captionColor !== undefined ? captionColor : captionTypographyColor,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
+    }
 
     return (
       <InspectorControls key="inspector">
@@ -1275,37 +1289,7 @@ if (!imageIsRadiusValueUpdated) {
                       },
                     ]}
                   />
-                  <TypographyHelperControl
-                    title={__("Typography", "responsive-block-editor-addons")}
-                    attrNameTemplate="layoverHeading%s"
-                    values={{
-                      family: layoverHeadingFontFamily,
-                      size: layoverHeadingFontSize,
-                      sizeMobile: layoverHeadingFontSizeMobile,
-                      sizeTablet: layoverHeadingFontSizeTablet,
-                      weight: layoverHeadingFontWeight,
-                      height: layoverHeadingLineHeight,
-                      spacing: layoverHeadingLetterSpacing,
-                      transform: layoverHeadingTextTransform,
-                    }}
-                    showLetterSpacing={true}
-                    showTextTransform={true}
-                    setAttributes={setAttributes}
-                    {...this.props}
-                  />
-
-                  <RbeaColorControl
-                    label = {__("Color", "responsive-block-editor-addons")}
-                    colorValue={layoverHeadingColor}
-                    onChange={(colorValue) =>
-                      setAttributes({
-                        layoverHeadingColor:
-                          colorValue !== undefined ? colorValue : "",
-                      })
-                    }
-                    resetColor={() => setAttributes({ layoverHeadingColor: "" })}
-                  />
-
+                  
                   <TabPanel
                     className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
                     activeClass="active-tab"
@@ -1551,34 +1535,31 @@ if (!imageIsRadiusValueUpdated) {
                 </PanelBody>
               </>
             )}
+
+            {(Layoverswitch) && (
+              <TypographyHelperControl
+              title={__("Heading Typography", "responsive-block-editor-addons")}
+              attrNameTemplate="layoverHeading%s"
+              values={{
+                family: layoverHeadingFontFamily,
+                size: layoverHeadingFontSize,
+                sizeMobile: layoverHeadingFontSizeMobile,
+                sizeTablet: layoverHeadingFontSizeTablet,
+                weight: layoverHeadingFontWeight,
+                height: layoverHeadingLineHeight,
+                spacing: layoverHeadingLetterSpacing,
+                transform: layoverHeadingTextTransform,
+                color: layoverHeadingTypographyColor,
+              }}
+              showLetterSpacing={true}
+              showTextTransform={true}
+              showColorControl={true}
+              setAttributes={setAttributes}
+              {...this.props}
+            />
+            )}
             {(caption || Layoverswitch) && (
-              <PanelBody title="Caption" initialOpen={true}>
-                <TypographyHelperControl
-                  title={__("Typography", "responsive-block-editor-addons")}
-                  attrNameTemplate="caption%s"
-                  values={{
-                    family: captionFontFamily,
-                    size: captionFontSize,
-                    sizeMobile: captionFontSizeMobile,
-                    sizeTablet: captionFontSizeTablet,
-                    weight: captionFontWeight,
-                    height: captionLineHeight,
-                    spacing: captionLetterSpacing,
-                    transform: captionTextTransform,
-                  }}
-                  showLetterSpacing={true}
-                  showTextTransform={true}
-                  setAttributes={setAttributes}
-                  {...this.props}
-                />
-                	<RbeaColorControl
-                    label = {__("Color", "responsive-block-editor-addons")}
-                    colorValue={captionColor}
-                    onChange={(colorValue) =>
-                      setAttributes({ captionColor: colorValue })
-                    }
-                    resetColor={() => setAttributes({ captionColor: "" })}
-                  />
+              <PanelBody title="Caption" initialOpen={false}>
                 <TabPanel
                   className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
                   activeClass="active-tab"
@@ -1804,6 +1785,28 @@ if (!imageIsRadiusValueUpdated) {
                   }}
                 </TabPanel>
               </PanelBody>
+            )}
+            {(caption || Layoverswitch) && (
+              <TypographyHelperControl
+              title={__("Caption Typography", "responsive-block-editor-addons")}
+              attrNameTemplate="caption%s"
+              values={{
+                family: captionFontFamily,
+                size: captionFontSize,
+                sizeMobile: captionFontSizeMobile,
+                sizeTablet: captionFontSizeTablet,
+                weight: captionFontWeight,
+                height: captionLineHeight,
+                spacing: captionLetterSpacing,
+                transform: captionTextTransform,
+                color: captionTypographyColor,
+              }}
+              showLetterSpacing={true}
+              showTextTransform={true}
+              showColorControl={true}
+              setAttributes={setAttributes}
+              {...this.props}
+            />
             )}
           </InspectorTab>
           <InspectorTab key={"advance"}>

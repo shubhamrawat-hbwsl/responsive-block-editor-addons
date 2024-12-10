@@ -145,6 +145,11 @@ export default class Inspector extends Component {
         hideWidget,
         hideWidgetTablet,
         hideWidgetMobile,
+
+        blockIsTypographyColorValueUpdated,
+        titleTypographyColor,
+        subtitleTypographyColor,
+        textTypographyColor,
       },
       setAttributes,
     } = this.props;
@@ -200,6 +205,18 @@ export default class Inspector extends Component {
         });
       }
     };
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          titleTypographyColor:         titleColor !== undefined ? titleColor : titleTypographyColor,
+          subtitleTypographyColor:          subtitleColor !== undefined ? subtitleColor : subtitleTypographyColor,
+          textTypographyColor:          textColor !== undefined ? textColor : textTypographyColor,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
+    }
 
     return (
       <InspectorControls key="inspector">
@@ -628,10 +645,6 @@ export default class Inspector extends Component {
                 />
               </Fragment>
             </PanelBody>
-            <PanelBody
-              title={__("Typography", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
               <TypographyHelperControl
                 title={__("Title Typography", "responsive-block-editor-addons")}
                 attrNameTemplate="title%s"
@@ -642,9 +655,11 @@ export default class Inspector extends Component {
                   sizeTablet: titleFontSizeTablet,
                   weight: titleFontWeight,
                   height: titleLineHeight,
+                  color: titleTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
@@ -661,9 +676,11 @@ export default class Inspector extends Component {
                   sizeTablet: subtitleFontSizeTablet,
                   weight: subtitleFontWeight,
                   height: subtitleLineHeight,
+                  color: subtitleTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
@@ -677,13 +694,14 @@ export default class Inspector extends Component {
                   sizeTablet: textFontSizeTablet,
                   weight: textFontWeight,
                   height: textLineHeight,
+                  color: textTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
-            </PanelBody>
           </InspectorTab>
           <InspectorTab key={"advance"}>
             <PanelBody

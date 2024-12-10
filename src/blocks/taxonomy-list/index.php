@@ -524,6 +524,18 @@ function responsive_block_editor_addons_register_taxonomy_list() {
 					'type'    => 'number',
 					'default' => 0,
 				),
+				'blockIsTypographyColorValueUpdated' => array(
+					'type'	=> 'boolean',
+					'default' => false,
+				),
+      			'countTypographyColor' => array(
+					'type'	=> 'string',
+					'default' => '#777777',
+				),
+      			'titleTypographyColor' => array(
+					'type'	=> 'string',
+					'default' => '#3b3b3b',
+				),
 			),
 			'render_callback' => 'responsive_block_editor_addons_render_taxonomy_list',
 		)

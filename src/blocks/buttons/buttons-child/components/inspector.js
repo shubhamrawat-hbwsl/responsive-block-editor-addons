@@ -309,15 +309,8 @@ export default class Inspector extends Component {
 			/>
 		);
 
-		// Opacity Component for Typography
-		const typographyOpacityControl = (
-			<RbeaRangeControl
-				label={__("Opacity", "responsive-block-editor-addons")}
-				value={typographyOpacity}
-				onChange={(value) => setAttributes({ typographyOpacity: value })}
-				min={0}
-				max={100}
-			/>
+		const emptyColorControl = (
+			<div className="responsive-block-editor-addons-empty-color-control"></div>
 		);
 
 		// Border Color Component For Color&Hover Control 
@@ -355,8 +348,15 @@ export default class Inspector extends Component {
 			/>
 		);
 
-		const emptyColorControl = (
-			<div className="responsive-block-editor-addons-empty-color-control"></div>
+		// Opacity Component for Typography
+		const typographyOpacityControl = (
+			<RbeaRangeControl
+				label={__("Opacity", "responsive-block-editor-addons")}
+				value={typographyOpacity}
+				onChange={(value) => setAttributes({ typographyOpacity: value })}
+				min={0}
+				max={100}
+			/>
 		);
 
 

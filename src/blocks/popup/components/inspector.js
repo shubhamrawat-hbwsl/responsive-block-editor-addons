@@ -246,6 +246,8 @@ export default class Inspector extends Component {
         buttonRightPaddingTablet,
         buttonIsMarginControlConnected,
         buttonIsPaddingControlConnected,
+        popupTextTypographyTypographyColor,
+        blockIsTypographyColorValueUpdated,
       },
       setAttributes,
     } = this.props;
@@ -342,6 +344,41 @@ export default class Inspector extends Component {
         }
       )
       this.props.setAttributes({popupImageTriggerIsRadiusValueUpdated: true});
+    }
+
+    
+
+    // Border Color Component For Color&Hover Typography Control
+		const buttonTypographyColorControl = (
+			<RbeaColorControl
+        label = {__("Button Text Color", "responsive-block-editor-addons")}
+        colorValue={popupButtonColor}
+        onChange={(colorValue) => setAttributes({ popupButtonColor: colorValue })}
+        resetColor={() => setAttributes({ popupButtonColor: "" })}
+      />
+		);
+
+		const buttonTypographyColorControlHover = (
+			<RbeaColorControl
+        label = {__("Button Text Hover Color", "responsive-block-editor-addons")}
+        colorValue={popupButtonHoverColor}
+        onChange={(colorValue) => setAttributes({ popupButtonHoverColor: colorValue })}
+        resetColor={() => setAttributes({ popupButtonHoverColor: "" })}
+      />
+		);
+
+    const emptyColorControl = (
+			<div className="responsive-block-editor-addons-empty-color-control"></div>
+		);
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          popupTextTypographyTypographyColor: popupTextColor !== undefined ? popupTextColor : popupTextTypographyTypographyColor,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
     }
     
     return (
@@ -1027,27 +1064,6 @@ export default class Inspector extends Component {
 
                     </>}
 
-                    <TypographyHelperControl
-                      title={__(
-                        "Button Typography",
-                        "responsive-block-editor-addons"
-                      )}
-                      attrNameTemplate="popupButtonTypography%s"
-                      values={{
-                        family: popupButtonTypographyFontFamily,
-                        size: popupButtonTypographyFontSize,
-                        sizeMobile: popupButtonTypographyFontSizeMobile,
-                        sizeTablet: popupButtonTypographyFontSizeTablet,
-                        weight: popupButtonTypographyFontWeight,
-                        height: popupButtonTypographyLineHeight,
-                        spacing: popupButtonTypographyLetterSpacing,
-                      }}
-                      showLetterSpacing={true}
-                      showTextTransform={false}
-                      setAttributes={setAttributes}
-                      {...this.props}
-                    />
-
                     <ResponsiveSpacingControl
                       title={__("Button Padding Top", "responsive-block-editor-addons")}
                       attrNameTemplate="popupButtonPaddingTop%s"
@@ -1113,36 +1129,6 @@ export default class Inspector extends Component {
                       colorValue={popupButtonBorderHoverColor}
                       onChange={(colorValue) => setAttributes({ popupButtonBorderHoverColor: colorValue })}
                       resetColor={() => setAttributes({ popupButtonBorderHoverColor: "" })}
-                    />
-                  </>}
-
-                  {popupTriggerType === 'text' && <>
-                    <RbeaColorControl
-                      label = {__("Text Color", "responsive-block-editor-addons")}
-                      colorValue={popupTextColor}
-                      onChange={(colorValue) => setAttributes({ popupTextColor: colorValue })}
-                      resetColor={() => setAttributes({ popupTextColor: "" })}
-                    />
-
-                    <TypographyHelperControl
-                      title={__(
-                        "Text Typography",
-                        "responsive-block-editor-addons"
-                      )}
-                      attrNameTemplate="popupTextTypography%s"
-                      values={{
-                        family: popupTextTypographyFontFamily,
-                        size: popupTextTypographyFontSize,
-                        sizeMobile: popupTextTypographyFontSizeMobile,
-                        sizeTablet: popupTextTypographyFontSizeTablet,
-                        weight: popupTextTypographyFontWeight,
-                        height: popupTextTypographyLineHeight,
-                        spacing: popupTextTypographyLetterSpacing,
-                      }}
-                      showLetterSpacing={true}
-                      showTextTransform={false}
-                      setAttributes={setAttributes}
-                      {...this.props}
                     />
                   </>}
 
@@ -1257,6 +1243,58 @@ export default class Inspector extends Component {
                   </>}
 
                 </PanelBody>}
+
+                {popupTriggerType === 'button' && (
+                  <TypographyHelperControl
+                      title={__(
+                        "Button Typography",
+                        "responsive-block-editor-addons"
+                      )}
+                      attrNameTemplate="popupButtonTypography%s"
+                      values={{
+                        family: popupButtonTypographyFontFamily,
+                        size: popupButtonTypographyFontSize,
+                        sizeMobile: popupButtonTypographyFontSizeMobile,
+                        sizeTablet: popupButtonTypographyFontSizeTablet,
+                        weight: popupButtonTypographyFontWeight,
+                        height: popupButtonTypographyLineHeight,
+                        spacing: popupButtonTypographyLetterSpacing,
+                        typographyColorControl: buttonTypographyColorControl,
+										    typographyColorControlHover: buttonTypographyColorControlHover,
+                        emptyColorControl: emptyColorControl,
+                      }}
+                      showLetterSpacing={true}
+                      showTextTransform={false}
+                      showColorWithHoverControlTab={true}
+                      setAttributes={setAttributes}
+                      {...this.props}
+                    />
+                  )}
+
+                  {popupTriggerType === 'text' && (
+                    <TypographyHelperControl
+                    title={__(
+                      "Text Typography",
+                      "responsive-block-editor-addons"
+                    )}
+                    attrNameTemplate="popupTextTypography%s"
+                    values={{
+                      family: popupTextTypographyFontFamily,
+                      size: popupTextTypographyFontSize,
+                      sizeMobile: popupTextTypographyFontSizeMobile,
+                      sizeTablet: popupTextTypographyFontSizeTablet,
+                      weight: popupTextTypographyFontWeight,
+                      height: popupTextTypographyLineHeight,
+                      spacing: popupTextTypographyLetterSpacing,
+                      color: popupTextTypographyTypographyColor,
+                    }}
+                    showLetterSpacing={true}
+                    showTextTransform={false}
+                    showColorControl={true}
+                    setAttributes={setAttributes}
+                    {...this.props}
+                  />
+                  )}
               <PanelBody
                 title={__("Color & Background", "responsive-block-editor-addons")}
                 initialOpen={false}

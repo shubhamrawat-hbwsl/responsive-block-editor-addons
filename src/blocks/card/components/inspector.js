@@ -452,6 +452,17 @@ export default class Inspector extends Component {
         cardImagePositionTablet,
         cardImageSizeTab,
         cardImageRepeat,
+        headingTypographyColor,
+        headingBottomSpacing,
+        headingBottomSpacingMobile,
+        headingBottomSpacingTablet,
+        subBottomSpacing,
+        subBottomSpacingMobile,
+        subBottomSpacingTablet,
+        contentBottomSpacing,
+        contentBottomSpacingMobile,
+        contentBottomSpacingTablet,
+        blockIsTypographyColorValueUpdated,
       },
       setAttributes,
     } = this.props;
@@ -684,6 +695,26 @@ export default class Inspector extends Component {
     // Background image URL
     let background_image_url = backgroundImage || '';
     let card_image_url = backgroundImageOne || '';
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          headingTypographyColor:          textColor !== undefined ? textColor : headingTypographyColor,
+          headingBottomSpacing: titleSpace !== undefined ? titleSpace : headingBottomSpacing,
+          headingBottomSpacingMobile: titleSpaceMobile !== undefined ? titleSpaceMobile : headingBottomSpacingMobile,
+          headingBottomSpacingTablet: titleSpaceTablet !== undefined ? titleSpaceTablet : headingBottomSpacingTablet,
+          subBottomSpacing: subtitleSpace !== undefined ? subtitleSpace : subBottomSpacing,
+          subBottomSpacingMobile: subtitleSpaceMobile !== undefined ? subtitleSpaceMobile : subBottomSpacingMobile,
+          subBottomSpacingTablet: subtitleSpaceTablet !== undefined ? subtitleSpaceTablet : subBottomSpacingTablet,
+          contentBottomSpacing: contentSpace !== undefined ? contentSpace : contentBottomSpacing,
+          contentBottomSpacingMobile: contentSpaceMobile !== undefined ? contentSpaceMobile : contentBottomSpacingMobile,
+          contentBottomSpacingTablet: contentSpaceTablet !== undefined ? contentSpaceTablet : contentBottomSpacingTablet,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
+    }
+
 
     return (
       <InspectorControls key="inspector">
@@ -1310,10 +1341,6 @@ export default class Inspector extends Component {
                 />
               }
             </PanelBody>
-            <PanelBody
-              title={__("Typography", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
               <TypographyHelperControl
                 title={__("Title Typography", "responsive-block-editor-addons")}
                 attrNameTemplate="heading%s"
@@ -1324,9 +1351,15 @@ export default class Inspector extends Component {
                   sizeTablet: headingFontSizeTablet,
                   weight: headingFontWeight,
                   height: headingLineHeight,
+                  color: headingTypographyColor,
+                  bottomSpacing: headingBottomSpacing,
+                  bottomSpacingMoible: headingBottomSpacingMobile,
+                  bottomSpacingTablet: headingBottomSpacingTablet,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showColorControl={true}
+                showTextBottomSpacing={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
@@ -1343,9 +1376,13 @@ export default class Inspector extends Component {
                   sizeTablet: subFontSizeTablet,
                   weight: subFontWeight,
                   height: subLineHeight,
+                  bottomSpacing: subBottomSpacing,
+                  bottomSpacingMoible: subBottomSpacingMobile,
+                  bottomSpacingTablet: subBottomSpacingTablet,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showTextBottomSpacing={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
@@ -1362,13 +1399,16 @@ export default class Inspector extends Component {
                   sizeTablet: contentFontSizeTablet,
                   weight: contentFontWeight,
                   height: contentLineHeight,
+                  bottomSpacing: contentBottomSpacing,
+                  bottomSpacingMoible: contentBottomSpacingMobile,
+                  bottomSpacingTablet: contentBottomSpacingTablet,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showTextBottomSpacing={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
-            </PanelBody>
 
             <PanelBody title={__("Icon Settings", "responsive-block-editor-addons")} initialOpen={false}>
               <Fragment>
@@ -1451,19 +1491,6 @@ export default class Inspector extends Component {
                   label: __("Position", "responsive-block-editor-addons"),
                 }}
               />
-            </PanelBody>
-            <PanelBody
-              title={__("Color", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
-              <RbeaColorControl
-									label = {__("Text Color", "responsive-block-editor-addons")}
-									colorValue={textColor}
-									onChange={(colorValue) =>
-										setAttributes({ textColor: colorValue })
-									}
-									resetColor={() => setAttributes({ textColor: "" })}
-								/>
             </PanelBody>
             <PanelBody
               title={__("Spacing", "responsive-block-editor-addons")}
