@@ -705,31 +705,6 @@ if (!gridIsRadiusValueUpdated) {
             >
               {"grid" === layout && (
                 <Fragment>
-                  <BoxShadowControl
-                    setAttributes={setAttributes}
-                    label={__("Box Shadow", "responsive-block-editor-addons")}
-                    boxShadowColor={{
-                      value: boxShadowColor,
-                      label: __("Color", "responsive-block-editor-addons"),
-                    }}
-                    boxShadowHOffset={{
-                      value: boxShadowHOffset,
-                      label: __("Horizontal", "responsive-block-editor-addons"),
-                    }}
-                    boxShadowVOffset={{
-                      value: boxShadowVOffset,
-                      label: __("Vertical", "responsive-block-editor-addons"),
-                    }}
-                    boxShadowBlur={{ value: boxShadowBlur, label: __("Blur", "responsive-block-editor-addons") }}
-                    boxShadowSpread={{
-                      value: boxShadowSpread,
-                      label: __("Spread", "responsive-block-editor-addons"),
-                    }}
-                    boxShadowPosition={{
-                      value: boxShadowPosition,
-                      label: __("Position", "responsive-block-editor-addons"),
-                    }}
-                  />
                   <RbeaBlockBorderHelperControl
                     attrNameTemplate="grid%s"
                     values={{
@@ -819,6 +794,40 @@ if (!gridIsRadiusValueUpdated) {
                 </Fragment>
               )}
             </PanelBody>
+            {"grid" === layout && (
+                <PanelBody
+                title={__("Box Shadow", "responsive-block-editor-addons")}
+                initialOpen={false}
+              >
+                  <Fragment>
+                    <BoxShadowControl
+                      setAttributes={setAttributes}
+                      label={__("Box Shadow", "responsive-block-editor-addons")}
+                      boxShadowColor={{
+                        value: boxShadowColor,
+                        label: __("Color", "responsive-block-editor-addons"),
+                      }}
+                      boxShadowHOffset={{
+                        value: boxShadowHOffset,
+                        label: __("Horizontal", "responsive-block-editor-addons"),
+                      }}
+                      boxShadowVOffset={{
+                        value: boxShadowVOffset,
+                        label: __("Vertical", "responsive-block-editor-addons"),
+                      }}
+                      boxShadowBlur={{ value: boxShadowBlur, label: __("Blur", "responsive-block-editor-addons") }}
+                      boxShadowSpread={{
+                        value: boxShadowSpread,
+                        label: __("Spread", "responsive-block-editor-addons"),
+                      }}
+                      boxShadowPosition={{
+                        value: boxShadowPosition,
+                        label: __("Position", "responsive-block-editor-addons"),
+                      }}
+                    />
+                  </Fragment>
+                </PanelBody>
+              )}
             <PanelBody
               title={__("Spacing", "responsive-block-editor-addons")}
               initialOpen={false}
