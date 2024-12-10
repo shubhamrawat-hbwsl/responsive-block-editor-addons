@@ -200,3 +200,13 @@
       }
     }
   }
+
+.responsive-block-html-tag-wrapper {
+	> div {
+		> div {
+			display: grid !important;
+    		grid-template-columns: repeat(4, 1fr) !important;
+			grid-template-rows: auto !important;
+		}
+	}
+}

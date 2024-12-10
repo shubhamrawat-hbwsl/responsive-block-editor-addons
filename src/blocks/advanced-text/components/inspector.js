@@ -726,6 +726,7 @@ export default class Inspector extends Component {
               title={__("General", "responsive-block-editor-addons")}
               initialOpen={false}
             >
+              <div className="responsive-block-html-tag-wrapper">
               <RbeaTabRadioControl
                 label={__("Block HTML Tag", "responsive-block-editor-addons")}
                 value={blockTag}
@@ -733,6 +734,7 @@ export default class Inspector extends Component {
                 options={rbeaOptions.blockTags}
                 defaultValue={"div"}
               />
+              </div>
               <RbeaRangeControl
                 label={__("Opacity", "responsive-block-editor-addons")}
                 value={blockOpacity}
