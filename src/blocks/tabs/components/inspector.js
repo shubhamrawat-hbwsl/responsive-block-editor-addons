@@ -272,18 +272,6 @@ export default class Inspector extends Component {
                   ]}
                 />
               </Fragment>
-              {/* <h2>{__("Alignment", "responsive-block-editor-addons")}</h2>
-              {tabsStyleD === 'hstyle3' && <BlockAlignmentToolbar
-                value={alignTabs}
-                onChange={(value) =>
-                  setAttributes({
-                    alignTabs: value,
-                  })
-                }
-                controls={["left", "center", "right"]}
-                isCollapsed={false}
-              />
-              } */}
               {tabsStyleD === 'hstyle3' && (<Fragment>
                 <BaseControl>
                   <p>
@@ -303,17 +291,6 @@ export default class Inspector extends Component {
                   </div>
                 </BaseControl>
               </Fragment>)}
-              {/* {tabsStyleD === 'vstyle8' && <BlockAlignmentToolbar
-                value={alignTabsVertical}
-                onChange={(value) =>
-                  setAttributes({
-                    alignTabsVertical: value,
-                  })
-                }
-                controls={["left", "right"]}
-                isCollapsed={false}
-              />
-              } */}
               {tabsStyleD === 'vstyle8' && (<Fragment>
                 <BaseControl>
                   <p>

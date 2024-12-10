@@ -248,26 +248,6 @@ export default class Inspector extends Component {
                   defaultValue={"h1"}
                 />
               )}
-              {/* <BaseControl>
-                <BaseControl.VisualLabel>
-                  {__("Block Alignment", "responsive-block-editor-addons")}
-                </BaseControl.VisualLabel>
-                <br></br>
-                <br></br>
-                <AlignmentToolbar
-                  value={contentAlign}
-                  onChange={(value) =>
-                    setAttributes({
-                      textAlign: "",
-                      titleAlign: "",
-                      subtitleAlign: "",
-                      contentAlign: value,
-                    })
-                  }
-                  controls={["left", "center", "right"]}
-                  isCollapsed={false}
-                />
-              </BaseControl> */}
               <Fragment>
                 <BaseControl>
                   <p>
@@ -306,44 +286,6 @@ export default class Inspector extends Component {
                   </div>
                 </BaseControl>
               </Fragment>)}
-              {/* {displayTitle && (
-                <BaseControl>
-                  <BaseControl.VisualLabel>
-                    {__("Title Alignment", "responsive-block-editor-addons")}
-                  </BaseControl.VisualLabel>
-                  <br></br>
-                  <br></br>
-                  <AlignmentToolbar
-                    value={titleAlign}
-                    onChange={(value) =>
-                      setAttributes({
-                        titleAlign: value,
-                      })
-                    }
-                    controls={["left", "center", "right"]}
-                    isCollapsed={false}
-                  />
-                </BaseControl>
-              )} */}
-              {/* {displaySubtitle && (
-                <BaseControl>
-                  <BaseControl.VisualLabel>
-                    {__("Subtitle Alignment", "responsive-block-editor-addons")}
-                  </BaseControl.VisualLabel>
-                  <br></br>
-                  <br></br>
-                  <AlignmentToolbar
-                    value={subtitleAlign}
-                    onChange={(value) =>
-                      setAttributes({
-                        subtitleAlign: value,
-                      })
-                    }
-                    controls={["left", "center", "right"]}
-                    isCollapsed={false}
-                  />
-                </BaseControl>
-              )} */}
               {displaySubtitle && (<Fragment>
                 <BaseControl>
                   <p>
@@ -363,23 +305,6 @@ export default class Inspector extends Component {
                   </div>
                 </BaseControl>
               </Fragment>)}
-              {/* <BaseControl>
-                <BaseControl.VisualLabel>
-                  {__("Text Alignment", "responsive-block-editor-addons")}
-                </BaseControl.VisualLabel>
-                <br></br>
-                <br></br>
-                <AlignmentToolbar
-                  value={textAlign}
-                  onChange={(value) =>
-                    setAttributes({
-                      textAlign: value,
-                    })
-                  }
-                  controls={["left", "center", "right"]}
-                  isCollapsed={false}
-                />
-              </BaseControl> */}
               <Fragment>
                 <BaseControl>
                   <p>

@@ -438,17 +438,6 @@ export default class Inspector extends Component {
                   options={viewOptions}
                 />
               )}
-              {/* <h2>{__("Alignment", "responsive-block-editor-addons")}</h2>
-              <BlockAlignmentToolbar
-                value={iconsAlign}
-                onChange={(value) =>
-                  setAttributes({
-                    iconsAlign: value,
-                  })
-                }
-                controls={["left", "center", "right"]}
-                isCollapsed={false}
-              /> */}
               <Fragment>
                 <BaseControl>
                   <p>
@@ -784,17 +773,6 @@ export default class Inspector extends Component {
                   }}
               </TabPanel>
             </PanelBody>
-            {/* <InspectorAdvancedControls>
-              <RbeaRangeControl
-                label={__("Z-Index", "responsive-block-editor-addons")}
-                value={socialZindex}
-                min={-10}
-                max={500}
-                allowReset={true}
-                onChange={(value) => setAttributes({ socialZindex: value })}
-              />
-              <br></br>
-            </InspectorAdvancedControls> */}
           </InspectorTab>
         </InspectorTabs>
       </InspectorControls>

@@ -523,17 +523,6 @@ export default class Inspector extends Component {
                 max={4}
                 step={1}
               />
-              {/* <p>{__("Alignment", "responsive-block-editor-addons")}</p>
-              <AlignmentToolbar
-                value={blockAlign}
-                onChange={(value) =>
-                  setAttributes({
-                    blockAlign: value,
-                  })
-                }
-                controls={["left", "center", "right"]}
-                isCollapsed={false}
-              /> */}
               <Fragment>
                 <BaseControl>
                   <p>
