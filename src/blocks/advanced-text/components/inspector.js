@@ -599,23 +599,23 @@ export default class Inspector extends Component {
                 </TabPanel>
               </PanelBody>
             )}
-            <PanelBody
-              title={__("Color Settings", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
-              {columnsCount > 1 && (
-                <Fragment>
-                  <RbeaColorControl
-                    label = {__("Divider Color", "responsive-block-editor-addons")}
-                    colorValue={dividerColor}
-                    onChange={(colorValue) =>
-                      setAttributes({ dividerColor: colorValue })
-                    }
-                    resetColor={() => setAttributes({ dividerColor: "" })}
-                  />
-                </Fragment>
+            {columnsCount > 1 && (
+                <PanelBody
+                  title={__("Color Settings", "responsive-block-editor-addons")}
+                  initialOpen={false}
+                >
+                  <Fragment>
+                      <RbeaColorControl
+                        label = {__("Divider Color", "responsive-block-editor-addons")}
+                        colorValue={dividerColor}
+                        onChange={(colorValue) =>
+                          setAttributes({ dividerColor: colorValue })
+                        }
+                        resetColor={() => setAttributes({ dividerColor: "" })}
+                      />
+                    </Fragment>
+                </PanelBody>
               )}
-            </PanelBody>
               <TypographyHelperControl
                 title={__("Title Typography", "responsive-block-editor-addons")}
                 attrNameTemplate="title%s"
