@@ -198,10 +198,10 @@ function EditorStyles(props) {
       "opacity": `${typographyOpacityControlValue}`,
     },
     " .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper": {
-        "margin-left": `${generateCSSUnit(hMargin, "px")} !important`,
-        "margin-right": `${generateCSSUnit(hMargin, "px")} !important`,
-        "margin-top": `${generateCSSUnit(vMargin, "px")} !important`,
-        "margin-bottom": `${generateCSSUnit(vMargin, "px")} !important`,
+        "margin-left": `${generateCSSUnit(blockLeftMargin, "px")} !important`,
+        "margin-right": `${generateCSSUnit(blockRightMargin, "px")} !important`,
+        "margin-top": `${generateCSSUnit(blockTopMargin, "px")} !important`,
+        "margin-bottom": `${generateCSSUnit(blockBottomMargin, "px")} !important`,
     },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
       "border-color": borderColor ? hexToRgba(borderColor, borderOpacityControlValue) : "#000",
@@ -223,11 +223,11 @@ function EditorStyles(props) {
         boxShadowColor +
         " " +
         boxShadowPositionCSS,
-      "padding-left": generateCSSUnit(hPadding, "px"),
-      "padding-right": generateCSSUnit(hPadding, "px"),
+      "padding-left": generateCSSUnit(blockLeftPadding, "px"),
+      "padding-right": generateCSSUnit(blockRightPadding, "px"),
+      "padding-top": generateCSSUnit(blockTopPadding, "px"),
+      "padding-bottom": generateCSSUnit(blockBottomPadding, "px"),
       "background-image": updatedBackgroundImage,
-      "padding-top": generateCSSUnit(vPadding, "px"),
-      "padding-bottom": generateCSSUnit(vPadding, "px"),
       "background-color": updatedBackgroundColor,
       "font-size": generateCSSUnit(buttonFontSize, "px"),
       "font-family": buttonFontFamily,
@@ -255,12 +255,10 @@ function EditorStyles(props) {
       "font-size": generateCSSUnit(buttonFontSizeMobile, "px") + "!important",
     },
       " .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper": {
-          "margin-top": generateCSSUnit(updatedvMarginMobile, "px") + "!important",
-          "margin-bottom":
-              generateCSSUnit(updatedvMarginMobile, "px") + "!important",
-          "margin-left": generateCSSUnit(updatedhMarginMobile, "px") + "!important",
-          "margin-right":
-              generateCSSUnit(updatedhMarginMobile, "px") + "!important",
+          "margin-left": `${generateCSSUnit(blockLeftMarginMobile, "px")} !important`,
+          "margin-right": `${generateCSSUnit(blockRightMarginMobile, "px")} !important`,
+          "margin-top": `${generateCSSUnit(blockTopMarginMobile, "px")} !important`,
+          "margin-bottom": `${generateCSSUnit(blockBottomMarginMobile, "px")} !important`,
       },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
       "padding-top": generateCSSUnit(blockTopPaddingMobile, "px"),
@@ -279,12 +277,10 @@ function EditorStyles(props) {
       "font-size": generateCSSUnit(buttonFontSizeTablet, "px") + "!important",
     },
       " .responsive-block-editor-addons-1.responsive-block-editor-addons-button__wrapper": {
-          "margin-top": generateCSSUnit(updatedvMarginTablet, "px") + "!important",
-          "margin-bottom":
-              generateCSSUnit(updatedvMarginTablet, "px") + "!important",
-          "margin-left": generateCSSUnit(updatedhMarginTablet, "px") + "!important",
-          "margin-right":
-              generateCSSUnit(updatedhMarginTablet, "px") + "!important",
+          "margin-left": `${generateCSSUnit(blockLeftMarginTablet, "px")} !important`,
+          "margin-right": `${generateCSSUnit(blockRightMarginTablet, "px")} !important`,
+          "margin-top": `${generateCSSUnit(blockTopMarginTablet, "px")} !important`,
+          "margin-bottom": `${generateCSSUnit(blockBottomMarginTablet, "px")} !important`,
 
       },
     " .responsive-block-editor-addons-buttons-repeater.responsive-block-editor-addons-button__wrapper": {
