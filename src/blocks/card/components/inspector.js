@@ -694,7 +694,10 @@ export default class Inspector extends Component {
 
     // Background image URL
     let background_image_url = backgroundImage || '';
-    let card_image_url = backgroundImageOne || '';
+    let card_image_url = backgroundImageOne != null && backgroundImageOne != '' ? backgroundImageOne : 
+    backgroundImageTwo !== null && backgroundImageTwo != '' ? backgroundImageTwo : 
+    backgroundImageThree !== null && backgroundImageThree != '' ? backgroundImageThree :
+    backgroundImageFour !== null && backgroundImageFour != '' ? backgroundImageFour : '';
 
     // backward compatibility for typography color control
     if (!blockIsTypographyColorValueUpdated) {
