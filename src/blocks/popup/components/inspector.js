@@ -20,7 +20,7 @@ import RbeaBorderRadiusControl from "../../../settings-components/RbeaBorderRadi
 
 // Setup the block
 const { __ } = wp.i18n;
-const { Component } = wp.element;
+const { Component, Fragment } = wp.element;
 import InspectorTab from "../../../components/InspectorTab";
 import InspectorTabs from "../../../components/InspectorTabs";
 
@@ -40,6 +40,7 @@ const {
   ButtonGroup,
   GradientPicker,
   TextControl,
+  BaseControl
 } = wp.components;
 
 const colors = [
@@ -826,7 +827,7 @@ export default class Inspector extends Component {
                       onChange={(value) => setAttributes({ popupTextTrigger: value })}
                     />}
 
-                  <TabPanel
+                  {/* <TabPanel
                     className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
                     activeClass="active-tab"
                     tabs={[
@@ -907,9 +908,111 @@ export default class Inspector extends Component {
 
                       return <div>{tabout}</div>;
                     }}
-                  </TabPanel>
+                  </TabPanel> */}
                 </>
                 }
+                <TabPanel
+                className=" responsive-size-type-field-tabs responsive-size-type-field__common-tabs responsive-inline-margin"
+                activeClass="active-tab"
+                tabs={[
+                  {
+                    name: "desktop",
+                    title: <Dashicon icon="desktop" />,
+                    className:
+                      " responsive-desktop-tab responsive-responsive-tabs",
+                  },
+                  {
+                    name: "tablet",
+                    title: <Dashicon icon="tablet" />,
+                    className:
+                      " responsive-tablet-tab responsive-responsive-tabs",
+                  },
+                  {
+                    name: "mobile",
+                    title: <Dashicon icon="smartphone" />,
+                    className:
+                      " responsive-mobile-tab responsive-responsive-tabs",
+                  },
+                ]}
+              >
+                {(tab) => {
+                  let tabout;
+                  if ("mobile" === tab.name) {
+                    tabout = (
+                      <Fragment>
+                        <BaseControl>
+                          <p>
+                            {__(
+                              "Alignment Mobile",
+                              "responsive-block-editor-addons"
+                            )}
+                          </p>
+                          <div className="responsive-block-editor-addons-alignment-mobile">
+                            <AlignmentToolbar
+                              value={popupTriggerAlignMobile}
+                              onChange={(value) =>
+                                setAttributes({
+                                  popupTriggerAlignMobile: value,
+                                })
+                              }
+                              controls={["left", "center", "right"]}
+                              isCollapsed={false}
+                            />
+                          </div>
+                        </BaseControl>
+                      </Fragment>
+                    );
+                  } else if ("tablet" === tab.name) {
+                    tabout = (
+                      <Fragment>
+                        <BaseControl>
+                          <p>
+                            {__(
+                              "Alignment Tablet",
+                              "responsive-block-editor-addons"
+                            )}
+                          </p>
+                          <div className="responsive-block-editor-addons-alignment-tablet">
+                            <AlignmentToolbar
+                              value={popupTriggerAlignTablet}
+                              onChange={(value) =>
+                                setAttributes({
+                                  popupTriggerAlignTablet: value,
+                                })
+                              }
+                              controls={["left", "center", "right"]}
+                              isCollapsed={false}
+                            />
+                          </div>
+                        </BaseControl>
+                      </Fragment>
+                    );
+                  } else {
+                    tabout = (
+                      <Fragment>
+                        <BaseControl>
+                          <p>
+                            {__("Alignment", "responsive-block-editor-addons")}
+                          </p>
+                          <div className="responsive-block-editor-addons-alignment">
+                            <AlignmentToolbar
+                              value={popupTriggerAlign}
+                              onChange={(value) =>
+                                setAttributes({
+                                  popupTriggerAlign: value,
+                                })
+                              }
+                              controls={["left", "center", "right"]}
+                              isCollapsed={false}
+                            />
+                          </div>
+                        </BaseControl>
+                      </Fragment>
+                    );
+                  }
+                  return <div>{tabout}</div>;
+                }}
+              </TabPanel>
 
               </PanelBody>
               <PanelBody
