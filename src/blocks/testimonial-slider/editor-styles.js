@@ -161,10 +161,6 @@ function EditorStyles(props) {
     img_align = "flex-end";
   }
 
-  console.log('descTypographyColor: ', descTypographyColor);
-  console.log('nameTypographyColor: ', nameTypographyColor);
-  console.log('companyTypographyColor: ', companyTypographyColor);
-
   let updatedBackgroundImage = "";
   let backgroundImageEffect = "";
   let imgopacity = backgroundOpacity / 100;

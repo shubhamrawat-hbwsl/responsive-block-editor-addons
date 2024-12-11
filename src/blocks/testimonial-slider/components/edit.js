@@ -878,10 +878,6 @@ class edit extends Component {
     };
 
 
-    console.log('descTypographyColor: ', descTypographyColor);
-    console.log('nameTypographyColor: ', nameTypographyColor);
-    console.log('companyTypographyColor: ', companyTypographyColor);
-
     let image_enable = false;
     // Set testinomial image panel
     const tmControls = (index) => {
