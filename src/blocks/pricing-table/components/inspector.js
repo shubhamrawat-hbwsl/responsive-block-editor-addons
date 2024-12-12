@@ -844,7 +844,7 @@ export default class Inspector extends Component {
                   height: titleLineHeight,
                   color: titleTypographyColor,
                   bottomSpacing: titleBottomSpacing,
-                  bottomSpacingMoible: titleBottomSpacingMobile,
+                  bottomSpacingMobile: titleBottomSpacingMobile,
                   bottomSpacingTablet: titleBottomSpacingTablet,
                 }}
                 showLetterSpacing={false}
@@ -887,7 +887,7 @@ export default class Inspector extends Component {
                   height: amountLineHeight,
                   color: amountTypographyColor,
                   bottomSpacing: amountBottomSpacing,
-                  bottomSpacingMoible: amountBottomSpacingMobile,
+                  bottomSpacingMobile: amountBottomSpacingMobile,
                   bottomSpacingTablet: amountBottomSpacingTablet,
                 }}
                 showLetterSpacing={false}
@@ -934,7 +934,7 @@ export default class Inspector extends Component {
                   transform: subpriceTextTransform,
                   color: subpriceTypographyColor,
                   bottomSpacing: subpriceBottomSpacing,
-                  bottomSpacingMoible: subpriceBottomSpacingMobile,
+                  bottomSpacingMobile: subpriceBottomSpacingMobile,
                   bottomSpacingTablet: subpriceBottomSpacingTablet,
                 }}
                 showLetterSpacing={false}
@@ -959,7 +959,7 @@ export default class Inspector extends Component {
                   height: featuresLineHeight,
                   color: featuresTypographyColor,
                   bottomSpacing: featuresBottomSpacing,
-                  bottomSpacingMoible: featuresBottomSpacingMobile,
+                  bottomSpacingMobile: featuresBottomSpacingMobile,
                   bottomSpacingTablet: featuresBottomSpacingTablet,
                 }}
                 showLetterSpacing={false}
