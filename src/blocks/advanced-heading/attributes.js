@@ -419,21 +419,27 @@ const attributes = {
   },
   headingTitleBottomSpacing: {
     type: "number",
+    default:'',
   },
   headingTitleBottomSpacingMobile: {
     type: "number",
+    default: '',
   },
   headingTitleBottomSpacingTablet: {
     type: "number",
+    default: '',
   },
   subHeadingTitleBottomSpacing: {
     type: "number",
+    default: '',
   },
   subHeadingTitleBottomSpacingMobile: {
     type: "number",
+    default: '',
   },
   subHeadingTitleBottomSpacingTablet: {
     type: "number",
+    default: '',
   },
   headingTitleTextDecoration: {
     type: "string",

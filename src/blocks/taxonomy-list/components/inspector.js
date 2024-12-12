@@ -26,7 +26,7 @@ import { loadGoogleFont } from "../../../utils/font";
 
 // Import block components
 
-const { InspectorControls, ColorPalette } = wp.blockEditor;
+const { InspectorControls, ColorPalette, AlignmentToolbar } = wp.blockEditor;
 
 // Import Inspector components
 const {
@@ -39,6 +39,7 @@ const {
   ToggleControl,
   TabPanel,
   Dashicon,
+  BaseControl
 } = wp.components;
 
 /**
@@ -535,37 +536,25 @@ if (!gridIsRadiusValueUpdated) {
                   "responsive-block-editor-addons"
                 )}
               />
-              {"grid" == layout && (
-                <Fragment>
-                  <p className="responsive-setting-label">
+              {"grid" == layout && (<Fragment>
+                <BaseControl>
+                  <p>
                     {__("Alignment", "responsive-block-editor-addons")}
                   </p>
-                  <Button
-                    key={"left"}
-                    icon="editor-alignleft"
-                    label="Left"
-                    onClick={() => setAttributes({ alignment: "left" })}
-                    aria-pressed={"left" === alignment}
-                    isPrimary={"left" === alignment}
-                  />
-                  <Button
-                    key={"center"}
-                    icon="editor-aligncenter"
-                    label="Center"
-                    onClick={() => setAttributes({ alignment: "center" })}
-                    aria-pressed={"center" === alignment}
-                    isPrimary={"center" === alignment}
-                  />
-                  <Button
-                    key={"right"}
-                    icon="editor-alignright"
-                    label="Right"
-                    onClick={() => setAttributes({ alignment: "right" })}
-                    aria-pressed={"right" === alignment}
-                    isPrimary={"right" === alignment}
-                  />
-                </Fragment>
-              )}
+                  <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={alignment}
+                      onChange={(value) =>
+                        setAttributes({
+                          alignment: value,
+                        })
+                      }
+                      controls={["left", "center", "right"]}
+                      isCollapsed={false}
+                    />
+                  </div>
+                </BaseControl>
+              </Fragment>)}
             </PanelBody>
           </InspectorTab>
           <InspectorTab key={"style"}>

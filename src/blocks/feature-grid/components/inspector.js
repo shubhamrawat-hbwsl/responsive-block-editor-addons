@@ -30,7 +30,7 @@ const { Component, Fragment } = wp.element;
 const { InspectorControls, PanelColorSettings, AlignmentToolbar } = wp.blockEditor;
 
 // Import Inspector components
-const { PanelBody, RangeControl, SelectControl, ToggleControl, TabPanel, Dashicon} = wp.components;
+const { PanelBody, RangeControl, SelectControl, ToggleControl, TabPanel, Dashicon, BaseControl} = wp.components;
 
 /**
  * Create an Inspector Controls wrapper Component
@@ -523,17 +523,25 @@ export default class Inspector extends Component {
                 max={4}
                 step={1}
               />
-              <p>{__("Alignment", "responsive-block-editor-addons")}</p>
-              <AlignmentToolbar
-                value={blockAlign}
-                onChange={(value) =>
-                  setAttributes({
-                    blockAlign: value,
-                  })
-                }
-                controls={["left", "center", "right"]}
-                isCollapsed={false}
-              />
+              <Fragment>
+                <BaseControl>
+                  <p>
+                    {__("Alignment", "responsive-block-editor-addons")}
+                  </p>
+                  <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={blockAlign}
+                      onChange={(value) =>
+                        setAttributes({
+                          blockAlign: value,
+                        })
+                      }
+                      controls={["left", "center", "right"]}
+                      isCollapsed={false}
+                    />
+                  </div>
+                </BaseControl>
+              </Fragment>
               <Fragment>
                 <ToggleControl
                   label={__("Image", "responsive-block-editor-addons")}
