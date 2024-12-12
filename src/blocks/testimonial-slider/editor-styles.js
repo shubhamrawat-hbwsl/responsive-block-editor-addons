@@ -260,7 +260,7 @@ function EditorStyles(props) {
       "font-family": descFontFamily,
       "font-weight": descFontWeight,
       "line-height": generateCSSUnit(descLineHeight, descLineHeightType),
-      'color': descTypographyColor,
+      color: descTypographyColor,
       "margin-bottom": generateCSSUnit(descBottomSpacing, "px"),
     },
     " .responsive-block-editor-addons-testimonial__wrap.responsive-block-editor-addons-tm__bg-type-color .responsive-block-editor-addons-tm__content": {
