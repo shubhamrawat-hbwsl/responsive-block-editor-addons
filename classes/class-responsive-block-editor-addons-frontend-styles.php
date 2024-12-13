@@ -11523,6 +11523,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'contentRightPadding'          => 20,
 				'contentRightPaddingMobile'    => 20,
 				'contentRightPaddingTablet'    => 20,
+				'nameTypographyColor'	=> '',
 				'nameBottomSpacing'		=> -5,
       			'nameBottomSpacingMobile'		=> -5,
       			'nameBottomSpacingTablet'		=> -5,
@@ -20387,6 +20388,9 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'imageRightRadius'         => '',
 				'imageBottomRadius'        => '',
 				'imageLeftRadius'          => '',
+				'captionTypographyColor'	=> '',
+				'layoverHeadingTypographyColor' => 'none',
+				'captionFontWeight'		=> '600',
 			);
 		}
 
