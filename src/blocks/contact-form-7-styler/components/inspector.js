@@ -509,6 +509,13 @@ export default class Inspector extends Component {
         formRightMarginTablet,
         formIsMarginControlConnected,
         formNewSpacingValuesUpdated,
+
+        inputTypographyColor,
+        blockIsTypographyColorValueUpdated,
+        labelTypographyColor,
+        labelBottomSpacing,
+        labelBottomSpacingTablet,
+        labelBottomSpacingMobile,
       },
       setAttributes,
     } = this.props;
@@ -736,6 +743,19 @@ export default class Inspector extends Component {
     )
     this.props.setAttributes({checkboxBorderIsRadiusValueUpdated: true});
   }
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          inputTypographyColor: inputTextColor !== undefined ? inputTextColor : inputTypographyColor,
+          labelTypographyColor: labelColor !== undefined ? labelColor: labelTypographyColor,
+          labelBottomSpacing: labelSpacing !== undefined ? labelSpacing : labelBottomSpacing,
+          labelBottomSpacingMobile: labelSpacingMobile !== undefined ? labelSpacingMobile : labelBottomSpacingMobile,
+          labelBottomSpacingTablet: labelSpacingTablet !== undefined ? labelSpacingTablet : labelBottomSpacingTablet,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
+    }
 
     return (
       <InspectorControls key="inspector">
@@ -1176,7 +1196,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <div className="responsive-block-editor-addons-alignment">=
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={formTitleAlignmentMobile}
                             onChange={(value) =>
@@ -1317,14 +1337,6 @@ export default class Inspector extends Component {
                 title={__("Input and Text Area", "responsive-block-editor-addons")}
                 initialOpen={false}
               >
-                <RbeaColorControl
-                  label = {__("Text Color", "responsive-block-editor-addons")}
-                  colorValue={inputTextColor}
-                  onChange={(colorValue) =>
-                    setAttributes({ inputTextColor: colorValue })
-                  }
-                  resetColor={() => setAttributes({ inputTextColor: "" })}
-                />
                 <RbeaColorControl
                   label = {__("Background Color", "responsive-block-editor-addons")}
                   colorValue={inputBackgroundColor}
@@ -1820,7 +1832,8 @@ export default class Inspector extends Component {
                   return <div>{tabout}</div>;
                 }}
               </TabPanel>
-                <TypographyHelperControl
+              </PanelBody>
+              <TypographyHelperControl
                   title={__("Input Typography", "responsive-block-editor-addons")}
                   attrNameTemplate="input%s"
                   values={{
@@ -1831,20 +1844,14 @@ export default class Inspector extends Component {
                     weight: inputFontWeight,
                     height: inputLineHeight,
                     spacing: inputLetterSpacing,
+                    color: inputTypographyColor,
                   }}
                   showLetterSpacing = { false }
                   showTextTransform = { false }
+                  showColorControl = {true}
                   setAttributes={ setAttributes }
                   {...this.props}
                 />
-              </PanelBody>
-            <PanelBody
-              title={__(
-                "Labels",
-                "responsive-block-editor-addons"
-              )}
-              initialOpen={false}
-            >
               <TypographyHelperControl
                 title={__(
                   "Labels Typography",
@@ -1859,32 +1866,18 @@ export default class Inspector extends Component {
                   weight: labelFontWeight,
                   height: labelLineHeight,
                   spacing: labelLetterSpacing,
+                  color: labelTypographyColor,
+                  bottomSpacing: labelBottomSpacing,
+                  bottomSpacingTablet: labelBottomSpacingTablet,
+                  bottomSpacingMobile: labelBottomSpacingMobile,
                 }}
                 showLetterSpacing={true}
                 showTextTransform={false}
+                showTextBottomSpacing={true}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
-              <ResponsiveSpacingControl
-                title={"Spacing"}
-                attrNameTemplate="labelSpacing%s"
-                values={{
-                  desktop: labelSpacing,
-                  tablet: labelSpacingTablet,
-                  mobile: labelSpacingMobile,
-                }}
-                setAttributes={setAttributes}
-                {...this.props}
-              />
-              <RbeaColorControl
-                label = {__("Label Color", "responsive-block-editor-addons")}
-                colorValue={labelColor}
-                onChange={(colorValue) =>
-                  setAttributes({ labelColor: colorValue })
-                }
-                resetColor={() => setAttributes({ labelColor: "" })}
-              />                    
-            </PanelBody>
             <PanelBody
               title={__(
                 "Placeholder",

@@ -137,6 +137,8 @@ export default class Inspector extends Component {
         z_indexTablet,
         blockIsMarginControlConnected,
         blockIsPaddingControlConnected,
+        blockIsTypographyColorValueUpdated,
+        labelTypographyColor,
       },
       setAttributes,
     } = this.props;
@@ -321,6 +323,17 @@ export default class Inspector extends Component {
       )
       this.props.setAttributes({blockIsRadiusValueUpdated: true});
     }
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          labelTypographyColor:          labelColor !== undefined ? labelColor : labelTypographyColor,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
+    }
+
 
     return (
       <InspectorControls key="inspector">
@@ -581,12 +594,6 @@ export default class Inspector extends Component {
                   />
                 </Fragment>
               )}
-              <RbeaColorControl
-                label = {__("Label", "responsive-block-editor-addons")}
-                colorValue={labelColor}
-                onChange={(colorValue) => setAttributes({ labelColor: colorValue })}
-                resetColor={() => setAttributes({ labelColor: "" })}
-              />
             </PanelBody>
             <TypographyHelperControl
               title={__("Label Typography", "responsive-block-editor-addons")}
@@ -598,9 +605,11 @@ export default class Inspector extends Component {
                 sizeTablet: labelFontSizeTablet,
                 weight: labelFontWeight,
                 height: labelLineHeight,
+                color: labelTypographyColor,
               }}
               showLetterSpacing={false}
               showTextTransform={false}
+              showColorControl={true}
               setAttributes={setAttributes}
               {...this.props}
             />

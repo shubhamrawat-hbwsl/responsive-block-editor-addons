@@ -597,6 +597,14 @@ function responsive_block_editor_addons_register_block_core_latest_posts_portfol
 					'type'    => 'boolean',
 					'default' => 'false',
 				),
+				'blockIsTypographyColorValueUpdated' => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
+      			'overlayTextTypographyColor' => array(
+					'type'    => 'string',
+					'default' => '#fff',
+				),
 			),
 			'render_callback' => 'responsive_block_editor_addons_render_block_core_latest_posts_portfolio',
 		)

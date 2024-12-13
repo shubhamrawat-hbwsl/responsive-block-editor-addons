@@ -145,6 +145,11 @@ export default class Inspector extends Component {
         hideWidget,
         hideWidgetTablet,
         hideWidgetMobile,
+
+        blockIsTypographyColorValueUpdated,
+        titleTypographyColor,
+        subtitleTypographyColor,
+        textTypographyColor,
       },
       setAttributes,
     } = this.props;
@@ -200,6 +205,18 @@ export default class Inspector extends Component {
         });
       }
     };
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          titleTypographyColor:         titleColor !== undefined ? titleColor : titleTypographyColor,
+          subtitleTypographyColor:          subtitleColor !== undefined ? subtitleColor : subtitleTypographyColor,
+          textTypographyColor:          textColor !== undefined ? textColor : textTypographyColor,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
+    }
 
     return (
       <InspectorControls key="inspector">
@@ -582,57 +599,23 @@ export default class Inspector extends Component {
                 </TabPanel>
               </PanelBody>
             )}
-            <PanelBody
-              title={__("Color Settings", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
-              {columnsCount > 1 && (
-                <Fragment>
-                  <RbeaColorControl
-                    label = {__("Divider Color", "responsive-block-editor-addons")}
-                    colorValue={dividerColor}
-                    onChange={(colorValue) =>
-                      setAttributes({ dividerColor: colorValue })
-                    }
-                    resetColor={() => setAttributes({ dividerColor: "" })}
-                  />
-                </Fragment>
+            {columnsCount > 1 && (
+                <PanelBody
+                  title={__("Color Settings", "responsive-block-editor-addons")}
+                  initialOpen={false}
+                >
+                  <Fragment>
+                      <RbeaColorControl
+                        label = {__("Divider Color", "responsive-block-editor-addons")}
+                        colorValue={dividerColor}
+                        onChange={(colorValue) =>
+                          setAttributes({ dividerColor: colorValue })
+                        }
+                        resetColor={() => setAttributes({ dividerColor: "" })}
+                      />
+                    </Fragment>
+                </PanelBody>
               )}
-              <Fragment>
-                <RbeaColorControl
-                  label = {__("Title Color", "responsive-block-editor-addons")}
-                  colorValue={titleColor}
-                  onChange={(colorValue) =>
-                    setAttributes({ titleColor: colorValue })
-                  }
-                  resetColor={() => setAttributes({ titleColor: "" })}
-                />
-              </Fragment>
-              <Fragment>
-                <RbeaColorControl
-                  label = {__("Subtitle Color", "responsive-block-editor-addons")}
-                  colorValue={subtitleColor}
-                  onChange={(colorValue) =>
-                    setAttributes({ subtitleColor: colorValue })
-                  }
-                  resetColor={() => setAttributes({ subtitleColor: "" })}
-                />
-              </Fragment>
-              <Fragment>
-                <RbeaColorControl
-                  label = {__("Text Color", "responsive-block-editor-addons")}
-                  colorValue={textColor}
-                  onChange={(colorValue) =>
-                    setAttributes({ textColor: colorValue })
-                  }
-                  resetColor={() => setAttributes({ textColor: "" })}
-                />
-              </Fragment>
-            </PanelBody>
-            <PanelBody
-              title={__("Typography", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
               <TypographyHelperControl
                 title={__("Title Typography", "responsive-block-editor-addons")}
                 attrNameTemplate="title%s"
@@ -643,9 +626,11 @@ export default class Inspector extends Component {
                   sizeTablet: titleFontSizeTablet,
                   weight: titleFontWeight,
                   height: titleLineHeight,
+                  color: titleTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
@@ -662,9 +647,11 @@ export default class Inspector extends Component {
                   sizeTablet: subtitleFontSizeTablet,
                   weight: subtitleFontWeight,
                   height: subtitleLineHeight,
+                  color: subtitleTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
@@ -678,13 +665,14 @@ export default class Inspector extends Component {
                   sizeTablet: textFontSizeTablet,
                   weight: textFontWeight,
                   height: textLineHeight,
+                  color: textTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
-            </PanelBody>
           </InspectorTab>
           <InspectorTab key={"advance"}>
             <PanelBody

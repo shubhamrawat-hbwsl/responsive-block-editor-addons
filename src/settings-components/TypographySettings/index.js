@@ -35,6 +35,7 @@ const TypographyHelperControl = (props) => {
             onChangeBottomSpacingMobile={value => props.setAttributes({ [getAttrName('BottomSpacingMobile')]: value })}
             onChangeBottomSpacingTablet={value => props.setAttributes({ [getAttrName('BottomSpacingTablet')]: value })}
             onChangeTypographyColor={value => props.setAttributes({ [getAttrName('TypographyColor')]: value })}
+            onChangeActiveTypographyColor={value => props.setAttributes({ [getAttrName('ActiveTypographyColor')]: value })}
             onChangeFontFamily={value => props.setAttributes({ [getAttrName('FontFamily')]: value })}
             onChangeFontWeight={value => props.setAttributes({ [getAttrName('FontWeight')]: value })}
             onChangeLineHeight={value => props.setAttributes({ [getAttrName('LineHeight')]: value })}
@@ -141,10 +142,18 @@ class TypographyControl extends Component {
                 <Fragment>
                     {(this.props.showColorControl == true) && (
                         <RbeaColorControl
-                            label={__("Content Color", "responsive-block-editor-addons")}
+                            label={__("Color", "responsive-block-editor-addons")}
                             colorValue={this.props.values.color}
                             onChange={this.props.onChangeTypographyColor}
                             resetColor={() => setAttributes({ [this.props.values.color]: "" })}
+                        />
+                    )}
+                    {(this.props.showActiveColorControl == true) && (
+                        <RbeaColorControl
+                            label={__("Active Color", "responsive-block-editor-addons")}
+                            colorValue={this.props.values.activeColor}
+                            onChange={this.props.onChangeActiveTypographyColor}
+                            resetColor={() => setAttributes({ [this.props.values.activeColor]: "" })}
                         />
                     )}
                     <SelectControl

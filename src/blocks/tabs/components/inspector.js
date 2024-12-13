@@ -151,6 +151,10 @@ export default class Inspector extends Component {
         hideWidgetMobile,
         tabsIsMarginControlConnected,
         tabsIsPaddingControlConnected,
+        blockIsTypographyColorValueUpdated,
+        tabTitleTypographyColor,
+        tabTitleActiveTypographyColor,
+        tabContentTypographyColor,
       },
       setAttributes,
       deviceType,
@@ -246,6 +250,18 @@ export default class Inspector extends Component {
         }
       )
       this.props.setAttributes({blockIsRadiusValueUpdated: true});
+    }
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          tabTitleTypographyColor:          tabTitleColor !== undefined ? tabTitleColor : tabTitleTypographyColor,
+          tabTitleActiveTypographyColor:         tabTitleActiveColor !== undefined ? tabTitleActiveColor : tabTitleActiveTypographyColor,
+          tabContentTypographyColor:          tabContentColor !== undefined ? tabContentColor : tabContentTypographyColor,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
     }
 
     return (
@@ -414,25 +430,8 @@ export default class Inspector extends Component {
                 allowReset
               />
             </PanelBody>
-            <PanelBody
-              title={__("Title", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
-              <RbeaColorControl
-                label = {__("Color", "responsive-block-editor-addons")}
-                colorValue={tabTitleColor}
-                onChange={(colorValue) => setAttributes({ tabTitleColor: colorValue })}
-                resetColor={() => setAttributes({ tabTitleColor: "" })}
-              />
-              <RbeaColorControl
-                label = {__("Active Color", "responsive-block-editor-addons")}
-                colorValue={tabTitleActiveColor}
-                onChange={(colorValue) => setAttributes({ tabTitleActiveColor: colorValue })}
-                resetColor={() => setAttributes({ tabTitleActiveColor: "" })}
-              />
-              <hr className="responsive-block-editor-addons-editor__separator" />
-              <TypographyHelperControl
-                title={__("Typography", "responsive-block-editor-addons")}
+            <TypographyHelperControl
+                title={__("Title Typography", "responsive-block-editor-addons")}
                 attrNameTemplate="tabTitle%s"
                 values={{
                   family: tabTitleFontFamily,
@@ -441,26 +440,18 @@ export default class Inspector extends Component {
                   sizeTablet: tabTitleFontSizeTablet,
                   weight: tabTitleFontWeight,
                   height: tabTitleLineHeight,
+                  color: tabTitleTypographyColor,
+                  activeColor: tabTitleActiveTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showActiveColorControl={true}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
-            </PanelBody>
-            <PanelBody
-              title={__("Content", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
-              <RbeaColorControl
-                label = {__("Color", "responsive-block-editor-addons")}
-                colorValue={tabContentColor}
-                onChange={(colorValue) => setAttributes({ tabContentColor: colorValue })}
-                resetColor={() => setAttributes({ tabContentColor: "" })}
-              />
-              <hr className="responsive-block-editor-addons-editor__separator" />
               <TypographyHelperControl
-                title={__("Typography", "responsive-block-editor-addons")}
+                title={__("Content Typography", "responsive-block-editor-addons")}
                 attrNameTemplate="tabContent%s"
                 values={{
                   family: tabContentFontFamily,
@@ -469,13 +460,14 @@ export default class Inspector extends Component {
                   sizeTablet: tabContentFontSizeTablet,
                   weight: tabContentFontWeight,
                   height: tabContentLineHeight,
+                  color: tabContentTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={false}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
-            </PanelBody>
             <PanelBody
               title={__("Spacing", "responsive-block-editor-addons")}
               initialOpen={false}

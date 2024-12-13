@@ -218,6 +218,9 @@ export default class Inspector extends Component {
         blockRightMarginMobile,
         blockRightMarginTablet,
         blockIsMarginControlConnected,
+        blockIsTypographyColorValueUpdated,
+        titleTypographyColor,
+        descTypographyColor,
       },
       setAttributes,
     } = this.props;
@@ -435,6 +438,17 @@ export default class Inspector extends Component {
         }
       )
       this.props.setAttributes({blockIsRadiusValueUpdated: true});
+    }
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          titleTypographyColor:         titleColor !== undefined ? titleColor : titleTypographyColor,
+          descTypographyColor:         descColor !== undefined ? descColor : descTypographyColor,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
     }
 
     return (
@@ -775,10 +789,6 @@ export default class Inspector extends Component {
                 </Fragment>
               )}
             </PanelBody>
-            <PanelBody
-              title={__("Typography", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
               <TypographyHelperControl
                 title={__("Title Typography", "responsive-block-editor-addons")}
                 attrNameTemplate="title%s"
@@ -790,9 +800,11 @@ export default class Inspector extends Component {
                   weight: titleFontWeight,
                   height: titleLineHeight,
                   transform: titleTextTransform,
+                  color: titleTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={true}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
@@ -810,9 +822,11 @@ export default class Inspector extends Component {
                   weight: descFontWeight,
                   height: descLineHeight,
                   transform: descTextTransform,
+                  color: descTypographyColor,
                 }}
                 showLetterSpacing={false}
                 showTextTransform={true}
+                showColorControl={true}
                 setAttributes={setAttributes}
                 {...this.props}
               />
@@ -835,7 +849,6 @@ export default class Inspector extends Component {
                 setAttributes={setAttributes}
                 {...this.props}
               />
-            </PanelBody>
             <PanelBody
               title={__("Border", "responsive-block-editor-addons")}
               initialOpen={false}
@@ -851,8 +864,12 @@ export default class Inspector extends Component {
                 setAttributes={setAttributes}
                 {...this.props}
               />
-
-              <BoxShadowControl
+            </PanelBody>
+            <PanelBody
+              title={__("Box Shadow", "responsive-block-editor-addons")}
+              initialOpen={false}
+            >
+            <BoxShadowControl
                 setAttributes={setAttributes}
                 label={__("Box Shadow", "responsive-block-editor-addons")}
                 boxShadowColor={{
@@ -959,27 +976,6 @@ export default class Inspector extends Component {
                   {...this.props}
                 />
               </PanelBody>
-            </PanelBody>
-            <PanelBody
-              title={__("Color Settings", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
-               <RbeaColorControl
-									label = {__("Title Color", "responsive-block-editor-addons")}
-									colorValue={titleColor}
-									onChange={(colorValue) =>
-										setAttributes({ titleColor: colorValue })
-									}
-									resetColor={() => setAttributes({ titleColor: "" })}
-								/>
-               <RbeaColorControl
-									label = {__("Description Color", "responsive-block-editor-addons")}
-									colorValue={descColor}
-									onChange={(colorValue) =>
-										setAttributes({ descColor: colorValue })
-									}
-									resetColor={() => setAttributes({ descColor: "" })}
-								/>
             </PanelBody>
           </InspectorTab>
           <InspectorTab key={"advance"}>

@@ -388,7 +388,17 @@ class edit extends Component {
       blockRightPaddingTablet,
       blockIsMarginControlConnected,
       blockIsPaddingControlConnected,
-      newSpacingValuesUpdated
+      newSpacingValuesUpdated,
+      blockIsTypographyColorValueUpdated,
+      descTypographyColor,
+      nameTypographyColor,
+      companyTypographyColor,
+      descBottomSpacing,
+      descBottomSpacingMobile,
+      descBottomSpacingTablet,
+      nameBottomSpacing,
+      nameBottomSpacingMobile,
+      nameBottomSpacingTablet,
     } = attributes;
 
     const blockMarginResetValues = {
@@ -505,13 +515,29 @@ class edit extends Component {
         label: __("900", "responsive-block-editor-addons"),
       },
     ];
+
+    // backward compatibility for typography color control
+    if (!blockIsTypographyColorValueUpdated) {
+      this.props.setAttributes(
+        {
+          descTypographyColor:          descColor !== undefined ? descColor : descTypographyColor,
+          nameTypographyColor:         authorColor !== undefined ? authorColor : nameTypographyColor,
+          companyTypographyColor:         companyColor !== undefined ? companyColor : companyTypographyColor,
+          descBottomSpacing: descSpace !== undefined ? descSpace : descBottomSpacing,
+          descBottomSpacingMobile: descSpaceMobile !== undefined ? descSpaceMobile : descBottomSpacingMobile,
+          descBottomSpacingTablet: descSpaceTablet !== undefined ? descSpaceTablet : descBottomSpacingTablet,
+          nameBottomSpacing: nameSpace !== undefined ? nameSpace : nameBottomSpacing,
+          nameBottomSpacingMobile: nameSpaceMobile !== undefined ? nameSpaceMobile : nameBottomSpacingMobile,
+          nameBottomSpacingTablet: nameSpaceTablet !== undefined ? nameSpaceTablet : nameBottomSpacingTablet,
+        }
+      )
+      this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
+    }
+
+
     // Typography settings.
     const TypographySettings = (
       <Fragment>
-        <PanelBody
-          title={__("Typography", "responsive-block-editor-addons")}
-          initialOpen={false}
-        >
 			<TypographyHelperControl
 				title={__("Testimonial Typography", "responsive-block-editor-addons")}
 				attrNameTemplate="desc%s"
@@ -522,9 +548,16 @@ class edit extends Component {
 				sizeTablet: descFontSizeTablet,
 				weight: descFontWeight,
 				height: descLineHeight,
+        color: descTypographyColor,
+        bottomSpacing: descBottomSpacing,
+        bottomSpacingMoible: descBottomSpacingMobile,
+        bottomSpacingTablet: descBottomSpacingTablet,
+
 				}}
 				showLetterSpacing={false}
 				showTextTransform={false}
+        showColorControl={true}
+        showTextBottomSpacing={true}
 				setAttributes={setAttributes}
 				{...this.props}
 			/>
@@ -538,9 +571,15 @@ class edit extends Component {
 				sizeTablet: nameFontSizeTablet,
 				weight: nameFontWeight,
 				height: nameLineHeight,
+        color: nameTypographyColor,
+        bottomSpacing: nameBottomSpacing,
+        bottomSpacingMoible: nameBottomSpacingMobile,
+        bottomSpacingTablet: nameBottomSpacingTablet,
 				}}
 				showLetterSpacing={false}
 				showTextTransform={false}
+        showColorControl={true}
+        showTextBottomSpacing={true}
 				setAttributes={setAttributes}
 				{...this.props}
 			/>
@@ -554,19 +593,20 @@ class edit extends Component {
 				sizeTablet: companyFontSizeTablet,
 				weight: companyFontWeight,
 				height: companyLineHeight,
+        color: companyTypographyColor,
 				}}
 				showLetterSpacing={false}
+        showColorControl={true}
 				showTextTransform={false}
+        showTextBottomSpacing={true}
 				setAttributes={setAttributes}
 				{...this.props}
 			/>
-        </PanelBody>
-
         <PanelBody
           title={__("Color Settings", "responsive-block-editor-addons")}
           initialOpen={false}
         >
-           <RbeaColorControl
+           {/* <RbeaColorControl
 					  	label = {__("Testimonial Color", "responsive-block-editor-addons")}
 					  	colorValue={descColor}
 					  	onChange={(colorValue) =>
@@ -589,7 +629,7 @@ class edit extends Component {
 					  		setAttributes({ companyColor: colorValue })
 					  	}
 					  	resetColor={() => setAttributes({ companyColor: "" })}
-					  />
+					  /> */}
            <RbeaColorControl
 					  	label = {__("Arrow & Dots Color", "responsive-block-editor-addons")}
 					  	colorValue={arrowColor}
@@ -648,7 +688,7 @@ class edit extends Component {
           setAttributes={setAttributes}
           {...this.props}
         />
-        <ResponsiveSpacingControl
+        {/* <ResponsiveSpacingControl
           title={"Testimonial Bottom Margin"}
           attrNameTemplate="descSpace%s"
           values={{
@@ -658,8 +698,8 @@ class edit extends Component {
           }}
           setAttributes={setAttributes}
           {...this.props}
-        />
-        <ResponsiveSpacingControl
+        /> */}
+        {/* <ResponsiveSpacingControl
           title={"Name Bottom Margin"}
           attrNameTemplate="nameSpace%s"
           values={{
@@ -669,7 +709,7 @@ class edit extends Component {
           }}
           setAttributes={setAttributes}
           {...this.props}
-        />
+        /> */}
         <ResponsiveSpacingControl
           title={"Image Horizontal Padding"}
           attrNameTemplate="imgHrPadding%s"
@@ -836,6 +876,7 @@ class edit extends Component {
         },
       ],
     };
+
 
     let image_enable = false;
     // Set testinomial image panel

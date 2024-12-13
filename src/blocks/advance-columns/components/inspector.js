@@ -412,7 +412,7 @@ export default class Inspector extends Component {
                   { value: "full", label: __("Full Screen", "responsive-block-editor-addons") },
                   { value: "custom", label: __("Custom", "responsive-block-editor-addons") },
                 ]}
-                defaultValue={"Normal"}
+                defaultValue={""}
               /></div>
               {"custom" == height && (
                 <RbeaRangeControl
