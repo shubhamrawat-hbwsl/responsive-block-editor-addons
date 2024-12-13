@@ -1196,7 +1196,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <div className="responsive-block-editor-addons-alignment">=
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={formTitleAlignmentMobile}
                             onChange={(value) =>
@@ -1832,7 +1832,8 @@ export default class Inspector extends Component {
                   return <div>{tabout}</div>;
                 }}
               </TabPanel>
-                <TypographyHelperControl
+              </PanelBody>
+              <TypographyHelperControl
                   title={__("Input Typography", "responsive-block-editor-addons")}
                   attrNameTemplate="input%s"
                   values={{
@@ -1851,7 +1852,6 @@ export default class Inspector extends Component {
                   setAttributes={ setAttributes }
                   {...this.props}
                 />
-              </PanelBody>
               <TypographyHelperControl
                 title={__(
                   "Labels Typography",

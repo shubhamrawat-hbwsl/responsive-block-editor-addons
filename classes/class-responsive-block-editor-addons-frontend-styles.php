@@ -19402,10 +19402,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'text-indent'    => self::get_css_value( $attr['textIndentTablet'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['inputFontSizeTablet'], 'px' ),
 					'margin-top'     => self::get_css_value( $attr['labelBottomSpacingTablet'], 'px' ),
-					'border-top-left-radius'       => self::get_css_value( $attr['inputTopTablet'], 'px' ),
-					'border-top-right-radius'      => self::get_css_value( $attr['inputRightTablet'], 'px' ),
-					'border-bottom-right-radius'   => self::get_css_value( $attr['inputBottomTablet'], 'px' ),
-					'border-bottom-left-radius'    => self::get_css_value( $attr['inputLeftTablet'], 'px' ),
+					'border-top-left-radius'       => self::get_css_value( $attr['inputTopRadiusTablet'], 'px' ),
+					'border-top-right-radius'      => self::get_css_value( $attr['inputRightRadiusTablet'], 'px' ),
+					'border-bottom-right-radius'   => self::get_css_value( $attr['inputBottomRadiusTablet'], 'px' ),
+					'border-bottom-left-radius'    => self::get_css_value( $attr['inputLeftRadiusTablet'], 'px' ),
 				),
 
 				' .wpcf7-form-control'                => array(
