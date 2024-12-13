@@ -1176,7 +1176,7 @@ export default class Inspector extends Component {
                               "responsive-block-editor-addons"
                             )}
                           </p>
-                          <div className="responsive-block-editor-addons-alignment">=
+                          <div className="responsive-block-editor-addons-alignment">
                           <AlignmentToolbar
                             value={formTitleAlignmentMobile}
                             onChange={(value) =>
