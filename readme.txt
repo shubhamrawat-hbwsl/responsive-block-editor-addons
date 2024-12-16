@@ -241,6 +241,8 @@ This is how you can easily install the Responsive Gutenberg Blocks plugin on you
 * Improvement - Improved UI for Box Shadow controls across all blocks.
 * Improvement - Improved UI for Alignment controls across blocks.
 * Improvement - Improved UI for Color controls across all blocks.
+* Improvement - Improved UI for Select controls in Call/mail Buttons.
+* Improvement - Improved UI for Select controls in Advanced Columns.
 * Fix - Fixed minor bugs.
 
 = 1.9.7 - 6th December 2024 =
