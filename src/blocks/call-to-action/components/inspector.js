@@ -448,14 +448,16 @@ export default class Inspector extends Component {
       <InspectorControls key="inspector">
         <InspectorTabs>
           <InspectorTab key={"content"}>
-            <PanelBody
-              title={__("General", "responsive-block-editor-addons")}
-              initialOpen={true}
-            >
+            <PanelBody>
               <RbeaBorderRadiusControl
                 attrNameTemplate="block%s"
                 {...this.props}
               />
+            </PanelBody>
+            <PanelBody
+              title={__("Box Shadow", "responsive-block-editor-addons")}
+              initialOpen={false}
+            >
               <BoxShadowControl
                 setAttributes={setAttributes}
                 label={__("Box Shadow", "responsive-block-editor-addons")}

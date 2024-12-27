@@ -461,7 +461,11 @@ export default class Inspector extends Component {
                 setAttributes={setAttributes}
                 {...this.props}
               />
-
+            </PanelBody>
+            <PanelBody
+              title={__("Box Shadow", "responsive-block-editor-addons")}
+              initialOpen={false}
+            >
               <BoxShadowControl
                 setAttributes={setAttributes}
                 label={__("Box Shadow", "responsive-block-editor-addons")}
@@ -487,6 +491,7 @@ export default class Inspector extends Component {
                   label: __("Position", "responsive-block-editor-addons"),
                 }}
               />
+
               <BoxShadowControlHelper
                 setAttributes={setAttributes}
                 boxShadowColor={{ value: hoverboxShadowColor }}

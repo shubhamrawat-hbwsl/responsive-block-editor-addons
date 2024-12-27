@@ -291,10 +291,7 @@ export default class Inspector extends Component {
       <InspectorControls key="inspector">
         <InspectorTabs>
           <InspectorTab key={"content"}>
-            <PanelBody
-              title={__("General", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
+            <PanelBody>
               <RbeaTabRadioControl
                 label={__("Heading Tag", "responsive-block-editor-addons")}
                 value={headingTag}
