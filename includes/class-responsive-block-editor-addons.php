@@ -1120,18 +1120,22 @@ class Responsive_Block_Editor_Addons {
 				}
 				break;
 			case '1':
+				$image_url = plugins_url( 'admin/images/responsive-blocks.svg', __DIR__ );
 				$check_for_review_transient = get_transient( 'responsive_block_editor_addons_review_transient' );
 				if ( false === $check_for_review_transient ) {
 					echo sprintf(
 						'<div class="notice rbea-notice-warning rbea-ask-for-review-notice">
 							<div class="rbea-notice-content-wrapper">
+								<div class="rbea-notice-image">
+									<img src="%8$s" class="custom-logo" alt="Responsive Blocks" itemprop="logo">
+								</div>
 								<div class="rbea-notice-content">
 									<div class="rbea-notice-heading">
 										%2$s
 									</div>
 									<p class="rbea-review-request-text rbea-review-notice-text-container">%3$s</p>
 									<div class="rbea-review-notice-container">
-										<a href="%7$s" class="rbea-notice-close rbea-review-notice button-primary rbea-review-dismiss-btn" target="_blank">
+										<a href="%1$s" class="rbea-notice-close rbea-review-notice button-primary rbea-review-dismiss-btn" target="_blank">
 											%4$s
 										</a>
 										<span class="dashicons dashicons-calendar"></span>
@@ -1151,11 +1155,12 @@ class Responsive_Block_Editor_Addons {
 						</div>',
 						'https://wordpress.org/support/plugin/responsive-block-editor-addons/reviews/',
 						esc_html__( 'Hello! Seems like you have used Responsive Blocks Plugin to build this website — Thanks a ton!', 'responsive-block-editor-addons' ),
-						esc_html__( 'Could you please do us a BIG favor and give it a 5-star rating on WordPress? This would boost our motivation and help other users make a comfortable decision while choosing the rbea Theme.', 'responsive-block-editor-addons' ),
+						esc_html__( 'Could you please do us a BIG favor and give it a 5-star rating on WordPress? This would boost our motivation and help other users make a comfortable decision while choosing the Responsive Blocks.', 'responsive-block-editor-addons' ),
 						esc_html__( 'Ok, you deserve it', 'responsive-block-editor-addons' ),
 						esc_html__( 'Nope, maybe later', 'responsive-block-editor-addons' ),
 						esc_html__( 'I already did', 'responsive-block-editor-addons' ),
-						esc_url( get_admin_url() . '?already_done=1' )
+						esc_url( get_admin_url() . '?already_done=1' ),
+						esc_url( $image_url )
 					);
 				}
 				break;

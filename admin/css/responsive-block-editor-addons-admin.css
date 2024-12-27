@@ -190,3 +190,11 @@
 #rbea-sites-on-active .button.installing:before {
     margin: 4px -1px 0px 5px;
 }
+
+.rbea-notice-image {
+    align-self: center;
+}
+
+.rbea-notice-image img {
+    max-width: 90px;
+}
