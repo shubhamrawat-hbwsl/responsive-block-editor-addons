@@ -238,7 +238,7 @@ This is how you can easily install the Responsive Gutenberg Blocks plugin on you
 
 = 1.9.9 - 27th December 2024 =
 * Improvement - Minor UI Changes.
-* Improvement - Added the 'Default' for the typography's Font Family setting across all blocks.
+* Improvement - Added the 'Default' option for the typography's Font Family setting across all blocks.
 * Fix - Fixed styles not being applied to the Form Block > Tablet and Mobile Preview.
 
 = 1.9.8 - 16th December 2024 =
