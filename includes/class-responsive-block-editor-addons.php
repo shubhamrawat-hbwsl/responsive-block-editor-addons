@@ -740,7 +740,17 @@ class Responsive_Block_Editor_Addons {
 			$flag = false;
 
 			if ( ($post && ! empty( $post )) || !empty($widget_blocks) ) {
-				$blocks = parse_blocks( $post->post_content );
+				$blocks = [];
+
+				/**
+ 				* Handle potential 'post_content' null warning.
+ 				* This warning typically occurs when users have added widget blocks from the Responsive theme
+ 				* but there is no post content to render. This ensures compatibility by preventing
+ 				* errors in scenarios where widget blocks exist without posts.
+ 				*/
+				if(!empty($post)) {
+					$blocks = parse_blocks( $post->post_content );
+				}
 
 				foreach ($widget_blocks as $widget) {
 					if (!empty($widget['content'])) {
@@ -749,25 +759,28 @@ class Responsive_Block_Editor_Addons {
 					}
 				}
 
-				foreach ( $blocks as $block ) {
-					// Retrieve all block names for the current block and its inner blocks.
-					$getBlockNames = $this->rbaGetBlockNames( $block );
-
-					// If true is returned, break out of the loop early.
-					if ( $getBlockNames === true ) {
-						$flag = true;
-						break;
-					}
-					// Check the block names if array is returned.
-					if ( !empty($getBlockNames) ) {
-						foreach ( $getBlockNames as $blockName ) {
-							if ( strpos( $blockName, 'responsive-block-editor-addons' ) !== false ) {
-								$flag = true;
-								break 2;  // Exit both loops when match is found.
+				if(!empty($blocks)) {
+					foreach ( $blocks as $block ) {
+						// Retrieve all block names for the current block and its inner blocks.
+						$getBlockNames = $this->rbaGetBlockNames( $block );
+	
+						// If true is returned, break out of the loop early.
+						if ( $getBlockNames === true ) {
+							$flag = true;
+							break;
+						}
+						// Check the block names if array is returned.
+						if ( !empty($getBlockNames) ) {
+							foreach ( $getBlockNames as $blockName ) {
+								if ( strpos( $blockName, 'responsive-block-editor-addons' ) !== false ) {
+									$flag = true;
+									break 2;  // Exit both loops when match is found.
+								}
 							}
 						}
 					}
 				}
+
 			}
 
 			if ( $flag ) {
