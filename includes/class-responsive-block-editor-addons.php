@@ -87,9 +87,8 @@ class Responsive_Block_Editor_Addons {
 
 		// Display admin notice for RBEA review.
 		add_action( 'admin_notices', array( $this, 'rbea_admin_review_notice' ) );
-
-		// Check the input value on review admin notice.
-		add_action( 'admin_init', array( $this, 'rbea_review_already_done' ), 5 );
+		add_action( 'admin_init', array( $this, 'rba_notice_dismissed' ) );
+		add_action( 'admin_init', array( $this, 'rba_notice_change_timeout' ) );
 
 		add_action( 'wp_ajax_responsive_block_editor_cf7_shortcode', array( $this, 'cf7_shortcode' ) );
 		add_action( 'wp_ajax_nopriv_responsive_block_editor_cf7_shortcode', array( $this, 'cf7_shortcode' ) );
@@ -1123,79 +1122,72 @@ class Responsive_Block_Editor_Addons {
 	 * @return void
 	 */
 	public function rbea_admin_review_notice() {
-		$rbea_review_pending_option = get_option( 'responsive_block_editor_addons_review_pending' );
-		switch ( $rbea_review_pending_option ) {
-			case '0':
-				$check_for_review_transient = get_transient( 'responsive_block_editor_addons_review_transient' );
-				if ( false === $check_for_review_transient ) {
-					set_transient( 'responsive_block_editor_addons_review_transient', 'Review Pending', RESPONSIVE_BLOCK_EDITOR_ADDONS_SEVEN_DAYS_IN_SECONDS );
-					update_option( 'responsive_block_editor_addons_review_pending', '1', true );
-				}
-				break;
-			case '1':
-				$image_url = plugins_url( 'admin/images/responsive-blocks.svg', __DIR__ );
-				$check_for_review_transient = get_transient( 'responsive_block_editor_addons_review_transient' );
-				if ( false === $check_for_review_transient ) {
-					echo sprintf(
-						'<div class="notice rbea-notice-warning rbea-ask-for-review-notice">
-							<div class="rbea-notice-content-wrapper">
-								<div class="rbea-notice-image">
-									<img src="%8$s" class="custom-logo" alt="Responsive Blocks" itemprop="logo">
-								</div>
-								<div class="rbea-notice-content">
-									<div class="rbea-notice-heading">
-										%2$s
-									</div>
-									<p class="rbea-review-request-text rbea-review-notice-text-container">%3$s</p>
-									<div class="rbea-review-notice-container">
-										<a href="%1$s" class="rbea-notice-close rbea-review-notice button-primary rbea-review-dismiss-btn" target="_blank">
-											%4$s
-										</a>
-										<span class="dashicons dashicons-calendar"></span>
-										<a href="%7$s" data-repeat-notice-after="60" class="rbea-notice-close rbea-review-notice">
-											%5$s
-										</a>
-										<span class="dashicons dashicons-smiley"></span>
-										<a href="%7$s" class="rbea-notice-close rbea-review-notice">
-											%6$s
-										</a>
-									</div>
-								</div>
+
+		if ( false === get_option( 'responsive_block_editor_addons_review_notice' ) ) {
+			set_transient( 'responsive_block_editor_addons_ask_review_flag', true, 7 * 24 * 60 * 60 );
+			update_option( 'responsive_block_editor_addons_review_notice', true );
+		} elseif ( false === (bool) get_transient( 'responsive_block_editor_addons_ask_review_flag' ) && false === get_option( 'responsive_block_editor_addons_review_notice_dismissed' ) ) {
+			$image_url = plugins_url( 'admin/images/responsive-blocks.svg', __DIR__ );
+			echo sprintf(
+				'<div class="notice rbea-notice-warning rbea-ask-for-review-notice">
+					<div class="rbea-notice-content-wrapper">
+						<div class="rbea-notice-image">
+							<img src="%8$s" class="custom-logo" alt="Responsive Blocks" itemprop="logo">
+						</div>
+						<div class="rbea-notice-content">
+							<div class="rbea-notice-heading">
+								%2$s
 							</div>
-							<div>
-								<a href="%7$s"><button type="button" class="rbea-ask-review-notice-dismiss"></button></a>
+							<p class="rbea-review-request-text rbea-review-notice-text-container">%3$s</p>
+							<div class="rbea-review-notice-container">
+								<a href="%1$s" class="rbea-notice-close rbea-review-notice button-primary rbea-review-dismiss-btn" target="_blank">
+									%4$s
+								</a>
+								<span class="dashicons dashicons-calendar"></span>
+								<a href="%9$s" data-repeat-notice-after="60" class="rbea-notice-close rbea-review-notice">
+									%5$s
+								</a>
+								<span class="dashicons dashicons-smiley"></span>
+								<a href="%7$s" class="rbea-notice-close rbea-review-notice">
+									%6$s
+								</a>
 							</div>
-						</div>',
-						'https://wordpress.org/support/plugin/responsive-block-editor-addons/reviews/',
-						esc_html__( 'Hello! Seems like you have used Responsive Blocks Plugin to build this website — Thanks a ton!', 'responsive-block-editor-addons' ),
-						esc_html__( 'Could you please do us a BIG favor and give it a 5-star rating on WordPress? This would boost our motivation and help other users make a comfortable decision while choosing the Responsive Blocks.', 'responsive-block-editor-addons' ),
-						esc_html__( 'Ok, you deserve it', 'responsive-block-editor-addons' ),
-						esc_html__( 'Nope, maybe later', 'responsive-block-editor-addons' ),
-						esc_html__( 'I already did', 'responsive-block-editor-addons' ),
-						esc_url( get_admin_url() . '?already_done=1' ),
-						esc_url( $image_url )
-					);
-				}
-				break;
-			case '2':
-				break;
-			default:
-				break;
+						</div>
+					</div>
+					<div>
+						<a href="%7$s"><button type="button" class="rbea-ask-review-notice-dismiss"></button></a>
+					</div>
+				</div>',
+				esc_url('https://wordpress.org/support/plugin/responsive-block-editor-addons/reviews/'),
+				esc_html__( 'Hello! Seems like you have used Responsive Blocks Plugin to build this website — Thanks a ton!', 'responsive-block-editor-addons' ),
+				esc_html__( 'Could you please do us a BIG favor and give it a 5-star rating on WordPress? This would boost our motivation and help other users make a comfortable decision while choosing the Responsive Blocks.', 'responsive-block-editor-addons' ),
+				esc_html__( 'Ok, you deserve it', 'responsive-block-editor-addons' ),
+				esc_html__( 'Nope, maybe later', 'responsive-block-editor-addons' ),
+				esc_html__( 'I already did', 'responsive-block-editor-addons' ),
+				esc_url('?responsive-block-editor-addons-notice-dismissed=true'),
+				esc_url($image_url),
+				esc_url('?responsive-block-editor-addons-review-notice-change-timeout=true')
+			);
 		}
 	}
 
 	/**
-	 * Function to check the user's input on RBEA review notice.
-	 *
-	 * @return void
+	 * Removed Ask For Review Admin Notice when dismissed.
 	 */
-	public function rbea_review_already_done() {
-		$dnd = '';
-		if ( isset( $_GET['already_done'] ) && ! empty( $_GET['already_done'] ) ) { //phpcs:ignore
-			$dnd = esc_attr( $_GET['already_done'] ); //phpcs:ignore
+	public function rba_notice_dismissed() {
+		if ( isset( $_GET['responsive-block-editor-addons-notice-dismissed'] ) ) {
+			update_option( 'responsive_block_editor_addons_review_notice_dismissed', true );
+			wp_safe_redirect( remove_query_arg( array( 'responsive-block-editor-addons-notice-dismissed' ), wp_get_referer() ) );
 		}
-		if ( '1' === $dnd ) {
-			update_option( 'responsive_block_editor_addons_review_pending', '2', true );
+	}
+
+	/**
+	 * Removed Ask For Review Admin Notice when dismissed.
+	 */
+	public function rba_notice_change_timeout() {
+		if ( isset( $_GET['responsive-block-editor-addons-review-notice-change-timeout'] ) ) {
+			set_transient( 'responsive_block_editor_addons_ask_review_flag', true, DAY_IN_SECONDS );
+			wp_safe_redirect( remove_query_arg( array( 'responsive-block-editor-addons-review-notice-change-timeout' ), wp_get_referer() ) );
 		}
 	}
 
