@@ -793,6 +793,8 @@ class edit extends Component {
     ];
 
     function NextArrow(props) {
+      const { onClick } = props;
+
       return (
         <button
           type="button"
@@ -810,6 +812,7 @@ class edit extends Component {
               borderWidth: arrowBorderWidth,
               borderStyle: arrowBorderStyle,
           }}
+          onClick={ onClick }
         >
         { ResponsiveBlockEditorAddonsIcons.carousel_right }
         </button>
@@ -817,6 +820,8 @@ class edit extends Component {
     }
 
     function PrevArrow(props) {
+      const { onClick } = props;
+
       return (
         <button
           type="button"
@@ -834,6 +839,7 @@ class edit extends Component {
               borderWidth: arrowBorderWidth,
               borderStyle: arrowBorderStyle,
           }}
+          onClick={ onClick }
         >
         { ResponsiveBlockEditorAddonsIcons.carousel_left }
         </button>
@@ -857,8 +863,8 @@ class edit extends Component {
       dots: dots,
       rtl: false,
       draggable: false,
-      nextArrow: <NextArrow arrowSize={arrowSize} />,
-      prevArrow: <PrevArrow arrowSize={arrowSize} />,
+      nextArrow: <NextArrow arrowSize={arrowSize} onClick={() => this.next()}/>,
+      prevArrow: <PrevArrow arrowSize={arrowSize} onClick={() => this.previous()}/>,
       responsive: [
         {
           breakpoint: 1024,
