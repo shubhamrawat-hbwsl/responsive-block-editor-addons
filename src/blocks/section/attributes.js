@@ -255,7 +255,6 @@ const attributes = {
   },
   overlayType: {
     type: "string",
-    default: "color",
   },
   gradientOverlayColor1: {
     type: "string",

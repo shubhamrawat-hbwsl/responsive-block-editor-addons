@@ -243,6 +243,7 @@ function EditorStyles(props) {
   let imgopacity = opacity / 100;
   let blockimgopacity = blockopacity / 100;
   let columnbackcoloropacity = columnBackColorOpacity / 100;
+  let gradientOpacity = opacity / 100;
 
   let alignStyle = "center";
   if ("left" == blockAlign) {
@@ -363,11 +364,11 @@ function EditorStyles(props) {
           ? generateBackgroundImageEffect(
               `${hexToRgba(
                 backgroundColor1 || "#fff",
-                columnbackcoloropacity || 0
+                gradientOpacity || 0
               )}`,
               `${hexToRgba(
                 backgroundColor2 || "#fff",
-                columnbackcoloropacity || 0
+                gradientOpacity || 0
               )}`,
               gradientDirection,
               colorLocation1,

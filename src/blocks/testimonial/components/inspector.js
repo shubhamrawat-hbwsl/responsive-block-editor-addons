@@ -627,6 +627,17 @@ export default class Inspector extends Component {
                     onChange={(newColor) => setAttributes({ backgroundColor: newColor })}
                     resetColor={() => setAttributes({ backgroundColor: "" })}
                   />
+                  {(backgroundColor && backgroundColor != '') && (
+                    <RbeaRangeControl
+                      label={__("Opacity", "responsive-block-editor-addons")}
+                      value={opacity}
+                      onChange={(value) =>
+                        setAttributes({ opacity: value !== undefined ? value : 20 })
+                      }
+                      min={0}
+                      max={100}
+                    />
+                  )}
                 </Fragment>
               )}
               {"gradient" == backgroundType && (
@@ -976,10 +987,21 @@ export default class Inspector extends Component {
                       )}
                     </Fragment>
                   )}
+                  {backgroundImage && (
+                    <RbeaRangeControl
+                    label={__("Opacity", "responsive-block-editor-addons")}
+                    value={opacity}
+                    onChange={(value) =>
+                      setAttributes({ opacity: value !== undefined ? value : 20 })
+                    }
+                    min={0}
+                    max={100}
+                  />
+                  )}
                 </Fragment>
               )}
               {"video" == backgroundType && (
-                <>
+                <Fragment>
                     <RbeaMediaUploadControl
                       label={__('Video', 'responsive-block-editor-addons')}
                       value={{
@@ -992,19 +1014,19 @@ export default class Inspector extends Component {
                       }}
                       mediaType={'video'}
                     />
-                </>
+                    {(backgroundVideo && backgroundVideo.url) && (
+                    <RbeaRangeControl
+                    label={__("Opacity", "responsive-block-editor-addons")}
+                    value={opacity}
+                    onChange={(value) =>
+                      setAttributes({ opacity: value !== undefined ? value : 20 })
+                    }
+                    min={0}
+                    max={100}
+                  />
+                  )}
+                </Fragment>
               )}
-              {backgroundType && backgroundType !== 'none' &&
-                <RbeaRangeControl
-                  label={__("Opacity", "responsive-block-editor-addons")}
-                  value={opacity}
-                  onChange={(value) =>
-                    setAttributes({ opacity: value !== undefined ? value : 20 })
-                  }
-                  min={0}
-                  max={100}
-                />
-              }
             </PanelBody>
 				      <TypographyHelperControl
 				      	title={__("Content Typography", "responsive-block-editor-addons")}

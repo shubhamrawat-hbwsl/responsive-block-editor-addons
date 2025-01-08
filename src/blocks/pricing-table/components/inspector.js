@@ -23,6 +23,7 @@ import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-contro
 import RbeaBackgroundTypeControl from "../../../utils/components/rbea-background-type-control";
 import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaBlockBorderHelperControl from "../../../settings-components/RbeaBlockBorderSettings";
+import RbeaMediaUploadControl from "../../../utils/components/rbea-media-upload-control";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -773,19 +774,21 @@ export default class Inspector extends Component {
               {"color" == backgroundType && (
                 <Fragment>
                   <ColorBackgroundControl {...this.props} />
-                  <RbeaRangeControl
-                    label={__("Opacity", "responsive-block-editor-addons")}
-                    value={columnBackColorOpacity}
-                    onChange={(value) =>
-                      setAttributes({
-                        columnBackColorOpacity:
-                          value !== undefined ? value : 100,
-                      })
-                    }
-                    min={0}
-                    max={100}
-                    allowReset
-                  />
+                  {backgroundColor && backgroundColor != '' && (
+                    <RbeaRangeControl
+                      label={__("Opacity", "responsive-block-editor-addons")}
+                      value={columnBackColorOpacity}
+                      onChange={(value) =>
+                        setAttributes({
+                          columnBackColorOpacity:
+                            value !== undefined ? value : 100,
+                        })
+                      }
+                      min={0}
+                      max={100}
+                      allowReset
+                    />
+                  )}
                 </Fragment>
               )}
               {"gradient" == backgroundType && (
@@ -794,41 +797,36 @@ export default class Inspector extends Component {
                     {...this.props}
                     showHoverGradient={false}
                   />
-                  <RbeaRangeControl
-                    label={__("Opacity", "responsive-block-editor-addons")}
-                    value={columnBackColorOpacity}
-                    onChange={(value) =>
-                      setAttributes({
-                        columnBackColorOpacity:
-                          value !== undefined ? value : 100,
-                      })
-                    }
-                    min={0}
-                    max={100}
-                    allowReset
-                  />
                 </Fragment>
               )}
               {"image" == backgroundType && (
                 <Fragment>
-                  <ImageBackgroundControl
-                    {...this.props}
-                    showSomeImageOptions={false}
-                    showMoreImageOptions={false}
-                    showOverlayOptions={false}
+                  <RbeaMediaUploadControl
+                    label={__('Image', 'responsive-block-editor-addons')}
+                    value={{
+                        url: backgroundImage || '',
+                    }}
+                    onChange={(newValue) => {
+                        setAttributes({
+                            backgroundImage: newValue.url,
+                        });
+                    }}
+                    mediaType={'image'}
                   />
-                  <RbeaRangeControl
-                    label={__("Opacity", "responsive-block-editor-addons")}
-                    value={opacity}
-                    onChange={(value) =>
-                      setAttributes({
-                        opacity: value !== undefined ? value : 20,
-                      })
-                    }
-                    min={0}
-                    max={100}
-                    allowReset
-                  />
+                  {backgroundImage && (
+                    <RbeaRangeControl
+                      label={__("Opacity", "responsive-block-editor-addons")}
+                      value={opacity}
+                      onChange={(value) =>
+                        setAttributes({
+                          opacity: value !== undefined ? value : 20,
+                        })
+                      }
+                      min={0}
+                      max={100}
+                      allowReset
+                    />
+                  )}
                 </Fragment>
               )}
             </PanelBody>

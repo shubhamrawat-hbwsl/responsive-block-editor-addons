@@ -1636,13 +1636,6 @@ export default class Inspector extends Component {
               )}
               {"image" == backgroundType && (
                 <Fragment>
-                  <BaseControl
-                    className="editor-bg-image-control"
-                    label={__(
-                      "Background Image",
-                      "responsive-block-editor-addons"
-                    )}
-                  >
                     <RbeaMediaUploadControl
                       label={__('Image', 'responsive-block-editor-addons')}
                       value={{
@@ -1655,7 +1648,6 @@ export default class Inspector extends Component {
                       }}
                       mediaType={'image'}
                     />
-                  </BaseControl>
                   {backgroundImage && (
                     <Fragment>
                       <div className = "rbea-tab-selector-label-wrapper">

@@ -231,6 +231,7 @@ function EditorStyles(props) {
   let imgopacity = opacity / 100;
   let blockimgopacity = blockopacity / 100;
   let columnbackcoloropacity = columnBackColorOpacity / 100;
+  let gradientOpacity = opacity / 100;
 
   var selectors = {
     " .wp-block-responsive-block-editor-addons-feature-grid-item__button": {
@@ -340,11 +341,11 @@ function EditorStyles(props) {
           ? generateBackgroundImageEffect(
               `${hexToRgba(
                 backgroundColor1 || "#fff",
-                columnbackcoloropacity || 0
+                gradientOpacity || 0
               )}`,
               `${hexToRgba(
                 backgroundColor2 || "#fff",
-                columnbackcoloropacity || 0
+                gradientOpacity || 0
               )}`,
               gradientDirection,
               colorLocation1,

@@ -1071,17 +1071,20 @@ export default class Inspector extends Component {
                   showHoverGradient={true}
                 />
               )}
+
+              {backgroundType && backgroundType !== 'none' && (
+                <RbeaRangeControl
+                  label={__("Opacity", "responsive-block-editor-addons")}
+                  value={opacity}
+                  onChange={(value) =>
+                    setAttributes({ opacity: value !== undefined ? value : 20 })
+                  }
+                  min={0}
+                  max={100}
+                  allowReset
+                />
+              )}
              
-              <RbeaRangeControl
-                label={__("Opacity", "responsive-block-editor-addons")}
-                value={opacity}
-                onChange={(value) =>
-                  setAttributes({ opacity: value !== undefined ? value : 20 })
-                }
-                min={0}
-                max={100}
-                allowReset
-              />
             </PanelBody>              
               <PanelBody
               title={__("Spacing", "responsive-block-editor-addons")}

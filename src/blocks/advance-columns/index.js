@@ -276,7 +276,6 @@ registerBlockType("responsive-block-editor-addons/advance-columns", {
     },
     overlayType: {
       type: "string",
-      default: "color",
     },
     gradientOverlayColor1: {
       type: "string",
@@ -407,13 +406,37 @@ registerBlockType("responsive-block-editor-addons/advance-columns", {
       type: "boolean",
       default: false,
     },
+  imagePositionTab: {
+    type: "string",
+    default: "desktop",
+  },
+  imageSizeTab: {
+    type: "string",
+    default: "desktop",
+  },
+  backgroundSizeTablet: {
+    type: "string",
+    default: "empty",
+  },
+  backgroundSizeMobile: {
+    type: "string",
+    default: "empty",
+  },
 	backgroundPosition: {
+	  type: "string",
+	  default: "empty",
+	}, // For compatibility with v1.3.2.
+  backgroundPositionMobile: {
+	  type: "string",
+	  default: "empty",
+	}, // For compatibility with v1.3.2.
+  backgroundPositionTablet: {
 	  type: "string",
 	  default: "empty",
 	}, // For compatibility with v1.3.2.
 	backgroundRepeat: {
 	  type: "string",
-	  default: "empty",
+	  default: "no-repeat",
 	}, // For compatibility with v1.3.2.
 	backgroundSize: {
 	  type: "string",
