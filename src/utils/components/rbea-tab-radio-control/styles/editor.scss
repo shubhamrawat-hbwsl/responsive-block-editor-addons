@@ -8,6 +8,9 @@
       .components-button.rbea-reset {
         .dashicons-image-rotate {
           font-size: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
@@ -22,6 +25,7 @@
     line-height: 16.41px;
     text-align: left;
     color: #666;
+    margin-bottom: 5px;
   }
   .rbea-tab-radio-options {
     display: flex;
@@ -101,6 +105,9 @@
       .components-button.rbea-reset {
         .dashicons-image-rotate {
           font-size: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
@@ -115,6 +122,7 @@
     line-height: 16.41px;
     text-align: left;
     color: #666;
+    margin-bottom: 5px;
   }
   .rbea-tab-radio-options {
     display: flex;

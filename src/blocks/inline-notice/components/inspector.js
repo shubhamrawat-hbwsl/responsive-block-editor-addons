@@ -245,7 +245,7 @@ export default class Inspector extends Component {
                 { value: "simple", label: __("Default", "responsive-block-editor-addons") }
               ]}
             />
-            <div className="responsive-block-editor-addons-inline-notice-notification-type-container">
+            <div className = "rbea-repeat-selector-wrapper">
               <RbeaTabRadioControl
                 label={__("Notification Type", "responsive-block-editor-addons")}
                 value={noticeType}
@@ -253,12 +253,13 @@ export default class Inspector extends Component {
                   setAttributes({noticeType: value})
                 }}
                 options={[
-                  {value: "default", label: __("Default", "responsive-block-editor-addons")},
                   {value: "warning", label: __("Warning", "responsive-block-editor-addons")},
                   {value: "error", label: __("Error", "responsive-block-editor-addons")},
                   {value: "info", label: __("Information", "responsive-block-editor-addons")},
                   {value: "notification", label: __("Notification", "responsive-block-editor-addons")}
                 ]}
+                defaultValue="default"
+                allowReset={true}
               />
             </div>
             <RbeaTabRadioControl

@@ -21754,8 +21754,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				}
 			}
 
-			error_log(print_r($attr['inputFieldPadding'], true));
-
 			// Frontend Backward Compatibility Form & FormButton BorderRadius 
 			$newPaddingKeys = [
 				'inputFieldTopPadding'          => $attr['inputFieldPadding']['top'] ? $attr['inputFieldPadding']['top'] : 0,
