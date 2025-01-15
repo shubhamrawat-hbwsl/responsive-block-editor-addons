@@ -223,7 +223,21 @@ export default class Inspector extends Component {
         titleTypographyColor,
         descTypographyColor,
         backgroundColor,
-        backgroundImage
+        backgroundImage,
+
+        ctaButtonTopPadding,
+        ctaButtonBottomPadding,
+        ctaButtonLeftPadding,
+        ctaButtonRightPadding,
+        ctaButtonTopPaddingTablet,
+        ctaButtonBottomPaddingTablet,
+        ctaButtonRightPaddingTablet,
+        ctaButtonLeftPaddingTablet,
+        ctaButtonTopPaddingMobile,
+        ctaButtonBottomPaddingMobile,
+        ctaButtonLeftPaddingMobile,
+        ctaButtonRightPaddingMobile,
+        isCtaButtonPaddingMarginValueUpdated,
       },
       setAttributes,
     } = this.props;

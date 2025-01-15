@@ -4539,18 +4539,31 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 			}
 
 			$newButtonPaddingKeys = [
-				'ctaButtonTopPadding' 	=> 'ctaVpadding' ? 'ctaVpadding' : 5,
-				'ctaButtonBottomPadding' 	=> 'ctaVpadding' ? 'ctaVpadding' : 5,
-				'ctaButtonLeftPadding' 	=> 'ctaHpadding' ? 'ctaHpadding' : 5,
-				'ctaButtonRightPadding' 	=> 'ctaHpadding' ? 'ctaHpadding' : 5,
-				'ctaButtonTopPaddingTablet' 	=> 'ctaVpaddingTablet' ? 'ctaVpaddingTablet' : 5,
-				'ctaButtonBottomPaddingTablet' 	=> 'ctaVpaddingTablet' ? 'ctaVpaddingTablet' : 5,
-				'ctaButtonRightPaddingTablet' 	=> 'ctaHpaddingTablet' ? 'ctaHpaddingTablet' : 5,
-				'ctaButtonLeftPaddingTablet' 	=> 'ctaHpaddingTablet' ? 'ctaHpaddingTablet' : 5,
-				'ctaButtonTopPaddingMobile' 	=> 'ctaVpaddingMobile' ? 'ctaVpaddingMobile' : 5,
-				'ctaButtonBottomPaddingMobile' 	=> 'ctaVpaddingMobile' ? 'ctaVpaddingMobile' : 5,
-				'ctaButtonLeftPaddingMobile' 	=> 'ctaHpaddingMobile' ? 'ctaHpaddingMobile' : 5,
-				'ctaButtonRightPaddingMobile' 	=> 'ctaHpaddingMobile' ? 'ctaHpaddingMobile' : 5,
+				'ctaButtonTopPadding' 	=> 'ctaVpadding' ? 'ctaVpadding' : 14,
+				'ctaButtonBottomPadding' 	=> 'ctaVpadding' ? 'ctaVpadding' : 14,
+				'ctaButtonLeftPadding' 	=> 'ctaHpadding' ? 'ctaHpadding' : 10,
+				'ctaButtonRightPadding' 	=> 'ctaHpadding' ? 'ctaHpadding' : 10,
+				'ctaButtonTopPaddingTablet' 	=> 'ctaVpaddingTablet' ? 'ctaVpaddingTablet' : 14,
+				'ctaButtonBottomPaddingTablet' 	=> 'ctaVpaddingTablet' ? 'ctaVpaddingTablet' : 14,
+				'ctaButtonRightPaddingTablet' 	=> 'ctaHpaddingTablet' ? 'ctaHpaddingTablet' : 10,
+				'ctaButtonLeftPaddingTablet' 	=> 'ctaHpaddingTablet' ? 'ctaHpaddingTablet' : 10,
+				'ctaButtonTopPaddingMobile' 	=> 'ctaVpaddingMobile' ? 'ctaVpaddingMobile' : 14,
+				'ctaButtonBottomPaddingMobile' 	=> 'ctaVpaddingMobile' ? 'ctaVpaddingMobile' : 14,
+				'ctaButtonLeftPaddingMobile' 	=> 'ctaHpaddingMobile' ? 'ctaHpaddingMobile' : 10,
+				'ctaButtonRightPaddingMobile' 	=> 'ctaHpaddingMobile' ? 'ctaHpaddingMobile' : 10,
+
+				'ctaButtonTopMargin' 	=> 'vMargin' ? 'vMargin' : 10,
+				'ctaButtonBottomMargin' 	=> 'vMargin' ? 'vMargin' : 10,
+				'ctaButtonLeftMargin' 	=> 'hMargin' ? 'hMargin' : 0,
+				'ctaButtonRightMargin' 	=> 'hMargin' ? 'hMargin' : 0,
+				'ctaButtonTopMarginTablet' 	=> 'vMarginTablet' ? 'vMarginTablet' : 10,
+				'ctaButtonBottomMarginTablet' 	=> 'vMarginTablet' ? 'vMarginTablet' : 10,
+				'ctaButtonRightMarginTablet' 	=> 'hMarginTablet' ? 'hMarginTablet' : 0,
+				'ctaButtonLeftMarginTablet' 	=> 'hMarginTablet' ? 'hMarginTablet' : 0,
+				'ctaButtonTopMarginMobile' 	=> 'vMarginMobile' ? 'vMarginMobile' : 10,
+				'ctaButtonBottomMarginMobile' 	=> 'vMarginMobile' ? 'vMarginMobile' : 10,
+				'ctaButtonLeftMarginMobile' 	=> 'hMarginMobile' ? 'hMarginMobile' : 0,
+				'ctaButtonRightMarginMobile' 	=> 'hMarginMobile' ? 'hMarginMobile' : 0,
 			];
 
 			// To populate new control values with existing padding margin control values for backward compatibility.
@@ -4742,14 +4755,14 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				),
 
 				' .responsive-block-editor-addons-card-button-inner' => array(
-					'padding-top'      => $attr['ctaButtonTopPadding'],
-					'padding-bottom'   => $attr['ctaButtonBottomPadding'],
-					'padding-left'     => $attr['ctaButtonLeftPadding'],
-					'padding-right'    => $attr['ctaButtonRightPadding'],
-					'margin-top'       => self::get_css_value( $attr['vMargin'], 'px' ),
-					'margin-bottom'    => self::get_css_value( $attr['vMargin'], 'px' ),
-					'margin-left'      => self::get_css_value( $attr['hMargin'], 'px' ),
-					'margin-right'     => self::get_css_value( $attr['hMargin'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPadding'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPadding'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPadding'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPadding'], 'px' ),
+					'margin-top'       => self::get_css_value( $attr['ctaButtonTopMargin'], 'px' ),
+					'margin-bottom'    => self::get_css_value( $attr['ctaButtonBottomMargin'], 'px' ),
+					'margin-left'      => self::get_css_value( $attr['ctaButtonLeftMargin'], 'px' ),
+					'margin-right'     => self::get_css_value( $attr['ctaButtonRightMargin'], 'px' ),
 					'border-style'     => 'empty' !== $attr['butborderStyle'] && 'none' !== $attr['ctaBorderStyle'] ? $attr['butborderStyle'] : $attr['ctaBorderStyle'], // For compatibility with v1.3.2.
 					'border-radius'    => 999 !== $attr['butborderRadius'] && 2 === $attr['ctaBorderRadius'] ? self::get_css_value( $attr['butborderRadius'], 'px' ) : self::get_css_value( $attr['ctaBorderRadius'], 'px' ), // For compatibility with v1.3.2.
 					'border-width'     => 999 !== $attr['butborderWidth'] && 1 === $attr['ctaBorderWidth'] ? self::get_css_value( $attr['butborderWidth'], 'px' ) : self::get_css_value( $attr['ctaBorderWidth'], 'px' ), // For compatibility with v1.3.2.
@@ -4787,14 +4800,14 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-bottom' => self::get_css_value( $attr['contentBottomSpacingMobile'], 'px' ),
 				),
 				' .responsive-block-editor-addons-card-button-inner' => array(
-					'padding-top'      => $attr['ctaButtonTopPaddingMobile'],
-					'padding-bottom'   => $attr['ctaButtonBottomPaddingMobile'],
-					'padding-left'     => $attr['ctaButtonLeftPaddingMobile'],
-					'padding-right'    => $attr['ctaButtonRightPaddingMobile'],
-					'margin-top'     => $attr['vMarginMobile'] ? self::get_css_value( $attr['vMarginMobile'], 'px' ) : self::get_css_value( $attr['vMargin'], 'px' ),
-					'margin-bottom'  => $attr['vMarginMobile'] ? self::get_css_value( $attr['vMarginMobile'], 'px' ) : self::get_css_value( $attr['vMargin'], 'px' ),
-					'margin-left'    => $attr['hMarginMobile'] ? self::get_css_value( $attr['hMarginMobile'], 'px' ) : self::get_css_value( $attr['hMargin'], 'px' ),
-					'margin-right'   => $attr['hMarginMobile'] ? self::get_css_value( $attr['hMarginMobile'], 'px' ) : self::get_css_value( $attr['hMargin'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPaddingMobile'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPaddingMobile'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPaddingMobile'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPaddingMobile'], 'px' ),
+					'margin-top'       => self::get_css_value( $attr['ctaButtonTopMarginMobile'], 'px' ),
+					'margin-bottom'    => self::get_css_value( $attr['ctaButtonBottomMarginMobile'], 'px' ),
+					'margin-left'      => self::get_css_value( $attr['ctaButtonLeftMarginMobile'], 'px' ),
+					'margin-right'     => self::get_css_value( $attr['ctaButtonRightMarginMobile'], 'px' ),
 				),
 				' .wp-block-responsive-block-editor-addons-card-item' => array(
 					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadiusMobile'], 'px' ),
@@ -4840,14 +4853,14 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-bottom' => self::get_css_value( $attr['contentBottomSpacingTablet'], 'px' ),
 				),
 				' .responsive-block-editor-addons-card-button-inner' => array(
-					'padding-top'      => $attr['ctaButtonTopPaddingTablet'],
-					'padding-bottom'   => $attr['ctaButtonBottomPaddingTablet'],
-					'padding-left'     => $attr['ctaButtonLeftPaddingTablet'],
-					'padding-right'    => $attr['ctaButtonRightPaddingTablet'],
-					'margin-top'     => $attr['vMarginTablet'] ? self::get_css_value( $attr['vMarginTablet'], 'px' ) : self::get_css_value( $attr['vMargin'], 'px' ),
-					'margin-bottom'  => $attr['vMarginTablet'] ? self::get_css_value( $attr['vMarginTablet'], 'px' ) : self::get_css_value( $attr['vMargin'], 'px' ),
-					'margin-left'    => $attr['hMarginTablet'] ? self::get_css_value( $attr['hMarginTablet'], 'px' ) : self::get_css_value( $attr['hMargin'], 'px' ),
-					'margin-right'   => $attr['hMarginTablet'] ? self::get_css_value( $attr['hMarginTablet'], 'px' ) : self::get_css_value( $attr['hMargin'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPaddingTablet'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPaddingTablet'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPaddingTablet'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPaddingTablet'], 'px' ),
+					'margin-top'       => self::get_css_value( $attr['ctaButtonTopMarginTablet'], 'px' ),
+					'margin-bottom'    => self::get_css_value( $attr['ctaButtonBottomMarginTablet'], 'px' ),
+					'margin-left'      => self::get_css_value( $attr['ctaButtonLeftMarginTablet'], 'px' ),
+					'margin-right'     => self::get_css_value( $attr['ctaButtonRightMarginTablet'], 'px' ),
 				),
 				' .wp-block-responsive-block-editor-addons-card-item' => array(
 					'border-top-left-radius'       => self::get_css_value( $attr['blockTopRadiusTablet'], 'px' ),
@@ -5106,6 +5119,19 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'ctaButtonBottomPaddingMobile'		=> 10,
 				'ctaButtonLeftPaddingMobile'		=> 14,
 				'ctaButtonRightPaddingMobile'		=> 14,
+
+				'ctaButtonTopMargin'		=> 10,
+				'ctaButtonBottomMargin'		=> 10,
+				'ctaButtonLeftMargin'		=> 0,
+				'ctaButtonRightMargin'		=> 0,
+				'ctaButtonTopMarginTablet'		=> 10,
+				'ctaButtonBottomMarginTablet'		=> 10,
+				'ctaButtonRightMarginTablet'		=> 0,
+				'ctaButtonLeftMarginTablet'		=> 0,
+				'ctaButtonTopMarginMobile'		=> 10,
+				'ctaButtonBottomMarginMobile'		=> 10,
+				'ctaButtonLeftMarginMobile'		=> 0,
+				'ctaButtonRightMarginMobile'		=> 0,
 			);
 		}
 
@@ -9757,6 +9783,28 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				}
 			}
 
+			$newButtonPaddingKeys = [
+				'ctaButtonTopPadding' 	=> 'ctaVpadding' ? 'ctaVpadding' : 15,
+				'ctaButtonBottomPadding' 	=> 'ctaVpadding' ? 'ctaVpadding' : 15,
+				'ctaButtonLeftPadding' 	=> 'ctaHpadding' ? 'ctaHpadding' : 30,
+				'ctaButtonRightPadding' 	=> 'ctaHpadding' ? 'ctaHpadding' : 30,
+				'ctaButtonTopPaddingTablet' 	=> 'ctaVpaddingTablet' ? 'ctaVpaddingTablet' : 15,
+				'ctaButtonBottomPaddingTablet' 	=> 'ctaVpaddingTablet' ? 'ctaVpaddingTablet' : 15,
+				'ctaButtonRightPaddingTablet' 	=> 'ctaHpaddingTablet' ? 'ctaHpaddingTablet' : 30,
+				'ctaButtonLeftPaddingTablet' 	=> 'ctaHpaddingTablet' ? 'ctaHpaddingTablet' : 30,
+				'ctaButtonTopPaddingMobile' 	=> 'ctaVpaddingMobile' ? 'ctaVpaddingMobile' : 15,
+				'ctaButtonBottomPaddingMobile' 	=> 'ctaVpaddingMobile' ? 'ctaVpaddingMobile' : 15,
+				'ctaButtonLeftPaddingMobile' 	=> 'ctaHpaddingMobile' ? 'ctaHpaddingMobile' : 30,
+				'ctaButtonRightPaddingMobile' 	=> 'ctaHpaddingMobile' ? 'ctaHpaddingMobile' : 30,
+			];
+
+			// To populate new control values with existing padding margin control values for backward compatibility.
+			foreach ($newButtonPaddingKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
 			$attr     = array_merge( $defaults, (array) $attr );
 
 			$mobile_selectors = array();
@@ -9807,10 +9855,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-left'      => 'left' === $attr['blockAlign'] ? 0 : '',
 					'margin-right'     => 'right' === $attr['blockAlign'] ? 0 : '',
 					'margin-bottom'    => self::get_css_value( $attr['buttonSpace'], 'px' ),
-					'padding-left'     => self::get_css_value( $attr['ctaHpadding'], 'px' ),
-					'padding-right'    => self::get_css_value( $attr['ctaHpadding'], 'px' ),
-					'padding-top'      => self::get_css_value( $attr['ctaVpadding'], 'px' ),
-					'padding-bottom'   => self::get_css_value( $attr['ctaVpadding'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPadding'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPadding'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPadding'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPadding'], 'px' ),
 					'border-color'     => $attr['ctaBorderColor'],
 					'border-radius'    => self::get_css_value( $attr['ctaBorderRadius'], 'px' ),
 					'border-width'     => self::get_css_value( $attr['ctaBorderWidth'], 'px' ),
@@ -10047,10 +10095,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-bottom' => self::get_css_value( $attr['featuresBottomSpacingMobile'], 'px' ),
 				),
 				' .wp-block-responsive-block-editor-addons-pricing-table-item__button' => array(
-					'padding-left'   => self::get_css_value( $attr['ctaHpaddingMobile'], 'px' ),
-					'padding-right'  => self::get_css_value( $attr['ctaHpaddingMobile'], 'px' ),
-					'padding-top'    => self::get_css_value( $attr['ctaVpaddingMobile'], 'px' ),
-					'padding-bottom' => self::get_css_value( $attr['ctaVpaddingMobile'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPaddingMobile'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPaddingMobile'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPaddingMobile'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPaddingMobile'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['ctaFontSizeMobile'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['ctaFontSizeMobile'], 'px' ),
 					'margin-bottom'  => self::get_css_value( $attr['buttonSpaceMobile'], 'px' ),
@@ -10108,10 +10156,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'margin-bottom' => self::get_css_value( $attr['featuresBottomSpacingTablet'], 'px' ),
 				),
 				' .wp-block-responsive-block-editor-addons-pricing-table-item__button' => array(
-					'padding-left'   => self::get_css_value( $attr['ctaHpaddingTablet'], 'px' ),
-					'padding-right'  => self::get_css_value( $attr['ctaHpaddingTablet'], 'px' ),
-					'padding-top'    => self::get_css_value( $attr['ctaVpaddingTablet'], 'px' ),
-					'padding-bottom' => self::get_css_value( $attr['ctaVpaddingTablet'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPaddingTablet'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPaddingTablet'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPaddingTablet'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPaddingTablet'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['ctaFontSizeTablet'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['ctaFontSizeTablet'], 'px' ),
 					'margin-bottom'  => self::get_css_value( $attr['buttonSpaceTablet'], 'px' ),
@@ -10362,6 +10410,19 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
         		'subpriceBottomSpacing' => '',
         		'subpriceBottomSpacingMobile' => '',
         		'subpriceBottomSpacingTablet' => '',
+
+				'ctaButtonTopPadding'	=> 15,
+        		'ctaButtonBottomPadding'	=> 15,
+        		'ctaButtonLeftPadding'	=> 30,
+        		'ctaButtonRightPadding'	=> 30,
+        		'ctaButtonTopPaddingTablet'	=> 15,
+        		'ctaButtonBottomPaddingTablet'	=> 15,
+        		'ctaButtonRightPaddingTablet'	=> 30,
+        		'ctaButtonLeftPaddingTablet'	=> 30,
+        		'ctaButtonTopPaddingMobile'	=> 15,
+        		'ctaButtonBottomPaddingMobile'	=> 15,
+        		'ctaButtonLeftPaddingMobile'	=> 30,
+        		'ctaButtonRightPaddingMobile'	=> 30,
 			);
 		}
 
@@ -18457,6 +18518,28 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				}
 			}
 
+			$newButtonPaddingKeys = [
+				'ctaButtonTopPadding' 	=> 'ctaVpadding' ? 'ctaVpadding' : 14,
+				'ctaButtonBottomPadding' 	=> 'ctaVpadding' ? 'ctaVpadding' : 14,
+				'ctaButtonLeftPadding' 	=> 'ctaHpadding' ? 'ctaHpadding' : 10,
+				'ctaButtonRightPadding' 	=> 'ctaHpadding' ? 'ctaHpadding' : 10,
+				'ctaButtonTopPaddingTablet' 	=> 'ctaVpaddingTablet' ? 'ctaVpaddingTablet' : 14,
+				'ctaButtonBottomPaddingTablet' 	=> 'ctaVpaddingTablet' ? 'ctaVpaddingTablet' : 14,
+				'ctaButtonRightPaddingTablet' 	=> 'ctaHpaddingTablet' ? 'ctaHpaddingTablet' : 10,
+				'ctaButtonLeftPaddingTablet' 	=> 'ctaHpaddingTablet' ? 'ctaHpaddingTablet' : 10,
+				'ctaButtonTopPaddingMobile' 	=> 'ctaVpaddingMobile' ? 'ctaVpaddingMobile' : 14,
+				'ctaButtonBottomPaddingMobile' 	=> 'ctaVpaddingMobile' ? 'ctaVpaddingMobile' : 14,
+				'ctaButtonLeftPaddingMobile' 	=> 'ctaHpaddingMobile' ? 'ctaHpaddingMobile' : 10,
+				'ctaButtonRightPaddingMobile' 	=> 'ctaHpaddingMobile' ? 'ctaHpaddingMobile' : 10,
+			];
+
+			// To populate new control values with existing padding margin control values for backward compatibility.
+			foreach ($newButtonPaddingKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+
 			$attr     = array_merge( $defaults, (array) $attr );
 
 			$mobile_selectors = array();
@@ -18599,10 +18682,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-style'     => $attr['ctaBorderStyle'],
 					'border-radius'    => self::get_css_value( $attr['ctaBorderRadius'], 'px' ),
 					'border-width'     => self::get_css_value( $attr['ctaBorderWidth'], 'px' ),
-					'padding-top'      => self::get_css_value( $attr['ctaVpadding'], 'px' ),
-					'padding-bottom'   => self::get_css_value( $attr['ctaVpadding'], 'px' ),
-					'padding-left'     => self::get_css_value( $attr['ctaHpadding'], 'px' ),
-					'padding-right'    => self::get_css_value( $attr['ctaHpadding'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPadding'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPadding'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPadding'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPadding'], 'px' ),
 					'margin-bottom'    => self::get_css_value( $attr['buttonSpace'], 'px' ),
 					'line-height'      => $attr['ctaLineHeight'],
 					'font-weight'      => $attr['ctaFontWeight'],
@@ -18669,10 +18752,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 
 				),
 				' .wp-block-responsive-block-editor-addons-feature-grid-item__button' => array(
-					'padding-top'    => self::get_css_value( $attr['ctaVpaddingMobile'], 'px' ),
-					'padding-bottom' => self::get_css_value( $attr['ctaVpaddingMobile'], 'px' ),
-					'padding-left'   => self::get_css_value( $attr['ctaHpaddingMobile'], 'px' ),
-					'padding-right'  => self::get_css_value( $attr['ctaHpaddingMobile'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPaddingMobile'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPaddingMobile'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPaddingMobile'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPaddingMobile'], 'px' ),
 					'margin-bottom'  => self::get_css_value( $attr['buttonSpaceMobile'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['ctaFontSizeMobile'], 'px' ),
 				),
@@ -18719,10 +18802,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 
 				),
 				' .wp-block-responsive-block-editor-addons-feature-grid-item__button' => array(
-					'padding-top'    => self::get_css_value( $attr['ctaVpaddingTablet'], 'px' ),
-					'padding-bottom' => self::get_css_value( $attr['ctaVpaddingTablet'], 'px' ),
-					'padding-left'   => self::get_css_value( $attr['ctaHpaddingTablet'], 'px' ),
-					'padding-right'  => self::get_css_value( $attr['ctaHpaddingTablet'], 'px' ),
+					'padding-top'      => self::get_css_value( $attr['ctaButtonTopPaddingTablet'], 'px' ),
+					'padding-bottom'   => self::get_css_value( $attr['ctaButtonBottomPaddingTablet'], 'px' ),
+					'padding-left'     => self::get_css_value( $attr['ctaButtonLeftPaddingTablet'], 'px' ),
+					'padding-right'    => self::get_css_value( $attr['ctaButtonRightPaddingTablet'], 'px' ),
 					'margin-bottom'  => self::get_css_value( $attr['buttonSpaceTablet'], 'px' ),
 					'font-size'      => self::get_css_value( $attr['ctaFontSizeTablet'], 'px' ),
 				),
@@ -18899,6 +18982,19 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'blockLeftRadius'          => 0,
 				'titleTypographyColor'		=> '',
         		'descTypographyColor'		=> '',
+
+				'ctaButtonTopPadding'	=> '',
+        		'ctaButtonBottomPadding'	=> '',
+        		'ctaButtonLeftPadding'	=> '',
+        		'ctaButtonRightPadding'	=> '',
+        		'ctaButtonTopPaddingTablet'	=> '',
+        		'ctaButtonBottomPaddingTablet'	=> '',
+        		'ctaButtonRightPaddingTablet'	=> '',
+        		'ctaButtonLeftPaddingTablet'	=> '',
+        		'ctaButtonTopPaddingMobile'	=> '',
+        		'ctaButtonBottomPaddingMobile'	=> '',
+        		'ctaButtonLeftPaddingMobile'	=> '',
+        		'ctaButtonRightPaddingMobile'	=> '',
 			);
 		}
 
@@ -21658,7 +21754,43 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				}
 			}
 
-			
+			error_log(print_r($attr['inputFieldPadding'], true));
+
+			// Frontend Backward Compatibility Form & FormButton BorderRadius 
+			$newPaddingKeys = [
+				'inputFieldTopPadding'          => $attr['inputFieldPadding']['top'] ? $attr['inputFieldPadding']['top'] : 0,
+				'inputFieldBottomPadding'        => $attr['inputFieldPadding']['bottom'] ? $attr['inputFieldPadding']['bottom'] : 0,
+				'inputFieldLeftPadding'       => $attr['inputFieldPadding']['left'] ? $attr['inputFieldPadding']['left'] : 0,
+				'inputFieldRightPadding'         => $attr['inputFieldPadding']['right'] ? $attr['inputFieldPadding']['right'] : 0,
+				'inputFieldTopPaddingTablet'    => $attr['inputFieldPaddingTablet']['top'] ? $attr['inputFieldPaddingTablet']['top'] : 0,
+				'inputFieldBottomPaddingTablet'  => $attr['inputFieldPaddingTablet']['bottom'] ? $attr['inputFieldPaddingTablet']['bottom'] : 0,
+				'inputFieldRightPaddingTablet' => $attr['inputFieldPaddingTablet']['right'] ? $attr['inputFieldPaddingTablet']['right'] : 0,
+				'inputFieldLeftPaddingTablet'   => $attr['inputFieldPaddingTablet']['left'] ? $attr['inputFieldPaddingTablet']['left'] : 0,
+				'inputFieldTopPaddingMobile'    => $attr['inputFieldPaddingMobile']['top'] ? $attr['inputFieldPaddingMobile']['top'] : 0,
+				'inputFieldBottomPaddingMobile'  => $attr['inputFieldPaddingMobile']['bottom'] ? $attr['inputFieldPaddingMobile']['bottom'] : 0,
+				'inputFieldLeftPaddingMobile' => $attr['inputFieldPaddingMobile']['left'] ? $attr['inputFieldPaddingMobile']['left'] : 0,
+				'inputFieldRightPaddingMobile'   => $attr['inputFieldPaddingMobile']['right'] ? $attr['inputFieldPaddingMobile']['right'] : 0,
+				
+				'formButtonTopPadding'          => $attr['formButtonPadding']['top'] ? $attr['formButtonPadding']['top'] : 0,
+				'formButtonRightPadding'        => $attr['formButtonPadding']['right'] ? $attr['formButtonPadding']['right'] : 0,
+				'formButtonBottomPadding'       => $attr['formButtonPadding']['bottom'] ? $attr['formButtonPadding']['bottom'] : 0,
+				'formButtonLeftPadding'         => $attr['formButtonPadding']['left'] ? $attr['formButtonPadding']['left'] : 0,
+				'formButtonTopPaddingTablet'    => $attr['formButtonPaddingTablet']['top'] ? $attr['formButtonPaddingTablet']['top'] : 0,
+				'formButtonRightPaddingTablet'  => $attr['formButtonPaddingTablet']['right'] ? $attr['formButtonPaddingTablet']['right'] : 0,
+				'formButtonBottomPaddingTablet' => $attr['formButtonPaddingTablet']['bottom'] ? $attr['formButtonPaddingTablet']['bottom'] : 0,
+				'formButtonLeftPaddingTablet'   => $attr['formButtonPaddingTablet']['left'] ? $attr['formButtonPaddingTablet']['left'] : 0,
+				'formButtonTopPaddingMobile'    => $attr['formButtonPaddingTablet']['top'] ? $attr['formButtonPaddingTablet']['top'] : 0,
+				'formButtonRightPaddingMobile'  => $attr['formButtonPaddingTablet']['right'] ? $attr['formButtonPaddingTablet']['right'] : 0,
+				'formButtonBottomPaddingMobile' => $attr['formButtonPaddingTablet']['bottom'] ? $attr['formButtonPaddingTablet']['bottom'] : 0,
+				'formButtonLeftPaddingMobile'   => $attr['formButtonPaddingTablet']['left'] ? $attr['formButtonPaddingTablet']['left'] : 0,
+			];
+
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newPaddingKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
 
 			$mobile_selectors = array();
 			$tablet_selectors = array();
@@ -21707,10 +21839,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					"border-right-width"         => $attr['formBorderWidth']['right'],
 				),
 				' .responsive-block-editor-addons-form-input__text'             => array(
-					"padding-top"    => $attr['inputFieldPadding']['top'],
-					"padding-bottom" => $attr['inputFieldPadding']['bottom'],
-					"padding-left"   => $attr['inputFieldPadding']['left'],
-					"padding-right"  => $attr['inputFieldPadding']['right'],
+					"padding-top"    => self::get_css_value($attr['inputFieldTopPadding'], 'px'),
+					"padding-bottom" => self::get_css_value($attr['inputFieldBottomPadding'], 'px'),
+					"padding-left"   => self::get_css_value($attr['inputFieldLeftPadding'], 'px'),
+					"padding-right"  => self::get_css_value($attr['inputFieldRightPadding'], 'px'),
 				),
 				' .responsive-block-editor-addons-form-input__helper'           => array(
 					"color"     => $attr['formHelperLabelColor'],
@@ -21723,10 +21855,10 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				' .responsive-block-editor-addons-form-submit-button'           => array(
 					"color"                      => $attr['formButtonLabelColor'],
 					"background-color"           => $attr['formButtonLabelBGColor'],
-					"padding-top"                => $attr['formButtonPadding']['top'],
-					"padding-bottom"             => $attr['formButtonPadding']['bottom'],
-					"padding-left"               => $attr['formButtonPadding']['left'],
-					"padding-right"              => $attr['formButtonPadding']['right'],
+					"padding-top"                => self::get_css_value($attr['formButtonTopPadding'], 'px'),
+					"padding-bottom"             => self::get_css_value($attr['formButtonBottomPadding'], 'px'),
+					"padding-left"               => self::get_css_value($attr['formButtonLeftPadding'], 'px'),
+					"padding-right"              => self::get_css_value($attr['formButtonRightPadding'], 'px'),
 					'border-top-left-radius'       => self::get_css_value( $attr['formButtonTopRadius'], 'px' ),
 					'border-top-right-radius'      => self::get_css_value( $attr['formButtonRightRadius'], 'px' ),
 					'border-bottom-right-radius'   => self::get_css_value( $attr['formButtonBottomRadius'], 'px' ),
@@ -21768,19 +21900,19 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-bottom-left-radius'    => self::get_css_value( $attr['formLeftRadiusMobile'], 'px' ),
 				),
 				' .responsive-block-editor-addons-form-input__text'            => array(
-					"padding-top"    => $attr['inputFieldPaddingMobile']['top'],
-					"padding-bottom" => $attr['inputFieldPaddingMobile']['bottom'],
-					"padding-left"   => $attr['inputFieldPaddingMobile']['left'],
-					"padding-right"  => $attr['inputFieldPaddingMobile']['right'],
+					"padding-top"    => self::get_css_value($attr['inputFieldTopPaddingMobile'], 'px'),
+					"padding-bottom" => self::get_css_value($attr['inputFieldBottomPaddingMobile'], 'px'),
+					"padding-left"   => self::get_css_value($attr['inputFieldLeftPaddingMobile'], 'px'),
+					"padding-right"  => self::get_css_value($attr['inputFieldRightPaddingMobile'], 'px'),
 				),
 				' .responsive-block-editor-addons-form-submit-button-container' => array(
 					"justify-content" => $attr['formButtonAlignMobile'],
 				),
 				' .responsive-block-editor-addons-form-submit-button'           => array(
-					"padding-top"    => $attr['formButtonPaddingMobile']['top'],
-					"padding-bottom" => $attr['formButtonPaddingMobile']['bottom'],
-					"padding-left"   => $attr['formButtonPaddingMobile']['left'],
-					"padding-right"  => $attr['formButtonPaddingMobile']['right'],
+					"padding-top"                => self::get_css_value($attr['formButtonTopPaddingMobile'], 'px'),
+					"padding-bottom"             => self::get_css_value($attr['formButtonBottomPaddingMobile'], 'px'),
+					"padding-left"               => self::get_css_value($attr['formButtonLeftPaddingMobile'], 'px'),
+					"padding-right"              => self::get_css_value($attr['formButtonRightPaddingMobile'], 'px'),
 					'border-top-left-radius'       => self::get_css_value( $attr['formButtonTopRadiusMobile'], 'px' ),
 					'border-top-right-radius'      => self::get_css_value( $attr['formButtonRightRadiusMobile'], 'px' ),
 					'border-bottom-right-radius'   => self::get_css_value( $attr['formButtonBottomRadiusMobile'], 'px' ),
@@ -21808,19 +21940,19 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 					'border-bottom-left-radius'    => self::get_css_value( $attr['formLeftRadiusTablet'], 'px' ),
 				),
 				' .responsive-block-editor-addons-form-input__text'             => array(
-					"padding-top"    => $attr['inputFieldPaddingTablet']['top'],
-					"padding-bottom" => $attr['inputFieldPaddingTablet']['bottom'],
-					"padding-left"   => $attr['inputFieldPaddingTablet']['left'],
-					"padding-right"  => $attr['inputFieldPaddingTablet']['right'],
+					"padding-top"    => self::get_css_value($attr['inputFieldTopPaddingTablet'], 'px'),
+					"padding-bottom" => self::get_css_value($attr['inputFieldBottomPaddingTablet'], 'px'),
+					"padding-left"   => self::get_css_value($attr['inputFieldLeftPaddingTablet'], 'px'),
+					"padding-right"  => self::get_css_value($attr['inputFieldRightPaddingTablet'], 'px'),
 				),
 				' .responsive-block-editor-addons-form-submit-button-container' => array(
 					"justify-content" => $attr['formButtonAlignTablet'],
 				),
 				' .responsive-block-editor-addons-form-submit-button'           => array(
-					"padding-top"    => $attr['formButtonPaddingTablet']['top'],
-					"padding-bottom" => $attr['formButtonPaddingTablet']['bottom'],
-					"padding-left"   => $attr['formButtonPaddingTablet']['left'],
-					"padding-right"  => $attr['formButtonPaddingTablet']['right'],
+					"padding-top"                => self::get_css_value($attr['formButtonTopPaddingTablet'], 'px'),
+					"padding-bottom"             => self::get_css_value($attr['formButtonBottomPaddingTablet'], 'px'),
+					"padding-left"               => self::get_css_value($attr['formButtonLeftPaddingTablet'], 'px'),
+					"padding-right"              => self::get_css_value($attr['formButtonRightPaddingTablet'], 'px'),
 					'border-top-left-radius'       => self::get_css_value( $attr['formButtonTopRadiusTablet'], 'px' ),
 					'border-top-right-radius'      => self::get_css_value( $attr['formButtonRightRadiusTablet'], 'px' ),
 					'border-bottom-right-radius'   => self::get_css_value( $attr['formButtonBottomRadiusTablet'], 'px' ),
@@ -21938,6 +22070,31 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'formRightMargin'             => '',
 				'formRightMarginMobile'       => '',
 				'formRightMarginTablet'       => '',
+
+				'formButtonTopPadding'		=> 10,
+				'formButtonBottomPadding'		=> 10,
+				'formButtonLeftPadding'		=> 20,
+				'formButtonRightPadding'		=> 20,
+				'formButtonTopPaddingTablet'		=> 8,
+				'formButtonBottomPaddingTablet'		=> 8,
+				'formButtonRightPaddingTablet'		=> 16,
+				'formButtonLeftPaddingTablet'		=> 16,
+				'formButtonTopPaddingMobile'		=> 6,
+				'formButtonBottomPaddingMobile'		=> 6,
+				'formButtonLeftPaddingMobile'		=> 12,
+				'formButtonRightPaddingMobile'		=> 12,
+				'inputFieldTopPadding'		=> 8,
+				'inputFieldBottomPadding'		=> 8,
+				'inputFieldLeftPadding'		=> 8,
+				'inputFieldRightPadding'		=> 8,
+				'inputFieldTopPaddingTablet'		=> 6,
+				'inputFieldBottomPaddingTablet'		=> 6,
+				'inputFieldRightPaddingTablet'		=> 6,
+				'inputFieldLeftPaddingTablet'		=> 6,
+				'inputFieldTopPaddingMobile'		=> 4,
+				'inputFieldBottomPaddingMobile'		=> 4,
+				'inputFieldLeftPaddingMobile'		=> 4,
+				'inputFieldRightPaddingMobile'		=> 4,
 			);
 		}
 

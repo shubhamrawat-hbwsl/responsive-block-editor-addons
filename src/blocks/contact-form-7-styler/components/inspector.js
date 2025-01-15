@@ -529,7 +529,7 @@ export default class Inspector extends Component {
         ctaButtonBottomPaddingMobile,
         ctaButtonLeftPaddingMobile,
         ctaButtonRightPaddingMobile,
-        isIconContainerPaddingValueUpdated,
+        isCtaButtonPaddingMarginValueUpdated,
       },
       setAttributes,
     } = this.props;

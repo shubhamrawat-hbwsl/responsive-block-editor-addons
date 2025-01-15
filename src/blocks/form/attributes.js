@@ -447,6 +447,111 @@ const attributes = {
     type: "number",
     default: '',
   },
+
+  formButtonTopPadding: {
+    type: "number",
+    default: 10,
+  },
+  formButtonBottomPadding: {
+    type: "number",
+    default: 10,
+  },
+  formButtonLeftPadding: {
+    type: "number",
+    default: 20,
+  },
+  formButtonRightPadding: {
+    type: "number",
+    default: 20,
+  },
+  formButtonTopPaddingTablet: {
+    type: "number",
+    default: 8,
+  },
+  formButtonBottomPaddingTablet: {
+    type: "number",
+    default: 8,
+  },
+  formButtonRightPaddingTablet: {
+    type: "number",
+    default: 16,
+  },
+  formButtonLeftPaddingTablet: {
+    type: "number",
+    default: 16,
+  },
+  formButtonTopPaddingMobile: {
+    type: "number",
+    default: 6,
+  },
+  formButtonBottomPaddingMobile: {
+    type: "number",
+    default: 6,
+  },
+  formButtonLeftPaddingMobile: {
+    type: "number",
+    default: 12,
+  },
+  formButtonRightPaddingMobile: {
+    type: "number",
+    default: 12,
+  },
+  isFormButtonPaddingMarginValueUpdated: {
+    type: "boolean",
+    default: false,
+  },
+  inputFieldTopPadding: {
+    type: "number",
+    default: 8,
+  },
+  inputFieldBottomPadding: {
+    type: "number",
+    default: 8,
+  },
+  inputFieldLeftPadding: {
+    type: "number",
+    default: 8,
+  },
+  inputFieldRightPadding: {
+    type: "number",
+    default: 8,
+  },
+  inputFieldTopPaddingTablet: {
+    type: "number",
+    default: 6,
+  },
+  inputFieldBottomPaddingTablet: {
+    type: "number",
+    default: 6,
+  },
+  inputFieldRightPaddingTablet: {
+    type: "number",
+    default: 6,
+  },
+  inputFieldLeftPaddingTablet: {
+    type: "number",
+    default: 6,
+  },
+  inputFieldTopPaddingMobile: {
+    type: "number",
+    default: 4,
+  },
+  inputFieldBottomPaddingMobile: {
+    type: "number",
+    default: 4,
+  },
+  inputFieldLeftPaddingMobile: {
+    type: "number",
+    default: 4,
+  },
+  inputFieldRightPaddingMobile: {
+    type: "number",
+    default: 4,
+  },
+  isInputFieldPaddingMarginValueUpdated: {
+    type: "boolean",
+    default: false,
+  },
 };
 
 export default attributes;

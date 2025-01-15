@@ -899,7 +899,55 @@ const attributes = {
     type: "number",
     default: 5,
   },
-  isIconContainerPaddingValueUpdated: {
+  ctaButtonTopMargin: {
+    type: "number",
+    default: 10,
+  },
+  ctaButtonBottomMargin: {
+    type: "number",
+    default: 10,
+  },
+  ctaButtonLeftMargin: {
+    type: "number",
+    default: 0,
+  },
+  ctaButtonRightMargin: {
+    type: "number",
+    default: 0,
+  },
+  ctaButtonTopMarginTablet: {
+    type: "number",
+    default: 10,
+  },
+  ctaButtonBottomMarginTablet: {
+    type: "number",
+    default: 10,
+  },
+  ctaButtonRightMarginTablet: {
+    type: "number",
+    default: 0,
+  },
+  ctaButtonLeftMarginTablet: {
+    type: "number",
+    default: 0,
+  },
+  ctaButtonTopMarginMobile: {
+    type: "number",
+    default: 10,
+  },
+  ctaButtonBottomMarginMobile: {
+    type: "number",
+    default: 10,
+  },
+  ctaButtonLeftMarginMobile: {
+    type: "number",
+    default: 0,
+  },
+  ctaButtonRightMarginMobile: {
+    type: "number",
+    default: 0,
+  },
+  isCtaButtonPaddingMarginValueUpdated: {
     type: "boolean",
     default: false,
   },

@@ -333,7 +333,7 @@
       ctaButtonBottomPaddingMobile,
       ctaButtonLeftPaddingMobile,
       ctaButtonRightPaddingMobile,
-      isIconContainerPaddingValueUpdated
+      isCtaButtonPaddingMarginValueUpdated
    } = props.attributes;
 
 

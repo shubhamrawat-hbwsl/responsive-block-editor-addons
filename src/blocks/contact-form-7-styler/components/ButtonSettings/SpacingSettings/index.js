@@ -46,7 +46,7 @@ class ButtonSpacingControl extends Component {
               ctaButtonBottomPaddingMobile,
               ctaButtonLeftPaddingMobile,
               ctaButtonRightPaddingMobile,
-              isIconContainerPaddingValueUpdated
+              isCtaButtonPaddingMarginValueUpdated
           },
           setAttributes,
       } = this.props;
@@ -68,7 +68,7 @@ class ButtonSpacingControl extends Component {
 
       // backward compatibility for icon container padding control
 
-    if (!isIconContainerPaddingValueUpdated) {
+    if (!isCtaButtonPaddingMarginValueUpdated) {
       this.props.setAttributes(
         {
           ctaButtonTopPadding:          ctaVpadding !== undefined ? ctaVpadding : ctaButtonTopPadding,
@@ -85,7 +85,7 @@ class ButtonSpacingControl extends Component {
           ctaButtonRightPaddingMobile:  ctaHpaddingMobile !== undefined ? ctaHpaddingMobile : ctaButtonRightPaddingMobile,
         }
       )
-      this.props.setAttributes({isIconContainerPaddingValueUpdated: true});
+      this.props.setAttributes({isCtaButtonPaddingMarginValueUpdated: true});
     }
   
 

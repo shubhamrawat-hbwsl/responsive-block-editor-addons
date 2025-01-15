@@ -152,7 +152,7 @@ export default class Inspector extends Component {
         iconContainerBottomPaddingMobile,
         iconContainerLeftPaddingMobile,
         iconContainerRightPaddingMobile,
-        isIconContainerPaddingValueUpdated,
+        isCtaButtonPaddingMarginValueUpdated,
       },
       setAttributes,
     } = this.props;
@@ -355,7 +355,7 @@ export default class Inspector extends Component {
 
     // backward compatibility for icon container padding control
 
-    if (!isIconContainerPaddingValueUpdated) {
+    if (!isCtaButtonPaddingMarginValueUpdated) {
       this.props.setAttributes(
         {
           iconContainerTopPadding:          iconContainerHeight !== undefined ? iconContainerHeight : iconContainerTopPadding,
@@ -372,7 +372,7 @@ export default class Inspector extends Component {
           iconContainerRightPaddingMobile:  iconContainerSize !== undefined ? iconContainerSize : iconContainerRightPaddingMobile,
         }
       )
-      this.props.setAttributes({isIconContainerPaddingValueUpdated: true});
+      this.props.setAttributes({isCtaButtonPaddingMarginValueUpdated: true});
     }
 
     // backward compatibility for typography color control

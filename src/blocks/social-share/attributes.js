@@ -415,7 +415,7 @@ const attributes = {
     type: "number",
     default: 5,
   },
-  isIconContainerPaddingValueUpdated: {
+  isCtaButtonPaddingMarginValueUpdated: {
     type: "boolean",
     default: false,
   }
