@@ -257,7 +257,7 @@ registerBlockType("responsive-block-editor-addons/advance-columns", {
     },
     backgroundImagePosition: {
       type: "string",
-      default: "center-center",
+      default: "center center",
     },
     backgroundImageSize: {
       type: "string",
@@ -416,23 +416,23 @@ registerBlockType("responsive-block-editor-addons/advance-columns", {
   },
   backgroundSizeTablet: {
     type: "string",
-    default: "empty",
+    default: "cover",
   },
   backgroundSizeMobile: {
     type: "string",
-    default: "empty",
+    default: "cover",
   },
 	backgroundPosition: {
 	  type: "string",
-	  default: "empty",
+	  default: "center center",
 	}, // For compatibility with v1.3.2.
   backgroundPositionMobile: {
 	  type: "string",
-	  default: "empty",
+	  default: "center center",
 	}, // For compatibility with v1.3.2.
   backgroundPositionTablet: {
 	  type: "string",
-	  default: "empty",
+	  default: "center center",
 	}, // For compatibility with v1.3.2.
 	backgroundRepeat: {
 	  type: "string",
@@ -440,7 +440,7 @@ registerBlockType("responsive-block-editor-addons/advance-columns", {
 	}, // For compatibility with v1.3.2.
 	backgroundSize: {
 	  type: "string",
-	  default: "empty",
+	  default: "cover",
 	}, // For compatibility with v1.3.2.
   },
     example:{

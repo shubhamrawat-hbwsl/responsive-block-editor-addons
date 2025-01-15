@@ -349,10 +349,7 @@ if (!gridIsRadiusValueUpdated) {
       <InspectorControls>
         <InspectorTabs>
           <InspectorTab key={"content"}>
-            <PanelBody
-              title={__("General", "responsive-block-editor-addons")}
-              initialOpen={open}
-            >
+            <PanelBody>
               <RbeaTabRadioControl
                 label={__("Heading Tag", "responsive-block-editor-addons")}
                 value={titleTag}
@@ -495,39 +492,22 @@ if (!gridIsRadiusValueUpdated) {
                 </TabPanel>
               )}
               {"list" == layout && (
-                <Fragment>
-                  <p className="responsive-setting-label">
-                    {__("List Style", "responsive-block-editor-addons")}
-                  </p>
-                  <Button
-                    key={"bullet"}
-                    icon="editor-ul"
-                    label="Bullet"
-                    onClick={() => setAttributes({ listStyle: "disc" })}
-                    aria-pressed={"disc" === listStyle}
-                    isPrimary={"disc" === listStyle}
-                  />
-                  <Button
-                    key={"numbers"}
-                    icon="editor-ol"
-                    label="Numbers"
-                    onClick={() => setAttributes({ listStyle: "decimal" })}
-                    aria-pressed={"decimal" === listStyle}
-                    isPrimary={"decimal" === listStyle}
-                  />
-                  <Button
-                    key={"none"}
-                    icon="menu"
-                    label="None"
-                    onClick={() => setAttributes({ listStyle: "none" })}
-                    aria-pressed={"none" === listStyle}
-                    isPrimary={"none" === listStyle}
-                  />
-                </Fragment>
+                <RbeaTabRadioControl
+                  label={__("List Style", "responsive-block-editor-addons")}
+                  value={listStyle}
+                  onChange={(value) =>
+                    setAttributes({ listStyle: value })
+                  }
+                  options={[
+                    { value: "disc", dashicon:"editor-ul", label: __("Bullet", "responsive-block-editor-addons") },
+                    { value: "decimal", dashicon:"editor-ol", label: __("Numbers", "responsive-block-editor-addons") },
+                    { value: "none", dashicon:"menu", label: __("None", "responsive-block-editor-addons") },
+                  ]}
+                  hasDashIcons={true}
+                  defaultValue={"cover"}
+                />
               )}
-              <br/>
-              <br/>
-              <SelectControl
+              <RbeaTabRadioControl
                 label={__("Post Type", "responsive-block-editor-addons")}
                 value={postType}
                 onChange={(value) => setAttributes({ postType: value })}
@@ -611,18 +591,66 @@ if (!gridIsRadiusValueUpdated) {
               )}
               {"list" === layout && (
                 <Fragment>
-                  <RbeaColorControl
-                    label = {__("List Style Color", "responsive-block-editor-addons")}
-                    colorValue={listStyleColor}
-                    onChange={(colorValue) => setAttributes({ listStyleColor: colorValue })}
-                    resetColor={() => setAttributes({ listStyleColor: "" })}
-                  />
-                  <RbeaColorControl
-                    label = {__("List Style Color Hover", "responsive-block-editor-addons")}
-                    colorValue={listStyleColorHover}
-                    onChange={(colorValue) => setAttributes({ listStyleColorHover: colorValue })}
-                    resetColor={() => setAttributes({ listStyleColorHover: "" })}
-                  />
+                  <TabPanel
+                    className="responsive-block-editor-addons-inspect-tabs 
+                    responsive-block-editor-addons-inspect-tabs-col-2  
+                    responsive-block-editor-addons-color-inspect-tabs"
+                    activeClass="active-tab"
+                    initialTabName="normal" // Set the default active tab here
+                    tabs={[
+                      {
+                        name: "empty",
+                        title: __("", "responsive-block-editor-addons"),
+                        className: "responsive-block-editor-addons-empty-tab",
+                      },
+                      {
+                        name: "normal",
+                        title: __("Normal", "responsive-block-editor-addons"),
+                        className: "responsive-block-editor-addons-normal-tab",
+                      },
+                      {
+                        name: "empty",
+                        title: __("", "responsive-block-editor-addons"),
+                        className: "responsive-block-editor-addons-empty-tab",
+                      },
+                      {
+                        name: "hover",
+                        title: __("Hover", "responsive-block-editor-addons"),
+                        className: "responsive-block-editor-addons-hover-tab",
+                      },
+                      {
+                        name: "empty",
+                        title: __("", "responsive-block-editor-addons"),
+                        className: "responsive-block-editor-addons-empty-tab",
+                      },
+                    ]}
+                  >
+                    {(tabName) => {
+                      let color_tab;
+                      if ("normal" === tabName.name) {
+                        color_tab = (
+                          <RbeaColorControl
+                            label = {__("List Style Color", "responsive-block-editor-addons")}
+                            colorValue={listStyleColor}
+                            onChange={(colorValue) => setAttributes({ listStyleColor: colorValue })}
+                            resetColor={() => setAttributes({ listStyleColor: "" })}
+                          />
+                        );
+                      } else if("hover" === tabName.name) {
+                        color_tab = (
+                          <RbeaColorControl
+                            label = {__("List Style Color Hover", "responsive-block-editor-addons")}
+                            colorValue={listStyleColorHover}
+                            onChange={(colorValue) => setAttributes({ listStyleColorHover: colorValue })}
+                            resetColor={() => setAttributes({ listStyleColorHover: "" })}
+                          />
+                        );
+                      } else {
+                        color_tab = emptyColorControl;
+                      }
+                      return <div>{color_tab}</div>;
+                    }}
+                  </TabPanel>
                 </Fragment>
               )}
             </PanelBody>

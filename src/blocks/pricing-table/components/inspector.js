@@ -35,6 +35,7 @@ const {
   PanelColorSettings,
   ColorPalette,
   MediaUpload,
+  AlignmentToolbar,
 } = wp.blockEditor;
 
 // Import Inspector components
@@ -656,16 +657,25 @@ export default class Inspector extends Component {
                   onChange={(newGutter) => setAttributes({ gutter: newGutter })}
                 />
               )}
-              <RbeaTabRadioControl
-                label={__("Alignment", "responsive-block-editor-addons")}
-                options={citeAlignOptions}
-                value={blockAlign}
-                onChange={(value) =>
-                  this.props.setAttributes({
-                    blockAlign: value,
-                  })
-                }
-              />
+              <Fragment>
+                <BaseControl>
+                  <p>
+                    {__("Alignment", "responsive-block-editor-addons")}
+                  </p>
+                  <div className="responsive-block-editor-addons-alignment">
+                    <AlignmentToolbar
+                      value={blockAlign}
+                      onChange={(value) =>
+                        setAttributes({
+                          blockAlign: value,
+                        })
+                      }
+                      controls={["left", "center", "right"]}
+                      isCollapsed={false}
+                    />
+                  </div>
+                </BaseControl>
+              </Fragment>
               <Fragment>
                 <ToggleControl
                   label={__("Image", "responsive-block-editor-addons")}
@@ -761,7 +771,7 @@ export default class Inspector extends Component {
             </PanelBody>
           </InspectorTab>
           <InspectorTab key={"style"}>
-          <PanelBody
+            <PanelBody
               title={__("Background", "responsive-block-editor-addons")}
               initialOpen={false}
             >

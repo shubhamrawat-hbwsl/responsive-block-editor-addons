@@ -268,10 +268,7 @@ export default class Inspector extends Component {
       <InspectorControls key="controls">
         <InspectorTabs>
           <InspectorTab key={"content"}>
-            <PanelBody
-              title={__("Tabs", "responsive-block-editor-addons")}
-              initialOpen={true}
-            >
+            <PanelBody>
               <Fragment>
                 <RbeaTabRadioControl
                   label={__("Position", "responsive-block-editor-addons")}
@@ -455,6 +452,45 @@ export default class Inspector extends Component {
               )}
               
             </PanelBody>
+            <PanelBody
+              title={__("Border", "responsive-block-editor-addons")}
+              initialOpen={false}
+            >
+              <RbeaBlockBorderHelperControl
+                attrNameTemplate="block%s"
+                values={{
+                  radius: blockBorderRadius,
+                  style: blockBorderStyle,
+                  width: blockBorderWidth,
+                  color: blockBorderColor,
+                }}
+                setAttributes={setAttributes}
+                {...this.props}
+              />
+            </PanelBody>
+            <PanelBody title={__("Box Shadow", "responsive-block-editor-addons")}
+								initialOpen={false}
+							>
+								<BoxShadowControl
+									setAttributes={setAttributes}
+									label={__("Box Shadow", "responsive-block-editor-addons")}
+									boxShadowColor={{ value: boxShadowColor, label: __("Color", "responsive-block-editor-addons") }}
+									boxShadowHOffset={{
+										value: boxShadowHOffset,
+										label: __("Horizontal", "responsive-block-editor-addons"),
+									}}
+									boxShadowVOffset={{
+										value: boxShadowVOffset,
+										label: __("Vertical", "responsive-block-editor-addons"),
+									}}
+									boxShadowBlur={{ value: boxShadowBlur, label: __("Blur", "responsive-block-editor-addons") }}
+									boxShadowSpread={{ value: boxShadowSpread, label: __("Spread", "responsive-block-editor-addons") }}
+									boxShadowPosition={{
+										value: boxShadowPosition,
+										label: __("Position", "responsive-block-editor-addons"),
+									}}
+								/>
+							</PanelBody>
             <TypographyHelperControl
                 title={__("Title Typography", "responsive-block-editor-addons")}
                 attrNameTemplate="tabTitle%s"
@@ -642,45 +678,6 @@ export default class Inspector extends Component {
                 onChange={(value) => setAttributes({ tabsZindex: value })}
               />
             </InspectorAdvancedControls> */}
-            <PanelBody
-              title={__("Border", "responsive-block-editor-addons")}
-              initialOpen={false}
-            >
-              <RbeaBlockBorderHelperControl
-                attrNameTemplate="block%s"
-                values={{
-                  radius: blockBorderRadius,
-                  style: blockBorderStyle,
-                  width: blockBorderWidth,
-                  color: blockBorderColor,
-                }}
-                setAttributes={setAttributes}
-                {...this.props}
-              />
-              <PanelBody title={__("Box Shadow", "responsive-block-editor-addons")}
-								initialOpen={false}
-							>
-								<BoxShadowControl
-									setAttributes={setAttributes}
-									label={__("Box Shadow", "responsive-block-editor-addons")}
-									boxShadowColor={{ value: boxShadowColor, label: __("Color", "responsive-block-editor-addons") }}
-									boxShadowHOffset={{
-										value: boxShadowHOffset,
-										label: __("Horizontal", "responsive-block-editor-addons"),
-									}}
-									boxShadowVOffset={{
-										value: boxShadowVOffset,
-										label: __("Vertical", "responsive-block-editor-addons"),
-									}}
-									boxShadowBlur={{ value: boxShadowBlur, label: __("Blur", "responsive-block-editor-addons") }}
-									boxShadowSpread={{ value: boxShadowSpread, label: __("Spread", "responsive-block-editor-addons") }}
-									boxShadowPosition={{
-										value: boxShadowPosition,
-										label: __("Position", "responsive-block-editor-addons"),
-									}}
-								/>
-							</PanelBody>
-            </PanelBody>
             <PanelBody
               title={__("Z Index", "responsive-block-editor-addons")}
               initialOpen={false}

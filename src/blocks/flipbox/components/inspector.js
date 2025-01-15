@@ -22,6 +22,7 @@ import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-contro
 import RbeaMediaUploadControl from "../../../utils/components/rbea-media-upload-control";
 import RbeaBlockBorderHelperControl from "../../../settings-components/RbeaBlockBorderSettings";
 import { RadioControl} from "@wordpress/components";
+import stackOnIcons from "../../../utils/components/rbea-tab-radio-control/rbea-stack-on-icons";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -742,16 +743,14 @@ export default class Inspector extends Component {
                 value={stack}
                 options={[
                   {
-                    value: "none",
-                    label: __("None", "responsive-block-editor-addons"),
-                  },
-                  {
                     value: "tablet",
                     label: __("Tablet", "responsive-block-editor-addons"),
+                    icon: stackOnIcons.tablet,
                   },
                   {
                     value: "mobile",
                     label: __("Mobile", "responsive-block-editor-addons"),
+                    icon: stackOnIcons.mobile,
                   },
                 ]}
                 onChange={(value) => setAttributes({ stack: value })}
@@ -759,6 +758,10 @@ export default class Inspector extends Component {
                   "Note: Choose on what breakpoint the flipboxes will stack.",
                   "responsive-block-editor-addons"
                 )}
+                defaultValue={"none"}
+                allowReset={true}
+								hasIcon={true}
+								optionHasBorder={true}
               />
               <RbeaRangeControl
                 label={__("Gutter Gap", "responsive-block-editor-addons")}
@@ -810,28 +813,24 @@ export default class Inspector extends Component {
                 allowReset
               />
             </PanelBody>
-
-            <ButtonGroup
-              className="flipbox_buttongroup"
-              text={__("Selected Site", "responsive-block-editor-addons")}
-            >
-              <Button
-                className={classnames("flipbox_button", frontColorButtonClass)}
-                onClick={() =>
-                  setAttributes({ colorButtonSelected: "front_selected" })
-                }
-              >
-                {__("Front", "responsive-block-editor-addons")}
-              </Button>
-              <Button
-                className={classnames("flipbox_button", backColorButtonClass)}
-                onClick={() =>
-                  setAttributes({ colorButtonSelected: "back_selected" })
-                }
-              >
-                {__("Back", "responsive-block-editor-addons")}
-              </Button>
-            </ButtonGroup>
+            
+              <PanelBody>
+                <RbeaTabRadioControl
+                  label={__("Layout", "responsive-block-editor-addons")}
+                  value={colorButtonSelected}
+                  options={[
+                    {
+                      value: "front_selected",
+                      label: __("Front", "responsive-block-editor-addons"),
+                    },
+                    {
+                      value: "back_selected",
+                      label: __("Back", "responsive-block-editor-addons"),
+                    },
+                  ]}
+                  onChange={(value) => setAttributes({ colorButtonSelected: value })}
+                />
+              </PanelBody>
             <PanelBody initialOpen={true}>
               {isFrontSelected && (
                 <Fragment>
@@ -1032,18 +1031,20 @@ export default class Inspector extends Component {
                     }}
                     mediaType={'image'}
                   />
-                  <RbeaRangeControl
-                    label={__("Opacity", "responsive-block-editor-addons")}
-                    value={colorOpacity}
-                    onChange={(value) =>
-                      setAttributes({
-                        colorOpacity: value !== undefined ? value : 30,
-                      })
-                    }
-                    min={0}
-                    max={100}
-                    allowReset
-                  />
+                  {backgroundImage && (
+                      <RbeaRangeControl
+                      label={__("Opacity", "responsive-block-editor-addons")}
+                      value={colorOpacity}
+                      onChange={(value) =>
+                        setAttributes({
+                          colorOpacity: value !== undefined ? value : 30,
+                        })
+                      }
+                      min={0}
+                      max={100}
+                      allowReset
+                    />
+                  )}
                   {backgroundImage && (
                     <Fragment>
                       <div className = "rbea-tab-selector-label-wrapper">
@@ -1251,18 +1252,20 @@ export default class Inspector extends Component {
                     }}
                     mediaType={'image'}
                   />
-                  <RbeaRangeControl
-                    label={__("Opacity", "responsive-block-editor-addons")}
-                    value={backColorOpacity}
-                    onChange={(value) =>
-                      setAttributes({
-                        backColorOpacity: value !== undefined ? value : 30,
-                      })
-                    }
-                    min={0}
-                    max={100}
-                    allowReset
-                  />
+                  {backBackgroundImage && (
+                    <RbeaRangeControl
+                      label={__("Opacity", "responsive-block-editor-addons")}
+                      value={backColorOpacity}
+                      onChange={(value) =>
+                        setAttributes({
+                          backColorOpacity: value !== undefined ? value : 30,
+                        })
+                      }
+                      min={0}
+                      max={100}
+                      allowReset
+                    />
+                  )}
                   {backBackgroundImage && (
                     <Fragment>
                       <div className = "rbea-tab-selector-label-wrapper">

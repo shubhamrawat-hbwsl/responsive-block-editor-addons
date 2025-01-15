@@ -1,3 +1,5 @@
+import { type } from "jquery";
+
 const attributes = {
   block_id: {
     type: "string",
@@ -238,7 +240,6 @@ const attributes = {
   },
   backgroundType: {
     type: "string",
-    default: "color",
   },
   buttoncolorLocation1: {
     type: "number",
@@ -694,6 +695,38 @@ const attributes = {
   ctaTextBottomSpacingTablet: {
     type: 'number',
     default: 28,
+  },
+  backgroundPosition: {
+    type: 'string',
+    default: "center center",
+  },
+  backgroundPositionMobile: {
+    type: 'string',
+    default: "center center",
+  },
+  backgroundPositionTablet: {
+    type: 'string',
+    default: "center center",
+  },
+  backgroundRepeat: {
+    type: 'string',
+    default: "no-repeat",
+  },
+  backgroundSize: {
+    type: 'string',
+    default: "cover",
+  },
+  backgroundSizeTablet: {
+    type: 'string',
+    default: "cover",
+  },
+  backgroundSizeMobile: {
+    type: 'string',
+    default: "cover",
+  },
+  backgroundImageValueUpdated: {
+    type: "boolean",
+    default: false,
   },
 };
 export default attributes;

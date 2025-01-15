@@ -257,6 +257,8 @@ export default class Inspector extends Component {
         subHeadingTitleBottomSpacingTablet,
         headingTitleTextDecoration,
         subHeadingTitleTextDecoration,
+        widthTypeValueUpdated,
+        widthType,
       },
       setAttributes,
     } = this.props;
@@ -285,6 +287,16 @@ export default class Inspector extends Component {
         }
       )
       this.props.setAttributes({ blockIsBottomSpacingValueUpdated: true });
+    }
+
+    //widthType
+    if (!widthTypeValueUpdated) {
+      this.props.setAttributes(
+        {
+          widthType: separatorWidthType !== undefined ? separatorWidthType : widthType,
+        }
+      )
+      this.props.setAttributes({ widthTypeValueUpdated: true });
     }
 
     return (
@@ -555,11 +567,11 @@ export default class Inspector extends Component {
                       setAttributes({ separatorWidth: value })
                     }
                     min={0}
-                    max={"%" == separatorWidthType ? 100 : 500}
+                    max={"%" == widthType ? 100 : 500}
                     beforeIcon=""
                     allowReset
                     initialPosition={20}
-                    separatorWidthType={separatorWidthType}
+                    widthType={widthType}
                     extraControls={true}
                     setAttributes={setAttributes}
                   />

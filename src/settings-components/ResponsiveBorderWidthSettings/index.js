@@ -1,14 +1,14 @@
-import RbeaDimensionControl from "../RbeaDimensionControl"
+
+import RbeaDimensionControl from "../RbeaDimensionControl";
 
 const { Dashicon, TabPanel } = wp.components;
 
-export default function RbeaBorderRadiusControl (props) {
-
+export default function ResponsiveBorderWidthControl (props) {
 
     return (
         <>  
         <TabPanel
-            className="responsive-size-type-field-tabs rbea-responsive-controls responsive-size-type-field__common-tabs responsive-inline-margin rbea-responsive-border-radius-control-tabs"
+            className="responsive-size-type-field-tabs rbea-responsive-controls responsive-size-type-field__common-tabs  responsive-inline-margin"
             activeClass="active-tab"
             tabs={[
                 {
@@ -34,17 +34,17 @@ export default function RbeaBorderRadiusControl (props) {
   
             if ("mobile" === tab.name) {
                 tabout = (
-                    <RbeaDimensionControl {...{...props, tabName: 'Mobile', controlName: 'radius'}}/>
+                    <RbeaDimensionControl
+                     {...{...props, tabName: 'Mobile', controlName: 'width'}}
+                    />
             );
             } else if ("tablet" === tab.name) {
                 tabout = (
-                    <RbeaDimensionControl {...{...props, tabName: 'Tablet', controlName: 'radius'}}/>
+                    <RbeaDimensionControl {...{...props, tabName: 'Tablet', controlName: 'width' }}/>
             );
             } else {
                 tabout = (
-                    <RbeaDimensionControl
-                    {...{...props, tabName: '', controlName: 'radius'}}
-                    />
+                    <RbeaDimensionControl {...{...props, tabName: '', controlName: 'width'}}/>
             );
             }
   

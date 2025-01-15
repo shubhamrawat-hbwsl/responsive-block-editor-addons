@@ -245,20 +245,22 @@ export default class Inspector extends Component {
                 { value: "simple", label: __("Default", "responsive-block-editor-addons") }
               ]}
             />
-            <SelectControl
-              label={__("Notification Type", "responsive-block-editor-addons")}
-              value={noticeType}
-              onChange={(value) => {
-                setAttributes({noticeType: value})
-              }}
-              options={[
-                {value: "default", label: __("Default", "responsive-block-editor-addons")},
-                {value: "warning", label: __("Warning", "responsive-block-editor-addons")},
-                {value: "error", label: __("Error", "responsive-block-editor-addons")},
-                {value: "info", label: __("Information", "responsive-block-editor-addons")},
-                {value: "notification", label: __("Notification", "responsive-block-editor-addons")}
-              ]}
-            />
+            <div className="responsive-block-editor-addons-inline-notice-notification-type-container">
+              <RbeaTabRadioControl
+                label={__("Notification Type", "responsive-block-editor-addons")}
+                value={noticeType}
+                onChange={(value) => {
+                  setAttributes({noticeType: value})
+                }}
+                options={[
+                  {value: "default", label: __("Default", "responsive-block-editor-addons")},
+                  {value: "warning", label: __("Warning", "responsive-block-editor-addons")},
+                  {value: "error", label: __("Error", "responsive-block-editor-addons")},
+                  {value: "info", label: __("Information", "responsive-block-editor-addons")},
+                  {value: "notification", label: __("Notification", "responsive-block-editor-addons")}
+                ]}
+              />
+            </div>
             <RbeaTabRadioControl
               label={__("Primary Heading", "responsive-block-editor-addons")}
               value={headingTag}

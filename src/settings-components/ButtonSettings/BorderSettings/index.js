@@ -69,6 +69,7 @@ class ButtonBorderControl extends Component {
                       />
                         <RbeaBorderRadiusControl
                             attrNameTemplate="ctaBlock%s"
+                            label = 'Border Radius'
                             {...this.props}
                         />
                   </Fragment>

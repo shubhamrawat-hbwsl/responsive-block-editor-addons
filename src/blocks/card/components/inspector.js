@@ -27,6 +27,7 @@ import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-contro
 import RbeaBackgroundTypeControl from "../../../utils/components/rbea-background-type-control";
 import RbeaBlockBorderHelperControl from "../../../settings-components/RbeaBlockBorderSettings";
 import { RadioControl} from "@wordpress/components";
+import stackOnIcons from "../../../utils/components/rbea-tab-radio-control/rbea-stack-on-icons";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -463,6 +464,20 @@ export default class Inspector extends Component {
         contentBottomSpacingMobile,
         contentBottomSpacingTablet,
         blockIsTypographyColorValueUpdated,
+
+        ctaButtonTopPadding,
+        ctaButtonBottomPadding,
+        ctaButtonLeftPadding,
+        ctaButtonRightPadding,
+        ctaButtonTopPaddingTablet,
+        ctaButtonBottomPaddingTablet,
+        ctaButtonRightPaddingTablet,
+        ctaButtonLeftPaddingTablet,
+        ctaButtonTopPaddingMobile,
+        ctaButtonBottomPaddingMobile,
+        ctaButtonLeftPaddingMobile,
+        ctaButtonRightPaddingMobile,
+        isIconContainerPaddingValueUpdated,
       },
       setAttributes,
     } = this.props;
@@ -559,19 +574,19 @@ export default class Inspector extends Component {
     const buttonSizeOptions = [
       {
         value: "responsive-block-editor-addons-button-size-small",
-        label: __("Small", "responsive-block-editor-addons"),
+        label: __("S", "responsive-block-editor-addons"),
       },
       {
         value: "responsive-block-editor-addons-button-size-medium",
-        label: __("Medium", "responsive-block-editor-addons"),
+        label: __("M", "responsive-block-editor-addons"),
       },
       {
         value: "responsive-block-editor-addons-button-size-large",
-        label: __("Large", "responsive-block-editor-addons"),
+        label: __("L", "responsive-block-editor-addons"),
       },
       {
         value: "responsive-block-editor-addons-button-size-extralarge",
-        label: __("Extra Large", "responsive-block-editor-addons"),
+        label: __("XL", "responsive-block-editor-addons"),
       },
     ];
 
@@ -718,6 +733,9 @@ export default class Inspector extends Component {
       this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
     }
 
+    const emptyColorControl = (
+      <div className="responsive-block-editor-addons-empty-color-control"></div>
+    );
 
     return (
       <InspectorControls key="inspector">
@@ -770,16 +788,14 @@ export default class Inspector extends Component {
                 value={stack}
                 options={[
                   {
-                    value: "none",
-                    label: __("None", "responsive-block-editor-addons"),
-                  },
-                  {
                     value: "tablet",
                     label: __("Tablet", "responsive-block-editor-addons"),
+                    icon: stackOnIcons.tablet,
                   },
                   {
                     value: "mobile",
                     label: __("Mobile", "responsive-block-editor-addons"),
+                    icon: stackOnIcons.mobile,
                   },
                 ]}
                 onChange={(value) => setAttributes({ stack: value })}
@@ -787,6 +803,10 @@ export default class Inspector extends Component {
                   "Note: Choose on what breakpoint the columns will stack.",
                   "responsive-block-editor-addons"
                 )}
+                allowReset={true}
+								defaultValue={"none"}
+								hasIcon={true}
+								optionHasBorder={true}
               />
               <RbeaRangeControl
                 label={__("Z-Index", "responsive-block-editor-addons")}
@@ -878,13 +898,15 @@ export default class Inspector extends Component {
               >
                 {resshowImage && (
                   <Fragment>
-                    <SelectControl
-                      label={__("Image Size", "responsive-block-editor-addons")}
-                      value={imageSize}
-                      onChange={(value) => setAttributes({ imageSize: value })}
-                      options={imageSizeOptions}
-                    />
-                    
+                    <div className = "rbea-repeat-selector-wrapper">
+                      <RbeaTabRadioControl
+                        label={__("Image Size", "responsive-block-editor-addons")}
+                        value={imageSize}
+                        onChange={(value) => setAttributes({ imageSize: value })}
+                        options={imageSizeOptions}
+                      />
+                    </div>
+
                     <div className = "rbea-tab-selector-label-wrapper">
                       <label className  = "rbea-background-image-positon-control-label">{__("Image Position", "responsive-block-editor-addons")}</label>
                       <TabPanel
@@ -1081,26 +1103,27 @@ export default class Inspector extends Component {
               title={__("Button Settings", "responsive-block-editor-addons")}
               initialOpen={false}
             >
+                <RbeaTabRadioControl
+                  label={__("Button Size", "responsive-block-editor-addons")}
+                  value={buttonSize}
+                  options={buttonSizeOptions.map(({ value, label }) => ({
+                    value,
+                    label,
+                  }))}
+                  onChange={(value) => {
+                    this.props.setAttributes({
+                      buttonSize: value,
+                    });
+                  }}
+                  defaultValue={"medium"}
+                />
+              {/* TODO */}
               <ButtonSettingsControl
                 {...this.props}
                 showMarginControls={true}
                 showBackColorOpacity={true}
                 showGradientHover={false}
                 showTextOpacity={true}
-              />
-              <SelectControl
-                label={__("Button Size", "responsive-block-editor-addons")}
-                value={buttonSize}
-                options={buttonSizeOptions.map(({ value, label }) => ({
-                  value,
-                  label,
-                }))}
-                onChange={(value) => {
-                  this.props.setAttributes({
-                    buttonSize: value,
-                  });
-                }}
-                defaultValue={"medium"}
               />
             </PanelBody>
           </InspectorTab>
@@ -1446,22 +1469,70 @@ export default class Inspector extends Component {
                   ]}
                   defaultValue={"before"}
                 />
-                <RbeaColorControl
-									label = {__("Icon Color", "responsive-block-editor-addons")}
-									colorValue={icon_color}
-									onChange={(colorValue) =>
-										setAttributes({ icon_color: colorValue })
-									}
-									resetColor={() => setAttributes({ icon_color: "" })}
-								/>
-                <RbeaColorControl
-									label = {__("Icon Hover Color", "responsive-block-editor-addons")}
-									colorValue={icon_hcolor}
-									onChange={(colorValue) =>
-										setAttributes({ icon_hcolor: colorValue })
-									}
-									resetColor={() => setAttributes({ icon_hcolor: "" })}
-								/>
+                <TabPanel
+                  className="responsive-block-editor-addons-inspect-tabs 
+                  responsive-block-editor-addons-inspect-tabs-col-2  
+                  responsive-block-editor-addons-color-inspect-tabs"
+                  activeClass="active-tab"
+                  initialTabName="normal" // Set the default active tab here
+                  tabs={[
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
+                    },
+                    {
+                      name: "normal",
+                      title: __("Normal", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-normal-tab",
+                    },
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
+                    },
+                    {
+                      name: "hover",
+                      title: __("Hover", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-hover-tab",
+                    },
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
+                    },
+                  ]}
+                >
+                  {(tabName) => {
+                    let color_tab;
+                    if ("normal" === tabName.name) {
+                      color_tab = (
+                        <RbeaColorControl
+								        	label = {__("Icon Color", "responsive-block-editor-addons")}
+								        	colorValue={icon_color}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ icon_color: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ icon_color: "" })}
+								        />
+                      );
+                    } else if("hover" === tabName.name) {
+                      color_tab = (
+                        <RbeaColorControl
+								        	label = {__("Icon Hover Color", "responsive-block-editor-addons")}
+								        	colorValue={icon_hcolor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ icon_hcolor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ icon_hcolor: "" })}
+								        />
+                      );
+                    } else {
+                      color_tab = emptyColorControl;
+                    }
+                    return <div>{color_tab}</div>;
+                  }}
+                </TabPanel>
               </Fragment>
             </PanelBody>
             <PanelBody

@@ -365,6 +365,7 @@ const attributes = {
   },
   colorButtonSelected: {
     type: "string",
+    default: 'front_selected', 
   },
   topMargin: {
     type: "number",

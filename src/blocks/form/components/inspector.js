@@ -361,6 +361,10 @@ export default class Inspector extends Component {
       this.props.setAttributes({formButtonIsRadiusValueUpdated: true});
     }
 
+    const emptyColorControl = (
+      <div className="responsive-block-editor-addons-empty-color-control"></div>
+    );
+
     return (
       <InspectorControls key="inspector">
         <InspectorTabs>
@@ -551,49 +555,90 @@ export default class Inspector extends Component {
               title={__("Button", "responsive-block-editor-addons")}
               initialOpen={false}
             >
-
-              <PanelBody
-                title={__("Normal Color", "responsive-block-editor-addons")}
-                initialOpen={false}
+              <TabPanel
+                className="responsive-block-editor-addons-inspect-tabs 
+                responsive-block-editor-addons-inspect-tabs-col-2  
+                responsive-block-editor-addons-color-inspect-tabs"
+                activeClass="active-tab"
+                initialTabName="normal" // Set the default active tab here
+                tabs={[
+                  {
+                    name: "empty",
+                    title: __("", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-empty-tab",
+                  },
+                  {
+                    name: "normal",
+                    title: __("Normal", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-normal-tab",
+                  },
+                  {
+                    name: "empty",
+                    title: __("", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-empty-tab",
+                  },
+                  {
+                    name: "hover",
+                    title: __("Hover", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-hover-tab",
+                  },
+                  {
+                    name: "empty",
+                    title: __("", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-empty-tab",
+                  },
+                ]}
               >
-                 <RbeaColorControl
-									label = {__("Normal Button Color", "responsive-block-editor-addons")}
-									colorValue={formButtonLabelColor}
-									onChange={(colorValue) =>
-										setAttributes({ formButtonLabelColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formButtonLabelColor: "" })}
-								/>
-                 <RbeaColorControl
-									label = {__("Normal Button Background color", "responsive-block-editor-addons")}
-									colorValue={formButtonLabelBGColor}
-									onChange={(colorValue) =>
-										setAttributes({ formButtonLabelBGColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formButtonLabelBGColor: "" })}
-								/>
-              </PanelBody>
-              <PanelBody
-                title={__("Hover Color", "responsive-block-editor-addons")}
-                initialOpen={false}
-              >
-                 <RbeaColorControl
-									label = {__("Hover Button Color", "responsive-block-editor-addons")}
-									colorValue={formButtonLabelHoverColor}
-									onChange={(colorValue) =>
-										setAttributes({ formButtonLabelHoverColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formButtonLabelHoverColor: "" })}
-								/>
-                 <RbeaColorControl
-									label = {__("Hover Button Background color", "responsive-block-editor-addons")}
-									colorValue={formButtonLabelHoverBGColor}
-									onChange={(colorValue) =>
-										setAttributes({ formButtonLabelHoverBGColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formButtonLabelHoverBGColor: "" })}
-								/>
-              </PanelBody>
+                {(tabName) => {
+                  let color_tab;
+                  if ("normal" === tabName.name) {
+                    color_tab = (
+                      <>
+                        <RbeaColorControl
+								        	label = {__("Normal Button Color", "responsive-block-editor-addons")}
+								        	colorValue={formButtonLabelColor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ formButtonLabelColor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ formButtonLabelColor: "" })}
+								        />
+                         <RbeaColorControl
+								        	label = {__("Normal Button Background color", "responsive-block-editor-addons")}
+								        	colorValue={formButtonLabelBGColor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ formButtonLabelBGColor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ formButtonLabelBGColor: "" })}
+								        />
+                      </>
+                    );
+                  } else if("hover" === tabName.name) {
+                    color_tab = (
+                      <>
+                        <RbeaColorControl
+								        	label = {__("Hover Button Color", "responsive-block-editor-addons")}
+								        	colorValue={formButtonLabelHoverColor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ formButtonLabelHoverColor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ formButtonLabelHoverColor: "" })}
+								        />
+                         <RbeaColorControl
+								        	label = {__("Hover Button Background color", "responsive-block-editor-addons")}
+								        	colorValue={formButtonLabelHoverBGColor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ formButtonLabelHoverBGColor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ formButtonLabelHoverBGColor: "" })}
+								        />
+                      </>
+                    );
+                  } else {
+                    color_tab = emptyColorControl;
+                  }
+                  return <div>{color_tab}</div>;
+                }}
+              </TabPanel>
 
               <hr className="responsive-block-editor-addons-editor__separator" />
 
