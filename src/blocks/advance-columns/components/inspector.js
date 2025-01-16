@@ -744,6 +744,142 @@ export default class Inspector extends Component {
                       ]}
                       defaultValue={"fixed"}
                     />
+
+                      <RbeaBackgroundTypeControl
+                        label={__("Overlay Type", "responsive-block-editor-addons")}
+                        value={overlayType}
+                        onChange={(value) =>
+                          setAttributes({ overlayType: value })
+                        }
+                        options={[
+                          { label: "color", value: "color" },
+                          { label: "gradient", value: "gradient" },
+                        ]}
+                      />
+
+                      {overlayType == "color" && (
+                        <Fragment>
+                          <RbeaColorControl
+                            label = {__("Overlay Color", "responsive-block-editor-addons")}
+                            colorValue={backgroundImageColor}
+                            onChange={(colorValue) =>
+                              setAttributes({
+                                backgroundImageColor: colorValue,
+                              })
+                            }
+                            resetColor={() => setAttributes({ backgroundImageColor: "" })}
+                          />
+                        </Fragment>
+                      )}
+
+{"gradient" == overlayType && (
+                        <Fragment>
+                          <RbeaColorControl
+                            label = {"Color 1"}
+                            colorValue={gradientOverlayColor1}
+                            onChange={(colorValue) =>
+                              setAttributes({
+                                gradientOverlayColor1: colorValue,
+                              })
+                            }
+                            resetColor={() => setAttributes({ gradientOverlayColor1: "" })}
+                          />
+                          <RbeaRangeControl
+                            label={__("Location 1", "responsive-block-editor-addons")}
+                            value={gradientOverlayLocation1}
+                            onChange={(value) =>
+                              setAttributes({ gradientOverlayLocation1: value })
+                            }
+                            min={0}
+                            max={100}
+                          />
+                          <RbeaColorControl
+                            label = {"Color 2"}
+                            colorValue={gradientOverlayColor2}
+                            onChange={(colorValue) =>
+                              setAttributes({
+                                gradientOverlayColor2: colorValue,
+                              })
+                            }
+                            resetColor={() => setAttributes({ gradientOverlayColor2: "" })}
+                          />
+                          <RbeaRangeControl
+                            label={__("Location 2", "responsive-block-editor-addons")}
+                            value={gradientOverlayLocation2}
+                            onChange={(value) =>
+                              setAttributes({ gradientOverlayLocation2: value })
+                            }
+                            min={0}
+                            max={100}
+                          />
+                          <RbeaTabRadioControl
+                            label={__("Type", "responsive-block-editor-addons")}
+                            value={gradientOverlayType}
+                            onChange={(value) =>
+                              setAttributes({ gradientOverlayType: value })
+                            }
+                            options={[
+                              { value: "linear", label: __("Linear", "responsive-block-editor-addons") },
+                              { value: "radial", label: __("Radial", "responsive-block-editor-addons") },
+                            ]}
+                            defaultValue={"linear"}
+                          />
+                          {"linear" == gradientOverlayType && (
+                            <RbeaAngleRangeControl
+                              label={__("Angle", "responsive-block-editor-addons")}
+                              value={gradientOverlayAngle}
+                              onChange={(value) =>
+                                setAttributes({ gradientOverlayAngle: value })
+                              }
+                              min={0}
+                              max={360}
+                            />
+                          )}
+                          {"radial" == gradientOverlayType && (
+                            <SelectControl
+                              label={__("Type", "responsive-block-editor-addons")}
+                              value={gradientOverlayPosition}
+                              onChange={(value) =>
+                                setAttributes({
+                                  gradientOverlayPosition: value,
+                                })
+                              }
+                              options={[
+                                {
+                                  value: "center center",
+                                  label: __("Center Center", "responsive-block-editor-addons"),
+                                },
+                                {
+                                  value: "center left",
+                                  label: __("Center Left", "responsive-block-editor-addons"),
+                                },
+                                {
+                                  value: "center right",
+                                  label: __("Center Right", "responsive-block-editor-addons"),
+                                },
+                                {
+                                  value: "top center",
+                                  label: __("Top Center", "responsive-block-editor-addons"),
+                                },
+                                { value: "top left", label: __("Top Left", "responsive-block-editor-addons") },
+                                { value: "top right", label: __("Top Right", "responsive-block-editor-addons") },
+                                {
+                                  value: "bottom center",
+                                  label: __("Bottom Center", "responsive-block-editor-addons"),
+                                },
+                                {
+                                  value: "bottom left",
+                                  label: __("Bottom Left", "responsive-block-editor-addons"),
+                                },
+                                {
+                                  value: "bottom right",
+                                  label: __("Bottom Right", "responsive-block-editor-addons"),
+                                },
+                              ]}
+                            />
+                          )}
+                        </Fragment>
+                      )}
                 </Fragment>
               )}
 

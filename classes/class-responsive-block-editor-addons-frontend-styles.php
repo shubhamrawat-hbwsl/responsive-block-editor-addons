@@ -12542,7 +12542,7 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 						? self::hex_to_rgb( $attr['backgroundColor'], $imgopacity )
 						: '',
 					'background-image' =>
-						'gradient' === $attr['overlayType'] && "image" === $attr['backgroundType']
+						'gradient' === $attr['backgroundType']
 						? self::generate_background_image_effect(
 							self::hex_to_rgb( $attr['backgroundColor1'], $imgopacity ),
 							self::hex_to_rgb( $attr['backgroundColor2'], $imgopacity ),
