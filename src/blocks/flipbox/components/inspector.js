@@ -686,6 +686,10 @@ export default class Inspector extends Component {
       this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
     }
 
+    const emptyColorControl = (
+      <div className="responsive-block-editor-addons-empty-color-control"></div>
+    );
+
 
     return (
       <InspectorControls key="inspector">
@@ -1669,18 +1673,36 @@ export default class Inspector extends Component {
                 title={__("Padding", "responsive-block-editor-addons")}
               >
                 <TabPanel
-                  className="rbea-inspect-tabs rbea-inspect-tabs-col-2"
+                  className="responsive-block-editor-addons-inspect-tabs 
+                  responsive-block-editor-addons-inspect-tabs-col-2  
+                  responsive-block-editor-addons-color-inspect-tabs"
                   activeClass="active-tab"
+                  initialTabName="front" // Set the default active tab here
                   tabs={[
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
+                    },
                     {
                       name: "front",
                       title: __("Front", "responsive-block-editor-addons"),
-                      className: "rbea-normal-tab rbea-flip-box-tab",
+                      className: "responsive-block-editor-addons-normal-tab",
+                    },
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
                     },
                     {
                       name: "back",
                       title: __("Back", "responsive-block-editor-addons"),
-                      className: "rbea-focus-tab rbea-flip-box-tab",
+                      className: "responsive-block-editor-addons-hover-tab",
+                    },
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
                     },
                   ]}
                 >
@@ -1696,7 +1718,7 @@ export default class Inspector extends Component {
                           />
                         </Fragment>
                       );
-                    } else {
+                    } else if( "front" === tabName.name ) {
                       tabout = (
                         <Fragment>
                           <ResponsiveNewPaddingControl
@@ -1706,6 +1728,8 @@ export default class Inspector extends Component {
                           />
                         </Fragment>
                       );
+                    } else {
+                      tabout = emptyColorControl;
                     }
                     return <div>{tabout}</div>;
                   }}
