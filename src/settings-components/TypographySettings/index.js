@@ -124,18 +124,21 @@ class TypographyControl extends Component {
         const textDecorationOptions = [
             {
                 value: "underline",
-                label: __("Underline", "responsive-block-editor-addons"),
-                icon: textDecorationIcons.underline,
+                label: __("Header", "responsive-block-editor-addons"),
+                class: "rbea-text-decoration-underline-control"
+                // icon: textDecorationIcons.underline,
             },
             {
                 value: "overline",
-                label: __("Overline", "responsive-block-editor-addons"),
-                icon: textDecorationIcons.overline,
+                label: __("Header", "responsive-block-editor-addons"),
+                class: "rbea-text-decoration-overline-control"
+                // icon: textDecorationIcons.overline,
             },
             {
                 value: "line-through",
-                label: __("Line Through", "responsive-block-editor-addons"),
-                icon: textDecorationIcons.line_through,
+                label: __("Header", "responsive-block-editor-addons"),
+                class: "rbea-text-decoration-line-through-control"
+                // icon: textDecorationIcons.line_through,
             },
         ];
 
@@ -289,8 +292,6 @@ class TypographyControl extends Component {
                             options={textDecorationOptions}
                             value={this.props.values.textDecoration}
                             onChange={this.props.onChangeTextDecoration}
-                            hasIcon={true}
-                            optionHasBorder={true}
                         />
                     )}
                     {this.props.showTextBottomSpacing == true && (

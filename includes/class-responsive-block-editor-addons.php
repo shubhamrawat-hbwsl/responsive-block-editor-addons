@@ -1423,7 +1423,6 @@ class Responsive_Block_Editor_Addons {
 	 * @since 1.7.9
 	 */
 	public function rba_form_block_processing() {
-
 		register_rest_route(
 			'wp/v2',
 			'/rba_process_form',

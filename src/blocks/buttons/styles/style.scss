@@ -96,6 +96,7 @@
   .responsive-block-editor-addons-alignment-mobile {
     max-height: 32px;
     height: 100%;
+    margin-top: 8px;
 
     .components-toolbar {
       width: 100%;
@@ -179,7 +180,7 @@
         height: 32px;
         padding: 6px 12px 6px 12px;
         gap: 12px;
-        border-radius: 4px 0px 0px 0px;
+        border-radius: 4px;
         border: 1px solid #ddd;
         text-transform: none;
       }

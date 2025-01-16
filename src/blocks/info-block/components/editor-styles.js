@@ -241,6 +241,13 @@ function EditorStyles(props) {
     ctaTextBottomSpacing,
     ctaTextBottomSpacingMobile,
     ctaTextBottomSpacingTablet,
+    backgroundPosition,
+    backgroundPositionMobile,
+    backgroundPositionTablet,
+    backgroundSize,
+    backgroundSizeTablet,
+    backgroundSizeMobile,
+    backgroundRepeat,
   } = props.attributes;
 
   var boxShadowPositionCSS = boxShadowPosition;
@@ -456,9 +463,9 @@ function EditorStyles(props) {
 
     " .responsive-block-editor-addons-cta-image": {
       "background-image": imgURL !== "empty" && backgroundImage === "" ? `url(${imgURL})` : `url(${backgroundImage})`, // For compatibility with v1.3.2.
-      "background-position": imagePosition !== "empty" && backgroundImagePosition === "center center" ? imagePosition : backgroundImagePosition, // For compatibility with v1.3.2.
-      "background-repeat": imageRepeat !== "empty" && backgroundImageRepeat === "no-repeat" ? imageRepeat : backgroundImageRepeat, // For compatibility with v1.3.2.
-      "background-size": thumbsize !== "empty" && backgroundImageSize === "cover" ? thumbsize : backgroundImageSize, // For compatibility with v1.3.2.
+      "background-position": backgroundPosition,
+      "background-repeat": backgroundRepeat,
+      "background-size": backgroundSize,
       "background-attachment": backgroundAttachment,
     },
 
@@ -594,6 +601,10 @@ function EditorStyles(props) {
       "border-bottom-right-radius": generateCSSUnit(resImageBottomRadiusMobile, "px"),
       "border-bottom-left-radius": generateCSSUnit(resImageLeftRadiusMobile, "px"), 
     },
+    " .responsive-block-editor-addons-cta-image": {
+      "background-position": backgroundPositionMobile,
+      "background-size": backgroundSizeMobile,
+    },
   };
 
   var tablet_selectors = {
@@ -670,6 +681,10 @@ function EditorStyles(props) {
       "border-top-right-radius": generateCSSUnit(resImageRightRadiusTablet, "px"),
       "border-bottom-right-radius": generateCSSUnit(resImageBottomRadiusTablet, "px"),
       "border-bottom-left-radius": generateCSSUnit(resImageLeftRadiusTablet, "px"),
+    },
+    " .responsive-block-editor-addons-cta-image": {
+      "background-position": backgroundPositionTablet,
+      "background-size": backgroundSizeTablet,
     },
   };
 

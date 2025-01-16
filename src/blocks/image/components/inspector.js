@@ -201,6 +201,19 @@ export default class Inspector extends Component {
       blockIsTypographyColorValueUpdated,
       layoverHeadingTypographyColor,
       captionTypographyColor,
+      captionTopMargin,
+      captionBottomMargin,
+      captionLeftMargin,
+      captionRightMargin,
+      captionTopMarginTablet,
+      captionBottomMarginTablet,
+      captionLeftMarginTablet,
+      captionRightMarginTablet,
+      captionTopMarginMobile,
+      captionBottomMarginMobile,
+      captionLeftMarginMobile,
+      captionRightMarginMobile,
+      captionIsMarginControlConnected,
     } = attributes;
 
     // To populate new control values with existing padding margin control values for backward compatibility.
@@ -223,6 +236,27 @@ export default class Inspector extends Component {
       )
     }
     this.props.setAttributes({newSpacingValuesUpdated: true});
+
+    // To populate new control values with existing padding margin control values for backward compatibility.
+    if (!captionIsMarginControlConnected) {
+      this.props.setAttributes(
+        {
+          captionTopMargin:          captiontopmargin !== undefined ? captiontopmargin : captionTopMargin,
+          captionBottomMargin:       captionbottommargin !== undefined ? captionbottommargin : captionBottomMargin,
+          captionLeftMargin:         captionleftmargin !== undefined ? captionleftmargin : captionLeftMargin,
+          captionRightMargin:        captionrightmargin !== undefined ? captionrightmargin : captionRightMargin,
+          captionTopMarginTablet:    captiontopmarginTablet !== undefined ? captiontopmarginTablet : captionTopMarginTablet,
+          captionBottomMarginTablet: captionbottommarginTablet !== undefined ? captionbottommarginTablet : captionBottomMarginTablet,
+          captionRightMarginTablet:  captionrightmarginTablet !== undefined ? captionrightmarginTablet : captionRightMarginTablet,
+          captionLeftMarginTablet:   captionleftmarginTablet !== undefined ? captionleftmarginTablet : captionLeftMarginTablet,
+          captionTopMarginMobile:    captiontopmarginMobile !== undefined ? captiontopmarginMobile : captionTopMarginMobile,
+          captionBottomMarginMobile: captionbottommarginMobile !== undefined ? captionbottommarginMobile : captionBottomMarginMobile,
+          captionLeftMarginMobile:   captionleftmarginMobile !== undefined ? captionleftmarginMobile : captionLeftMarginMobile,
+          captionRightMarginMobile:  captionrightmarginMobile !== undefined ? captionrightmarginMobile : captionRightMarginMobile,
+        }
+      )
+    }
+    this.props.setAttributes({captionIsMarginControlConnected: true});
 
     const imageMarginResetValues = {
       marginTop: 0,
@@ -252,6 +286,21 @@ export default class Inspector extends Component {
 			paddingMobileBottom: 0,
 			paddingMobileLeft: 0,
 		}
+
+    const captionMarginResetValues = {
+      marginTop: 0,
+      marginRight: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+      marginTabletTop: 0,
+      marginTabletRight: 0,
+      marginTabletBottom: 0,
+      marginTabletLeft: 0,
+      marginMobileTop: 0,
+      marginMobileRight: 0,
+      marginMobileBottom: 0,
+      marginMobileLeft: 0,
+    }
 
     const handleChangeImage = () => {
       // Check if the WordPress media library is available
@@ -435,6 +484,72 @@ if (!imageIsRadiusValueUpdated) {
                 }}
                 mediaType={'image'}
               />
+              <SelectControl
+                  label={__(
+                    "Content Position",
+                    "responsive-block-editor-addons"
+                  )}
+                  value={LayoverContentPosition}
+                  onChange={(value) =>
+                    setAttributes({LayoverContentPosition: value})
+                  }
+                  options={[
+                    {
+                      value: "centertop",
+                      label: __("Center Top", "responsive-block-editor-addons"),
+                    },
+                    {
+                      value: "centercenter",
+                      label: __(
+                        "Center Center",
+                        "responsive-block-editor-addons"
+                      ),
+                    },
+                    {
+                      value: "centerbottom",
+                      label: __(
+                        "Center Bottom",
+                        "responsive-block-editor-addons"
+                      ),
+                    },
+                    {
+                      value: "lefttop",
+                      label: __("Left Top", "responsive-block-editor-addons"),
+                    },
+                    {
+                      value: "leftcenter",
+                      label: __(
+                        "Left Center",
+                        "responsive-block-editor-addons"
+                      ),
+                    },
+                    {
+                      value: "leftbottom",
+                      label: __(
+                        "Left Bottom",
+                        "responsive-block-editor-addons"
+                      ),
+                    },
+                    {
+                      value: "righttop",
+                      label: __("Right Top", "responsive-block-editor-addons"),
+                    },
+                    {
+                      value: "rightcenter",
+                      label: __(
+                        "Right Center",
+                        "responsive-block-editor-addons"
+                      ),
+                    },
+                    {
+                      value: "rightbottom",
+                      label: __(
+                        "Right Bottom",
+                        "responsive-block-editor-addons"
+                      ),
+                    },
+                  ]}
+                />
               <TabPanel
                 className=" responsive-size-type-field-tabs responsive-size-type-field__common-tabs responsive-inline-margin"
                 activeClass="active-tab"
@@ -700,15 +815,17 @@ if (!imageIsRadiusValueUpdated) {
                   }}
                 </TabPanel>
               }
-              <PanelRow>
-                <TextControl
-                  label="Alt Text"
-                  value={altText}
-                  onChange={(newAltText) =>
-                    setAttributes({altText: newAltText})
-                  }
-                />
-              </PanelRow>
+              <div className="responsive-block-editor-addons-text-control-container">
+                <PanelRow>
+                  <TextControl
+                    label="Alt Text"
+                    value={altText}
+                    onChange={(newAltText) =>
+                      setAttributes({altText: newAltText})
+                    }
+                  />
+                </PanelRow>
+              </div>
               <RbeaTabRadioControl
                 label={__("Object Fit", "responsive-block-editor-addons")}
                 value={imageObjectFit}
@@ -779,7 +896,7 @@ if (!imageIsRadiusValueUpdated) {
               )}
               {caption && !Layoverswitch && (
                 <TabPanel
-                  className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
+                  className=" responsive-size-type-field-tabs responsive-size-type-field__common-tabs responsive-inline-margin"
                   activeClass="active-tab"
                   tabs={[
                     {
@@ -815,6 +932,7 @@ if (!imageIsRadiusValueUpdated) {
                                 "responsive-block-editor-addons"
                               )}
                             </p>
+                            <div className="responsive-block-editor-addons-alignment-mobile">
                             <AlignmentToolbar
                               value={captionimageAlignmentMobile}
                               onChange={(value) =>
@@ -825,6 +943,7 @@ if (!imageIsRadiusValueUpdated) {
                               controls={["start", "center", "end"]}
                               isCollapsed={false}
                             />
+                            </div>
                           </BaseControl>
                         </Fragment>
                       );
@@ -838,6 +957,7 @@ if (!imageIsRadiusValueUpdated) {
                                 "responsive-block-editor-addons"
                               )}
                             </p>
+                            <div className="responsive-block-editor-addons-alignment-tablet">
                             <AlignmentToolbar
                               value={captionimageAlignmentTablet}
                               onChange={(value) =>
@@ -848,6 +968,7 @@ if (!imageIsRadiusValueUpdated) {
                               controls={["start", "center", "end"]}
                               isCollapsed={false}
                             />
+                            </div>
                           </BaseControl>
                         </Fragment>
                       );
@@ -861,6 +982,7 @@ if (!imageIsRadiusValueUpdated) {
                                 "responsive-block-editor-addons"
                               )}
                             </p>
+                            <div className="responsive-block-editor-addons-alignment">
                             <AlignmentToolbar
                               value={captionimageAlignment}
                               onChange={(value) =>
@@ -871,6 +993,7 @@ if (!imageIsRadiusValueUpdated) {
                               controls={["start", "center", "end"]}
                               isCollapsed={false}
                             />
+                            </div>
                           </BaseControl>
                         </Fragment>
                       );
@@ -892,7 +1015,7 @@ if (!imageIsRadiusValueUpdated) {
                     })
                   }
                 />
-                <SelectControl
+                {/* <SelectControl
                   label={__(
                     "Content Position",
                     "responsive-block-editor-addons"
@@ -957,7 +1080,7 @@ if (!imageIsRadiusValueUpdated) {
                       ),
                     },
                   ]}
-                />
+                /> */}
                 <RbeaBlockBorderHelperControl
                   attrNameTemplate="layoverimage%s"
                   values={{
@@ -1129,7 +1252,7 @@ if (!imageIsRadiusValueUpdated) {
                       },
                     ]}
                   />
-                  <SelectControl
+                  {/* <SelectControl
                     label={__("Mask Repeat", "responsive-block-editor-addons")}
                     value={MaskRepeat}
                     onChange={(value) => setAttributes({MaskRepeat: value})}
@@ -1154,13 +1277,28 @@ if (!imageIsRadiusValueUpdated) {
                         label: __("Repeat-Y", "responsive-block-editor-addons"),
                       },
                     ]}
-                  />
+                  /> */}
+                  <div className = "rbea-repeat-selector-wrapper">
+                      <RbeaTabRadioControl
+                        label={__("Mask Repeat", "responsive-block-editor-addons")}
+                        value={MaskRepeat}
+                        onChange={(value) =>
+                          setAttributes({ MaskRepeat: value })
+                        }
+                        options={[
+                          { value: "no-repeat", label: __("No Repeat", "responsive-block-editor-addons") },
+                          { value: "repeat", label: __("Repeat", "responsive-block-editor-addons") },
+                          { value: "repeat-x", label: __("Repeat-x", "responsive-block-editor-addons") },
+                          { value: "repeat-y", label: __("Repeat-y", "responsive-block-editor-addons") },
+                        ]}
+                        defaultValue={"no-repeat"}
+                      /></div>
                 </>
               )}
             </PanelBody>
           </InspectorTab>
           <InspectorTab key={"style"}>
-            <PanelBody title="Image" initialOpen={true}>
+            <PanelBody title="Border" initialOpen={true}>
               <RbeaBlockBorderHelperControl
                 attrNameTemplate="image%s"
                 values={{
@@ -1564,230 +1702,11 @@ if (!imageIsRadiusValueUpdated) {
             )}
             {(caption || Layoverswitch) && (
               <PanelBody title="Caption" initialOpen={false}>
-                <TabPanel
-                  className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
-                  activeClass="active-tab"
-                  tabs={[
-                    {
-                      name: "desktop",
-                      title: <Dashicon icon="desktop" />,
-                      className:
-                        " responsive-desktop-tab  responsive-responsive-tabs",
-                    },
-                    {
-                      name: "tablet",
-                      title: <Dashicon icon="tablet" />,
-                      className:
-                        " responsive-tablet-tab  responsive-responsive-tabs",
-                    },
-                    {
-                      name: "mobile",
-                      title: <Dashicon icon="smartphone" />,
-                      className:
-                        " responsive-mobile-tab  responsive-responsive-tabs",
-                    },
-                  ]}
-                >
-                  {(tab) => {
-                    let tabout;
-
-                    if ("mobile" === tab.name) {
-                      tabout = (
-                        <Fragment>
-                          <p>
-                            {__(
-                              "Margin Mobile",
-                              "responsive-block-editor-addons"
-                            )}
-                          </p>
-                          <RbeaRangeControl
-                            label={__("Top", "responsive-block-editor-addons")}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captiontopmarginMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                captiontopmarginMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionbottommarginMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionbottommarginMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__("Left", "responsive-block-editor-addons")}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionleftmarginMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionleftmarginMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionrightmarginMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionrightmarginMobile: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    } else if ("tablet" === tab.name) {
-                      tabout = (
-                        <Fragment>
-                          <p>
-                            {__(
-                              "Margin Tablet",
-                              "responsive-block-editor-addons"
-                            )}
-                          </p>
-                          <RbeaRangeControl
-                            label={__("Top", "responsive-block-editor-addons")}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captiontopmarginTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                captiontopmarginTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionbottommarginTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionbottommarginTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__("Left", "responsive-block-editor-addons")}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionleftmarginTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionleftmarginTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionrightmarginTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionrightmarginTablet: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    } else {
-                      tabout = (
-                        <Fragment>
-                          <p>
-                            {__("Margin", "responsive-block-editor-addons")}
-                          </p>
-                          <RbeaRangeControl
-                            label={__("Top", "responsive-block-editor-addons")}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captiontopmargin}
-                            onChange={(value) =>
-                              setAttributes({
-                                captiontopmargin: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionbottommargin}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionbottommargin: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__("Left", "responsive-block-editor-addons")}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionleftmargin}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionleftmargin: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset={true}
-                            value={captionrightmargin}
-                            onChange={(value) =>
-                              setAttributes({
-                                captionrightmargin: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    }
-
-                    return <div>{tabout}</div>;
-                  }}
-                </TabPanel>
+                <ResponsiveNewMarginControl
+                  attrNameTemplate="caption%s"
+                  resetValues={captionMarginResetValues}
+                  {...this.props}
+                />
               </PanelBody>
             )}
             {(caption || Layoverswitch) && (

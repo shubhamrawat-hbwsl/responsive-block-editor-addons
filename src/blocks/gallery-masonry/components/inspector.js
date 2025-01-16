@@ -16,13 +16,15 @@ import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-contro
  * WordPress dependencies
  */
 import { __ } from "@wordpress/i18n";
-import { Component } from "@wordpress/element";
+import { Component, Fragment } from "@wordpress/element";
 import { InspectorControls } from "@wordpress/block-editor";
 import {
 	PanelBody,
 	RangeControl,
 	ToggleControl,
 	SelectControl,
+	TabPanel,
+	Dashicon,
 } from "@wordpress/components";
 
 /**
@@ -94,6 +96,8 @@ class Inspector extends Component {
 			captions,
 			captionStyle,
 			gutter,
+			gutterMobile,
+			gutterTablet,
 			radius,
 			lightbox,
 			linkTo,
