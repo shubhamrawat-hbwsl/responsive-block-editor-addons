@@ -7224,24 +7224,23 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 		 */
 		public static function get_responsive_block_image_boxes_css( $attr, $id ) {
 			$defaults = self::get_responsive_block_image_boxes_default_attributes();
-			$attr     = array_merge( $defaults, (array) $attr );
-
+			
 			// Frontend Backward Compatibility For BorderRadius For Image Boxes
 			$newBorderRadiusKeys = [
-				'blockTopRadius'          => 'blockBorderRadius',
-				'blockRightRadius'        => 'blockBorderRadius',
-				'blockBottomRadius'       => 'blockBorderRadius',
-				'blockLeftRadius'         => 'blockBorderRadius',
-				'blockTopRadiusTablet'    => 'blockBorderRadius',
-				'blockRightRadiusTablet'  => 'blockBorderRadius',
-				'blockBottomRadiusTablet' => 'blockBorderRadius',
-				'blockLeftRadiusTablet'   => 'blockBorderRadius',
-				'blockTopRadiusMobile'    => 'blockBorderRadius',
-				'blockRightRadiusMobile'  => 'blockBorderRadius',
-				'blockBottomRadiusMobile' => 'blockBorderRadius',
-				'blockLeftRadiusMobile'   => 'blockBorderRadius',
+				'blockTopRadius'          => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockRightRadius'        => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockBottomRadius'       => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockLeftRadius'         => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockTopRadiusTablet'    => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockRightRadiusTablet'  => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockBottomRadiusTablet' => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockLeftRadiusTablet'   => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockTopRadiusMobile'    => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockRightRadiusMobile'  => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockBottomRadiusMobile' => 'blockBorderRadius' ? 'blockBorderRadius' : '',
+				'blockLeftRadiusMobile'   => 'blockBorderRadius' ? 'blockBorderRadius' : '',
 			];
-
+			
 			// To populate new control values with existing control values for backward compatibility.
 			foreach ($newBorderRadiusKeys as $attrKey => $defaultKey) {
 				if (array_key_exists($attrKey, $defaults)) {
@@ -7249,10 +7248,27 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				}
 			}
 
+			$newBoxImageKeys = [
+				'boxImagePosition'          => 'backgroundPosition' ? 'backgroundPosition' : '',
+				'boxImagePositionTablet'    => 'backgroundPosition' ? 'backgroundPosition' : '',
+				'boxImagePositionMobile'    => 'backgroundPosition' ? 'backgroundPosition' : '',
+				'boxImageRepeat'            => 'backgroundRepeat' ? 'backgroundRepeat' : '',
+				'boxImageSize'              => 'backgroundSize' ? 'backgroundSize' : '',
+				'boxImageSizeTablet'        => 'backgroundSize' ? 'backgroundSize' : '',
+				'boxImageSizeMobile'        => 'backgroundSize' ? 'backgroundSize' : '',
+			];	
+			
+			// To populate new control values with existing control values for backward compatibility.
+			foreach ($newBoxImageKeys as $attrKey => $defaultKey) {
+				if (array_key_exists($attrKey, $defaults)) {
+					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
+				}
+			}
+			
 			// Frontend Backward Compatibility For TypographySettings For Image Boxes
 			$newTypographySettingsKeys = [
 				'descriptionTypographyColor' => 'descriptionColor' ? 'descriptionColor' : '',
-      			'titleTypographyColor' => 'titleColor' ? 'titleColor' : '',
+				'titleTypographyColor' => 'titleColor' ? 'titleColor' : '',
 				'descriptionBottomSpacing' => 'descriptionSpacing' ? 'descriptionSpacing' : '',
 				'descriptionBottomSpacingMobile' => 'descriptionSpacingMobile' ? 'descriptionSpacingMobile' : '',
 				'descriptionBottomSpacingTablet' => 'descriptionSpacingTablet' ? 'descriptionSpacingTablet' : '',
@@ -7260,14 +7276,14 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'titleBottomSpacingMobile' => 'titleSpacingMobile' ? 'titleSpacingMobile' : '',
 				'titleBottomSpacingTablet' => 'titleSpacingTablet' ? 'titleSpacingTablet' : '',
 			];
-
+			
 			// To populate new control values with existing control values for backward compatibility.
 			foreach ($newTypographySettingsKeys as $attrKey => $defaultKey) {
 				if (array_key_exists($attrKey, $defaults)) {
 					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
 				}
 			}
-
+			
 			// Frontend Backward Compatibility For BoxPaddingSettings For Image Boxes
 			$newPaddingMarginKeys = [
 				'boxTopPadding' => 'boxPaddingTop' ? 'boxPaddingTop' : '',
@@ -7283,23 +7299,23 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
     			'boxLeftPaddingMobile' => 'boxPaddingLeft' ? 'boxPaddingLeft' : '',
     			'boxBottomPaddingMobile' => 'boxPaddingBottom' ? 'boxPaddingBottom' : '',
 			];
-
+			
 			// To populate new control values with existing control values for backward compatibility.
 			foreach ($newPaddingMarginKeys as $attrKey => $defaultKey) {
 				if (array_key_exists($attrKey, $defaults)) {
 					$defaults[$attrKey] = isset($attr[$defaultKey]) ? $attr[$defaultKey] : $defaults[$attrKey];
 				}
 			}
-
-
+			
+			
 			// Frontend Backward Compatibility For Alignment For Image Boxes
 			$newAlignmentKeys = [
 				'contentAlignMobile' => 'contentAlign' ? 'contentAlign' : '',
-      			'contentAlignTablet' => 'contentAlign' ? 'contentAlign' : '',
+				'contentAlignTablet' => 'contentAlign' ? 'contentAlign' : '',
 				'verticalAlignmentMobile' => 'verticalAlignment' ? 'verticalAlignment' : '',
 				'verticalAlignmentTablet' => 'verticalAlignment' ? 'verticalAlignment' : '',
 			];
-
+			
 			// To populate new control values with existing control values for backward compatibility.
 			foreach ($newAlignmentKeys as $attrKey => $defaultKey) {
 				if (array_key_exists($attrKey, $defaults)) {
@@ -7307,6 +7323,8 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				}
 			}
 
+			$attr     = array_merge( $defaults, (array) $attr );
+			
 			$mobile_selectors = array();
 			$tablet_selectors = array();
 
@@ -7658,7 +7676,6 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'boxPaddingTop'                 => 15,
 				'boxHeight'                     => '',
 				'hasArrow'                      => '',
-				'hasArrow'                      => '',
 				'arrowColor'                    => '',
 				'arrowSize'                     => '',
 				'boxShadowColor'                => '#fff',
@@ -7730,13 +7747,13 @@ if ( ! class_exists( 'Responsive_Block_Editor_Addons_Frontend_Styles' ) ) {
 				'blockRightMargin'              => '',
 				'blockRightMarginMobile'        => '',
 				'blockRightMarginTablet'        => '',
-        		'boxImageSize'		=> '',
-        		'boxImageSizeTablet'		=> '',
-        		'boxImageSizeMobile'		=> '',
-        		'boxImagePosition'		=> '',
-        		'boxImagePositionMobile'		=> '',
-        		'boxImagePositionTablet'		=> '',
-        		'boxImageRepeat'		=> '',
+        		'boxImageSize'		            => 'cover',
+        		'boxImageSizeTablet'			=> 'cover',
+        		'boxImageSizeMobile'			=> 'cover',
+        		'boxImagePosition'				=> 'center center',
+        		'boxImagePositionMobile'		=> 'center center',
+        		'boxImagePositionTablet'		=> 'center center',
+        		'boxImageRepeat'				=> 'no-repeat',
 				'descriptionTypographyColor'  => '#1E1E1E',
       			'titleTypographyColor'  => '#1E1E1E',
 				'descriptionBottomSpacing' => '',
