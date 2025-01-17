@@ -26,6 +26,7 @@ import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
 import RbeaBorderStyleTabControl from "../../../utils/components/rbea-border-style-tab-control";
 import RbeaBorderRadiusControl from "../../../settings-components/RbeaBorderRadiusControl";
+import ResponsiveBorderWidthControl from "../../../settings-components/ResponsiveBorderWidthSettings";
 
 
 const { __ } = wp.i18n;
@@ -37,6 +38,7 @@ const {
   ColorPalette,
   InspectorControls,
   InnerBlocks,
+  AlignmentToolbar,
 } = wp.blockEditor;
 
 const {
@@ -376,6 +378,32 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
     blockIsTypographyColorValueUpdated,
     contentTypographyColor,
     titleTypographyColor,
+    blockTitleLeftPadding,
+    blockTitleLeftPaddingTablet,
+    blockTitleLeftPaddingMobile,
+    blockTitleTopPadding,
+    blockTitleTopPaddingTablet,
+    blockTitleTopPaddingMobile,
+    blockTitleBottomPadding,
+    blockTitleBottomPaddingTablet,
+    blockTitleBottomPaddingMobile,
+    blockTitleRightPadding,
+    blockTitleRightPaddingTablet,
+    blockTitleRightPaddingMobile,
+    
+    contentLeftPadding,
+    contentLeftPaddingTablet,
+    contentLeftPaddingMobile,
+    contentTopPadding,
+    contentTopPaddingTablet,
+    contentTopPaddingMobile,
+    contentBottomPadding,
+    contentBottomPaddingTablet,
+    contentBottomPaddingMobile,
+    contentRightPadding,
+    contentRightPaddingTablet,
+    contentRightPaddingMobile,
+    titleContentIsPaddingControlConnected,
     },
       setAttributes,
     } = this.props;
@@ -393,6 +421,20 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
 			paddingMobileRight: 0,
 			paddingMobileBottom: 0,
 			paddingMobileLeft: 0,
+		}
+    const parentBlockBorderWidthValues = {
+			paddingTop: 1,
+			paddingRight: 1,
+			paddingBottom: 1,
+			paddingLeft: 1,
+			paddingTabletTop: 1,
+			paddingTabletRight: 1,
+			paddingTabletBottom: 1,
+			paddingTabletLeft: 1,
+			paddingMobileTop: 1,
+			paddingMobileRight: 1,
+			paddingMobileBottom: 1,
+			paddingMobileLeft: 1,
 		}
     const blockMarginResetValues = {
 			marginTop: 0,
@@ -461,23 +503,69 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
       ? "responsive-block-editor-addons-accordion-equal-height"
       : "";
 
+    const contentTitlePaddingResetValues = {
+      paddingTop: 10,
+      paddingRight: 10,
+      paddingBottom: 10,
+      paddingLeft: 10,
+      paddingTabletTop: 10,
+      paddingTabletRight: 10,
+      paddingTabletBottom: 10,
+      paddingTabletLeft: 10,
+      paddingMobileTop: 10,
+      paddingMobileRight: 10,
+      paddingMobileBottom: 10,
+      paddingMobileLeft: 10,
+    }
+
+    if (!titleContentIsPaddingControlConnected) {
+      this.props.setAttributes(
+        {
+          blockTitleLeftPadding:          titleLeftSpacing !== undefined ? titleLeftSpacing : blockTitleLeftPadding,
+          blockTitleLeftPaddingTablet:    titleLeftSpacingTablet !== undefined ? titleLeftSpacingTablet : blockTitleLeftPaddingTablet,
+          blockTitleLeftPaddingMobile:    titleLeftSpacingMobile !== undefined ? titleLeftSpacingMobile : blockTitleLeftPaddingMobile,
+          blockTitleTopPadding:          titleTopSpacing !== undefined ? titleTopSpacing : blockTitleTopPadding,
+          blockTitleTopPaddingTablet:    titleTopSpacingTablet !== undefined ? titleTopSpacingTablet : blockTitleTopPaddingTablet,
+          blockTitleTopPaddingMobile:    titleTopSpacingMobile !== undefined ? titleTopSpacingMobile : blockTitleTopPaddingMobile,
+          blockTitleBottomPadding:          titleBottomSpacing !== undefined ? titleBottomSpacing : blockTitleBottomPadding,
+          blockTitleBottomPaddingTablet:    titleBottomSpacingTablet !== undefined ? titleBottomSpacingTablet : blockTitleBottomPaddingTablet,
+          blockTitleBottomPaddingMobile:    titleBottomSpacingMobile !== undefined ? titleBottomSpacingMobile : blockTitleBottomPaddingMobile,
+          blockTitleRightPadding:          titleRightSpacing !== undefined ? titleRightSpacing : blockTitleRightPadding,
+          blockTitleRightPaddingTablet:    titleRightSpacingTablet !== undefined ? titleRightSpacingTablet : blockTitleRightPaddingTablet,
+          blockTitleRightPaddingMobile:    titleRightSpacingMobile !== undefined ? titleRightSpacingMobile : blockTitleRightPaddingMobile,
+
+          contentLeftPadding:          contentLeftSpacing !== undefined ? contentLeftSpacing : contentLeftPadding,
+          contentLeftPaddingTablet:    contentLeftSpacingTablet !== undefined ? contentLeftSpacingTablet : contentLeftPaddingTablet,
+          contentLeftPaddingMobile:    contentLeftSpacingMobile !== undefined ? contentLeftSpacingMobile : contentLeftPaddingMobile,
+          contentTopPadding:          contentTopSpacing !== undefined ? contentTopSpacing : contentTopPadding,
+          contentTopPaddingTablet:    contentTopSpacingTablet !== undefined ? contentTopSpacingTablet : contentTopPaddingTablet,
+          contentTopPaddingMobile:    contentTopSpacingMobile !== undefined ? contentTopSpacingMobile : contentTopPaddingMobile,
+          contentBottomPadding:          contentBottomSpacing !== undefined ? contentBottomSpacing : contentBottomPadding,
+          contentBottomPaddingTablet:    contentBottomSpacingTablet !== undefined ? contentBottomSpacingTablet : contentBottomPaddingTablet,
+          contentBottomPaddingMobile:    contentBottomSpacingMobile !== undefined ? contentBottomSpacingMobile : contentBottomPaddingMobile,
+          contentRightPadding:          contentRightSpacing !== undefined ? contentRightSpacing : contentRightPadding,
+          contentRightPaddingTablet:    contentRightSpacingTablet !== undefined ? contentRightSpacingTablet : contentRightPaddingTablet,
+          contentRightPaddingMobile:    contentRightSpacingMobile !== undefined ? contentRightSpacingMobile : contentRightPaddingMobile,
+        }
+      )
+      this.props.setAttributes({titleContentIsPaddingControlConnected: true});
+    }
+
     const accordionGeneralSettings = () => {
       return (
-        <PanelBody
-          title={__("General", "responsive-block-editor-addons")}
-          initialOpen={true}
-          className="responsive_block_editor_addons__url-panel-body"
-        >
-          <RbeaTabRadioControl
-            label={__("Layout", "responsive-block-editor-addons")}
-            value={layout}
-            options={[
-              { value: "accordion", label: __("Accordion", "responsive-block-editor-addons") },
-              { value: "grid", label: __("Grid", "responsive-block-editor-addons") },
-            ]}
-            onChange={(value) => this.onchangeLayout(value)}
-            defaultValue={"accordion"}
-          />
+        <PanelBody>
+          <div className="responsive-block-editor-addons-grid-2-layout">
+            <RbeaTabRadioControl
+              label={__("Layout", "responsive-block-editor-addons")}
+              value={layout}
+              options={[
+                { value: "accordion", label: __("Accordion", "responsive-block-editor-addons") },
+                { value: "grid", label: __("Grid", "responsive-block-editor-addons") },
+              ]}
+              onChange={(value) => this.onchangeLayout(value)}
+              defaultValue={"accordion"}
+            />
+          </div>
           {"accordion" === layout && (
             <Fragment>
               <ToggleControl
@@ -511,31 +599,23 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
           )}
           {"grid" === layout && (
             <Fragment>
-              <h2> {__("Alignment", "responsive-block-editor-addons")}</h2>
-              <Button
-                key={"left"}
-                icon="editor-alignleft"
-                label="Left"
-                onClick={() => setAttributes({ align: "left" })}
-                aria-pressed={"left" === align}
-                isPrimary={"left" === align}
-              />
-              <Button
-                key={"center"}
-                icon="editor-aligncenter"
-                label="Right"
-                onClick={() => setAttributes({ align: "center" })}
-                aria-pressed={"center" === align}
-                isPrimary={"center" === align}
-              />
-              <Button
-                key={"right"}
-                icon="editor-alignright"
-                label="Right"
-                onClick={() => setAttributes({ align: "right" })}
-                aria-pressed={"right" === align}
-                isPrimary={"right" === align}
-              />
+              <BaseControl>
+                <p>
+                  {__("Alignment", "responsive-block-editor-addons")}
+                </p>
+                <div className="responsive-block-editor-addons-alignment">
+                  <AlignmentToolbar
+                    value={align}
+                    onChange={(value) =>
+                      setAttributes({
+                        align: value,
+                      })
+                    }
+                    controls={["left", "center", "right"]}
+                    isCollapsed={false}
+                  />
+                </div>
+              </BaseControl>
             </Fragment>
           )}
           {"accordion" === layout && accordionIconSettings()}
@@ -551,23 +631,23 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
           className="responsive_block_editor_addons__url-panel-body"
         >
               <RbeaColorControl
-									label = {__("Active Text color", "responsive-block-editor-addons")}
-									colorValue={titleBackgroundColor}
-									onChange={(colorValue) =>
-										setAttributes({ titleBackgroundColor: colorValue })
-									}
-									resetColor={() => setAttributes({ titleBackgroundColor: "" })}
-								/>
-              <RbeaColorControl
-									label = {__("Background Color", "responsive-block-editor-addons")}
-									colorValue={titleActiveTextColor}
+									label = {__("Active Title Text color", "responsive-block-editor-addons")}
+									colorValue={titleActiveTextColor} //titleActiveTextColor
 									onChange={(colorValue) =>
 										setAttributes({ titleActiveTextColor: colorValue })
 									}
 									resetColor={() => setAttributes({ titleActiveTextColor: "" })}
 								/>
               <RbeaColorControl
-									label = {__("Active Background Color", "responsive-block-editor-addons")}
+									label = {__("Title Background Color", "responsive-block-editor-addons")}
+									colorValue={titleBackgroundColor} //titleBackgroundColor
+									onChange={(colorValue) =>
+										setAttributes({ titleBackgroundColor: colorValue })
+									}
+									resetColor={() => setAttributes({ titleBackgroundColor: "" })}
+								/>
+              <RbeaColorControl
+									label = {__("Active Title Background Color", "responsive-block-editor-addons")}
 									colorValue={titleActiveBackgroundColor}
 									onChange={(colorValue) =>
 										setAttributes({ titleActiveBackgroundColor: colorValue })
@@ -576,7 +656,7 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
 								/>
                 
             <ToggleControl
-              label={__("Gradient Background", "responsive-block-editor-addons")}
+              label={__("Title Gradient Background", "responsive-block-editor-addons")}
               checked={titleBgGradient}
               onChange={() =>
                 this.props.setAttributes({
@@ -598,7 +678,7 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
 
             {titleBgGradient && (
               <RbeaAngleRangeControl
-                label={__("Gradient Degree", "responsive-block-editor-addons")}
+                label={__("Angle", "responsive-block-editor-addons")}
                 value={titleGradientDegree}
                 onChange={(value) =>
                   setAttributes({
@@ -625,7 +705,7 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
               max={100}
             />
              <RbeaColorControl
-									label = {__("Background Color", "responsive-block-editor-addons")}
+									label = {__("Content Background Color", "responsive-block-editor-addons")}
 									colorValue={contentBackgroundColor}
 									onChange={(colorValue) =>
 										setAttributes({ contentBackgroundColor: colorValue })
@@ -633,7 +713,7 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
 									resetColor={() => setAttributes({ contentBackgroundColor: "" })}
 								/>
             <ToggleControl
-              label="Gradient Background"
+              label="Content Gradient Background"
               checked={contentBgGradient}
               onChange={() =>
                 this.props.setAttributes({
@@ -653,7 +733,7 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
 								/>
               
               <RbeaAngleRangeControl
-                label={__("Gradient Degree", "responsive-block-editor-addons")}
+                label={__("Angle", "responsive-block-editor-addons")}
                 value={contentGradientDegree}
                 onChange={(value) =>
                   setAttributes({
@@ -697,10 +777,9 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
         />
         {"none" != parentBlockBorderStyle && (
           <Fragment>
-          <BaseControl.VisualLabel>
+          {/* <BaseControl.VisualLabel>
               {__("Border Width:", "responsive-block-editor-addons")}
-            </BaseControl.VisualLabel> 
-            <br></br>                 
+            </BaseControl.VisualLabel>               
           <TabPanel
             className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
             activeClass="active-tab"
@@ -926,7 +1005,13 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
               }
               return <div>{tabout}</div>;
             }}
-          </TabPanel>
+          </TabPanel> */}
+
+          <ResponsiveBorderWidthControl
+            attrNameTemplate="parentBlockBorder%s"
+            resetValues={parentBlockBorderWidthValues}
+            {...this.props}
+          />
         </Fragment>
         )}
         <br></br>
@@ -1033,470 +1118,25 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
               />
             </Fragment>
           )}
-          <br></br>
-          <BaseControl.VisualLabel>
-              {__("Title Padding :", "responsive-block-editor-addons")}
-          </BaseControl.VisualLabel> 
-          <br></br>
-          <TabPanel
-                  className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
-                  activeClass="active-tab"
-                  tabs={[
-                    {
-                      name: "desktop",
-                      title: <Dashicon icon="desktop" />,
-                      className:
-                        " responsive-desktop-tab  responsive-responsive-tabs",
-                    },
-                    {
-                      name: "tablet",
-                      title: <Dashicon icon="tablet" />,
-                      className:
-                        " responsive-tablet-tab  responsive-responsive-tabs",
-                    },
-                    {
-                      name: "mobile",
-                      title: <Dashicon icon="smartphone" />,
-                      className:
-                        " responsive-mobile-tab  responsive-responsive-tabs",
-                    },
-                  ]}
-                >
-                  {(tab) => {
-                    let tabout;
 
-                    if ("mobile" === tab.name) {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Top (Mobile)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleTopSpacingMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleTopSpacingMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom (Mobile)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleBottomSpacingMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleBottomSpacingMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Left (Mobile)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleLeftSpacingMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleLeftSpacingMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right (Mobile)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleRightSpacingMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleRightSpacingMobile: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    } else if ("tablet" === tab.name) {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Top (Tablet) ",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleTopSpacingTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleTopSpacingTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom (Tablet)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleBottomSpacingTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleBottomSpacingTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Left (Tablet)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleLeftSpacingTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleLeftSpacingTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right (Tablet)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleRightSpacingTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleRightSpacingTablet: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    } else {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Top",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleTopSpacing}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleTopSpacing: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleBottomSpacing}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleBottomSpacing: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Left",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleLeftSpacing}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleLeftSpacing: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={titleRightSpacing}
-                            onChange={(value) =>
-                              setAttributes({
-                                titleRightSpacing: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    }
+          <div className="rbea-spacing-secondary-container">
+            <h3 className="rbea-spacing-secondary-container-title">Title</h3>
+            <ResponsiveNewPaddingControl
+              attrNameTemplate="blockTitle%s"
+              resetValues={contentTitlePaddingResetValues}
+              {...this.props}
+            />
+          </div>
 
-                    return <div>{tabout}</div>;
-                  }}
-          </TabPanel>
-          <br></br>
-          <BaseControl.VisualLabel>
-              {__("Content Padding :", "responsive-block-editor-addons")}
-          </BaseControl.VisualLabel> 
-          <br></br>
-          <TabPanel
-                  className=" responsive-size-type-field-tabs  responsive-size-type-field__common-tabs  responsive-inline-margin"
-                  activeClass="active-tab"
-                  tabs={[
-                    {
-                      name: "desktop",
-                      title: <Dashicon icon="desktop" />,
-                      className:
-                        " responsive-desktop-tab  responsive-responsive-tabs",
-                    },
-                    {
-                      name: "tablet",
-                      title: <Dashicon icon="tablet" />,
-                      className:
-                        " responsive-tablet-tab  responsive-responsive-tabs",
-                    },
-                    {
-                      name: "mobile",
-                      title: <Dashicon icon="smartphone" />,
-                      className:
-                        " responsive-mobile-tab  responsive-responsive-tabs",
-                    },
-                  ]}
-                >
-                  {(tab) => {
-                    let tabout;
-
-                    if ("mobile" === tab.name) {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Top (Mobile)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentTopSpacingMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentTopSpacingMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom (Mobile)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentBottomSpacingMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentBottomSpacingMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Left (Mobile)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentLeftSpacingMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentLeftSpacingMobile: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right (Mobile)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentRightSpacingMobile}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentRightSpacingMobile: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    } else if ("tablet" === tab.name) {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Top (Tablet) ",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentTopSpacingTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentTopSpacingTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom (Tablet)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentBottomSpacingTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentBottomSpacingTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Left (Tablet)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentLeftSpacingTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentLeftSpacingTablet: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right (Tablet)",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentRightSpacingTablet}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentRightSpacingTablet: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    } else {
-                      tabout = (
-                        <Fragment>
-                          <RbeaRangeControl
-                            label={__(
-                              "Top",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentTopSpacing}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentTopSpacing: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Bottom",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentBottomSpacing}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentBottomSpacing: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Left",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentLeftSpacing}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentLeftSpacing: value,
-                              })
-                            }
-                          />
-                          <RbeaRangeControl
-                            label={__(
-                              "Right",
-                              "responsive-block-editor-addons"
-                            )}
-                            min={0}
-                            max={2000}
-                            allowReset
-                            value={contentRightSpacing}
-                            onChange={(value) =>
-                              setAttributes({
-                                contentRightSpacing: value,
-                              })
-                            }
-                          />
-                        </Fragment>
-                      );
-                    }
-
-                    return <div>{tabout}</div>;
-                  }}
-          </TabPanel>
+          <div className="rbea-spacing-secondary-container">
+            <h3 className="rbea-spacing-secondary-container-title">Content</h3>
+            <ResponsiveNewPaddingControl
+              attrNameTemplate="content%s"
+              resetValues={contentTitlePaddingResetValues}
+              {...this.props}
+            />
+          </div>
+          
         </PanelBody>
       );
     };
@@ -1573,6 +1213,7 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
 
                   if ("mobile" === tab.name) {
                       tabout = (
+                        <div className='responsive-block-editor-addons-icon-size-unit-container'>
                           <Fragment>
                           <ButtonGroup
                       className="responsive-block-editor-addons-size-type-field"
@@ -1612,9 +1253,11 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
                       allowReset
                       />
                       </Fragment>
+                      </div>
                   );
                   } else if ("tablet" === tab.name) {
                       tabout = (
+                        <div className='responsive-block-editor-addons-icon-size-unit-container'>
                           <Fragment>
                           <ButtonGroup
                       className="responsive-block-editor-addons-size-type-field"
@@ -1654,9 +1297,11 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
                       allowReset
                       />
                       </Fragment>
+                      </div>
                   );
                   } else {
                       tabout = (
+                        <div className='responsive-block-editor-addons-icon-size-unit-container'>
                           <Fragment>
                           <ButtonGroup
                       className="responsive-block-editor-addons-size-type-field"
@@ -1696,6 +1341,7 @@ class ResponsiveBlockEditorAddonsAccordionEdit extends Component {
                       allowReset
                       />
                       </Fragment>
+                      </div>
                   );
                   }
 

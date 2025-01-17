@@ -17,6 +17,7 @@ import RbeaColorControl from "../../../utils/components/rbea-color-control";
 import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-control";
 import RbeaBlockBorderHelperControl from "../../../settings-components/RbeaBlockBorderSettings";
 import RbeaBorderRadiusControl from "../../../settings-components/RbeaBorderRadiusControl";
+import RbeaMediaUploadControl from "../../../utils/components/rbea-media-upload-control";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -247,6 +248,19 @@ export default class Inspector extends Component {
         buttonRightPaddingTablet,
         buttonIsMarginControlConnected,
         buttonIsPaddingControlConnected,
+        popupTopPadding,
+        popupTopPaddingMobile,
+        popupTopPaddingTablet,
+        popupBottomPadding,
+        popupBottomPaddingMobile,
+        popupBottomPaddingTablet,
+        popupLeftPadding,
+        popupLeftPaddingMobile,
+        popupLeftPaddingTablet,
+        popupRightPadding,
+        popupRightPaddingMobile,
+        popupRightPaddingTablet,
+        popupIsPaddingControlConnected,
         popupTextTypographyTypographyColor,
         blockIsTypographyColorValueUpdated,
       },
@@ -324,6 +338,27 @@ export default class Inspector extends Component {
       }
     )
     this.props.setAttributes({popupBlockIsRadiusValueUpdated: true});
+    }
+
+    // backward compatibility for Popup Padding control
+    if (!popupIsPaddingControlConnected) {
+      this.props.setAttributes(
+        {
+          popupLeftPadding:          popupPaddingLeft !== undefined ? popupPaddingLeft : popupLeftPadding,
+          popupLeftPaddingTablet:    popupPaddingLeftTablet !== undefined ? popupPaddingLeftTablet : popupLeftPaddingTablet,
+          popupLeftPaddingMobile:    popupPaddingLeftMobile !== undefined ? popupPaddingLeftMobile : popupLeftPaddingMobile,
+          popupTopPadding:          popupPaddingTop !== undefined ? popupPaddingTop : popupTopPadding,
+          popupTopPaddingTablet:    popupPaddingTopTablet !== undefined ? popupPaddingTopTablet : popupTopPaddingTablet,
+          popupTopPaddingMobile:    popupPaddingTopMobile !== undefined ? popupPaddingTopMobile : popupTopPaddingMobile,
+          popupBottomPadding:          popupPaddingBottom !== undefined ? popupPaddingBottom : popupBottomPadding,
+          popupBottomPaddingTablet:    popupPaddingBottomTablet !== undefined ? popupPaddingBottomTablet : popupBottomPaddingTablet,
+          popupBottomPaddingMobile:    popupPaddingBottomMobile !== undefined ? popupPaddingBottomMobile : popupBottomPaddingMobile,
+          popupRightPadding:          popupPaddingRight !== undefined ? popupPaddingRight : popupRightPadding,
+          popupRightPaddingTablet:    popupPaddingRightTablet !== undefined ? popupPaddingRightTablet : popupRightPaddingTablet,
+          popupRightPaddingMobile:    popupPaddingRightMobile !== undefined ? popupPaddingRightMobile : popupRightPaddingMobile,
+        }
+      )
+      this.props.setAttributes({popupIsPaddingControlConnected: true});
     }
 
     // backward compatibility for ImageTrigger border radius control
@@ -570,51 +605,10 @@ export default class Inspector extends Component {
                 }
 
                 <hr className="responsive-block-editor-addons-editor__separator" />
-                <ResponsiveSpacingControl
-                  title={__("Padding Top", "responsive-block-editor-addons")}
-                  attrNameTemplate="popupPaddingTop%s"
-                  values={{
-                    desktop: popupPaddingTop,
-                    tablet: popupPaddingTopTablet,
-                    mobile: popupPaddingTopMobile,
-                  }}
-                  setAttributes={setAttributes}
-                  {...this.props}
-                />
-
-                <ResponsiveSpacingControl
-                  title={__("Padding Bottom", "responsive-block-editor-addons")}
-                  attrNameTemplate="popupPaddingBottom%s"
-                  values={{
-                    desktop: popupPaddingBottom,
-                    tablet: popupPaddingBottomTablet,
-                    mobile: popupPaddingBottomMobile,
-                  }}
-                  setAttributes={setAttributes}
-                  {...this.props}
-                />
-
-                <ResponsiveSpacingControl
-                  title={__("Padding Left", "responsive-block-editor-addons")}
-                  attrNameTemplate="popupPaddingLeft%s"
-                  values={{
-                    desktop: popupPaddingLeft,
-                    tablet: popupPaddingLeftTablet,
-                    mobile: popupPaddingLeftMobile,
-                  }}
-                  setAttributes={setAttributes}
-                  {...this.props}
-                />
-
-                <ResponsiveSpacingControl
-                  title={__("Padding Right", "responsive-block-editor-addons")}
-                  attrNameTemplate="popupPaddingRight%s"
-                  values={{
-                    desktop: popupPaddingRight,
-                    tablet: popupPaddingRightTablet,
-                    mobile: popupPaddingRightMobile,
-                  }}
-                  setAttributes={setAttributes}
+                
+                <ResponsiveNewPaddingControl
+                  attrNameTemplate="popup%s"
+                  resetValues={buttonPaddingResetValues}
                   {...this.props}
                 />
 
@@ -677,7 +671,7 @@ export default class Inspector extends Component {
                     } else {
                       tabout = (
                         <>
-                          <Text variant="title.small" as="h3">{__("Screen Type", "responsive-block-editor-addons")}</Text>
+                          <h3 className="responsive-block-editor-addons-alignment-matrix-control-title">{__("Screen Type", "responsive-block-editor-addons")}</h3>
                           <div className="responsive-block-editor-addons-alignment-matrix-control">
                             <AlignmentMatrixControl
                               value={popupScreenType}
@@ -782,42 +776,20 @@ export default class Inspector extends Component {
                       isMulti={false}
                       noSelectedPlaceholder={__("Select Icon", "responsive-block-editor-addons")}
                     />}
-
-                  {popupTriggerType === 'image' && <>
-                    <Text variant="title.small" as="h3">{__("Select Image", "responsive-block-editor-addons")}</Text>
-                    <MediaUpload
-                      title={__(
-                        "Select Image",
-                        "responsive-block-editor-addons"
-                      )}
-                      onSelect={this.onSelectImageTrigger}
-                      allowedTypes={["image"]}
-                      value={popupImageTrigger}
-                      render={({ open }) => (
-                        <Button variant="secondary" onClick={open}>
-                          {!popupImageTrigger
-                            ? __(
-                              "Select Image",
-                              "responsive-block-editor-addons"
-                            )
-                            : __(
-                              "Replace image",
-                              "responsive-block-editor-addons"
-                            )}
-                        </Button>
-                      )}
-                    /></>}
-
-                  {popupTriggerType === 'image' && popupImageTrigger && (
-                    <Button
-                      variant="secondary"
-                      className="rbea-rm-btn"
-                      style={{marginLeft: '10px'}}
-                      onClick={() => setAttributes({ popupImageTrigger: null })}
-                      isDestructive
-                    >
-                      {__("Remove Image", "responsive-block-editor-addons")}
-                    </Button>
+                  
+                  {popupTriggerType === 'image' && (
+                    <RbeaMediaUploadControl
+                      label={__('Image', 'responsive-block-editor-addons')}
+                      value={{
+                          url: popupImageTrigger || '',
+                      }}
+                      onChange={(newValue) => {
+                          setAttributes({
+                              popupImageTrigger: newValue.url,
+                          });
+                      }}
+                      mediaType={'image'}
+                    />
                   )}
 
                   {popupTriggerType === 'text' &&
@@ -1402,52 +1374,104 @@ export default class Inspector extends Component {
                 title={__("Color & Background", "responsive-block-editor-addons")}
                 initialOpen={false}
               >
-                <Text variant="title.small" as="h3">{__("Container Background", "responsive-block-editor-addons")}</Text>
+                <TabPanel
+                  className="responsive-block-editor-addons-inspect-tabs 
+                  responsive-block-editor-addons-inspect-tabs-col-2  
+                  responsive-block-editor-addons-color-inspect-tabs"
+                  activeClass="active-tab"
+                  initialTabName="color" // Set the default active tab here
+                  tabs={[
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
+                    },
+                    {
+                      name: "color",
+                      title: __("Color", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-normal-tab",
+                    },
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
+                    },
+                    {
+                      name: "gradient",
+                      title: __("Gradient", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-hover-tab",
+                    },
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
+                    },
+                  ]}
+                >
+                  {(tabName) => {
+                    let color_tab;
+                    if ("color" === tabName.name) {
+                      color_tab = (
+                        <RbeaColorControl
+                          label = {__("Container Background Color", "responsive-block-editor-addons")}
+                          colorValue={popupBgColor}
+                          onChange={(colorValue) => setAttributes({ popupBgColor: colorValue })}
+                          resetColor={() => setAttributes({ popupBgColor: "" })}
+                        />
+                      );
+                    } else if("gradient" === tabName.name) {
+                      color_tab = (
+                        <>
+                          <h3>{__("Container Gradient", "responsive-block-editor-addons")}</h3>
+                          <GradientPicker
+                            __nextHasNoMargin
+                            value={popupGradient}
+                            onChange={(value) => { setAttributes({ popupGradient: value }) }}
+                            gradients={[
+                              {
+                                name: 'JShine',
+                                gradient:
+                                  'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
+                                slug: 'jshine',
+                              },
+                              {
+                                name: 'Moonlit Asteroid',
+                                gradient:
+                                  'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
+                                slug: 'moonlit-asteroid',
+                              },
+                              {
+                                name: 'Rastafarie',
+                                gradient:
+                                  'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
+                                slug: 'rastafari',
+                              },
+                            ]}
+                          />
+                        </>
+                      );
+                    } else {
+                      color_tab = emptyColorControl;
+                    }
+                    return <div>{color_tab}</div>;
+                  }}
+                </TabPanel>
+                {/* <Text variant="title.small" as="h3">{__("Container Background", "responsive-block-editor-addons")}</Text>
                 <div className="responsive-block-editor-addons-popup-button-group-tab">
                   <ButtonGroup>
                     <Button onClick={() => setAttributes({ popupBgType: 'color' })} variant={popupBgType === 'color' ? 'primary' : 'secondary'}>{__("Color", "responsive-block-editor-addons")}</Button>
                     <Button onClick={() => setAttributes({ popupBgType: 'gradient' })} variant={popupBgType !== 'color' ? 'primary' : 'secondary'}>{__("Gradient", "responsive-block-editor-addons")}</Button>
                   </ButtonGroup>
-                </div>
-
+                </div> */}
+{/* 
                 {popupBgType === 'color' && <>
-                  <RbeaColorControl
-                    label = {__("Container Background Color", "responsive-block-editor-addons")}
-                    colorValue={popupBgColor}
-                    onChange={(colorValue) => setAttributes({ popupBgColor: colorValue })}
-                    resetColor={() => setAttributes({ popupBgColor: "" })}
-                  />
+                  
                   </>
                 }
 
                 {popupBgType !== 'color' && <>
-                  <Text style={{ marginTop: '16px' }} variant="title.small" as="h3">{__("Container Gradient", "responsive-block-editor-addons")}</Text>
-                  <GradientPicker
-                    __nextHasNoMargin
-                    value={popupGradient}
-                    onChange={(value) => { setAttributes({ popupGradient: value }) }}
-                    gradients={[
-                      {
-                        name: 'JShine',
-                        gradient:
-                          'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
-                        slug: 'jshine',
-                      },
-                      {
-                        name: 'Moonlit Asteroid',
-                        gradient:
-                          'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
-                        slug: 'moonlit-asteroid',
-                      },
-                      {
-                        name: 'Rastafarie',
-                        gradient:
-                          'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
-                        slug: 'rastafari',
-                      },
-                    ]}
-                  /> </>
-                }
+                   </>
+                } */}
 
                 {popupToggleCloseBtn && <>
                   <RbeaColorControl

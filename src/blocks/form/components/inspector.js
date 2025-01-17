@@ -189,6 +189,34 @@ export default class Inspector extends Component {
         formRightMarginTablet,
         formIsPaddingControlConnected,
         formIsMarginControlConnected,
+
+        formButtonTopPadding,
+        formButtonBottomPadding,
+        formButtonLeftPadding,
+        formButtonRightPadding,
+        formButtonTopPaddingTablet,
+        formButtonBottomPaddingTablet,
+        formButtonRightPaddingTablet,
+        formButtonLeftPaddingTablet,
+        formButtonTopPaddingMobile,
+        formButtonBottomPaddingMobile,
+        formButtonLeftPaddingMobile,
+        formButtonRightPaddingMobile,
+
+        inputFieldTopPadding,
+        inputFieldBottomPadding,
+        inputFieldLeftPadding,
+        inputFieldRightPadding,
+        inputFieldTopPaddingTablet,
+        inputFieldBottomPaddingTablet,
+        inputFieldRightPaddingTablet,
+        inputFieldLeftPaddingTablet,
+        inputFieldTopPaddingMobile,
+        inputFieldBottomPaddingMobile,
+        inputFieldLeftPaddingMobile,
+        inputFieldRightPaddingMobile,
+        isInputFieldPaddingMarginValueUpdated,
+        isFormButtonPaddingMarginValueUpdated,
       },
       setAttributes,
       clientId
@@ -361,6 +389,82 @@ export default class Inspector extends Component {
       this.props.setAttributes({formButtonIsRadiusValueUpdated: true});
     }
 
+    const emptyColorControl = (
+      <div className="responsive-block-editor-addons-empty-color-control"></div>
+    );
+
+    const formButtonPaddingResetValues = {
+      paddingTop: 10,
+      paddingRight: 20,
+      paddingBottom: 10,
+      paddingLeft: 20,
+      paddingTabletTop: 8,
+      paddingTabletBottom: 8,
+      paddingTabletRight: 16,
+      paddingTabletLeft: 16,
+      paddingMobileTop: 6,
+      paddingMobileBottom: 6,
+      paddingMobileRight: 12,
+      paddingMobileLeft: 12,
+    }
+
+    // backward compatibility for icon container padding control
+    if (!isFormButtonPaddingMarginValueUpdated) {
+      this.props.setAttributes(
+        {
+          formButtonTopPadding:          formButtonPadding.top !== undefined ? formButtonPadding.top : formButtonTopPadding,
+          formButtonBottomPadding:       formButtonPadding.bottom !== undefined ? formButtonPadding.bottom : formButtonBottomPadding,
+          formButtonLeftPadding:         formButtonPadding.left !== undefined ? formButtonPadding.left : formButtonLeftPadding,
+          formButtonRightPadding:        formButtonPadding.right !== undefined ? formButtonPadding.right : formButtonRightPadding,
+          formButtonTopPaddingTablet:    formButtonPaddingTablet.top !== undefined ? formButtonPaddingTablet.top : formButtonTopPaddingTablet,
+          formButtonBottomPaddingTablet: formButtonPaddingTablet.bottom !== undefined ? formButtonPaddingTablet.bottom : formButtonBottomPaddingTablet,
+          formButtonRightPaddingTablet:  formButtonPaddingTablet.right !== undefined ? formButtonPaddingTablet.right : formButtonRightPaddingTablet,
+          formButtonLeftPaddingTablet:   formButtonPaddingTablet.left !== undefined ? formButtonPaddingTablet.left : formButtonLeftPaddingTablet,
+          formButtonTopPaddingMobile:    formButtonPaddingMobile.top !== undefined ? formButtonPaddingMobile.top : formButtonTopPaddingMobile,
+          formButtonBottomPaddingMobile: formButtonPaddingMobile.bottom !== undefined ? formButtonPaddingMobile.bottom : formButtonBottomPaddingMobile,
+          formButtonLeftPaddingMobile:   formButtonPaddingMobile.left !== undefined ? formButtonPaddingMobile.left : formButtonLeftPaddingMobile,
+          formButtonRightPaddingMobile:  formButtonPaddingMobile.right !== undefined ? formButtonPaddingMobile.right : formButtonRightPaddingMobile,
+        }
+      )
+      this.props.setAttributes({isFormButtonPaddingMarginValueUpdated: true});
+    }
+
+    const inputFieldsPaddingResetValues = {
+      paddingTop: 8,
+      paddingRight: 8,
+      paddingBottom: 8,
+      paddingLeft: 8,
+      paddingTabletTop: 6,
+      paddingTabletBottom: 6,
+      paddingTabletRight: 6,
+      paddingTabletLeft: 6,
+      paddingMobileTop: 4,
+      paddingMobileBottom: 4,
+      paddingMobileRight: 4,
+      paddingMobileLeft: 4,
+    }
+
+    // backward compatibility for icon container padding control
+    if (!isInputFieldPaddingMarginValueUpdated) {
+      this.props.setAttributes(
+        {
+          inputFieldTopPadding:          inputFieldPadding.top !== undefined ? inputFieldPadding.top : inputFieldTopPadding,
+          inputFieldBottomPadding:       inputFieldPadding.bottom !== undefined ? inputFieldPadding.bottom : inputFieldBottomPadding,
+          inputFieldLeftPadding:         inputFieldPadding.left !== undefined ? inputFieldPadding.left : inputFieldLeftPadding,
+          inputFieldRightPadding:        inputFieldPadding.right !== undefined ? inputFieldPadding.right : inputFieldRightPadding,
+          inputFieldTopPaddingTablet:    inputFieldPaddingTablet.top !== undefined ? inputFieldPaddingTablet.top : inputFieldTopPaddingTablet,
+          inputFieldBottomPaddingTablet: inputFieldPaddingTablet.bottom !== undefined ? inputFieldPaddingTablet.bottom : inputFieldBottomPaddingTablet,
+          inputFieldRightPaddingTablet:  inputFieldPaddingTablet.right !== undefined ? inputFieldPaddingTablet.right : inputFieldRightPaddingTablet,
+          inputFieldLeftPaddingTablet:   inputFieldPaddingTablet.left !== undefined ? inputFieldPaddingTablet.left : inputFieldLeftPaddingTablet,
+          inputFieldTopPaddingMobile:    inputFieldPaddingMobile.top !== undefined ? inputFieldPaddingMobile.top : inputFieldTopPaddingMobile,
+          inputFieldBottomPaddingMobile: inputFieldPaddingMobile.bottom !== undefined ? inputFieldPaddingMobile.bottom : inputFieldBottomPaddingMobile,
+          inputFieldLeftPaddingMobile:   inputFieldPaddingMobile.left !== undefined ? inputFieldPaddingMobile.left : inputFieldLeftPaddingMobile,
+          inputFieldRightPaddingMobile:  inputFieldPaddingMobile.right !== undefined ? inputFieldPaddingMobile.right : inputFieldRightPaddingMobile,
+        }
+      )
+      this.props.setAttributes({isInputFieldPaddingMarginValueUpdated: true});
+    }
+
     return (
       <InspectorControls key="inspector">
         <InspectorTabs>
@@ -515,35 +619,11 @@ export default class Inspector extends Component {
 
               <hr className="responsive-block-editor-addons-editor__separator" />
 
-              <ToggleGroupControl onChange={(value) => setAttributes({ formInputPaddingToggle: value })} label={__("Screen Type", "responsive-block-editor-addons")} value={formInputPaddingToggle}>
-                <ToggleGroupControlOptionIcon value="desktop" icon={ desktop } label="Desktop" />
-                <ToggleGroupControlOptionIcon value="tablet" icon={ tablet } label="Tablet" />
-                <ToggleGroupControlOptionIcon value="mobile" icon={ mobile } label="Mobile" />
-              </ToggleGroupControl>
-
-              {formInputPaddingToggle === 'desktop' && 
-                <BoxControl
-                  label={__("Input Padding", "responsive-block-editor-addons")}
-                  values={inputFieldPadding}
-                  units={[{ value: 'px', label: 'px', default: 8 }]}
-                  onChange={ ( value ) => {setAttributes({ inputFieldPadding: value }) } }
-                />}
-
-              {formInputPaddingToggle === 'tablet' && 
-                <BoxControl
-                  label={__("Input Padding (Tablet)", "responsive-block-editor-addons")}
-                  values={inputFieldPaddingTablet}
-                  units={[{ value: 'px', label: 'px', default: 8 }]}
-                  onChange={ ( value ) => {setAttributes({ inputFieldPaddingTablet: value }) } }
-                />}
-
-              {formInputPaddingToggle === 'mobile' && 
-                <BoxControl
-                  label={__("Input Padding (Mobile)", "responsive-block-editor-addons")}
-                  values={inputFieldPaddingMobile}
-                  units={[{ value: 'px', label: 'px', default: 8 }]}
-                  onChange={ ( value ) => {setAttributes({ inputFieldPaddingMobile: value }) } }
-                />}
+              <ResponsiveNewPaddingControl
+                attrNameTemplate="inputField%s"
+                resetValues={inputFieldsPaddingResetValues}
+                {...this.props}
+              />
 
             </PanelBody>
 
@@ -551,81 +631,98 @@ export default class Inspector extends Component {
               title={__("Button", "responsive-block-editor-addons")}
               initialOpen={false}
             >
-
-              <PanelBody
-                title={__("Normal Color", "responsive-block-editor-addons")}
-                initialOpen={false}
+              <TabPanel
+                className="responsive-block-editor-addons-inspect-tabs 
+                responsive-block-editor-addons-inspect-tabs-col-2  
+                responsive-block-editor-addons-color-inspect-tabs"
+                activeClass="active-tab"
+                initialTabName="normal" // Set the default active tab here
+                tabs={[
+                  {
+                    name: "empty",
+                    title: __("", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-empty-tab",
+                  },
+                  {
+                    name: "normal",
+                    title: __("Normal", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-normal-tab",
+                  },
+                  {
+                    name: "empty",
+                    title: __("", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-empty-tab",
+                  },
+                  {
+                    name: "hover",
+                    title: __("Hover", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-hover-tab",
+                  },
+                  {
+                    name: "empty",
+                    title: __("", "responsive-block-editor-addons"),
+                    className: "responsive-block-editor-addons-empty-tab",
+                  },
+                ]}
               >
-                 <RbeaColorControl
-									label = {__("Normal Button Color", "responsive-block-editor-addons")}
-									colorValue={formButtonLabelColor}
-									onChange={(colorValue) =>
-										setAttributes({ formButtonLabelColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formButtonLabelColor: "" })}
-								/>
-                 <RbeaColorControl
-									label = {__("Normal Button Background color", "responsive-block-editor-addons")}
-									colorValue={formButtonLabelBGColor}
-									onChange={(colorValue) =>
-										setAttributes({ formButtonLabelBGColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formButtonLabelBGColor: "" })}
-								/>
-              </PanelBody>
-              <PanelBody
-                title={__("Hover Color", "responsive-block-editor-addons")}
-                initialOpen={false}
-              >
-                 <RbeaColorControl
-									label = {__("Hover Button Color", "responsive-block-editor-addons")}
-									colorValue={formButtonLabelHoverColor}
-									onChange={(colorValue) =>
-										setAttributes({ formButtonLabelHoverColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formButtonLabelHoverColor: "" })}
-								/>
-                 <RbeaColorControl
-									label = {__("Hover Button Background color", "responsive-block-editor-addons")}
-									colorValue={formButtonLabelHoverBGColor}
-									onChange={(colorValue) =>
-										setAttributes({ formButtonLabelHoverBGColor: colorValue })
-									}
-									resetColor={() => setAttributes({ formButtonLabelHoverBGColor: "" })}
-								/>
-              </PanelBody>
+                {(tabName) => {
+                  let color_tab;
+                  if ("normal" === tabName.name) {
+                    color_tab = (
+                      <>
+                        <RbeaColorControl
+								        	label = {__("Normal Button Color", "responsive-block-editor-addons")}
+								        	colorValue={formButtonLabelColor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ formButtonLabelColor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ formButtonLabelColor: "" })}
+								        />
+                         <RbeaColorControl
+								        	label = {__("Normal Button Background color", "responsive-block-editor-addons")}
+								        	colorValue={formButtonLabelBGColor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ formButtonLabelBGColor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ formButtonLabelBGColor: "" })}
+								        />
+                      </>
+                    );
+                  } else if("hover" === tabName.name) {
+                    color_tab = (
+                      <>
+                        <RbeaColorControl
+								        	label = {__("Hover Button Color", "responsive-block-editor-addons")}
+								        	colorValue={formButtonLabelHoverColor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ formButtonLabelHoverColor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ formButtonLabelHoverColor: "" })}
+								        />
+                         <RbeaColorControl
+								        	label = {__("Hover Button Background color", "responsive-block-editor-addons")}
+								        	colorValue={formButtonLabelHoverBGColor}
+								        	onChange={(colorValue) =>
+								        		setAttributes({ formButtonLabelHoverBGColor: colorValue })
+								        	}
+								        	resetColor={() => setAttributes({ formButtonLabelHoverBGColor: "" })}
+								        />
+                      </>
+                    );
+                  } else {
+                    color_tab = emptyColorControl;
+                  }
+                  return <div>{color_tab}</div>;
+                }}
+              </TabPanel>
 
               <hr className="responsive-block-editor-addons-editor__separator" />
 
-              <ToggleGroupControl onChange={(value) => setAttributes({ formButtonPaddingToggle: value })} label={__("Screen Type", "responsive-block-editor-addons")} value={formButtonPaddingToggle}>
-                <ToggleGroupControlOptionIcon value="desktop" icon={ desktop } label="Desktop" />
-                <ToggleGroupControlOptionIcon value="tablet" icon={ tablet } label="Tablet" />
-                <ToggleGroupControlOptionIcon value="mobile" icon={ mobile } label="Mobile" />
-              </ToggleGroupControl>
-
-              {formButtonPaddingToggle === 'desktop' && 
-                <BoxControl
-                  label={__("Button Padding", "responsive-block-editor-addons")}
-                  values={formButtonPadding}
-                  units={[{ value: 'px', label: 'px', default: 8 }]}
-                  onChange={ ( value ) => {setAttributes({ inputFieldPadding: value }) } }
-                />}
-
-              {formButtonPaddingToggle === 'tablet' && 
-                <BoxControl
-                  label={__("Button Padding (Tablet)", "responsive-block-editor-addons")}
-                  values={formButtonPaddingTablet}
-                  units={[{ value: 'px', label: 'px', default: 8 }]}
-                  onChange={ ( value ) => {setAttributes({ formButtonPaddingTablet: value }) } }
-                />}
-
-              {formButtonPaddingToggle === 'mobile' && 
-                <BoxControl
-                  label={__("Button Padding (Mobile)", "responsive-block-editor-addons")}
-                  values={formButtonPaddingMobile}
-                  units={[{ value: 'px', label: 'px', default: 8 }]}
-                  onChange={ ( value ) => {setAttributes({ formButtonPaddingMobile: value }) } }
-                />}
+              <ResponsiveNewPaddingControl
+                attrNameTemplate="formButton%s"
+                resetValues={formButtonPaddingResetValues}
+                {...this.props}
+              />
 
               <hr className="responsive-block-editor-addons-editor__separator" />
 

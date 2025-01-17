@@ -22,6 +22,7 @@ import RbeaTabRadioControl from "../../../utils/components/rbea-tab-radio-contro
 import RbeaMediaUploadControl from "../../../utils/components/rbea-media-upload-control";
 import RbeaBlockBorderHelperControl from "../../../settings-components/RbeaBlockBorderSettings";
 import { RadioControl} from "@wordpress/components";
+import stackOnIcons from "../../../utils/components/rbea-tab-radio-control/rbea-stack-on-icons";
 
 // Setup the block
 const { __ } = wp.i18n;
@@ -685,6 +686,10 @@ export default class Inspector extends Component {
       this.props.setAttributes({blockIsTypographyColorValueUpdated: true});
     }
 
+    const emptyColorControl = (
+      <div className="responsive-block-editor-addons-empty-color-control"></div>
+    );
+
 
     return (
       <InspectorControls key="inspector">
@@ -742,16 +747,14 @@ export default class Inspector extends Component {
                 value={stack}
                 options={[
                   {
-                    value: "none",
-                    label: __("None", "responsive-block-editor-addons"),
-                  },
-                  {
                     value: "tablet",
                     label: __("Tablet", "responsive-block-editor-addons"),
+                    icon: stackOnIcons.tablet,
                   },
                   {
                     value: "mobile",
                     label: __("Mobile", "responsive-block-editor-addons"),
+                    icon: stackOnIcons.mobile,
                   },
                 ]}
                 onChange={(value) => setAttributes({ stack: value })}
@@ -759,6 +762,10 @@ export default class Inspector extends Component {
                   "Note: Choose on what breakpoint the flipboxes will stack.",
                   "responsive-block-editor-addons"
                 )}
+                defaultValue={"none"}
+                allowReset={true}
+								hasIcon={true}
+								optionHasBorder={true}
               />
               <RbeaRangeControl
                 label={__("Gutter Gap", "responsive-block-editor-addons")}
@@ -810,28 +817,24 @@ export default class Inspector extends Component {
                 allowReset
               />
             </PanelBody>
-
-            <ButtonGroup
-              className="flipbox_buttongroup"
-              text={__("Selected Site", "responsive-block-editor-addons")}
-            >
-              <Button
-                className={classnames("flipbox_button", frontColorButtonClass)}
-                onClick={() =>
-                  setAttributes({ colorButtonSelected: "front_selected" })
-                }
-              >
-                {__("Front", "responsive-block-editor-addons")}
-              </Button>
-              <Button
-                className={classnames("flipbox_button", backColorButtonClass)}
-                onClick={() =>
-                  setAttributes({ colorButtonSelected: "back_selected" })
-                }
-              >
-                {__("Back", "responsive-block-editor-addons")}
-              </Button>
-            </ButtonGroup>
+            
+              <PanelBody>
+                <RbeaTabRadioControl
+                  label={__("Layout", "responsive-block-editor-addons")}
+                  value={colorButtonSelected}
+                  options={[
+                    {
+                      value: "front_selected",
+                      label: __("Front", "responsive-block-editor-addons"),
+                    },
+                    {
+                      value: "back_selected",
+                      label: __("Back", "responsive-block-editor-addons"),
+                    },
+                  ]}
+                  onChange={(value) => setAttributes({ colorButtonSelected: value })}
+                />
+              </PanelBody>
             <PanelBody initialOpen={true}>
               {isFrontSelected && (
                 <Fragment>
@@ -1032,18 +1035,20 @@ export default class Inspector extends Component {
                     }}
                     mediaType={'image'}
                   />
-                  <RbeaRangeControl
-                    label={__("Opacity", "responsive-block-editor-addons")}
-                    value={colorOpacity}
-                    onChange={(value) =>
-                      setAttributes({
-                        colorOpacity: value !== undefined ? value : 30,
-                      })
-                    }
-                    min={0}
-                    max={100}
-                    allowReset
-                  />
+                  {backgroundImage && (
+                      <RbeaRangeControl
+                      label={__("Opacity", "responsive-block-editor-addons")}
+                      value={colorOpacity}
+                      onChange={(value) =>
+                        setAttributes({
+                          colorOpacity: value !== undefined ? value : 30,
+                        })
+                      }
+                      min={0}
+                      max={100}
+                      allowReset
+                    />
+                  )}
                   {backgroundImage && (
                     <Fragment>
                       <div className = "rbea-tab-selector-label-wrapper">
@@ -1251,18 +1256,20 @@ export default class Inspector extends Component {
                     }}
                     mediaType={'image'}
                   />
-                  <RbeaRangeControl
-                    label={__("Opacity", "responsive-block-editor-addons")}
-                    value={backColorOpacity}
-                    onChange={(value) =>
-                      setAttributes({
-                        backColorOpacity: value !== undefined ? value : 30,
-                      })
-                    }
-                    min={0}
-                    max={100}
-                    allowReset
-                  />
+                  {backBackgroundImage && (
+                    <RbeaRangeControl
+                      label={__("Opacity", "responsive-block-editor-addons")}
+                      value={backColorOpacity}
+                      onChange={(value) =>
+                        setAttributes({
+                          backColorOpacity: value !== undefined ? value : 30,
+                        })
+                      }
+                      min={0}
+                      max={100}
+                      allowReset
+                    />
+                  )}
                   {backBackgroundImage && (
                     <Fragment>
                       <div className = "rbea-tab-selector-label-wrapper">
@@ -1666,18 +1673,36 @@ export default class Inspector extends Component {
                 title={__("Padding", "responsive-block-editor-addons")}
               >
                 <TabPanel
-                  className="rbea-inspect-tabs rbea-inspect-tabs-col-2"
+                  className="responsive-block-editor-addons-inspect-tabs 
+                  responsive-block-editor-addons-inspect-tabs-col-2  
+                  responsive-block-editor-addons-color-inspect-tabs"
                   activeClass="active-tab"
+                  initialTabName="front" // Set the default active tab here
                   tabs={[
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
+                    },
                     {
                       name: "front",
                       title: __("Front", "responsive-block-editor-addons"),
-                      className: "rbea-normal-tab rbea-flip-box-tab",
+                      className: "responsive-block-editor-addons-normal-tab",
+                    },
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
                     },
                     {
                       name: "back",
                       title: __("Back", "responsive-block-editor-addons"),
-                      className: "rbea-focus-tab rbea-flip-box-tab",
+                      className: "responsive-block-editor-addons-hover-tab",
+                    },
+                    {
+                      name: "empty",
+                      title: __("", "responsive-block-editor-addons"),
+                      className: "responsive-block-editor-addons-empty-tab",
                     },
                   ]}
                 >
@@ -1693,7 +1718,7 @@ export default class Inspector extends Component {
                           />
                         </Fragment>
                       );
-                    } else {
+                    } else if( "front" === tabName.name ) {
                       tabout = (
                         <Fragment>
                           <ResponsiveNewPaddingControl
@@ -1703,6 +1728,8 @@ export default class Inspector extends Component {
                           />
                         </Fragment>
                       );
+                    } else {
+                      tabout = emptyColorControl;
                     }
                     return <div>{tabout}</div>;
                   }}

@@ -394,6 +394,14 @@ const attributes = {
     inputTypographyColor: {
       type: 'string',
     },
+    widthType: {
+      type: "string",
+      default: "%"
+    },
+    widthTypeValueUpdated: {
+      type: "boolean",
+      default: false,
+    },
   };
   
   export default attributes;
